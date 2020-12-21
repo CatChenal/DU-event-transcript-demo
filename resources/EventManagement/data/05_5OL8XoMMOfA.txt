@@ -1,0 +1,247 @@
+### Introduction
+<!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
+
+Hey everybody so this is an instruction video on how to contribute to source projects in particular to cycle learn I'm  
+andreas Miller one of the core developers of recycle or project thanks for Reshma and the Data Umbrella for organizing  
+this sprint so I really want to give you just a very brief overview of the technology behind contributing to open source  
+and the steps of getting your first cohesions in so first off a great way to communicate with the developers is the  
+getter channel you can find that at get heard I am slashed so I could learn for a spread there is this channel called  
+sprint and there's also a cycle to learn channel that's just a general channel that you can find that Gator that I am  
+slash scikit-learn slash I could learn during the sprint we will also use a discourse and so during the sprint that this  
+course might be the best way to communicate but after the sprint ends the core developers will probably not be staying  
+around on the discourse but you can always go to the Gator channel for help so you already joined us and or at least  
+you're looking at this video so I hope you're already highly motivated to start contributing still I want to go over a  
+couple of reasons you might want to contributing for a lot of people it's about giving back to the projects that you're  
+already using so the users of projects are usually the best contributors and so hopefully open source projects already  
+have helped you in your coding journey and your job and so on and contributing back is a great way to give back to the  
+community it also gives you a great opportunity to learn from your people involved in a project which are often senior  
+developers which will give you feedback about like coding style and also on how to use the different projects and how to  
+interact it also allows you to address issues that have always been bothering you about library like fix things fix  
+documentation and just make the project's better also it'll just get you more familiar with data science tools if you're  
+directly contributed projects definitely kerubim to open source could also be helpful in looking for jobs though this is  
+your own only motivation it might not work out so well because open source is really about the community and unless  
+you're really interested in the project you probably won't be able to as a ground for too long so really what we were  
+mostly in for is giving back your projects interacting with the other contributors and just having fun working on the  
+projects so now let's go get to the technical part so first want to talk about to set up if you want to develop Python  
+project obviously you need to first have a local installation and so if you already have a working Python environment  
+that's fine if not I would say just install anaconda it's usually the easiest way to go if you have an working  
+environment already make sure you're not using the system highest in particular OS X but that you're using a separate  
+environment to do your development in if you already have an anaconda installation just create a separate virtual  
+environment for the sprint so I give the command here which  
+ 
+
+#### 00:04:02,720::		4 minutes mark -> new paragraph 
+ 
+is gonna create - and I gave it a name for the environment here call it SK learned F and then all the packages that will  
+depend on numpy scifi mclachlan pi test swing size and I by colonel so we're actually not installing ii learned using  
+conda we're going to install the development version and so then you can activate this environment using sirs activate  
+SK learned F or cannot activate SK learned F I think on Windows mostly then we're if you want to work on a D on the  
+documentation you also need to install the things gallery package this is not on main continent so you need to install  
+it from the Condor for channel using Connor insults that slash sorry gonna install - see Condor Forge Sphinx gallery  
+alright so now you have your path environment setup you have a separate environment first I could learn development now  
+you gonna get the newest development version of scikit-learn des lunes first you go to the main cycle of repository  
+github.com slash scikit-learn slash scikit-learn and you'll create a fork the fork is basically your own personal copy  
+of the repository on github you can do this by clicking the fork button on the top right here this will create your  
+personal fork and will take you there so you can see here top left this is my fork a Muller slash so I could learn a  
+muddler is my kidnap handle so we'll have you get up handle there and you can see it's a four coughs I could learn  
+slashed I could learn the main repository so this is now your own private copy on github so this copy you have write  
+access to and you can make changes on this from there you'll get your own local copy on your own machine by cloning it  
+and so there's this green button clone or download that you can see here you click on this and you can copy the link and  
+do git clone with this URL and this will download a copy to your local machine your laptop or PC when you do this one  
+thing that's important is that you use HTTPS so you click here and you should use HTTPS and you'll get an HTTP address  
+I'm using SSH which is easier if you has SSH keys up on your local machine if you don't have said SH Keys set up and you  
+haven't put them in your github account and so on then just use HTTPS it's gonna be much easier once you downloaded the  
+repository from your clone you also want to add the main repository as an upstream so you can download the newest  
+version from the upstream repository someone else makes changes you can do this within your repository by doing git  
+remote add upstream and then the URL after my repository it should if you ask github.com slash scikit-learn slash  
+scikit-learn not get alright so now you have your local copy of the cyclone development version and now we want to  
+install it so you want to build it and install it and these ways you go to the folder that you just cloned and do pip  
+install - e dot this does an installation which does the building and we'll add it to your Python path the - e makes it  
+an edible installation editable not edible editable installation which means that if you change files in this folder it  
+will be automatically reflected in your installation this will overwrite existing installations so make  
+ 
+
+#### 00:08:01,180::		4 minutes mark -> new paragraph 
+ 
+sure you don't have an installation of scikit-learn so make sure you do kondeh uninstall scikit-learn in this  
+environment if you accidentally install it earlier if you're on Windows to install it you will need a soup LastPass  
+compiler so you need to install the Visual Studio toolkit and if you try to do a pip install - adopt it'll probably give  
+you an error message in the error message will tell you exactly what to download and we're four hours accent Linux  
+you'll have compiler probably already installed so you don't need to worry about that so then if your build insulation  
+your fresh insulation from the development branch of cycle or now you have to pick an issue to get started on so talk a  
+little bit more about this later but we selected some of the issues so it might be easiest to pick one of these issues  
+you'll find a URL here hopefully you download the slides so you don't have to type all of this then comment on the issue  
+say I'm working on this or there's also a command now where you can just say take and the bot will assign the issue to  
+you before you get started working make sure your you have the very current version of the upstream master so off the  
+main repository you can do this by doing git pull up story master this is why we added the upstream repository earlier  
+if you want to start from someone else's pull request where he already started some work but then stop then you want to  
+finish it off you can get their code using the skid command down here get fetch and then at a URL to the repository and  
+then their branch name Colin whatever branch name you want to use locally so before we start coding you want to create a  
+new branch for your feature you can do this by doing git checkout dash B and then a name for your branch you shouldn't  
+work on your master branch and you shouldn't make changes to your master branch you should always work on a feature  
+branch so for example if you want to improve the documentation for random forests you might do get check out - be random  
+forests underscore ducks or something like this just this is mostly for you but it's useful if it has like a  
+understandable name then you make your changes we'll talk a little bit more detail about that so you fix some bugs or  
+improve the documentation whatever you want to do then you run the tests with PI test s killer and PI test s killer and  
+we'll run all of the tests you can also run just individual test files if you and finally run flake eight on all the  
+change files so if like eight is lending to also will show you formatting errors and like unused statements and so on if  
+you don't do this they are probably proper later in the continuous integration and you'll definitely have to fix them  
+before we can merge your pull request so now let's say you fix the issues you want to fix you command them locally on  
+your branch and you run the tests and your answer like a - everything passes then you can push the changes you made  
+locally to your github repository using git push origin and then the name of your branch this pushed it to your fork for  
+you so to your personal copy off socket learn on github then to get it into the main repository you do what's called a  
+pull request which basically asks the developers to take your changes and integrate them in the main repository you can  
+create a  
+ 
+
+#### 00:12:01,459::		4 minutes mark -> new paragraph 
+ 
+pull request by going onto the main repository scikit-learn such as I could learn and if you push to your repository you  
+will see this green button here saying compare and pull request so this will take you to an interface where you can  
+create a pull request it will automatically fill in the things here at the top which will basically say from your fork  
+your branch you want to do a pull request to your cycler and master branch but that will usually be automatically filled  
+and for you what you have to do is first you have to give it a title if you want you can preface the title by either MRG  
+if you think your work is ready to be reviewed and merged or WIP if you think it's a work in progress meaning you still  
+need to want to make some changes you just want to show off the work you've done so far you usually want to give this a  
+descriptive name so something that someone can read and they know exactly what you're working on and so remember scikit-  
+learn is big and so if you say change and classes attribute and you don't saying which model is is in this might not be  
+super useful so be precise and specific but don't make it too long if you reference an issue that you're fixing in the  
+title github will actually not link it but so it's very important that you reference any issue that you're fixing or  
+that you write it to or any pull requests you're taking over in the description of the pull request so here so here you  
+want to say fixes issue X there's actually some magic words on github that mean that if you say fix X or closes X and  
+then the pull request is merged github will automatically close you as a pull request so if you're completely fixing  
+something that is an issue say fix this issue and then the foot requests will be automatically closed if you're fixing  
+only part of an issue or if you're an issue has like many small parts and you're doing one of them please don't say  
+fixes issue or closes issue because then if your thing at Merck gets merged github will automatically close the hole the  
+hole issue for everybody and then someone else needs to reopen it if it's so current so use the fixes issue number but  
+only when it's appropriate and definitely definitely mention any issue of pull requests that's related all right so  
+let's say you open your pull request then at the bottom of it you will see the continuous integration suit running so  
+the diagonals will be a little bit different these days because you're mostly using as your pipelines and so you want  
+all of these to be green checkmarks if not then you can click on details and it'll tell you why Tesla's failing and this  
+will hopefully tell you what you need to address if this is unclear to you just ask a question on the pull request or on  
+the issue tracker anywhere and people will be happy to help you to clarify what it is that you need to fix for a test to  
+pass also it's not enough that the tests that were there before passed whatever you change the code you also want to add  
+a test that tests the code that you added if you fix the bug that's called a regression test but also if you add a  
+feature you definitely want to add a test that tests the feature we wont merge any pull requests without a test and so  
+basically if you made any change to the code at all it's very likely you also need to make a change to your tests or  
+make an addition to the tests if you don't know which test file to look at you can probably do  
+ 
+
+#### 00:16:02,899::		4 minutes mark -> new paragraph 
+ 
+a git grep to find it if not just ask which file it has to go into or what should be tested all right so let's say you  
+edit your tests all the tests pass everything is green what's next so for then you will get reviewers from the core  
+developers probably it might take some time particular during the sprint because people are quite busy usually reviewers  
+will have comments it's very unusual that someone will say oh your pull request is great we can just merge it the pull  
+request review is a really really important part of open source and it's the main way that new features are discussed so  
+don't be disappointed if someone says well I actually think we should do it this way or that way this is really the main  
+way the developers communicate and so it's not like they're rejecting your pull requests basically every pull requests  
+undergoes changes I've been with the project for a long time and basically any pull requests that I do will have a long  
+discussion and will undergo many iterations before it gets merged if it gets merged and so if you're less familiar with  
+the project will probably take even more iterations and so that's just completely normal in its the way that you'll  
+learn about the practices in the project and also how you learn to improve your coding style to address any comments you  
+can just update the branch you have locally and push to your fork that will automatically update the pull request so you  
+don't need to close the pull request and open your pull request the pull request will automatically update with any  
+changes you have this will probably go back forth a couple of times and then one of the reviewers are happy they'll  
+approve the pull request or Maybe change the title to merge class one but I think these days we usually use the github  
+approve feature you need two approvals from cyclone core developers so these are people with commit rights on the  
+cyclone repo once you have two approvals your pull request probably gets merged it might sometimes take some time to get  
+reviews so please be patient but you can also feel free to ping issue and ask for reviews so to ping developers on your  
+pull request or in a chat or in person one person is hard these days but like in whatever online platform we were  
+collaborating one aspect that I think is quite important is finding issues to work on so Adia you find something that  
+you're interested in but you should also start with something that's really really simple if this is your first open  
+source contribution or even if it's your first contribution to the second learn project even if you have contribute to  
+other projects before really start with something super simple as you might have noticed there's a lot of process to all  
+of this like working with Jade working with the continuous integration working with the reviewers and so on and so even  
+if it's just a single line code change or a single line documentation change can be really useful and it's important to  
+do a small thing to get up to speed and get it merged before you attack anything big still just do something simple  
+first as I said before there's this thing that's linked here at the bottom where he put we put some issues that are  
+specifically we marked for this sprint so these are probably all quite good other than that there's tags on the  
+repository the most important tag is Maybe a good first issue good first  
+ 
+
+#### 00:20:00,070::		4 minutes mark -> new paragraph 
+ 
+issue issues are good if you have them contribute to scikit-learn before and that should be pretty easy and  
+straightforward things that need someone to work on them should be tagged with Nick contributor though that might  
+sometimes be outdated but you should check things that are good first issue and Nick contributor there's a are also  
+things that are marked easy or sprint so easy are those that are easy but maybe not great for first contributors or  
+sometimes they may have both tags so there's also other ways to contribute then finding an issue and working on them you  
+can also just fix something in the docs that's unclear you don't necessarily need to open issue for this so just like  
+improve the documentation if you if there's something you don't like about it or just open issues open issues about  
+unclear docs about features that you find weird about examples that are not helpful about bugs you run into so sprint  
+can be a really great opportunity to open issues about things that you don't like about the projects problems that you  
+run into and having this feedback is really really important to improve the project another thing you can do is find  
+poor requests that someone I was made but didn't finish so if there was reviews by the developers but then say after a  
+month or two people didn't come back and address their issues usually we assume the issues up for grabs it's polite to  
+ask but they might not have time to answer you in the time it takes for this like in the one day of the sprint so either  
+just ask say are you still working on this or it's some case it might be fine just start working on it and say OK it  
+looks like you're not working on this anymore I'll take it over in this and did any other communications on the issue  
+tracker of course always be nice be courteous be productive and constructive in your feedback you can also start  
+reviewing in particular reviewing pull requests or issues open by other people at the sprint might be useful because  
+they're usually at a more introductory level but you can try to review any pull requests and issues reviewing issues  
+might be a little bit more straightforward so if you want to check an issue one may see is this issue reproducible is it  
+clear what the person is reporting did they give the minimum reproducible example if so can you repute it on your  
+machine that they provide data if they couldn't provide the data could they reproduce it with aesthetic example and so  
+these are sort of all the things that need to be present if they're not present you can ask for the per set issue open  
+the issue to provide them if something's not clear about the issue also feel free to clarify or like ask for  
+clarification at me and then you can try to reproduce the issue so just reproducing it and making sure it's easy to  
+reproduce it it's already quite helpful some of the issues might already be fixed and so you can say oh this is already  
+been fixed in this in this version because we have very old issues going back several years so try urging issues is a  
+very useful thing to do some bugs are not confirmed so you see if you can confirm it and under which conditions you can  
+also review pull requests make those for documentation on whether they're clear is the language clear you can also  
+review code changes either unlike do they have casts added do they adhere to  
+ 
+
+#### 00:24:03,370::		4 minutes mark -> new paragraph 
+ 
+the styles that's continuous integration pass and then Maybe the day I mentioned the issue they are dressing in their  
+description so all of the things that I said you should do for your pull request you could check are the other people in  
+the sprint or generally anyone that is a pull request are they adhering to these standards if not you can ask them to do  
+it of course always be nice and polite you can also try to review code changers to see are they actually addressing the  
+thing that they want to address and are they addressing it in a way that you think is good this might be a little bit  
+more tricky but you should definitely give it a go and if something is unclear just ask for clarification and also don't  
+don't be hesitant to provide feedback just always be like polite in saying like oh maybe I would have done it this way  
+is there reason you do it this way and not say don't say like oh this is a bad way to do this you should do it this way  
+they're trouble you a reason someone that it the way it did so just always be nice and just or the ask for clarification  
+instead of assuming a couple of things on the work flow during the sprint so you're highly encouraged to do pair  
+programming I find it's much more fun and you can get much more done during pair programming this time around it will be  
+remote pair programming using this course it's Maybe not entirely as good as doing in-person pair programming but I  
+think it's so quite a lot of fun if you're doing a pull request or an issue just add mention the other person that's  
+working on it so they all get up in their emails make sure to follow up on your work so expected there's a lot of back-  
+and-forth and discussion and so make sure that you catch any reviews you get on your pour requests and really it's  
+important to ask the project for you to really get your contributions merged and so really try to get a follow up during  
+the sprint but also ideally follow up after the sprint really what we love the most is finding new contributors that  
+keep coming into bacterial project and keep coming back to contributing it will be more easy and more satisfying to  
+contribute to the project the more you get involved in the more familiar you have become you'll be able to do more and  
+more interesting things you'll be able to act cool new features to your project and so on and so it's also really a way  
+to grow with the project and to learn much more by coming by becoming more long-term engaged so we will probably try to  
+do some follow-up events for the sprints otherwise feel free to follow up on the issue tracker the issue tracker is  
+really the main way the developers communicate there's also a monthly community monthly developer call that you can join  
+if you want join the email list or just talk to us on getter and so yeah make sure you know which email address you use  
+on your github account and check that email address for notifications or check the notifications directly on github so I  
+said so there might be some things to do can't finish up during the sprint it really great if you can follow up and get  
+your pull requests merged so the pull request and github is really the best way to communicate and this is a  
+ 
+
+#### 00:28:00,610::		4 minutes mark -> new paragraph 
+ 
+public discussion where all of the core developers or really anyone else on the internet can answer question and how and  
+said before will using a discord during the sprint but the core developers will probably not be around on the discourse  
+most of the time after the sprint so a good idea is to go on the cyclone sprint channel or just the general cyclones  
+channel or just talk in the issues and pull requests so really we're emphasizing that it's a good idea to start with  
+something really very simple as a first contribution and then work your way up from there my first contribution just  
+like I've learned we're fixing some typos in our documentation and if I start contributing to any other project usually  
+the first thing I do is like fix a line your documentation and just to you know get started with the project and start  
+communicating and start getting into the workflow yeah so if you want to add the major features I could learn that's  
+probably not something you can do in a day adding a new model to so I could learn is usually something that take many  
+months and it's not something you should try to attempt at the beginning so really start with something simple and then  
+Maybe if you got your first first two polar quests and you can work at adding like a smaller feature but don't count on  
+adding a big feature anytime soon that is because second learns already quite mature library and so it's moving quite  
+slowly and so it's hard to add anything big or make any big new changes also there might be a lot of interesting issues  
+that are not appropriately tagged so if you're interested in particular topic you can just search the topic on the issue  
+tracker or on the pull requests and see if there's something interesting happening there so with this I want to say  
+enjoy the sprint and thank you all for your help and I hope you have a lot of fun you learn a lot work together with  
+your sprint partner and I hope you'll come back for more sprints or you just keep engaging on the issue tracker all  
+right so thank you so much you  
+ 

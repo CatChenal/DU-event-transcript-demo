@@ -1,0 +1,163 @@
+# TODOs
+================================================================
+## GUI:
+* correction example (done):
+ tr.df.loc[15, 'Speaker'] = "Hugo Bowne-Anderson, James Bourbeau"
+## GUI-Admin:
+Test current code
+
+## GUI-Editor:
+Implement tab widget & function
+
+* when checking for user entry: if apostophe, show 'problem'?:
+s = "april's fools" # "April'S Fools"
+s.title()
+#........................................................
+
+DONE: 
+- replacements list -> csv
+- corrections dict -> json
+- fn to download all captions.xml
+
+# .........................................................
+
+DONE: Regex for utterances + also simplify truecasing of 'i', 
+      + regex for calendar mo/days!, no more lists!:
+# .........................................................
+
+conda install -c conda-forge spacy
+python -m spacy download en_core_web_sm
+python -m spacy download fr_core_news_sm
+python -m spacy download es_core_news_sm
+# .........................................................
+
+FIXED with pytube update v=10.0.0:
+# pytube: can no longer instantiate a YT video!
+Need correction in latest merge but not yet on pypi:
+
+Change in config_patterns:
+L247, pytube/extract.py, def getytplayer_config
+
+    config_patterns = [
+        r";ytplayer\.config\s*=\s*({.*?});",
+        r"yt\.setConfig\(.*'PLAYER_CONFIG':\s*({.+?})"
+    ]
+
+to install version w/specific fix:
+python -m pip install git+https://github.com/nficano/pytube
+# ......................................................
+
+WIP: Input forms reqs.
+......................
+
+# Input form(ADD):
+Test msg output to ipw.Output during save. => Add logging?
+Check: Save fn includes:
+   save_new(dict):
+     update_meta, save_meta, 
+     create(*) & save transcript,
+     update_rdm_table, save_readme
+  (*) for all other cases, fn=update ==>
+Create generic fn:
+  save_entry(dict, new=False):
+    if new:
+      update_tup = (render_transcript, "Create transcript starter file")
+    else:
+      update_tup= (update_transcript, "Update transcript file")
+    save_ops_d = OrderedDict([(update_meta, "Transfer entries to metadata"),
+                              (save_meta, "Save metadata.json"),
+                              update_tup,
+                              (save_transcrpt, "Save transcript file"),
+                              (update_rdm_tbl, "Update README table"),
+                              (save_readme, "Save README"),
+
+# Input form(MODIFY):
+Top wgts: 
+  idn selection box (idn_sbx) 
+  + radio btn: [1. Modify README table data,
+                2. Modify transcript header data]
+Common ops:
+  a: Set tr = Meta.TranscriptMeta(idn_sbx.value) w/ idn_sbx.on_change.
+  c. load relevant metadata values into input_flds.values.
+  d. Create children for inputAcc.
+  e. Display inputAcc
+  f. Validate
+  z: Show
+
+Radio choice 1: Modify README table data
+* 2nd radiobox=[Use pandas df, Use input form]: 
+  M1. Modify via pandas df(copy) (easiest! req: user knows pandas!):
+    - example: dfcopy.loc[15, 'Speaker'] = "Hugo Bowne-Anderson, James Bourbeau"
+    - Validate_df: will compare old vs new entry, i.e.:
+      - no change of idn, else => invalid (feature not yet implemented)
+      - same other checks as in M2.
+  M2. Modify via input form:
+    wgt => check box (cbx) selection:: all df fields except idn.
+    -> [Speaker, Title, Title_kw, Trancriber|Reviewer, Status, Notes]
+    - Subset input_flds keys as per selection
+    - For each selected in cbx:
+      - Create children for inputAcc.
+    - Show inputAcc; Validate 
+    - Update meta & json
+    - Update readme table;
+    - If selected in [Speaker, Title, Title_kw, Trancriber|Reviewer]:
+      also update transcript file header.
+    - Show
+
+Radio choice 2: Modify transcript header data
+=> update tbl if necessary
+
+Needed: accurate list of thempate header fields: not hard-coded.
+
+# Input form(EDIT):
+wgts: idn_sbx + common ops(a) 
+- If not has_transcript:
+  - download audio
+  - download captions.xml
+  - pre-process
+- Load text into Textarea
+
+FUTURE:
+1. Before pre-processing of text? After 1st review?:
+Add btns for: 
+1. Expanding lists of Places and Names for proper casing
+2. Expanding lists of terms to remove
+3. On Validate: expand main lists with users terms. 
+=> need to keep track of users' entries: users may need to 
+   correct them after new processing.
+
+2. Do NER on raw transcript. Add Persons and Places to related 
+  conversion lists.
+3. search_conversion_list(Enum=(Names, Places, Utterances)
+# ....................................................
+
+# Text pre-processing:
+Check if video has a time_recorded meta info 
+=> parse it to get t_period='a.m.|p.m.'.
+=> add regex to get find result = "'time|late'> (nn nn) >"; 
+if len(result.split()) < 10, it's a time -> new_str = 'nn:nn ' + t_period.
+..
+# ......................................................
+
+DONE. 
+Created new header_parsing fn to parse the header after 
+pandoc conversion (->rst-like format). Discovered untrapped errs!.
+# ......................................................
+
+DID NOT WORK: Test using interactive on "new event fn" 
+-> put fn.children (vbox) 
+inside Accordion with proper layout.
+Instead, split original input_wgt_group() in order
+to create the widgets on by one given (k,v), from input field dict.
+# ......................................................
+
+# Reqs:
+conda env export --from-history -f environment_hist.yml
+# ......................................................
+
+X: won't use Panel
+. Panel:
+conda install -c pyviz panel
+In JupyterLab, you will also need to install the PyViz JupyterLab extension:
+conda install -c conda-forge jupyterlab
+jupyter labextension install @pyviz/jupyterlab_pyviz

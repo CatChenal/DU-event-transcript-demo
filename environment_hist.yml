@@ -1,0 +1,37 @@
+name: p37
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - pip
+  - ipykernel
+  - ipython
+  - ipywidgets
+  - jupyter_core
+  - jupyter_client
+  - notebook
+  - nbformat
+  - jupyterlab
+  - jupyterlab_server
+  - nbconvert
+  - python-markdown-math
+  - beautifulsoup4
+  - requests
+  - setuptools
+  - yaml
+  - pandoc
+  - pypandoc
+  - pytest
+  - tqdm
+  - blas
+  - python-dateutil
+  - matplotlib
+  - seaborn
+  - pandas
+  - regex
+  - numpy
+  - attrs
+  - h5py
+  - spacy
+  - qtconsole
