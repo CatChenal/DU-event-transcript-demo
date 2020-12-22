@@ -11,9 +11,9 @@ from pprint import pprint as pp, pformat
 from IPython.display import display, HTML, Markdown, Audio
 import ipywidgets as ipw
 
-from manage import EventMeta as Meta
-#from manage.Utils import save_file, load_file_contents #get_project_dirs,
-
+from manage import (EventMeta as Meta,
+                    EventTranscription as TRX,
+                    Utils as UTL)
 #..........................................................
 
 SHOW_EXTRA_REFS_EXAMPLE = """
@@ -161,7 +161,7 @@ def get_new_input_flds():
                       ["title", "Presentation title - lower case ok!", 
                        reqd, None],
                       ["title_kw", 
-                       "Sort word(s) for naming the transcript, e.g. flask demo",
+                       "Short word(s, space-separated) for naming the transcript, e.g. flask demo",
                        reqd, None],
                       ["video_url", "URL of the YouTube video", reqd, None],
                       ["video_href", "URL for the video link", 
@@ -178,7 +178,9 @@ def get_new_input_flds():
                       ["notebook_url", "URL of the presenter's notebook",defaultsNA,
                        None],
                       ["transcriber", "Transcriber's name (First Last)",
-                       "(defaults to ? if not provided)", None]
+                       "(defaults to ? if not provided)", None],
+                      ['status', "Status", Meta.TrStatus.TODO.value, None],
+                      ['notes', "Notes in README table", "", None]
                       ]
 
     new_input_d = OrderedDict([(fld[0],
@@ -199,7 +201,8 @@ def get_demo_input_dict():
     # To preset widget boxes with values:
     demo_list = ['2020', 'cat chenal', 'my presentation title', 'bar foo foo', 
                  "https://www.youtube.com/watch?v=MHAjCcBfT_A", None, None, None,
-                 None, None, 'https://github.com/CatChenal', None, None, None ]
+                 None, None, 'https://github.com/CatChenal', None, None,
+                 Meta.TrStatus.TODO.value, None, None ]
     assert len(demo_list) == len(new_input_d.keys())
     
     for i, (k,v) in enumerate(zip(list(new_input_d.keys()), demo_list)):

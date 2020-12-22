@@ -23,15 +23,10 @@ dependencies:
   - pandoc
   - pypandoc
   - pytest
+  - pytube
   - tqdm
-  - blas
-  - python-dateutil
-  - matplotlib
-  - seaborn
   - pandas
   - regex
   - numpy
   - attrs
-  - h5py
-  - spacy
   - qtconsole

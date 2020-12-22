@@ -1,26 +1,26 @@
 ### Introduction
 <!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
 
-Okay so it's it's really great my name is Rashmi Shaikh and I am the founder of Data Umbrella I am also an organizer for  
-NYC hi ladies and I am based out of New York City welcome to our welcome to our session the mission of Data Umbrella is  
+Okay so it's it's really great my name is Rashmi shaikh and I am the founder of Data Umbrella I am also an organizer for  
+nyc hi ladies and I am based out of New York city welcome to our welcome to our session the mission of Data Umbrella is  
 to provide a welcoming and educational space for underrepresented persons in data science we welcome allies to help us  
 in our mission and we welcome all different skill levels we are on Twitter at theta umbrella so feel free to tweet and  
 share about the event and follow us also there's a LinkedIn page for us where I usually share job posting so you're  
 welcome to join there and there's information on the website about a discord for community I just want to go over the  
 code of conduct that you know we're dedicated to providing harassment free experience for everyone be kind to others be  
-professional and respectful we really want to build a friendly community here our Twitter is just to be P at data  
-umbrella and also at NYC PI ladies and this is our Meetup page so we'll be posting I'll be posting any upcoming events  
+professional and respectful we really want to build a friendly community here our Twitter is just to be p at Data  
+Umbrella and also at nyc PyLadies and this is our Meetup page so we'll be posting I'll be posting any upcoming events  
 on the Meetup page even though this is webinar and it's available to anybody around the world its Meetup pages like the  
 central page where the events are posted oh I want to thank our speaker she'll be from joining from San Francisco and I  
 want to thank our sponsor for providing this webinar platform which is neo4j and I'm just going to introduce Shelley I  
-actually met Shelby back in August in San Francisco when I was there for the right speak code conference Shelby is the  
-head of analytics at Komodo health and as an analyst professional and former software engineer Shelby has been involved  
+actually met shelby back in August in San Francisco when I was there for the right speak code conference shelby is the  
+head of analytics at komodo health and as an analyst professional and former software engineer shelby has been involved  
 in shaping great products or companies big and small for the last 13 plus years she's worked on various analyses  
 previously she worked at Salesforce and she I guess the really impressive thing here additionally is that she has worked  
 with a really large data a data at scale 40 million plus users and then I think you should be able to screen share now  
-don't get perfect Oh give me a second goal all right can you see my screen hey I equal to see my screen yes OK perfect  
+don't get perfect oh give me a second goal all right can you see my screen hey I equal to see my screen yes OK perfect  
 OK thank you yeah all right anyways thank you all so much for joining in today my name is shall give a clue thanks  
-again Reshma for the introduction and today I am going to walk you all through how I think that Sherlock Holmes would  
+again Reshama for the introduction and today I am going to walk you all through how I think that Sherlock Holmes would  
 have fixed back data and I hope you're all as excited about investigating data anomalies as I am so just to pick a  
 little bit about me so this is me as a child I used to spend a lot of time reading detective novels and after I had  
 finished reading one I used to go around hunting in my backyard for cues I have no idea what I was what mystery I was  
@@ -33,7 +33,7 @@ I don't think I ended up doing some exciting things I worked with a lot of diffe
 #### 00:04:01,470::		4 minutes mark -> new paragraph 
  
 of different sizes mostly in analytics which I've been involved in for almost a decade but even though I started as an  
-engineer and now I am the head of analytics at Komodo health where I lead a team of eight data scientists so today we're  
+engineer and now I am the head of analytics at komodo health where I lead a team of eight data scientists so today we're  
 gonna talk about three things one what is bad data and why should you care about it and how do we actually fix it so  
 sorry bad data is essentially my definition is that it's inaccurate incomplete or misleading data and essentially what  
 that encompasses is anything that's wrong anytime there is missing information or there's duplicate information but it's  
@@ -54,7 +54,7 @@ the data that you have and if you don't trust it like you have some caveats atta
 other really common thing that shows up is just you know something where the analysis just looks really suspicious so in  
 the in you know in this new chart you can see that you it shows you revenue by country and it shows you you have twenty  
 five million dollars that you made in UK and then you note that you're actually a company that's located in North  
-America you haven't even ever marketed in Europe see all the North American countries make sense so you know who are all  
+America you haven't even ever marketed in Europe see all the north american countries make sense so you know who are all  
 these people in UK who are buying your product it just doesn't make sense that it would be the biggest country where  
 you'd have revenue from so things like this they basically you know are a starting point where you start wondering  
 what's going on and you know what is this bad data or like where is all this information coming from and the next  
@@ -123,13 +123,13 @@ it hampers their productivity if you don't upfront spend that time and effort in
 affects our morale because they feel that you know this is this is just I spend so much time doing something I don't  
 want to do it can also affect it can cause liabilities you can sometimes end up sharing information that you had you're  
 not supposed to or you shared incorrect information that's specially a problem if if you're a public traded publicly  
-traded company and you had an earnings call where you said I have you know X number of monthly active users and then the  
+traded company and you had an earnings call where you said I have you know x number of monthly active users and then the  
 next earnings call you're like well just kidding it's actually 20% lower because I made a mistake that's not gonna look  
 good and you might your company might actually get sued for for misleading shareholders so bias of course is a big  
 problem you know if you if you have some if you have some data that's inherently biased and that's not known to you like  
 that's just it's it's it's a it's it's a it's a issue because it can cause harm to people based on whatever decisions  
 are being made with that data and overall you know you can also just straight-up lose revenue so if you have a bad data  
-pipeline and data goes missing Maybe your marketing team doesn't have leads to follow up on and that can lead to  
+pipeline and data goes missing maybe your marketing team doesn't have leads to follow up on and that can lead to  
 material revenue revenue costs overall I think the biggest the biggest reason that I think this is important is also  
 because it lowers trust the minute your customers find out that there is something sketchy  
  
@@ -146,7 +146,7 @@ well my skills are so much you know there's so much other cool stuff that I can 
 they everyone wants their talents to be used in an optimal way and you don't want people leaving leaving a job just  
 because they're always dealing with dirty data issues so good so next you know how do we actually solve it my my thought  
 here is I think I think we solve it by thinking like Sherlock Holmes and for for those of you who are not familiar with  
-him Sherlock Holmes is a fictitious character created by Sir Arthur Conan Doyle he is arguably one of the most famous  
+him Sherlock Holmes is a fictitious character created by sir Arthur Conan doyle he is arguably one of the most famous  
 fictional detectives and there's a lot of books and movies about like that character so check it out if you haven't had  
 the chance to so why did I actually pick Sherlock Holmes for you know why did I pick that we should emulate his his  
 style so I actually think that his style of solving crimes is very relevant to data scientists even though hopefully  
@@ -181,7 +181,7 @@ different insights the next thing again about improving your observation is to s
 you know I think like all good engineers have to do it you have to just be structured you have to keep good  
 documentation I think for data scientists it's especially relevant because you know sometimes during our analysis we'll  
 make some assumptions and if it's not or we'll make some decisions rather and if it's not an intuitive decision like why  
-did we make that decision Maybe we made it because we spoke to a colleague who pointed something out and if two months  
+did we make that decision maybe we made it because we spoke to a colleague who pointed something out and if two months  
 later we'd forget why we why we decided to go this direction with our analysis it will be really helpful to you if you  
 have actually sort of documented that somewhere so that even you yourself are not struggling with figuring out why you  
 why you did something specific so you know and and like being structured also means that you you try to look at  
@@ -194,7 +194,7 @@ impossible answer is not the answer we have to give the improbable answer a chan
 truthful saying that if this is where things are pointing me I have to give it a shot to sort of see if that's actually  
 true or not so here again you know you can build on this scale by just generally avoided avoiding the trap of bias and I  
 think you know a lot of times it's it's very easy like it's human nature that we are the if we're given if you're given  
-something that makes our life easier so someone States an opinion which sounds kind of correct like it makes our brain  
+something that makes our life easier so someone states an opinion which sounds kind of correct like it makes our brain  
 is programmed to just attach to it because it makes our life easier so but we should we should you know purposefully  
 step away from that because a lot of times opinions are stated as facts and people then there must have been tons of  
 companies that you know said hey our monthly active users just never go down like we're a growing company and then  
@@ -286,10 +286,10 @@ information is unfortunately tribal knowledge and you again as a good data scien
 you have to actually start documenting some of these things so that other detectives have an easier time and it's it's  
 totally worth the time the other common thing is the drain off the data set so you could very often have something where  
 again they looked like they have the same number of columns but maybe they're both aggregated at a completely different  
-Lane and that could also result in some unintended things that you can't see and finally is there a pipeline issue again  
+lane and that could also result in some unintended things that you can't see and finally is there a pipeline issue again  
 that's also very common that like you know the pipeline just breaks for a couple of hours or something like that and  
 you're missing data from a specific like chunk of time or or something weird is going on so now let's sorry I just have  
-some more OK so now let's actually let's actually get into some code so here's what a dataset looks like it has an ID  
+some more OK so now let's actually let's actually get into some code so here's what a dataset looks like it has an id  
 column and obviously there might be other columns as well but these are the relevant ones we look at there's an odd  
 order date there's a region and there's a sales amount and that's sort of the basic thing that we're dealing with so the  
 most obvious check to start with when you're comparing two different data sets to see what's going on with them you know  
@@ -298,10 +298,10 @@ same number of rows that can usually tell you a lot of what's going on and so yo
 select count from from both of them compare that number of course you might decide to add like a where clause if you're  
 looking for a specific month or a specific region or whatever the difference is showing up but this is your absolute  
 bare minimum starting point after that if they if they don't actually have the same number of rows first thing is let's  
-look for missing information so in this example the ID was a unique column so we're basically gonna look for we're gonna  
+look for missing information so in this example the id was a unique column so we're basically gonna look for we're gonna  
 find the missing ids and we're gonna say you know which eye we're going to do a full full join of the two tables and if  
-the ID is null in one of the tables that's the table that it's missing from so this you know the second query should  
-essentially give you a list of all the missing IDs and which ID which table they're missing from and once you have that  
+the id is null in one of the tables that's the table that it's missing from so this you know the second query should  
+essentially give you a list of all the missing ids and which id which table they're missing from and once you have that  
 information we will discuss few different ways you can go about it but that should give you some information the next  
 step you know I think even if you did find some missing  
  
@@ -310,9 +310,9 @@ step you know I think even if you did find some missing
  
 information I think it's still as long as like I think it's still useful to look for duplicates anyways because again  
 pipelines do weird things and funky stuff can happen so here again you're simply you know getting all the all the I all  
-the IDS you know grouping the IDs to get a count and you're basically looking for any ID that has a count greater than  
+the ids you know grouping the ids to get a count and you're basically looking for any id that has a count greater than  
 one from each table and you're unioning those two those two sub-queries and getting your final result that gives you the  
-final answer so this way again you'll have one one result that will give you all the duplicate IDs that are that are  
+final answer so this way again you'll have one one result that will give you all the duplicate ids that are that are  
 missing so that are that are duplicates and and which table there are duplicate in so these these queries that we have  
 so far like of course there could be a lot of like extra clauses that you can build into it but just kind of sharing it  
 as examples of life starting points of how to start even thinking about some of these issues next and you know sort of  
@@ -329,7 +329,7 @@ different dimension or there's something else going on but if this data shows me
 is say the East region or something then that immediately tells me that the rest of my pipeline is probably fine or my  
 rest of my feature definition is fine but at least I know to narrow down that I have to go do something about the East  
 region because that's where my problem is showing up and like you like I said like if if the if all the regions are  
-equally off then you break it down by a different dimension Maybe it's the product or something else but the point is to  
+equally off then you break it down by a different dimension maybe it's the product or something else but the point is to  
 keep doing those cuts until you find something where you have a step to dig further so this is you know these are  
 obviously I mean these examples have this example has been simplified to sort of give you a give you a taste of what  
 what what this looks like but you know I I expect that people will as they become more familiar with datasets they will  
@@ -384,8 +384,8 @@ well in about a month's time so you know feel free to stay in touch with me on T
 questions I can answer them too right now yeah you can hear me right yeah great yeah if anybody has any questions if you  
 just want to post it on chat we have about ten minutes left in the hour so we could answer any questions any questions  
 or any observations anything else that you've noticed that helps you do we have Rene Phillips here who is like she's  
-like very very involved in Postgres women SQL and in the conference organizing the conference as well and do you show me  
-do you want to put in the chat the link to the careers page for Komodo health yeah let me let me quickly grab that thank  
+like very very involved in postgres women SQL and in the conference organizing the conference as well and do you show me  
+do you want to put in the chat the link to the careers page for komodo health yeah let me let me quickly grab that thank  
 you what's the hardest data quality problem I have faced that's to be very very frank it's so I go with the hardest one  
 first honestly it's convincing people that it's important which which should not be a thing but you know I think I think  
 some organizations have very good data hygiene and they know sort of all the downstream issues that it can cause if you  
@@ -395,7 +395,7 @@ later and it caught it cause it was so costly because it took so many people so 
 some of the things that were just very very bad and yeah that was that was pretty hard the most fun one I would say is  
 yeah I you know I I just I like I like investigating stuff like I I like having an analysis that I trust so if there's  
 something that comes up which you know which I'm confused like oh my why'd you know why does this seem odd sometimes  
-that entire investigation is because I think there's bad data and Maybe at the end of it I prove that it's not like this  
+that entire investigation is because I think there's bad data and maybe at the end of it I prove that it's not like this  
 is legitimately what our what our data is telling us that's I think that's still a good outcome for me because I think  
 that whole process makes me understand the data a lot better makes me trust different parts of it a lot better so I I do  
 find it fun to have these challenges every once in a while because I think it allows me to engage with things more  
@@ -420,15 +420,15 @@ other things like it made sense and we did actually do some investigations where
 person said this looks suspicious makes sense because there is there is something odd happening there and that doesn't  
 make sense milena what tools you use to clean up the data so I think that for me depends on what what I'm actually using  
 so I typically access most of my data in a sequel warehouse and I end up doing a lot of it there if I have exported it  
-out then I usually use art but again that's just my preference my my entire team is very much on the Pythian bandwagon  
+out then I usually use art but again that's just my preference my my entire team is very much on the pythian bandwagon  
 and that's that's what they use yeah what additional functionality and unique capabilities does snowflake provide oh I  
-have to tell you I'm very biased towards snowflake I am a huge huge snowflake fan girl when I was joining Komodo health  
+have to tell you I'm very biased towards snowflake I am a huge huge snowflake fan girl when I was joining komodo health  
 actually one of the first question I ask them is do you have snowflake and they said yes and so I joined because my  
 previous company did not have snowflake and I was very annoyed by that for the two and a half years that I work there  
 snowflake is just really fast it's it's it's such a it's I mean yeah I I'm like I said I am amazingly I like to spend  
 less time doing stuff so I was on hurting for awhile and those things used to take me like 20 minutes to run a query and  
 then in snowflake that same query would take a less than a minute say I I I'm not paid by them but I do like their to me  
-quite a bit I have a question for you I was thinking when you're working with that many millions of Records do you often  
+quite a bit I have a question for you I was thinking when you're working with that many millions of records do you often  
 find those cases that are you know just a handful that are problematic and heavy it's is it like finding a needle in a  
 haystack or is it something that really just sort of breaks all your programs because it's that exception yeah that's a  
 that's a great question so you know some of the so some of the most like often that I did these investigations that  
@@ -455,9 +455,9 @@ publish that data set so that then I could go and look at it and be like does th
 require extra investigation and I think that was really helpful because then you're not on a totally by goose chase  
 you're actually you know you're saying like sure here's what went wrong in here that's what in pharma we used to call  
 those edit chicks yeah the same thing yeah yeah cuz we have another couple of minutes does anybody else have any  
-questions awesome so thank you so much for joining us I'm from San Fran's an Francisco right your that's where you are  
+questions awesome so thank you so much for joining us I'm from San Fran's an francisco right your that's where you are  
 I'm in New York and the recording will be available soon I'll send a message the Meetup group it's on our Data Umbrella  
-events page and Renee is asking if you would like to do a webinar for Postgres women New York City yes absolutely thank  
+events page and Renee is asking if you would like to do a webinar for postgres women New York city yes absolutely thank  
 you all right thank you everybody and watch our Meetup page for upcoming events have a good night awesome thank you so  
 much it's  
  

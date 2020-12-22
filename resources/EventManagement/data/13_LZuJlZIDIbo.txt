@@ -2,36 +2,36 @@
 <!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
 
 Hey everybody welcome to Data Umbrella's webinar thanks for joining us I'm going to go over a brief introduction about  
-Data Umbrella and then Liz is going to do her talk and then for the Q&A for the questions you can feel free to post them  
-in chat or in the Q&A tab and I'll sort of moderate the session and ask the questions as I can you know find a good  
+Data Umbrella and then Liz is going to do her talk and then for the Q&Afor the questions you can feel free to post them  
+in chat or in the Q&Atab and I'll sort of moderate the session and ask the questions as I can you know find a good  
 place to interrupt Liz as she's presenting now this webinar will be is being recorded actually OK a little bit about  
-me I am a statistician and data scientist I am based in New York City I am the founder of Data Umbrella and I'm also an  
-organizer for the New York City chapter of PyLadies you can find me on Twitter with at reishmaest and I'm also on  
-github and LinkedIn with with the same username Data Umbrella our mission is to provide a welcoming and educational  
+me I am a statistician and data scientist I am based in New York city I am the founder of Data Umbrella and I'm also an  
+organizer for the New York city chapter of PyLadies you can find me on Twitter with at reishmaest and I'm also on  
+GitHub and LinkedIn with with the same username Data Umbrella our mission is to provide a welcoming and educational  
 space for underrepresented persons in the field of data science and machine learning and we are a volunteer run  
 organization you can find us on Twitter at Data Umbrella hi ladies is a group for Python of gender minorities really of  
 all levels of programming experience I've included the link to our home page if you want to go to the global page it's  
 PyLadies.com and you can follow us on Twitter as well I want to go over the code of conduct we're dedicated to  
 providing harassment free experience for everyone we ask you know that our participants be professional and respectful  
 and also you know just also you know this also applies to whatever questions are posted in chat whether in the communal  
-chat or private dms and we want to thank you for making this a welcoming friendly community for everyone on the data  
-umbrella website there are a bunch of resources that I've compiled about open source about conferences about learning  
+chat or private dms and we want to thank you for making this a welcoming friendly community for everyone on the Data  
+Umbrella website there are a bunch of resources that I've compiled about open source about conferences about learning  
 Python and r as well as accessibility communities inclusive language and you know responsibility allyship there's  
 there's a lot of great resources and so I encourage you to check it out when you have time after the webinar so I we  
 know we have upcoming webinars we do about two webinars a month and so the best place to find out about upcoming events  
 is on our Meetup page we also do share it on Twitter as well on LinkedIn is where there are job postings and also  
 there's a LinkedIn page where I share resources YouTube is where all of our webinars are recorded and uploaded so you  
 can subscribe to our YouTube channel so you get notifications and so now I'm going to turn over the screen I guess to  
-liz Liz and I actually work together in New York we teach intro to our stats classes in New York and that's how I know  
-liz and so I'm really excited to see her online it's been a while and also really really excited to hear about this is  
-top sure thank you ishmael and hello everybody let me just share my screen really quickly all right so as rachel has  
-said my name is elizabeth deluzio and I'm here today to just talk to you a little bit about my area of specialty my area  
+Liz Liz and I actually work together in New York we teach intro to our stats classes in New York and that's how I know  
+Liz and so I'm really excited to see her online it's been a while and also really really excited to hear about this is  
+top sure thank you ishmael and hello everybody let me just share my screen really quickly all right so as Rachel has  
+said my name is Elizabeth Deluzio and I'm here today to just talk to you a little bit about my area of specialty my area  
 of passion which is program evaluation and in particular program evaluation in times of crisis and change  
  
 
 #### 00:04:02,319::		4 minutes mark -> new paragraph 
  
-and so for sure we're in one of those moments but I do think that even beyond covid and our coveted era however long it  
+and so for sure we're in one of those moments but I do think that even beyond COVID and our coveted era however long it  
 lasts the skills that it takes to have really responsive data and data feedback for data-driven decision-making I think  
 is something that's needed all of the time no matter what time period we're in so I think these things can span in  
 importance so just a little bit about me before I begin talking about those things I if you're not familiar with what  
@@ -40,7 +40,7 @@ programs run more efficiently run just more intelligently and to learn from the 
 working with non-profits governments and foundations for over 15 years I started off as an eighth grade teacher I taught  
 eighth grade for six years and I always say that you know if I can teach eighth graders I can teach anybody and so today  
 not only do I do work in evaluation I teach these types of tools and just data literacy skills in general I have an mph  
-and an msw so I in terms of jobs that I do I work in internal evaluation for a non-profit in New York City called good  
+and an msw so I in terms of jobs that I do I work in internal evaluation for a non-profit in New York city called good  
 shepherd services and we serve children youth and families about 30 000 per year I teach quantitative methods at nyu  
 I've been doing that for about a year now and then I'm a facilitator at evaluation and learning consulting and so that's  
 who I'm speaking from and who I'm representing today and so when it comes to evaluation and learning consulting they  
@@ -52,11 +52,11 @@ assess the impact that we're having and that first step is OK well how will we m
 that I like to use it is participatory in order to get as much feedback as possible about what is the best way of  
 measuring x y and z so then from there once we have a way of measuring it now we move into this data collection and and  
 I have a specific tool that I want to share with you that I I like a lot which is forms and and it's very similar  
-between Google and microsoft but either way this is how we collect the data so we've identified how we want to measure  
+between Google and Microsoft but either way this is how we collect the data so we've identified how we want to measure  
 what it is that we want to measure and then we can create this data collection tool and I'll explain to you why this is  
 where I tend to go if I need to collect data and then once it comes to the reporting phase how do we get that  
 information in the hands of decision makers quickly my go-to tool is Google data studio which is what I want to show you  
-today and microsoft power bi is the microsoft version of that but either of those help with real-time analyses so gone  
+today and Microsoft Power BI is the Microsoft version of that but either of those help with real-time analyses so gone  
 are the days of printing out reports and making sure it gets emailed or handed to somebody this allows somebody to have  
 the report in front of them real-time data and they can interact with it which is an extremely powerful tool so again  
 I'm going to go through each of these phases too but basically I want to take you in less than an hour from the  
@@ -72,9 +72,9 @@ those three things which one interests you and this will kind of help me to figu
 others customize what I'm doing a little bit so I'm not sure if you can see the results but if you can't it looks like  
 we've got oh people are still voting a and b are neck and neck and then oh c just caught up though all right so you all  
 are just interested in everything it looks like it's a tie a and b 14 votes and then c got 10 votes so that's great  
-thank you appreciate the feedback and I will distribute my time evenly as reishima said if you have any questions as I'm  
+thank you appreciate the feedback and I will distribute my time evenly as Reshama said if you have any questions as I'm  
 going through I'm going to go through each of the the three phases I'll stop in between for questions but as they come  
-up type them in the chat box and if reishima you know just speaks up and inserts them into what I'm saying that's great  
+up type them in the chat box and if Reshama you know just speaks up and inserts them into what I'm saying that's great  
 and otherwise we can wait for those question sections to just make sure that your questions get answered so when it  
 comes to identifying key metrics so the there's a stage process that I go through and it's a short one I do try to make  
 sure that one I don't take too much time these things could take you know months but that's not the goal the goal is to  
@@ -102,7 +102,7 @@ try markers those are the tools that you
 want with you if you're doing it online which it looks like for a little while at least that's what we'll be doing there  
 is an online intern alternative called jamboard and if you're not familiar with what that is I did record a really quick  
 tutorial on Google jamboard there's a hyperlink here and I will send out the link to these slides afterwards or I'll ask  
-reishima to do so so you have that but Google jamboard is a free online resource I can demo it if we have some time at  
+Reshama to do so so you have that but Google jamboard is a free online resource I can demo it if we have some time at  
 the end and essentially it has post-its where it's a big board people can add post-its move post-its around annotate and  
 so on so it's it simulates this environment of a post-it type meeting and then when it comes to the main activity what  
 we're calling people together to do is a three-part brainstorming session and it comes from ido's field guide to human-  
@@ -138,14 +138,14 @@ perspectives we give each person their own time on their own so that you know th
 credentialing in the room or the person with the most power the highest position is not the one whose voice makes all  
 the decisions everyone gets a chance to come up with their own thoughts collect them and then everybody you have your  
 post-its so everybody is able to share what their ideas are and each idea counts equally and then that's how we  
-cultivate where what those metrics are all together so that's that in a nutshell do we have any questions reishima from  
+cultivate where what those metrics are all together so that's that in a nutshell do we have any questions Reshama from  
 the group just about that technique there's so much more I could say about it OK I don't see any questions in the chat  
 OK so there's so much more that could be said and you're more than welcome to reach out if you have any questions  
 about it but that's in general the method that I use to come up with what those metrics are so once I have those metrics  
 it's time to create this data collection tool and then let's do another really quick poll because I'm curious what it is  
 that you use so when you're working whether you have a job or whether you do consulting do you typically use Google  
-microsoft both or neither OK great so I'm seeing a majority Google which is great and then I'm seeing so that's six  
-people at Google two microsoft three both and two neither so Google wins this this round which is actually really great  
+Microsoft both or neither OK great so I'm seeing a majority Google which is great and then I'm seeing so that's six  
+people at Google two Microsoft three both and two neither so Google wins this this round which is actually really great  
 to see oh I see more both coming in great OK in the chat I'm just curious those who use neither or if you use  
 something else please feel free to share it's also just a really great opportunity for all of us to learn from each  
 other so that's good to know just to understand where you're coming from as I shared a little bit at the beginning I  
@@ -154,7 +154,7 @@ it's free it's collaborative so many people can get in and edit it at the same t
 it's very user friendly it has a lot of features it can do the basics for sure and then why I use this in particular is  
 if in the end I know that my audience my decision makers who need this data are friendly to online live visualization  
 tools so if they're familiar with dashboards and true dashboards then I try my hardest to make sure that I use forms  
-whether it's Google forms or microsoft forms so that it can feed into that live dashboard and if that doesn't quite make  
+whether it's Google forms or Microsoft forms so that it can feed into that live dashboard and if that doesn't quite make  
 sense I'll explain more and I'll show you what I'm talking about but there are some drawbacks and I think that's worth  
 noting so again it's I really believe there's no one solution for everything it's just for those of you who use both  
 right it's understanding what the needs are to figure out what the tool is that's best for what you want to do so there  
@@ -168,7 +168,7 @@ are not as many features something like surveymonkey so if you're looking for so
  
 one polished look to it or two has pretty advanced features you won't find it in forms it's it's a basic go-to it cannot  
 branch questions only sections so that's worth noting we're in surveymonkey you know if if you answer a jump to question  
-nine if you answer b jump to question 13 that is not the case for either forms microsoft or Google what you do need to  
+nine if you answer b jump to question 13 that is not the case for either forms Microsoft or Google what you do need to  
 do instead is branch sections and I'll show you what that means so it has to be a little bit more simple one thing I  
 particularly don't like is that the templates and design options are pretty limited so again it's a really basic thing  
 it's not going to be completely customizable so just really quickly I'll show you what I'm talking about so if you do  
@@ -182,7 +182,7 @@ of Google forms this is what that looks like up here you can see some templates 
 that I myself have created so I'll show you a demo form that I just use exactly for purposes like this so let's say that  
 this is an evaluation form you can see just you know basics around these sections that I was talking about you create  
 sections and questions here in the toolbar here's how you add a section here's how you add questions each of your  
-sections can be their own page so I just like to think of it when you're chunking the questions Maybe by theme or by  
+sections can be their own page so I just like to think of it when you're chunking the questions maybe by theme or by  
 complexity of the question itself when it comes to adding questions there are so many options which I think is really  
 excellent so for more qualitative questions you have short answer and paragraph options for more quant you have multiple  
 choice check boxes drop down menus you know I've created forms for hr departments and sometimes they need documentation  
@@ -212,7 +212,7 @@ there it's got you can see updated information being put in immediately which I 
 in particular that's helpful is this idea of live dashboarding so I'm just going to pause here before I segue into live  
 dashboarding and just see if anybody has any questions again this is a really quick overview of forms so if you have any  
 questions about what this is what it looks like how to do something please feel free to ask there was a question from  
-about can you provide an example where you did the key metrics identification how was its reception Maybe you might want  
+about can you provide an example where you did the key metrics identification how was its reception maybe you might want  
 to answer that at the end of the presentation since we're passing that out sure I can do that any other questions about  
 the data collection tool I don't see any other questions OK OK and you know I might as well just answer when it  
 comes to the key metrics I that is my go-to I I teach this methods to people so they can go out and do it themselves and  
@@ -246,8 +246,8 @@ then we have ongoing development and updates and upgrades and it turns out that 
 feel more overwhelmed than you did when you began and so I say this not to scare and not to scare you away from  
 automation for sure but I do say make your decisions with eyes wide open and so as I've said I've I've tried automation  
 that has not worked and then I've done automation that has truly saved me so much time and in fact that automation did  
-take the form of forms into for me it was for an organization that uses microsoft so it was microsoft forums to  
-microsoft power bi and it saved me an infinite amount of time and and folks truly like it is collaborative it is  
+take the form of forms into for me it was for an organization that uses Microsoft so it was Microsoft forums to  
+Microsoft Power BI and it saved me an infinite amount of time and and folks truly like it is collaborative it is  
 everything that I'm telling you and it has worked tremendously so when it comes to dashboarding I also like to just  
 clarify what I mean by dashboarding because I think that term gets used loosely and is not always true to what  
 dashboarding is so dashboarding is a tool and it contains real-time information and it that information is directed  
@@ -255,14 +255,14 @@ towards decision makers that they are equipped with what they need in order to m
 to one or more database it automatically updates itself and the information is shared via visualizations so sometimes  
 people will call a printed out report a dashboard that is not a true dashboard it really is this real time information  
 that people have access to so when it comes to creating interactive dashboards when it comes to Google if you're using  
-Google that is called data studio and if you're using microsoft it's called microsoft power bi and what I love about  
-data studio in particular is that it is extremely similar to tableau and power bi tableau being one of the more famous  
+Google that is called data studio and if you're using Microsoft it's called Microsoft Power BI and what I love about  
+data studio in particular is that it is extremely similar to tableau and Power BI tableau being one of the more famous  
 more popular data visualization tools I would say that if you know how to use one you know how to use the other I've  
 worked in all three and they are extremely similar interfaces so I think that's a great option and I always encourage  
 people that if dashboarding is the way that you want to go if you either one are dashboarding already with folks or  
 that's in a place that you want to take your organization or your clients that I would always recommend starting with  
 Google data studio just because it's free before you make this financial investment in one of these other two things I  
-encourage you to start with Google if at all possible mostly because it's free and it gives you the opportunity to Bail  
+encourage you to start with Google if at all possible mostly because it's free and it gives you the opportunity to bail  
 out if you if it's not working for whatever reason so free being another highlight I do behind it easy to learn I think  
 there is the learning curve I think it is generally intuitive so I say that for it I think it's extremely easy to  
  
@@ -271,16 +271,16 @@ there is the learning curve I think it is generally intuitive so I say that for 
  
 share you can share not only you can create pdfs if you want to I think that beats the point but if you need to archive  
 a certain amount of data for a certain day you can download pdfs and save them or email them out but you can also send a  
-link so that folks can just see the live data at any time you can also it has the html code so that you can insert it  
+link so that folks can just see the live data at any time you can also it has the HTML code so that you can insert it  
 into a web page or somewhere else it is collaborative just like any Google platform and it can draw from many types of  
 data sources which I think is really powerful tools also so it can pull from Google sheets as I shared already but it  
-can also pull from any database where you can obtain a url and so it's very powerful in that regard it can pull from SQL  
+can also pull from any database where you can obtain a URL and so it's very powerful in that regard it can pull from SQL  
 databases as well there are some drawbacks though of course again this is what I was speaking to when make your  
 decisions with eyes wide open you need a Google account to use I should just get rid of that bullet I think that's silly  
-but it's worth knowing you need to make a Google account it does not have as many features as tableau or power bi so  
+but it's worth knowing you need to make a Google account it does not have as many features as tableau or Power BI so  
 again I I don't I I think it's not fair to call it training wheels because it is its own true full system but I often  
 think of it as training wheels you start with Google data studio I encourage folks to and then if you need more features  
-that might be the time to invest in tableau or power bi but I've seen organizations stick with Google data studio for  
+that might be the time to invest in tableau or Power BI but I've seen organizations stick with Google data studio for  
 all of their needs for extended periods of time and you don't necessarily need to upgrade it can vary security issues  
 and that's worth noting if you have any sort of private data you want to make sure that you de-identify before you start  
 putting anything in Google and I always recommend that folks just speak to the I.t department of whatever organization  
@@ -292,7 +292,7 @@ know why but I won't go into the history lesson in your drive there is not an ap
 would just need to type into your toolbar datastudio.Google.com and again this is free if you have a Google account you  
 have data studio so this is what this home page looks like it's very similar to Google forms so you see some templates  
 up here and then you can see a couple of reports that I had created here so I just want to look at the accident data  
-with you so what this is is accident data for the northeast united states and it was for I think July to December of  
+with you so what this is is accident data for the northeast United States and it was for I think July to December of  
 2019 this is just open data that's out there on the web and I had created a dashboard just to demo what the different  
 features are so you can see it looks beautiful it really can have a very professional appearance to it this is what  
 folks would look like look at if they clicked into your dashboard so you can see five different tools just here we have  
@@ -305,16 +305,16 @@ December in these four states
  
 was almost 34 000. and then if we the reason that this is so powerful and that I love using live dashboards so much is  
 that if we had somebody who wanted to dig down and understand more so say they wanted to understand what the monthly  
-breakdown of accidents are for New York only it's as simple as clicking on the pie slice for New York City and then  
+breakdown of accidents are for New York only it's as simple as clicking on the pie slice for New York city and then  
 pausing and waiting and you can see when I hover over it there are 20 000 almost 21 000 accidents that took place so of  
-the 34 21 occurred in New York City or New York state alone now there are a lot of pieces of data so it takes a moment  
-to think about but what you'll see as soon as it's it's done is that these bars will all adjust to show New York City  
-only it's filtering right now so it's going into the spreadsheet it's finding only the New York City and New York state  
+the 34 21 occurred in New York city or New York state alone now there are a lot of pieces of data so it takes a moment  
+to think about but what you'll see as soon as it's it's done is that these bars will all adjust to show New York city  
+only it's filtering right now so it's going into the spreadsheet it's finding only the New York city and New York state  
 accidents and it's pulling out that data that's related to it for these other categories so now we can see which it  
 looks like June had the most accidents followed by October and then closely followed by November and we can see the  
 change over time and we can hover over and see exact details so it's it's this is the interactive piece that I'm  
-speaking to and you can click on multiple pies at the same time I can drill down further so if I wanted to look at new  
-york in June I could do that the the story goes on and on you can also drill down so you can see here circumstantial  
+speaking to and you can click on multiple pies at the same time I can drill down further so if I wanted to look at New  
+York in June I could do that the the story goes on and on you can also drill down so you can see here circumstantial  
 factors this is broken down accidents that happened during the day and happened at night and if I wanted to dig deeper  
 so underneath that is OK well I want to understand the morning hours versus full daytime versus evening versus sunset  
 you can click on say the day bar and it'll show you a breakdown of more specific time periods during daytime hours and  
@@ -323,11 +323,11 @@ love to show and it might take a moment to load but there are lots of features I
 develop this really quickly but what we have here is the ability to create a map also and it is so easy so those of you  
 who really respect and understand how challenging it can be to develop a map not so much when you're working with data  
 studio it's as easy as dropping in an app and you can see here now what a story this tells when we're looking at  
-accident data you can tell where the major highways are it's so clear and New York City is clearly a hot spot as are the  
+accident data you can tell where the major highways are it's so clear and New York city is clearly a hot spot as are the  
 what is that one the turnpike and the parkway no this one's the turnpike that one's the parkway coming out in New Jersey  
 boston area is a hot spot so anyway that's the data visually now if I wanted to show you the back end really quickly I'm  
 going to click on edit again it might just take a moment to load and again if any of you are familiar with tableau or  
-you're familiar with power bi this is going to look so familiar to you they worked very hard to make sure that it's a  
+you're familiar with Power BI this is going to look so familiar to you they worked very hard to make sure that it's a  
 very interactive platform it has a lot of drag and drop features just going to go back to page one really quickly and  
 just show you so up here is the main command area when you begin you start with just a blank a blank screen and you  
 would select add data so the very first thing is obviously you need to get your data here's the option for Google sheets  
@@ -356,11 +356,11 @@ you've got the chart with the information that you wanted to have you can come i
 slices you can change the coloring you can add your data labels you can change the size of your font the font type the  
 the font color you can just go on and on and it's the same for all of these charts and so you know all of these things  
 that you see here from the month the way it's spelled out that's not the way it is in the data set I wrote over my data  
-labels here you can specify where you want them located it's just there's there's endless Maybe not endless but a lot of  
+labels here you can specify where you want them located it's just there's there's endless maybe not endless but a lot of  
 possibilities about how you can make this look so that you can get something that looks really professional and is  
 something that folks are excited quite honestly to click into and explore so that's my spiel for this any questions for  
 me about data studio there's obviously so much more to say about it but I just wanted to give you a little teaser any  
-questions reishima I don't see any questions now OK great thank you OK so that's those are all those tools I see we  
+questions Reshama I don't see any questions now OK great thank you OK so that's those are all those tools I see we  
 have a couple of minutes left I do just want to do a quick close out and then I'll be here for questions as long as you  
 are just in terms of you know what we went over today we talked about oh my favorite way of identifying key metrics like  
 how do we capture the what it is that we need to measure in order to answer our question  
@@ -390,7 +390,7 @@ working the way that we planned on it too and then yeah those are my my big ques
 one more question for you I just activated the poll which is what do you want to learn more about is there anything you  
 want to know more about so identifying key evaluation metrics there's so much more to talk about when it comes to that  
 data collection methodology and tools creating interactive dashboards other data related skills and other evaluation  
-related skills good so rachel this is good feedback for you too for future webinars but it looks like creating  
+related skills good so Rachel this is good feedback for you too for future webinars but it looks like creating  
 interactive dashboards is winning with three votes other data related skills is high too oh there's a three-way tie at  
 the moment as well as identifying evaluation metrics creating interactive dashboards OK great so creating interactive  
 dashboards is the most popular followed very very closely by identifying evaluation metrics and other data related  
@@ -412,13 +412,13 @@ one same thing goes for data collection same thing goes for interactive dashboar
 data collection and interactive dashboards online already and there's safe self-paced version and I have this discount  
 code for people who attend our webinars as a way of just saying thank you and we want to to empower you to learn more so  
 if you use web50 it'll give you 50 off anything whether it's a live class or whether it's the self-paced model so then  
-when it comes to other data related skills as rachman shared we've met each other through teaching excel or I'm sorry r  
-but we also teach excel Python SQL qgis so if you're interested in any of those let us know we're creating that content  
+when it comes to other data related skills as Rachman shared we've met each other through teaching Excel or I'm sorry r  
+but we also teach Excel Python SQL qgis so if you're interested in any of those let us know we're creating that content  
 again recorded and then we have live sessions periodically and then when it comes to other evaluation related skills or  
 really anything if you just want to talk I'm so happy if you can click on that hyperlink there to just look at my  
 calendar find a good time that works for you and we can just talk I've had people who want to troubleshoot things who  
 just want to know more about you know the way that I find key evaluation metrics whatever it might be I'm more than  
-happy to have conversation and we can go from there so please do that again I'll I can ask reishima to send out a link  
+happy to have conversation and we can go from there so please do that again I'll I can ask Reshama to send out a link  
 to this powerpoint so you have all of these hyperlinks easily accessible to you and then just for me the the website is  
 here it's avalarn.com that's our company my email is right there and my Twitter please come find me please reach out I'm  
 so happy to engage with you more these I'm so passionate about all these topics and excited to find a community that is  
@@ -426,7 +426,7 @@ too so thank you for your time I so appreciate it and I hope all of you have a g
 I'll be here for a few more minutes Liz thanks so much what I will do is once the recording is available I'll upload  
 uploaded to YouTube and I typically include a link to the slides in the description of the video so that's the best  
 place for people to find it and yeah we can hang on for a couple minutes and see if anybody has any questions before we  
-close it out OK it is on the hour and people depending on if they're taking their lunch break for east coast time they  
+close it out OK it is on the hour and people depending on if they're taking their lunch break for East coast time they  
 may be heading out but yeah if anybody has any questions feel free to post them in the chat this thank you so much for  
 the presentation it was really great I I personally love Google data  
  

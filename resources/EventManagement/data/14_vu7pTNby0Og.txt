@@ -1,15 +1,15 @@
 ### Introduction
 <!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
 
-Hi everyone welcome to Data Umbrella's webinar my name is reshma and I'm just going to go over some some housekeeping  
-the way that the webinar will work tonight is that I do a brief introduction Megan is going to be doing her talk and  
-then we'll what you can do is there's a tab on the webinar platform for Q&A so feel free to post any questions there and  
-when you know when it's a good breaking point Megan will answer any questions that you have this webinar is being  
+Hi everyone welcome to Data Umbrella's webinar my name is Reshama and I'm just going to go over some some housekeeping  
+the way that the webinar will work tonight is that I do a brief introduction megan is going to be doing her talk and  
+then we'll what you can do is there's a tab on the webinar platform for Q&Aso feel free to post any questions there and  
+when you know when it's a good breaking point megan will answer any questions that you have this webinar is being  
 recorded about me I am a statistician slash data scientist I am the founder of Data Umbrella and I'm also an organizer  
-for the New York City chapter of PyLadies and you can find me on Twitter at reshma s I'm also on LinkedIn and github  
+for the New York city chapter of PyLadies and you can find me on Twitter at Reshama s I'm also on LinkedIn and GitHub  
 with the same username Data Umbrella the mission of Data Umbrella is to provide an inclusive and welcoming space for  
 underrepresented persons in data science and we are volunteer run this is co-organized with PyLadies which is a global  
-organization that has over 125 active chapters around the world and the New York City chapter you can find out more  
+organization that has over 125 active chapters around the world and the New York city chapter you can find out more  
 about this by visiting our website here and also following us on Twitter we have a code of conduct we just want to make  
 sure that everyone here is professional and respectful and that applies to and anything that is written in the chat as  
 well our whole mission is to provide an inclusive environment and so we do take our code of conduct seriously and thank  
@@ -17,7 +17,7 @@ you for you know making this a welcoming and inclusive community I want to share
 now have a job board so if you can find it at jobs.dataumbrella.org and there are jobs posted and also at the top right  
 there which is a little hard to read but it says weekly digest or follow and what you can do is you can sign up for  
 emails to to get weekly emails on what the job postings are for you know for anyone who's looking for a position I want  
-to highlight tonight's job which is farfetch farfetch is in New York City and they have a lead data scientist position  
+to highlight tonight's job which is farfetch farfetch is in New York city and they have a lead data scientist position  
 so visit our website I'll also post it actually I can post it on the chat as well and you can click on the you can click  
 on the link to find out more about the position our website Data Umbrella.org has a lot of resources on open source  
 accessibility responsibility and resources so feel free to check that out as well these are sort of the best places to  
@@ -26,8 +26,8 @@ the best place to find out about our upcoming events is on Meetup and this is th
 resources we are on Twitter feel free to tweet to us we are on LinkedIn as well this webinar is being recorded and we  
 are going to upload the recording to YouTube so if you want to subscribe to our channel it will give you notifications  
 of when events have been uploaded and we're also on Facebook OK so I'm going to hand this over to Megan Robertson  
-megan went to school up at amherst in massachusetts and she's in New York now and I'll let Megan introduce herself  
-welcome Megan  
+megan went to school up at amherst in Massachusetts and she's in New York now and I'll let megan introduce herself  
+welcome megan  
  
 
 #### 00:04:01,439::		4 minutes mark -> new paragraph 
@@ -41,7 +41,7 @@ just clarify that what I'm presenting today are my own views do not represent th
 another thing that I'm currently working on is I'm working on a book on data science communication called mastering  
 communication and data science which will be hopefully out late of 2021 if all the deadlines are met and then in terms  
 of my background so I do have a masters of statistical science and when I was in grad school I focused particularly on  
-the areas of beijing statistics machine learning as well as Python and r programming but say definitely more of my day-  
+the areas of Beijing statistics machine learning as well as Python and r programming but say definitely more of my day-  
 to-day is spent in Python and that is my language of choice but I've also dabbled in r and I also have a background in  
 sports analytics I interned for an mba team when I was in school and actually my love of sports and being able to  
 combine that with statistics through sports analytics is what really got me interested in learning more about statistics  
@@ -72,7 +72,7 @@ very typical for me to be interacting with a marketing team or a product team or
 all you need to be able to operate within constraints of deadlines so sometimes I'll get requests come in that have like  
 they need an answer by the next day or within the week I do also get some more long-term asks but you'll need to also be  
 cognizant of how how much time that you have to turn this around and obviously fitting a really complicated model takes  
-a lot more time than Maybe doing something a little bit more basic or that requires less computing time or something  
+a lot more time than maybe doing something a little bit more basic or that requires less computing time or something  
 it's also important to note that complex as you build more complex models this can lead to increased costs and something  
 that I didn't have to deal with as much before I started working in a company was the fact that my team now has a budget  
 so it could be great that I want to fit you know maybe some really complex artificial intelligence neural network type  
@@ -85,7 +85,7 @@ reason behind this lesson is that when you're doing black box models or ones tha
 really difficult to explain so this is something that is special to note especially if you're working with stakeholders  
 who might be less familiar with data science is that at the end of the day you do need to provide some explanation of  
 how you got to the numbers that you're delivering or the recommendations that you're making and it's a lot more  
-complicated to explain some like big ai model versus something that might be a little bit more simpler but does the job  
+complicated to explain some like big AI model versus something that might be a little bit more simpler but does the job  
 almost as well and you definitely want to make sure that you can explain these things so that you can build trust within  
 those teams but that I'll touch on a little bit more later when we get to the communication section so how I go about  
 like really taking this lesson in my day-to-day so first of all is whenever I start a project I tend to approach it in  
@@ -123,7 +123,7 @@ time and more computing power to to fit and finish that analysis but here are so
 helpful in kind of learning how to manage those costs so first of all is just learning differences between cluster  
 settings so when I say clusters I'm referring to basically like these super computers that I can access from my personal  
 laptop by logging into them and writing code and sending it to them so like Google cloud computing resources if you've  
-worked with that you'll use clusters in that also aws or amazon web services they also have these like super computers  
+worked with that you'll use clusters in that also aws or Amazon web services they also have these like super computers  
 that you can use and I'll admit too this is something that I'm still definitely learning from like in my day to day but  
 just really understanding the differences between the certain types of processing units that can you can have in a  
 cluster as well as what does it actually mean to give it more memory and what sort of things are stored in memory  
@@ -141,7 +141,7 @@ about ways that you can reduce the size of the data so say for example that we f
 set but if we fit on 75 percent of our training set it would take less time and there's only a small reduction in  
 accuracy so just thinking through like all these different ways of can I actually reduce the size of the data that I'm  
 running through this model and still get comparable results can also think about do I actually need to be including all  
-of these features in the model that I'm training Maybe there's some that are correlated enough that you can drop them or  
+of these features in the model that I'm training maybe there's some that are correlated enough that you can drop them or  
 think about just getting down that size especially if you're getting to a more complicated model and then I'll say the  
 last thing that I've definitely gotten better with is just using being able to take advantage of the efficiency of  
 parallel computing so when I say parallel computing there are say I want to fit a bunch of smaller models and combine  
@@ -154,7 +154,7 @@ the chat real quick to see if we have any questions come up you also there'll be
 don't see any right now so we'll move to communication so in the area of communication the big lesson here is that it's  
 really important to be able to explain your job to non-technical peers so when you're in school you're typically you  
 know speaking the same language as your peers and your professors you can get up there and give a project presentation  
-and just drop all of the jargon out there about parameterizations and loss functions and ai big data all of that stuff  
+and just drop all of the jargon out there about parameterizations and loss functions and AI big data all of that stuff  
 but when you're working as a data scientist especially if you're in like an industry role you're going to be working  
 with a bunch of teams who aren't data scientists and who maybe have taken an intro stats course so they don't  
 necessarily need to know the in-depth details you're not going to get up in a meeting and start writing greek symbols on  
@@ -173,7 +173,7 @@ explain your job is also really important in terms of being able to educate team
 really has to do with the first point as well because you want to have a collaborations with teams where they understand  
 you understand their expectations they understand your expectations especially when it comes to timelines and resources  
 I've definitely been in situations where people think oh data science I'm just going to take you know two and a half  
-excel spreadsheets email it to you you can put it in your magic black box or crystal ball and all of a sudden all of  
+Excel spreadsheets email it to you you can put it in your magic black box or crystal ball and all of a sudden all of  
 this great information is going to come out because we're using the data that's often not how things really happen so  
 being able to explain like how complicated things work can really help you just educate the people that you're working  
 with on that process and make sure and really ensure that you have successful collaborations moving forward and then the  
@@ -186,7 +186,7 @@ get the most information out of their data how it can help them inform their str
 expertise of the other teams that you're working with as well and you want them to help inform you throughout that  
 partnership and then in terms of outside of your company if you're interested in like going to conferences and talking  
 about your work or writing blog posts or having a presence like that that can help your career it's really important to  
-have these communication skills as well and you can Maybe even get some new opportunities out of them so what are some  
+have these communication skills as well and you can maybe even get some new opportunities out of them so what are some  
 of the ways that I go about using this communication lesson and applying it so this is really a topic that I could talk  
 about forever but I'll give like a very kind of high level of how I think about some of this stuff and definitely if you  
 have questions about it like throw them in the chat or you can also reach out to me after if you have something else you  
@@ -291,7 +291,7 @@ will do this differently but typically either once a week or once a month they'l
 some sort of email or report that goes out that highlights you know what are some of the big projects or what are some  
 of the things that people are working on so if they do that wherever you are definitely like think about contributing to  
 that talking about the work that you're doing getting it done if one doesn't exist but it seems like the team's big  
-enough or the company's big enough that would be like a good idea Maybe think about like leading that initiative to  
+enough or the company's big enough that would be like a good idea maybe think about like leading that initiative to  
 start one just again it's especially at those larger companies you just want to make  
  
 
@@ -307,7 +307,7 @@ things you've done and skills you've learned because that can come in handy when
 have those conversations with your manager another thing in terms of networking how to go about it and this is something  
 that I like absolutely hated when I started out is just set up one-on-ones or to use sort of the business lingo coffee  
 chats with people this can be definitely the people inside a company if you already are working that either work  
-tangentially tangent I can't say that even a math person that work very closely with your team Maybe or even in other  
+tangentially tangent I can't say that even a math person that work very closely with your team maybe or even in other  
 departments or if you're a student or working to looking to break into data science it can also just be people that you  
 find whose work that you're interested in so for me I started out by like reaching out within an alumni network so  
 whether that be through a college or if you do a boot camp or any sort of program like that oftentimes I'll have a  
@@ -318,7 +318,7 @@ we don't have anything to talk about and all of that but if you come with some q
 practice with this you'll definitely get more comfortable having those conversations with other people and I will say  
 too I think one of the biggest things that I why I did not like this at first as a student is I always felt like I was  
 going out and asking people for things and not really having as much to offer in return but I'd say definitely like if  
-people respond and are Willing to talk with you like if you're reaching out like as a student they probably already know  
+people respond and are willing to talk with you like if you're reaching out like as a student they probably already know  
 that it's going to be more of like answering questions but also know that like you don't have to get really far in your  
 career to then like have people that you network in network with have a benefit from knowing you as well it's like for  
 example like one to two years into my own career after I met someone at an event that I went to like I ended up helping  
@@ -372,7 +372,7 @@ have to be this crazy I'm going to have all the details of my next few years pla
 identifying what do you like to do what don't you like to do and once you figure that out it's really important that you  
 share those goals and don't be quiet about what you want so this is a great thing to just talk about with your manager  
 and some of your other colleagues because if they know what you want like for example your manager is going to be aware  
-of opportunities and upcoming projects often times before you are and if they know like OK hey like Megan really likes  
+of opportunities and upcoming projects often times before you are and if they know like OK hey like megan really likes  
 working with more junior employees that she can help mentor and build their skills like here's a project where I know  
 like she could take more of a leadership role in so don't be afraid to talk about that because you want other people  
 just to be aware of what you're interested in as well so then to wrap it up with just a quick summary of what the three  
@@ -382,13 +382,13 @@ when compared to your other priorities again it's a lot easier said than done in
 something that you'll get a better sense of as you start doing more projects it's also really important to develop  
 strong communication skills you need that so you can build relationships with other teams build a sense of trust among  
 the people that you're working with and it can also be great if you do want to pursue some opportunities in terms of  
-speaking at conferences or at Meetups and then lastly know that you are your own best advocate so even when that  
+speaking at conferences or at meetups and then lastly know that you are your own best advocate so even when that  
 imposter syndrome creeps in and you doubt yourself don't be afraid to speak up for yourself to your home your own horn  
 about your accomplishments and really be sure to go after what it is you want and just make sure that you're sharing  
 your career goals with the people that you work with and that's what I have for you guys today so here I have my Twitter  
 handle as well as my website so if you have any questions or anything that you want to ask about or chat about you can  
 definitely dm me on Twitter or I have like a contact field on my website as well but I'm also happy to take what  
-questions we have time for now hey Megan so there is a question in the Q&A I could read it from sandeep it is related to  
+questions we have time for now hey megan so there is a question in the Q&AI could read it from sandeep it is related to  
 the first section could you highlight some of the at-scale computing methodologies that you found to be key the best  
 ways to learn them yeah for sure so I'd say for me personally the biggest things that I've learned that has been helpful  
 has been using pi spark in terms of the best way to like learn it right now it's a little different because I feel like  
@@ -405,7 +405,7 @@ would say definitely look into parallel computing the spark language just becaus
 there in terms of figuring out or that explains like how it works and what the difference is between the terminology  
 that they use and then I would say just go and like find some large data set there's some machine learning data  
 repositories out there with some good data sets of just download it and like just start trying to write code and see  
-OK if I just fit a model like this versus if I Maybe use like that pi spark in parallel for example like being able to  
+OK if I just fit a model like this versus if I maybe use like that pi spark in parallel for example like being able to  
 see that difference but on the top of my head I can't really think of any particular good resources but that's also  
 because I just kind of had to learn this by trial by fire question is from sandra and she asks how do you share your  
 accomplishments outside of your company without revealing proprietary or confidential information yes so this definitely  
@@ -427,23 +427,23 @@ self training yeah so I think for me definitely the biggest thing was just figur
 
 #### 00:52:00,240::		4 minutes mark -> new paragraph 
  
-with very large data sets I think I had Maybe one lecture in grad school where the professor was like this is aws and I  
+with very large data sets I think I had maybe one lecture in grad school where the professor was like this is aws and I  
 honestly didn't remember anything from that so I think definitely like learning that cloud computing stuff was helpful  
 that was a combination of just having people either on my team who had background in that really help out learn that but  
 also just kind of diving into a project where I needed to know it and looking at code that was either on blog post or  
 elsewhere in applying it I do think that there's a lot more out there in terms about having like just the background of  
 how these different technologies work so I'd say that's definitely one thing I've learned a lot about on the job and  
 then the other thing I think would just be like database querying so I personally use SQL and part of that I feel like  
-it was my first I I had done like the SQL course on like khan academy or something which was very good but until I had  
+it was my first I I had done like the SQL course on like Khan Academy or something which was very good but until I had  
 that like first internship where I was actually going through and generating features from the data and joining tables  
 like then I really felt like I mastered SQL so I think for both of those it's really a combination of like doing an  
 online course or reading blog post but then also like having to implement it on my own OK thank you the next question  
-is from kailande which is do you think it is essential to have a data science internship before landing one's first  
+is from Kailande which is do you think it is essential to have a data science internship before landing one's first  
 full-time position specifically for people with non-cs computer science backgrounds but with data experience with r and  
 Python through quantitative research experiences yeah so I think that it's definitely helpful to have an internship it's  
 not necessarily going to be a deal breaker all the time again that'll depend on the company as well but I think when  
 we're like when a company is looking to hire a data scientist they really want somebody who has like a quantitative  
-background so just in terms of understanding like probability like intro stats Maybe a little bit of machine learning  
+background so just in terms of understanding like probability like intro stats maybe a little bit of machine learning  
 it's great that you'll know code but I think as long as you can demonstrate that you have the different skills necessary  
 to be able to take some sort of business question or request think about it figure out how you can translate that into  
 something quantitative that you can look at with the data that you have be able to run whatever analysis you think makes  
@@ -500,7 +500,7 @@ bullet points yeah so I think for that I think a common thing that gets thrown a
 helpful to try to figure out a way to quantify like projects that you're working on so if you did a project that like  
 influenced like say some marketing campaign for 50 000 people for example or you know if you implemented an a b test  
 that ultimately like your recommendation cause like x dollars and increase in revenue or something I'd say that's  
-definitely put that in there because that can be very helpful for when somebody who's Maybe not as familiar with the  
+definitely put that in there because that can be very helpful for when somebody who's maybe not as familiar with the  
 data science is looking at it so like maybe someone who's an hr is in charge of hiring for a position for example  
 because like by seeing a number they'll at least be able to get a sense of the impact of it I think also highlighting  
 any instances where you're like I feel like teamwork is always something that can sometimes get overlooked so talking  
@@ -541,8 +541,8 @@ better at OK if someone tries to cut me off and I'm not done like I'll just keep
 the hint I think too also just like identifying people that you can trust within your team as well can be helpful too to  
 kind of have an ally with that it's like for example in one of my previous roles like I had someone who was male who  
 like in meetings and this was like I didn't even ask at all but I was like afterwards was like wow thank you I really  
-appreciate that where like if I got interrupted he'd be like well wait Megan wasn't done talking like you need like  
-let's hear what she has to say so I think kind of finding just people who you trust that can Maybe help you with some of  
+appreciate that where like if I got interrupted he'd be like well wait megan wasn't done talking like you need like  
+let's hear what she has to say so I think kind of finding just people who you trust that can maybe help you with some of  
 that but then also recognize that like at some times you might have to have that uncomfortable moment of like being in  
 the meeting and just keeping talking while someone's interrupted you or another thing that I'll do from time to time is  
 like if I say  
@@ -560,7 +560,7 @@ building various neural networks for things I personally don't have too much exp
 bringing it from like the development stage into production just because it didn't really work in our use case so I  
 don't personally have like a specific recommendation about deep learning frameworks right now I do know some people who  
 use tensorflow though and really love it but like I said I only I didn't really make it past the exploratory stage in my  
-own experience well Megan thank you so much for presenting we had a lot of questions and a lot of interest it was a  
+own experience well megan thank you so much for presenting we had a lot of questions and a lot of interest it was a  
 really great presentation yeah did you have any final words you wanted to say I mean I think this was really just the  
 three big themes I feel like really summarize what I've done so far but I want to say thanks to all of you again for  
 showing up and asking some great questions and definitely like feel free to reach out like on my contact informations up  

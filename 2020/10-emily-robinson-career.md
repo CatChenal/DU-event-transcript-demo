@@ -2,7 +2,7 @@
 
 ## Key Links
 - Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/10-emily-robinson-career.md
-- Meetup event:  https://www.meetup.com/nyc-data-umbrella/events/271590867/
+- Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/271590867/
 - Video:  https://youtu.be/HsFFuFYz7zE
 - Slides:  N.A.
 - GitHub Repo:  N.A. 

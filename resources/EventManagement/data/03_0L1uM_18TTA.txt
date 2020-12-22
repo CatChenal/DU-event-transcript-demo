@@ -6,27 +6,27 @@ well so this is just a recording in today's presentation I'm going to talk about
 website Poshmark comm and we're going to use Python and some additional packages to gather the data so agenda I'm gonna  
 give a quick introduction about myself and the group then we're going to talk about web scraping and high level then  
 we'll walk through a code example I'm going to share the code files so you can walk through it on your own as well and  
-then during the webinar there was obviously QA it's a little bit about me I'm a product manager with General Assembly I  
+then during the webinar there was obviously Q&A it's a little bit about me I'm a product manager with General Assembly I  
 used to run operations at an online data science bootcamp and that's kind of where I picked up everything I know about  
 Python and programming and data science and then I'm a assistant organizer with Data Umbrella so a little bit more about  
 Data Umbrella the mission of the group is to provide a welcoming and educational space for underrepresented groups or  
-you are G's in the fields of data science and machine learning and we primarily do this through meet of events now  
+you are g's in the fields of data science and machine learning and we primarily do this through meet of events now  
 virtual webinars and open source sprints with most of our events it's open to people of all levels we we usually assume  
 some familiarity with Python or data signs but we're happy to have beginners to advanced people attend and then we're  
 always looking for volunteers and speakers so you can check out our homepage at Data Umbrella org and reach out to us if  
 you want to learn more so what is web scraping I've pasted the really technical dictionary definition here which is the  
 programmatic extraction of unstructured data from websites to usable structured data if you have a technical background  
 you probably understand what this means but for most people this is just a bit out there so let's take a look at a  
-practical example on the Left we have a screen shot of Amazon listings for TVs and on the right is what our output would  
+practical example on the left we have a screen shot of Amazon listings for tvs and on the right is what our output would  
 look like from scraping so if you take a look at each row which has an item you see that there's there's tons of usable  
-information right we see the brand Samsung the size of the TV the type of TV resolution like 4k or 5k if it's a smart TV  
+information right we see the brand Samsung the size of the tv the type of tv resolution like 4k or 5k if it's a smart tv  
 or not then you can see how many reviews were written what was the average rating the price the discount the original  
 price the shipping how many are in stock are there used used or other seller selling so we can see that all on the  
 website but that's not in a usable form unless you're you know just using your eyes you can you can read that you can  
-digest that but it's a we wanted to do extract the data for like 10,000 TV listings right like I could do this manually  
+digest that but it's a we wanted to do extract the data for like 10,000 tv listings right like I could do this manually  
 for five or ten or a hundred and would be that bad but if we wanted to repeat that process for a thousand or 10,000  
 listings you'd want to use web scraping and with web scraping we can extract out the individual values from this website  
-and extract out the brand the TV size whether it's a smart TV or not what the price is whether there's price prime  
+and extract out the brand the tv size whether it's a smart tv or not what the price is whether there's price prime  
 shipping or not and I'll do a little assign and kind of explain how web pages work here as well web pages are built with  
 HTML and CSS so this is the output  
  
@@ -37,15 +37,15 @@ but there are two components so HTML is really the layout and the content so for
 says Samsung and this text and then you'll see a block that has the price a block that has the image and then what CSS  
 does is you add classes to different HTML blocks and for example in CSS you can tell it to make this image 200 by 200  
 pixels you can tell the web page to print this out and smaller font and red so that's what CSS does right make this font  
-Orange make this fawn bigger and bold and so HTML gives it the layout so we want text here we want the stars here we  
+orange make this fawn bigger and bold and so HTML gives it the layout so we want text here we want the stars here we  
 want more text to the pricing here we want the shipping text here we want the stock pricing and then CSS tells you how  
 to style that so we want the shipping in gray and smaller and then we want this in red so that's that's how those work  
 and and we'll take a look at that in the code notebook I thought I'd just give you a a brief summary of that so how is  
 web scraping used in real life these are just a couple use cases there's dozens more so you can keep track of  
 competitors monitor consumer sentiment so looking at reviews aggregate news and other data like on Amazon lead  
 generation and CRM in Richmond so finding out the background of people that contact you gathering data for news stories  
-like 538 and the New York Times The Washington Post so what are we scraping today we're going to be looking at posh  
-Montcalm so if you're not familiar with posh mark you can think of it more as like a hip eBay or Etsy it's basically a  
+like 538 and the New York Times the Washington Post so what are we scraping today we're going to be looking at posh  
+montcalm so if you're not familiar with posh Mark you can think of it more as like a hip Ebay or Etsy it's basically a  
 social platform for clothing shoes and accessories so you can buy and sell used and new clothing items and it's become  
 incredibly popular with the with the younger audience the millennial and younger generation but I think I think it's a  
 cool platform I've actually used it a couple times to buy some items I like fashion so I thought it was cool and there  
@@ -53,14 +53,14 @@ was the reason I was actually interested in scraping Poshmark is that compared t
 don't have like a saved search feature so say you're really interested in the example here like you really want Clark  
 boots in a certain style and a certain size there's actually no way I mean it's probably on the roadmap I don't know why  
 they haven't built it but there's no way to like save that search and get like a daily digest or weekly digest at least  
-in the last month when I saw it so on eBay or Etsy or really any other social commerce platform you usually can save  
+in the last month when I saw it so on Ebay or Etsy or really any other social commerce platform you usually can save  
 your search and get like a daily digest or a weekly digest like hey these were the items posted in that and so I did  
 this scraping exercise in order to build like a personal email reminder that would send me updates like hey these things  
 were were posted under this category or and good.this like these parameters and I mean it's it's on the road max map  
 somewhere I mean dozens of people have told them I've seen people complain about it online and like read another like  
 public review and forums so it's definitely there but that was kind of my interest in scraping so I would scrape a  
-certain search and then send myself an email reminder so to get started you can just access this link goes to my github  
-repo and and I've included this this binder blank it's a cloud-based program which allows you to run Jupiter notebooks  
+certain search and then send myself an email reminder so to get started you can just access this link goes to my GitHub  
+repo and and I've included this this binder blank it's a cloud-based program which allows you to run Jupyter notebooks  
 and I've seen some other people use it and essentially what  
  
 
@@ -69,7 +69,7 @@ and I've seen some other people use it and essentially what
 it does is it builds a docker image under the hood don't take a probably 20 or 30 seconds to get running OK so I'm  
 just gonna go line by line and walk through my logic and the decisions I made and then yeah and that's pretty much the  
 presentation will comprise of the rest of the notebook to get started the first cell is really just a way to set some  
-custom settings and iPython so I'm just expanding the window and making the text bigger webpages one on one the websites  
+custom settings and IPython so I'm just expanding the window and making the text bigger webpages one on one the websites  
 are built using HTML and CSS HTML is a type of markup language you can think of it similar to markdown it provides the  
 layout for our websites and then CSS provides the styling so when you have different font sizes colors of text and  
 backgrounds spacing between elements and you can see here we have a screenshot of Poshmark but why don't we just take a  
@@ -112,7 +112,7 @@ all and we give it the element so the div element and then we give it the class 
 underscore equals and that's because class is of course a protected keyword in Python so you can never have you can  
 never just type in class without actually defining a class and here we go we get a result set which is just a type of  
 beautifulsoup object and then just like a combination of several beautiful sleep objects and then we have the lens which  
-is 48 which makes sense because we get 48 listings when the page loads so we can take a look at the first aisle because  
+is 48 which makes sense because we get 48 listings when the page loads so we can take a look at the first AIsle because  
 it's just a result set which is similar to a list we can extract out the  
  
 
@@ -125,7 +125,7 @@ you all must notice some of the blocks kind of breaking out you have like the to
 then you have like the item details which has the title and and so forth so now all we want to do is extract out the  
 individual values in order to extract out the values what we need to do is find each element that we want that has have  
 either the title or the price of the brand and then and then extract out the text so what we're going to do is we're  
-going to take our tile and we're gonna do find the a tag the link tag that has a class tile title so we have one H egg  
+going to take our tile and we're gonna do find the a tag the link tag that has a class tile title so we have one h egg  
 at the beginning that has kind of the link to the individual page and the image and so that's useful we definitely want  
 that so for example it takes you to the page but we're really interested in the tile title so that is actually the  
 second a tag within item details it's an item details and a title condition container and then here we have this the a  
@@ -208,7 +208,7 @@ exact day and in seconds and then we can kind of subtract out the difference bet
 value of the number of days and we get one and so you're always going to get a positive number because we did the  
 absolute value but also because you kind of have seconds and minutes that happen difference and then again if you're  
 doing this in a professional work show workflow you'll have to make sure you have like the time zones and everything but  
-but normally what you'll do is you'll scrape the raw data store the raw data and kind of a flat file like CSV or JSON  
+but normally what you'll do is you'll scrape the raw data store the raw data and kind of a flat file like csv or json  
 then you will type format the data and then you will extract out new features so you'll want to kind of silo each  
 process so you can create different  
  
@@ -251,7 +251,7 @@ also have to create that item objects it would be an empty string and really wha
 is just a very common procedure that you have to do in Python encoding and so it just tracks that to one line and this  
 is not something you can do in every language it's it's something that only exists in Python a couple of other languages  
 so but it's just a nifty trick all right so we have 48 tiles that means if we run this we should have 48 item objects  
-and then if we print we can take a look at each one so it's a bit hard to read so you can bring in the package P print  
+and then if we print we can take a look at each one so it's a bit hard to read so you can bring in the package p print  
 or pretty print and it looks better kind of the same as prettify just gives you the indentation and spacing oh yeah so  
 one thing to notice is you're only get 48 items because you'll notice here as I'm scrolling it adds more items to the  
 page using JavaScript but we can only get 48 because we're doing a programmatic request and if you really want to get  
@@ -264,7 +264,7 @@ other men's denim brands and really what we can do is we can just run that same 
 list of brands and so if I penned this to this like master store what we're gonna get is the store is gonna be aligned  
 thefor because we have four brands and then each item within the store is gonna have 48 item objects so it's really  
 gonna be a list of lists right for and then each for as 48 and we don't really want that because we really just want 4  
-times 48 right like 196 or yes or Maybe a hundred ninety-two sorry about Malthus my math is off but what we really want  
+times 48 right like 196 or yes or maybe a hundred ninety-two sorry about Malthus my math is off but what we really want  
 to do is just extend how the lists and and so instead of append we do extend and that will just add and add and add to  
 the same master list so I think oh yeah 192 right ok there we go and then we'll have a length of the first item as 8 and  
 that's really just  
@@ -288,11 +288,11 @@ it's more pronounced with the individual brands but you kind of have like two pe
 expertise or if you use Poshmark people can list new and used objects or items so for each brand you'll see two  
 groupings and one grouping is the used items and the other grouping is like completely like totally new items or  
 slightly slightly used or like new without tagged this type of thing and so so something definitely if we were to redo  
-this analysis is we definitely want to extract out whether yes you see kind of like the separate Peaks or separate  
+this analysis is we definitely want to extract out whether yes you see kind of like the separate peaks or separate  
 groupings and so one thing you want to do is extract out new and used items I could have kind of like a boolean value  
 and then in another column and we can also look at just like the difference the days listed as well as a whole and then  
 and then kind of by brand and you'll see some we can you can kind of look at which brand has the longest one so it looks  
-like naked famous takes the cake it's it's more of a niche brand Basso tarik so yeah I make sense that some items were  
+like naked famous takes the cake it's it's more of a niche brand basso tarik so yeah I make sense that some items were  
 just like a little out there so there's obviously more analysis you can do I kind of did a very rudimentary exploratory  
 data analysis but it was it was useful you know this just don't land up the titles which doesn't really show  
  

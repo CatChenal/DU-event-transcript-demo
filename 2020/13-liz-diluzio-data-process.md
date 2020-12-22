@@ -2,7 +2,7 @@
 
 ## Key Links
 - Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/13-liz-diluzio-data-process.md
-- Meetup event:  https://www.meetup.com/data-umbrella/events/272472729/
+- Meetup Event:  https://www.meetup.com/data-umbrella/events/272472729/
 - Video:  https://youtu.be/LZuJlZIDIbo
 - Slides:  https://docs.google.com/presentation/d/18jJUHA5KtWWTM9cRweLAccG8MZGctfZjtiI7AYoCAXg/edit#slide=id.p
 - GitHub Repo:  N.A.  

@@ -5,8 +5,8 @@
 - Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/270750046/
 - Video:  https://youtu.be/1X5h0FRqKVs
 - Slides:  https://docs.google.com/presentation/d/1TmOV7METdgBjDkTHhy_C2fZwYWUZ7fJFgQ8BAZIKqZc/edit?usp=sharing
-- Jupyter Notebook: N.A.
 - GitHub Repo:  N.A.
+- Jupyter Notebook: N.A.
 - Transcriber:  Janine
 
 ## Video

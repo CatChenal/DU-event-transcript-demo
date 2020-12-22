@@ -150,7 +150,7 @@ def clean_text(text, TW,
     text = RE_I.sub(perso_i, text)
     text = RE_CAL.sub(titlecase_repl, text)
     text = RE_TIME.sub(time_repl, text)
-    
+
     for i, lst in enumerate([uppercase_list, titlecase_list]):
         if i:
             repl_fn = titlecase_repl
@@ -282,7 +282,7 @@ class YTAudio:
             # need to keep track of min interval to add a paragraph
             start, tm_min = self.float_to_stime(float(child.attrib['start']))
             
-            txt = unescape(child.text).strip()
+            txt = unescape(child.text).strip().lower()
             if i == 0:
                 txt = txt[0].upper() + txt[1:]
             parag += txt + " "

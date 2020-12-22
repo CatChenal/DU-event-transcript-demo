@@ -2,9 +2,9 @@
 <!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
 
 Okay hello and welcome to Data Umbrella's webinar for October so I'm just going to go over the agenda I'm going to do a  
-brief introduction then there will be the workshop by Hugo and James and you can ask questions along the way in the chat  
-or actually the best place to ask questions is the Q&A and there's an option to upvote as well so yet asking the Q&A if  
-you happen to post it on the chat by mistake I can also transfer it over to Q&A so that would be fine too and this  
+brief introduction then there will be the workshop by hugo and James and you can ask questions along the way in the chat  
+or actually the best place to ask questions is the Q&Aand there's an option to upvote as well so yet asking the Q&Aif  
+you happen to post it on the chat by mistake I can also transfer it over to Q&Aso that would be fine too and this  
 webinar is being recorded briefly about me I am a statistician and data scientist and I am the founder of Data Umbrella  
 I am on a lot of platforms as Reshama so feel free to follow me on Twitter and LinkedIn we have a code of conduct we're  
 dedicated to providing harassment free experience for everyone thank you for helping to make this a welcoming friendly  
@@ -12,15 +12,15 @@ professional community for all and this code of conduct applies to the chat as w
 inclusive community for underrepresented persons in data science and we are an all volunteer run organization you can  
 support Data Umbrella by doing the following things you can follow our code of conduct and keep our community a place  
 where everybody wants to keep coming to you can donate to our open collective and that helps to pay meet-up dues and  
-other operational costs and you can check out this link here on github we have this new initiative where all the videos  
+other operational costs and you can check out this link here on GitHub we have this new initiative where all the videos  
 are being transcribed and so is to make them more accessible so we take the YouTube videos and we put the raw there and  
-so we've had a number of volunteers help us transcribe it so feel free to check out this link and Maybe if you do this  
+so we've had a number of volunteers help us transcribe it so feel free to check out this link and maybe if you do this  
 video maybe the two speakers will follow you on Twitter I can't promise anything but it's possible dave umbrella has a  
 job board and it's at jobs.org and once this gets started I'll put some links in the chat the job that we are  
 highlighting today is is the machine learning engineer job by development seed and development seat is based in  
-washington dc and lisbon portugal and they do I'm going to go to the next slide what they do is they're doing social  
-good work and so they're doing for instance mapping elections from afghanistan to the US analyzing public health and  
-economic data from palestine to Illinois and leading the strategy and development behind data world bank and some other  
+Washington DC and Lisbon Portugal and they do I'm going to go to the next slide what they do is they're doing social  
+good work and so they're doing for instance mapping elections from Afghanistan to the US analyzing public health and  
+economic data from Palestine to Illinois and leading the strategy and development behind data world bank and some other  
 organizations and I will share a link to their job posting in the chat as well as soon as I finish this brief  
 introduction check out our website for resources there's a lot of resources on learning Python and r also for  
 contributing to open source also for guides on accessibility and responsibility and allyship we have a monthly  
@@ -34,26 +34,26 @@ information OK and now we are ready to get started
 
 #### 00:04:03,120::		4 minutes mark -> new paragraph 
  
-so I will hand it over to put myself on mute and I will hand it over to Hugo and James and let you take over but thank  
-you all for joining I just want to thank reishima christina and and everyone else who tied all the tireless effort that  
+so I will hand it over to put myself on mute and I will hand it over to hugo and James and let you take over but thank  
+you all for joining I just want to thank Reshama Christina and and everyone else who tied all the tireless effort that  
 that goes into putting these meet-ups and these online sessions together I I think one thing I want to say is actually  
-the the last in-person workshop I gave either at the end of February or early March was Data Umbrellas in inaugural  
+the the last in-person workshop I gave either at the end of February or early March was data umbrellas in inaugural  
 tutorial and Meetup if I if I recall correctly on on bayesian bayesian thinking and hacker statistics and simulation and  
 that type of stuff so it's it's just wonderful to be back particularly with my colleague and friend friend James we're  
 building really cool distributed data science products at coiled we'll say a bit about that but we'll do some  
 introductions in in a bit I just wanted to get you all accustomed to it was February thank you reishma we're working  
-with jupiter notebooks in a github repository the repository is pinned to the top of the chat this is what it looks like  
+with Jupyter notebooks in a GitHub repository the repository is pinned to the top of the chat this is what it looks like  
 these are all the files this is the file system now we use something called binder which is a project out of and related  
-to project project jupiter which provides infrastructure to run notebooks without any local installs so there are two  
+to project project Jupyter which provides infrastructure to run notebooks without any local installs so there are two  
 ways you can you can code along on this tutorial the first is and I won't get you to do this yet is to launch binder the  
 reason I won't get you to do that yet is because once you launch it we have 10 minutes to start coding or the binder  
 session times out I've been burnt by that before actually several times I'm surprised I even remembered it this time the  
 other thing you can do is install everything locally by cloning the repository downloading anaconda creating a conda  
 environment if you haven't done that I suggest you do not do that now and you launch launch the binder James is going to  
-start by telling us a few a few things about about gas and distributed compute in general my question for you James is  
+start by telling us a few a few things about about GAs and distributed compute in general my question for you James is  
 if we get people to launch this now will we get to execute a cell code cell in 10 minutes I would let's hold off for now  
-maybe yep Maybe I'll indicate when we should launch binder OK fantastic cool and just what I'm looking at right now is  
-the github repository on your browser OK exactly so I will not launch binder now I will not get you to now I've I'm  
+maybe yep maybe I'll indicate when we should launch binder OK fantastic cool and just what I'm looking at right now is  
+the GitHub repository on your browser OK exactly so I will not launch binder now I will not get you to now I've I'm  
 doing this locally and we see that I'm in notebook zero and if you want to actually have a look at this notebook before  
 launching binder it's in the notebooks Data Umbrella subdirectory and its notebook zero and we're going to hopefully  
 make it through the overview then chatting about dusk dusk delayed and and data framing and machine learning great so we  
@@ -61,8 +61,8 @@ have hashim has said you could open in vs code as well you could I mean that wou
 that that type of stuff as well but we're to introduce me and James we we work at coiled where we build products for  
 distributed compute in infrastructure as we'll see one of the big problems with like bursting to the cloud is all the  
 like kubernetes aws docker stuff so we build a one-click host of deployments for das but for data science and machine  
-learning in general James maintains task along with Matt matt rocklin who created dusk with a team people who was  
-working with continuum anaconda at the time and James is a software engineer at called and I run data science evangelism  
+learning in general James maintains task along with Matt Matt rocklin who created dusk with a team people who was  
+working with Continuum Anaconda at the time and James is a software engineer at called and I run data science evangelism  
 marketing work on a bunch of product product stuff as well wear a bunch of different different hats  
  
 
@@ -71,10 +71,10 @@ marketing work on a bunch of product product stuff as well wear a bunch of diffe
 occasionally there are many ways to think about distributed compute and how to do it in in Python we're going to present  
 hey James you're muted I'm taking it I went away based on what I see in the chat you did you did but now we're back I've  
 introduced you I've introduced me I've mentioned that there are many ways to do distributed compute in the Python  
-ecosystem and we'll be chatting about one called dask and Maybe I'll pass you in a second but I'll say one thing that I  
-really like about my background isn't in distributed compute my background's in Pythonic data science when thinking  
+ecosystem and we'll be chatting about one called dask and maybe I'll pass you in a second but I'll say one thing that I  
+really like about my background isn't in distributed compute my background's in pythonic data science when thinking  
 about bursting to larger data sets and larger models there are a variety of options the thing that took me attracted me  
-to desk originally I saw cameron's note the ghost in the machine aren't playing nice tonight I think that ain't that the  
+to desk originally I saw Cameron's note the ghost in the machine aren't playing nice tonight I think that ain't that the  
 truth is that dark plays so nicely with the entire pi data ecosystem so as we'll see if you want to write dash code for  
 data frames dash data frames it really mimics your Pandas code same with numpy same with scikit-learn OK and the other  
 thing is dark essentially runs the Python code under the hood so your mental model of what's happening is actually  
@@ -85,17 +85,17 @@ and talk about dark at a high level I'm sharing my screen and we can scroll thro
 sort of a nutshell you can think of it as being composed of two main well components the first we call collections these  
 are the user interfaces that you use to actually construct a computation you would like to compute in parallel or on  
 distributed hardware there are a few different interfaces that desk implements for instance there's dask array for doing  
-nd array computations there's das data frame for working with tabular data you can think of those as like gask array as  
+nd array computations there's das data frame for working with tabular data you can think of those as like GAsk array as  
 a parallel version of numpy das data frame has a parallel version of Pandas and so on there are also a couple other  
 interfaces that we'll be talking about das delayed for instance we'll talk about that today we'll also talk about the  
-futures api those are sort of for lower level custom algorithms in sort of paralyzing existing existing code the main  
-takeaway is that there are several sort of familiar apis that desk implements and that will use today to actually  
+futures API those are sort of for lower level custom algorithms in sort of paralyzing existing existing code the main  
+takeaway is that there are several sort of familiar APIs that desk implements and that will use today to actually  
 construct your computation so that's the first part of desk it is these dash collections you then take these collections  
 set up your steps for your computation and then pass them off to the second component which are desk schedulers and  
 these will actually go through and execute your computation potentially in parallel there are two flavors of schedulers  
 that desk offers the first is a are called single machine schedulers and these just take advantage of your local  
 hardware they will spin up a a local thread or process pool and start submitting tasks in your computation to to be  
-executed in parallel either on multiple threads or multiple processes there's also a distributed scheduler or Maybe a  
+executed in parallel either on multiple threads or multiple processes there's also a distributed scheduler or maybe a  
 better term for would actually be called the advanced scheduler because it works well on a single machine but it also  
 scales out to multiple machines so for instance as you'll see later we will actually spin up a distributed scheduler  
 that has workers on remote  
@@ -115,7 +115,7 @@ yeah looking at the image for the distributed scheduler we're not gonna have tim
 the distributed scheduler in this workshop so but we do want to provide at least a high level overview of the the  
 different parts and components of the distributed scheduler so the first part I want to talk about is in the diagram  
 what's labeled as a client so this is the user facing entry point to a cluster so wherever you are running your Python  
-session that could be in a jupiter lab session like we are here that could be in a Python script somewhere you will  
+session that could be in a Jupyter lab session like we are here that could be in a Python script somewhere you will  
 create and instantiate a client object that connects to the second component which is the das scheduler so each desk  
 cluster has a single scheduler in it that sort of keeps track of all of the state for all of the the state of your  
 cluster and all the tasks you'd like to compute so from your client you might start submitting tasks to the cluster the  
@@ -128,7 +128,7 @@ distributed workers here however you can have as you can have thousands of worke
 things that actually compute the tasks they also store the results of your tasks and then serve them back to you and the  
 client the scheduler basically manages all the state needed to perform the computations and you submit tasks from the  
 client so that's sort of a quick whirlwind tour of the different components for the distributed scheduler and at this  
-point I think it'd be great to actually see see some of this in action Hugo would like to take over absolutely thank you  
+point I think it'd be great to actually see see some of this in action hugo would like to take over absolutely thank you  
 for that wonderful introduction to darsk and and the schedulers in particular and we are going to see that with dark in  
 action I'll just note that this tab in which I launched the binder is up and running if you're going to execute code  
 here click on notebooks click on Data Umbrella oop and then go to the overview notebook and you can drag around we'll  
@@ -152,7 +152,7 @@ click on the little desk thing here and we've modified the binder so that that e
 search and it should that now corresponds to the the scheduler now I want to look at the task stream which will tell us  
 in real time what's happening I also want to look at the cluster map so we see here this is already really cool we've  
 got all of our workers around here and our scheduler scheduler there and when we start doing some compute we'll actually  
-see information flowing between these and the other thing Maybe I'll yeah I'll include a little progress and that can be  
+see information flowing between these and the other thing maybe I'll yeah I'll include a little progress and that can be  
 an alternate tab to ask I'm wondering perhaps I also want to include something about the workers yeah OK great so  
 we've got a bunch of stuff that's that's pretty interesting there and so the next thing I'm going to do we've got a  
 little utility file which downloads some of the data and this is what it does is if you're in binder it downloads a  
@@ -178,7 +178,7 @@ truth fantastic so we call this a pew pew plot because we see pew pew pew we saw
 between them these are all our cause and we can see tasks happening it tells us what tasks there are we can see that  
 most of the time was spent reading reading csvs then we have some group bias on chunks and and that type of stuff so  
 that's a really nice diagnostic tool to see what most of your work is is actually doing under dark work as you can see  
-memory used CPU use more fine-grained examples there so I I'd love to know if in the Q&A I'm going to ask were you able  
+memory used CPU use more fine-grained examples there so I I'd love to know if in the Q&AI'm going to ask were you able  
 to execute this code and if you were in binder just a thumb up a vote would be no would be fantastic much appreciated so  
 as we've mentioned I just wanted to say a few things about tutorial goals the goal is to cover the basics of dark and  
 distributed compute we'd love for you to walk away with an understanding of when to use it when to not what it has to  
@@ -187,7 +187,7 @@ provides a wonderful framework for thinking about dusk how dark works and unders
 we're going to go into dark data frames and then machine learning hopefully due to the technical considerations with  
 we've got less time than than we thought we would but we'll definitely do the best we can we may have less time to do  
 exercises so we've had two people who are able to execute this code if you if you tried to execute it in binder and were  
-not able to perhaps post that in the Q&A but we also have several exercises and I'd like you to take a minute just to do  
+not able to perhaps post that in the Q&Abut we also have several exercises and I'd like you to take a minute just to do  
 this exercise the I I'm not asking you to do this because I want to know if you're able to print hello world I'm  
 essentially asking you to do it so you get a sense of how these exercises work so if you can take 30 seconds to print  
 hello world then we'll we'll move on after that so just take 30 seconds now and it seems like we have a few more people  
@@ -208,12 +208,12 @@ along those lines and in my opinion it does give a really nice example of how to
 sign in at cloud dot coiled dot io you can also pip install coiled and then do authentication you can also spin up this  
 this hosted coiled notebook so I'm going to spin that up now and I'm going to post that here actually yep I'm gonna post  
 that in the ch chat if you let me get this right if you've if you've never logged in to code before it'll ask you to  
-sign up using gmail or github so feel free to do that if you'd like if not that's also also cool but I just wanted to be  
+sign up using gmail or GitHub so feel free to do that if you'd like if not that's also also cool but I just wanted to be  
 explicit about that the reason I want to do this is to show how dars can be leveraged to do work on really large data  
-sets so you will recall that I had between eight and nine gigs of ram on my local system oh wow anthony says on ipad  
+sets so you will recall that I had between eight and nine gigs of ram on my local system oh wow Anthony says on ipad  
 unable to execute on binder incredible I don't have a strong sense of how binder works on ipad I do know that I was able  
-to to check to use a binder on my iphone several years ago on my way to scipy doing code review for someone for eric  
-maher I think for what that that's worth but back to this we have this nyc taxi data set which is over 10 gigs it won't  
+to to check to use a binder on my iphone several years ago on my way to scipy doing code review for someone for Eric  
+Maher I think for what that that's worth but back to this we have this nyc taxi data set which is over 10 gigs it won't  
 even I can't even store that in local memory I don't have enough ram to store that so we do need either to do it locally  
 in an out of core mode of some sort or we can we can burst to the cloud and we're actually going to burst to the cloud  
 using using coiled so the notebook is running here for me and but I'm actually gonna do it from my local local notebook  
@@ -251,7 +251,7 @@ is essentially saying that the environment on the cloud mis is there's a slight 
 environment we're fine with that I'm going to look here for a certain reason the the dashboard isn't quite working here  
 at the moment James would you suggest I just click on this and open a new yeah click on the ecs dashboard link oh yes  
 fantastic so yep there's some bug with the local dashboards that we're we're currently currently working on but what  
-we'll see now just a sec I'm going to remove all of this we'll see now that I have access to 10 workers I have access to  
+we'll see now just a SEC I'm going to remove all of this we'll see now that I have access to 10 workers I have access to  
 40 cores and I have access to over 170 gigs of memory OK so now I'm actually going to import this data set and it's  
 the entire year of data from 2019 and we'll start seeing on on the diagnostics all the all the processing happening OK  
 so oh actually not yet because we haven't called compute OK so it's done this lazily we've imported it it shows kind  
@@ -259,8 +259,8 @@ of like Pandas when you show a data frame the column names and data types but it
 haven't loaded it yet it does tell you how many partitions it is so essentially and we'll see this soon das data frames  
 correspond to collections of Pandas data frames so they're really 127 Pandas data frames underlying this task data frame  
 so now I'm going to do the compute well I'm going to set myself up for the computation to do a group by passenger gown  
-and look at the main tip now that took a very small amount of time we see the iPython magic timing there because we  
-haven't computed it now we're actually going to compute and James if you'll see in the chat eliana said her coil coiled  
+and look at the main tip now that took a very small amount of time we see the IPython magic timing there because we  
+haven't computed it now we're actually going to compute and James if you'll see in the chat Eliana said her coil coiled  
 authentication failed I don't know if you're able to to help with that but if you are that would be great and it may be  
 difficult to debug in but look as we see we have the task stream now and we see how many you know we've got 40 cores  
 working together we saw the processing we saw the bytes stored it's over 10 gigs as I said and we see we were able  
@@ -270,7 +270,7 @@ working together we saw the processing we saw the bytes stored it's over 10 gigs
  
 to do our basic analytics we were able to do it on a 10 plus gig data set in in 21.3 seconds which is pretty pretty  
 exceptional if any any code based issues come up and they're correlated in particular so if you have questions about the  
-code execution please ask in the Q&A not in the chat because others cannot vote it and I will definitively prioritize  
+code execution please ask in the Q&Anot in the chat because others cannot vote it and I will definitively prioritize  
 questions on technical stuff particularly ones that up that are upvoted but yeah I totally agree thanks thanks very much  
 so yeah let's jump into into data frames so of course we write here that in the last exercise we used ask delayed to  
 parallelize loading multiple csv files into a Pandas data frame we're not we we haven't done that but you can definitely  
@@ -282,14 +282,14 @@ collection of them is a dark data frame and as we saw before they're partitioned
 in the dash data frame was 127 partitions right where each partition was a normal panda Pandas data frame and they can  
 live on disk as they did early in the first example dark in action or they can live on other machines as when I spun up  
 a coiled cluster and and did it on on aws something I love about darth's data frames I mean I ran about this all the  
-time it's how it's the Pandas api and and Matt matt rocklin actually has a post on on the blog called a brief history of  
-dusk in which he talks about the technical goals of us but also talks about a social goal of task which in matt's words  
-is to invent nothing he wanted and the team wanted the dusk api to be as comfortable and familiar for users as possible  
+time it's how it's the Pandas API and and Matt Matt rocklin actually has a post on on the blog called a brief history of  
+dusk in which he talks about the technical goals of us but also talks about a social goal of task which in Matt's words  
+is to invent nothing he wanted and the team wanted the dusk API to be as comfortable and familiar for users as possible  
 and that's something I really appreciate about it so we see we have element element wires on operations we have the our  
 favorite row eyes selections we have loc we have the common aggregations we saw group buyers before we have is-ins we  
 have date time string accessors oh James we forgot to I forgot to edit this and I it should be grouped by I don't know  
 what what a fruit buy is but that's something we'll make sure the next iteration to to get right at least we've got it  
-right there and in the code but have a look at the dash data frame api docs to check out what's happening and a lot of  
+right there and in the code but have a look at the dash data frame API docs to check out what's happening and a lot of  
 the time dash data frames can serve as drop in replacements for Pandas data frames the one thing that I just want to  
 make clear as I did before is that you need to call compute because of the lazy laser compute property of das so this is  
 wonderful to talk about when to use data frames so if your data fits in memory use Pandas if your data fits in memory  
@@ -300,7 +300,7 @@ larger than your machine's ram where you normally run into memory errors and tha
 
 #### 00:36:01,520::		4 minutes mark -> new paragraph 
  
-with the taxicab example the other example that we'll see when we get to [Music] machine learning is you can do machine  
+with the taxicab example the other example that we'll see when we get to [music] machine learning is you can do machine  
 learning on a small data set that fits in memory but if you're building big models or training over like a lot of  
 different hyper parameters or different types of models you can you can parallelize that using using dark so there is  
 you know you want to use dash perhaps in the big data or medium to big data limit as we see here or in the medium to big  
@@ -319,7 +319,7 @@ bit of Pandas you'll know that you can there's an attribute columns which prints
 form an index right the Pandas index object and we get the we get the column names there cool Pandas in dark form we can  
 check out the data types as well as we would in Pandas we see we've got some ins for the day of the week we've got some  
 floats for departure time maybe we'd actually prefer that to be you know a date time at some point we've got some  
-objects which generally are the most general on objects so generally strings so that's all Pandasey type stuff in  
+objects which generally are the most general on objects so generally strings so that's all pandasey type stuff in  
 addition das data frames have an attribute n partitions which tells us the number of partitions and we saw before that  
 that's 10 so I'd expect to see 10 here hey look at that now this is something that we talk about a lot in the delayed  
 notebook is really the task graph and I don't want to say too much about that but really it's a visual schematic of of  
@@ -337,7 +337,7 @@ the tail the final five rows that may take longer because it's accessing the the
 even be a joke how much data analytics is actually biased by people looking at the first five rows before actually you  
 know interrogating the data more more seriously so how would all of our results look different if if our files were  
 ordered in in a different way that's another conversation for a more philosophical conversation for another time so now  
-I want to show you some computations with dark data frames OK so since dash data frames implement a Pandas like api we  
+I want to show you some computations with dark data frames OK so since dash data frames implement a Pandas like API we  
 can just write our familiar Pandas codes so I want to look at the column departure delay and look at the maximum of that  
 column I'm going to call that max delay so you can see we're selecting the column and then applying the max method as we  
 would with Pandas oh what happened there gives us some da scala series and what's happened is we haven't called compute  
@@ -350,13 +350,13 @@ reading this so we read the first perform the first read csv get this das data f
 then we're taking the max we're doing the same for all of them then we take all of these max's and aggregate them and  
 then take the max of that OK so that that's essentially what's happening when I call compute which I'm going to do now  
 moment of truth OK so that took around eight seconds and it tells us the max and I I'm sorry let's let's just get out  
-some of our dashboards up as well huh I think in this notebook we are using the single machine scheduler Hugo so I don't  
+some of our dashboards up as well huh I think in this notebook we are using the single machine scheduler hugo so I don't  
 think there is a dashboard to be seen exactly yeah thank you for that that that catch James great is even better James  
 we have a question around using dark for reinforcement learning can you can you speak to that yeah so it depends on this  
-I mean yeah short answer yes you can use gas to train reinforcement learning models so there's a package that Hugo will  
-talk about called desk ml that we'll see in the next notebook for distributing machine learning that paralyzes and and  
+I mean yeah short answer yes you can use GAs to train reinforcement learning models so there's a package that hugo will  
+talk about called desk ML that we'll see in the next notebook for distributing machine learning that paralyzes and and  
 distributes some existing models using desks so for instance things like random forces forest inside kit learn so so yes  
-you can use das to do distributed training for models I'm not actually sure if gaskml implements any reinforcement  
+you can use das to do distributed training for models I'm not actually sure if GAskml implements any reinforcement  
 learning models in particular but that is certainly something that that can be done yeah and I'll I'll build on that by  
 saying we are about to jump into machine  
  
@@ -373,9 +373,9 @@ like a parallel numpy so that was like the desk array stuff like run run numpy a
 so in order to do that we ended up building a distributed scheduler which sort of does arbitrary task computations so  
 not just things like you know parallel numpy but really whatever you'd like to throw at it and it turns out that ended  
 up being really useful for people and so yeah now people use that sort of on their own just using the distributed  
-scheduler to do totally custom algorithms in parallel in addition to these like nice collections like you saw Hugo  
-presents the dash data frame api is you know the same as the panda's api so there is this like familiar space you can  
-use things like the high-level collections but you can also run whatever custom like Hugo said bespoke computations you  
+scheduler to do totally custom algorithms in parallel in addition to these like nice collections like you saw hugo  
+presents the dash data frame API is you know the same as the panda's API so there is this like familiar space you can  
+use things like the high-level collections but you can also run whatever custom like hugo said bespoke computations you  
 might have exactly and it's it's been wonderful to see so many people so many people do that and the first thing as  
 we'll see here the first thing to think about is if if you're doing lifestyle compute if there's anything you can you  
 know parallelize embarrassingly as they say right so just if you're doing a hyper parameter search you just run some on  
@@ -390,8 +390,8 @@ you know whirlwinds when safe exciting and informative I just want to make clear
 on the open source content from darsk's tutorial repository as there's a bunch of stuff we've shown you today the reason  
 we've done that is because they did it so well so I just want to give a shout out to all the das contributors OK so  
 what we're going to do now is just break down machine learning scaling problems into two categories just review a bit of  
-psychic learn in passing solve a machine learning problem with single michelle single michelle I don't know who she is  
-but single michelle wow single machine and parallelism with psychic learning job lib then solve an l problem with an ml  
+psychic learn in passing solve a machine learning problem with single Michelle single Michelle I don't know who she is  
+but single Michelle wow single machine and parallelism with psychic learning job lib then solve an l problem with an ML  
 problem with multiple machines and parallelism using dark as well and we won't have time to burst for the cloud I don't  
 think but you can also play play around with that OK so as I mentioned before when thinking about distributed compute  
 a lot of people do it when they have large data they don't necessarily think about the large model limit and this  
@@ -405,14 +405,14 @@ start going to a distributed setting or if your model is big and CPU bound such 
 searches or like ensembl blended models of like machine learning algorithms whatever it is and then of course we have  
 the you know big data big model limit where distributed computer desk is incredibly handy as I'm sure you could imagine  
 OK and that's really what I've what I've gone through here a bird's-eye view of the strategies we think about if it's  
-in memory in the bottom left quadrant just use scikit-learn or your favorite ml library otherwise known as psychic learn  
+in memory in the bottom left quadrant just use scikit-learn or your favorite ML library otherwise known as psychic learn  
 for me anyway I was going to make a note about xg boost but I but I won't for large models you can use joblib and your  
-favorite circuit learn estimator for large data sets use our dark ml estimators so we're gonna do a whirlwind tour of  
+favorite circuit learn estimator for large data sets use our dark ML estimators so we're gonna do a whirlwind tour of  
 psychic learn in in five minutes we're going to load in some data so we'll actually generate it we'll import scikit-  
-learn for our ml algorithm create an estimator and then check the accuracy of the model OK so once again I'm actually  
+learn for our ML algorithm create an estimator and then check the accuracy of the model OK so once again I'm actually  
 going to clear all outputs after restarting the kernel OK so this is a utility function of psychic learn to create  
 some data sets so I'm going to make a classification data set with four features and 10 000 samples and just have a  
-quick view of some of it so just a reminder on ml x is the samples matrix the size of x is the number of samples in  
+quick view of some of it so just a reminder on ML x is the samples matrix the size of x is the number of samples in  
 terms of rows number of features as columns and then a feature or an attribute is what we're trying to predict  
 essentially OK so why is the predictor variable which we're where which we're or the target variable which we're  
 trying to predict so let's have a quick view of why it's zeros and ones in in this case OK so yep that's what I've  
@@ -420,7 +420,7 @@ said here why are the targets which are real numbers for regression tasks or int
 discrete sets of values no words about unsupervised learning at the moment we're just going to support we're going to  
 fit a support vector classifier for this example so let's just load the appropriate scikit-learn module we don't really  
 need to discuss what support vector classifiers are at the moment now this is one of the very beautiful things about the  
-scikit-learn api in terms of fitting the the model we instantiate a classifier and we want to fit it to the features  
+scikit-learn API in terms of fitting the the model we instantiate a classifier and we want to fit it to the features  
 with respect to the target OK so the first argument is the features second argument is the target variable so we've  
 done that now I'm not going to worry about inspecting the learn features I just want to see how accurate it was OK and  
 once we see how accurate it was I'm not gonna do this but then we can make a prediction right using estimator dot  
@@ -467,30 +467,30 @@ have a good I have a good sense
 #### 00:56:00,400::		4 minutes mark -> new paragraph 
  
  a good after the I mean this demo is actually going incredibly well given the initial technical hurdles so touchwood  
-hugo OK so what we've done is we've really segmented ml scaling problems into two categories CPU bound and ram bound  
+hugo OK so what we've done is we've really segmented ML scaling problems into two categories CPU bound and ram bound  
 and I I really I can't emphasize that enough because I see so many people like jumping in to use new cool technologies  
 without perhaps taking it being a bit mindful and intentional about it and reasoning about when things are useful and  
 and when not I suppose the one point there is that sure data science is a technical discipline but there are a lot of  
-other aspects to it involving this type of reasoning as well so we then carried out a typical sklearn workflow for ml  
+other aspects to it involving this type of reasoning as well so we then carried out a typical sklearn workflow for ML  
 problems with small models and small data and we reviewed hyper parameters and hyper parameter optimization so in this  
 section we'll see how job lib which is a set of tools to provide lightweight pipelining in Python gives us parallelism  
-on our laptop and then we'll see how dark ml can give us awesome parallelism on on clusters OK so essentially what I'm  
+on our laptop and then we'll see how dark ML can give us awesome parallelism on on clusters OK so essentially what I'm  
 doing here is I'm doing exactly the same as above with a grid search but I'm using the quark the keyword argument n jobs  
 which tells you how many tasks to run in parallel using the cause available on your local workstation and specifying  
 minus one jobs means the it just runs them the maximum possible OK so I'm going to execute that great so we should be  
-done in a second feel free to ask any questions in the chat oh alex has a great question in the Q&A does das have see a  
-sequel and query optimizer I'm actually so excited that [Music] and James Maybe you can provide a couple of links to  
+done in a second feel free to ask any questions in the chat oh alex has a great question in the Q&Adoes das have see a  
+sequel and query optimizer I'm actually so excited that [music] and James maybe you can provide a couple of links to  
 this we're really excited to have seen dark dust SQL developments there recently so that's dark hyphen hyphen SQL and  
-we're actually we're working on some some content and a blog post and Maybe a live live coding session about that in in  
+we're actually we're working on some some content and a blog post and maybe a live live coding session about that in in  
 the near future so if anyone if you want updates from from coyle feel free to go to our website and sign up for our  
 mailing list and we'll let you know about all of this type of stuff but the short answer is yes alex and it's getting  
 better and if James is able to post post a link there that would be that would be fantastic so we've done link in the  
-chat fantastic [Music] and so we've we've seen how we have [Music] single machine parallelism here using the using the  
+chat fantastic [music] and so we've we've seen how we have [music] single machine parallelism here using the using the  
 end jobs quark and in the final minutes let's see multiple multi-machine parallelism with dusk OK so what I'm going to  
 do is I'm going to do my imports and create my client incentive my client and check it out OK so once again I'm  
 working locally I hit search and that'll task is pretty smart in terms of like knowing which which client I want to  
 check out do the tasks stream because it's my favorite I'll do the cluster map otherwise known as the pew pew map and  
-then I want some progress we all we all crave progress don't we and Maybe my workers tab OK great so we've got that up  
+then I want some progress we all we all crave progress don't we and maybe my workers tab OK great so we've got that up  
 and running now I'm going to do a slightly larger hyper parameter search OK so remember we had just a couple for c a  
 couple for kernel we're going to do more we have some for shrinking now I'm actually going to comment that out because I  
 don't know how long that's going to take if you're coding them on binder now this May actually take far far too long for  
@@ -518,7 +518,7 @@ let me know yeah sure I just also first off wanted to say thanks everyone for at
 #### 01:04:01,119::		4 minutes mark -> new paragraph 
  
 bearing with us with the technical difficulties really appreciate that real quick I'm just yeah so if you have if you  
-have questions please post in the Q&A section while the cold cluster's spinning up theodore posted in the last largest  
+have questions please post in the Q&Asection while the cold cluster's spinning up theodore posted in the last largest  
 example of grid search how much performance gain did we get from using das and not just in jobs hmm that's a great  
 question and we actually didn't see let's see so it took 80 seconds ah let me get this they're actually not comparable  
 because I did the grid search over a different set of hyper parameters I did it over a larger set of hyper parameters  
@@ -526,8 +526,8 @@ right so when I did end jobs I did it there were only it was a two by two grid o
 with with dusk it was a one two three four five six six by three so let's just reason about that this one was eighteen  
 six by three is eighteen which took eighty seconds and this one was two by two so it was four and it took 26 seconds so  
 a minor gain I think with this hyper parameter search if you multiply that by by four you'll well 4.2 4.5 you'll need  
-that would have taken Maybe two minutes or something something like that so we saw some increase in efficiency not a  
-great deal but James Maybe you can say more to this part of the reason for that is that we're doing it on kind of a very  
+that would have taken maybe two minutes or something something like that so we saw some increase in efficiency not a  
+great deal but James maybe you can say more to this part of the reason for that is that we're doing it on kind of a very  
 small example so we won't necessarily see the gains in efficiency with a data set this size and with a small hyper  
 parameter suite like this is that right yeah yeah and yeah exactly and I guess also this is more of an kind of an  
 illustrative point here I guess so you're just using directly using in jobs with something like job lib by default we'll  
@@ -537,7 +537,7 @@ dash cluster is that your cluster can expand beyond what local resources you hav
 basically scale out like for instance using the coil cluster to have many many CPUs and a large amount of ram that you  
 wouldn't have on your locally table to run and there you'll see both large performance gains as well as you'll be able  
 to expand your the set of possible problems you can solve to larger than ram scenarios so you're out of out of core  
-training exactly and thank you jack this was absolutely unplanned and we didn't plan that question but that's a  
+training exactly and thank you Jack this was absolutely unplanned and we didn't plan that question but that's a  
 wonderful segue into me now performing exactly the same compute with the same code using the dasc as the parallel back  
 end on a on a coiled cluster which is an aws cluster right so we can I'm more currently anyway so I will execute this  
 code and it's exactly the same as we did whoa OK great so we see our tasks task stream here you see once again we see  
@@ -555,11 +555,11 @@ of working on a cluster I personally find very exciting and if you work with lar
 or big hyper parameter sweeps I'm pretty sure it's an exciting option for all of you also so on that note I'd like to  
 reiterate James what James said and thanking you all so much for joining us for asking great questions and for bearing  
 with us through some some technical technical hurdles but it made it even even funner when when we got up and running  
-once again I'd love to thank mark christina and and the rest of the organizers for doing such a wonderful job and doing  
+once again I'd love to thank Mark Christina and and the rest of the organizers for doing such a wonderful job and doing  
 such a great service to the data science and machine learning community and ecosystem worldwide so thank you once again  
-for having us thank you Hugo and James I have to say like with all the technical difficulties I was actually giggling  
+for having us thank you hugo and James I have to say like with all the technical difficulties I was actually giggling  
 because it was kind of funny yeah but we're very sorry and we thank you for your patience and sticking through it and I  
-will be editing this video to you know make it as efficient as possible and have that available tim supercard thank you  
+will be editing this video to you know make it as efficient as possible and have that available Tim supercard thank you  
 great and I'll just ask you if you are interested in checking out coiled go to our website if you want to check out our  
 product go to cloud.coil.io we started building this company in February we're really excited about building a new  
 product so if you're interested reach out we'd love to chat with you about what we're doing and what we're up to and  

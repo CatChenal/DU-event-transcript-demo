@@ -16,7 +16,7 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 |--- |---                  |---               |---           |---     |---    |
 | 01 | Hugo Bowne-Anderson | Bayesian Data Science  | N.A. | Not recorded | |
 | 02 | Bruno Goncalves     | Time Series Modeling   | N.A. | Not recorded | |
-| 03 | Ty Shaikh           | [Webscraping Poshmark](2020/03-ty-shaikh-webscraping.md) | ?  |  | |
+| 03 | Ty Shaikh           | [Webscraping Poshmark](2020/03-ty-shaikh-webscraping.md) | ?  |  | These are tests notes.|
 | 04 | Ali Spittel         | [Navigating Your Tech Career](2020/04-ali-spittel-career.md)| Janine | Needs reviewer | |
 | 05 | Andreas Mueller     | [Crash Course in Contributing to Scikit-learn](2020/05-andreas-mueller-contributing.md) | Reshama Shaikh | Complete | |
 | 06 | Reshama Shaikh      | [Example PR for Scikit-learn](2020/06-reshama-shaikh-sklearn-pr.md) | Reshama, Mark  | Complete | |
@@ -32,3 +32,6 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 16 | Hugo Bowne-Anderson, James Bourbeau | [Data Science and Machine Learning at Scale](2020/16-hugo-james-dask.md) | Cynthia |  | |
 | 17 | Carol Willing      | [Contributing to Core Python](2020/17-carol-python.md) | ? |  | |
 <!-- main_tbl_end -->
+
+# NEW!:
+Use the `./resources/EventManagement` [project](./resources/EventManagement/README.md) to administer or edit the events' transcripts.

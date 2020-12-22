@@ -1,6 +1,6 @@
 <article>
 <!-- Part of app that retrieves and processes the auto-generated captions of a YouTube video;
-     (Any transcript text pre-existing the app is preserved.)
+     (Any transcript text pre-existing the use of this app is preserved.)
 -->
 
 {% markdown %}
@@ -15,7 +15,7 @@
 - Meetup Event:  {{meetup_url}}  
 - Video:  https://youtu.be/{{yt_video_id}}  
 - Slides:  {{slides_url}}  
-- GitHub repo:  {{repo_url}}  
+- GitHub Repo:  {{repo_url}}  
 - Jupyter Notebook:  {{notebook_url}}  
 - Transcriber:  {{transcriber}}  
 {{extra_references}}  

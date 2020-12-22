@@ -5,7 +5,7 @@
 - Meetup Event:  https://github.com/data-umbrella/2020-sklearn-sprint/projects/1
 - Video:  https://www.youtube.com/watch?v=5OL8XoMMOfA&feature=youtu.be&t=1
 - Slides:  [Crash Course in Contributing to Open Source Projects](https://github.com/data-umbrella/2020-sklearn-sprint/blob/master/data-umbrella-sprint-intro.pdf) 
-- Github Repo:  https://github.com/data-umbrella/2020-sklearn-sprint/projects/1 
+- GitHub Repo:  https://github.com/data-umbrella/2020-sklearn-sprint/projects/1 
 - Jupyter Notebook:  N.A.   
 - Transcriber:  Reshama Shaikh
 - Twitter, Presenter:  [Andreas Mueller](https://twitter.com/amuellerml)

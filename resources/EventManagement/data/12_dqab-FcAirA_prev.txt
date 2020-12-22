@@ -3,7 +3,7 @@
 
 Hey everybody welcome to a Data Umbrella webinar I am joining from New York and I'm just gonna do a a brief introduction  
 about Data Umbrella and then we'll get started on the webinar so it'll be it'll sort of go like I'll do the introduction  
-we'll do the talk and then you can post any questions in the chat or in the Q&Aand we'll sort of answer those as they  
+we'll do the talk and then you can post any questions in the chat or in the Q&A and we'll sort of answer those as they  
 pile up over time and just to let people know this will be recorded and will be available on our YouTube I posted a link  
 to YouTube in the chat if you're not able to see it just let me know and I can share it again about me I'm the founder  
 of Data Umbrella I'm a statistician data scientist and I am also an organizer for the New York city chapter of PyLadies  
@@ -20,7 +20,7 @@ webinar which is on creating nimble data processes which will be which will be f
 of articles including job postings so if you're interested in that feel free to follow us on LinkedIn feel free to  
 subscribe to our YouTube channel for our videos and follow us on Twitter for updates and so now we're going to get  
 started I'm going to turn this over who is joining us from central India in dore right yeah thank you so much for  
-joining us and it's 9 30 wonder time right [music] I'll just I'll share my screen is the screen visible now I see drag  
+joining us and it's 9 30 wonder time right [Music] I'll just I'll share my screen is the screen visible now I see drag  
 and drop files I think it might just be loading yep now we can see your screen all right is it visible yes OK yeah  
 hello everyone I'm Mridu Bhatnagar I'm from India and I am a software engineer by profession and when I am not  
 programming or building stuff then I love giving talks at various meetups and conferences so during this time I have  
@@ -42,27 +42,27 @@ where we can just test whether the bot is working as expected or not so for that
 things that I have mentioned are pip installable so pip is the Python package manager you just have to do pipe like pip  
 install Flask paper install ngrok sorry ngrok is not prep installable for ngrok you need to go on to ngrok website and  
 from ngrok website you can download ngrok so that is how you install ngrok and then all you need is a smartphone with  
-WhatsApp installed on it and then there needs to be a Twilio account so this is the URL at the bottom is for creating  
+WhatsApp installed on it and then there needs to be a Twilio account so this is the url at the bottom is for creating  
 the Twilio account I can maybe share this link or OK later I can share this link so that if you want you can just open  
 up and create your own accounts I will just share it just a second if you are following along or later you want to  
-create a Twilio account you can use this URL that I have put up in the chat the initial account trial account is  
+create a Twilio account you can use this url that I have put up in the chat the initial account trial account is  
 basically free so it won't charge you anything so moving ahead here is how you can configure your Twilio WhatsApp  
-sandbox so once you have created your account on Twilio you can just go on to Twilio console sms WhatsApp learn this URL  
+sandbox so once you have created your account on Twilio you can just go on to Twilio console sms WhatsApp learn this url  
 so first and foremost thing is to create the account on Twilio and then there is something as Twilio sandbox so our  
 application basically will be communicating to Twilio so imagine that you have opened your WhatsApp and you are querying  
 your WhatsApp with like suppose you wanted word definition or you are saying hi to your WhatsApp so whatever message you  
 are sending to the WhatsApp should go to Twilio so we are trying to make a connection between WhatsApp and Twilio so for  
-that connection to happen this URL is what is needed connection between  
+that connection to happen this url is what is needed connection between  
  
 
 #### 00:08:03,280::		4 minutes mark -> new paragraph 
  
-WhatsApp and Twilio so the URL that I had sent above was for connection between WhatsApp and Twilio and if you have  
-already created that this account and you go on to this URL this is how your page would look like I'll just expand it  
+WhatsApp and Twilio so the url that I had sent above was for connection between WhatsApp and Twilio and if you have  
+already created that this account and you go on to this url this is how your page would look like I'll just expand it  
 this is how basically your screen is going to look like once you are on our Twilio sandbox I cannot live like I cannot  
 go on the actual website and show you live because there are some secret codes that are there that are not to be shown  
 so make sure that whenever you two are using the Twilio application you hide your own codes don't just go and put it up  
-on GitHub or somewhere these are your own codes and so the left hand side number that you see here is something that you  
+on Github or somewhere these are your own codes and so the left hand side number that you see here is something that you  
 have to store you have to save it on your mobile phone and this is your joining code so once you save this contact  
 number on your mobile phone this contact would basically appear on your WhatsApp contacts so this is your WhatsApp  
 contact number and this is the joining code and everyone is going to have their different joining codes and joining  
@@ -196,20 +196,20 @@ help us in connecting these two devices so the terminal would look something
 #### 00:28:02,640::		4 minutes mark -> new paragraph 
  
 like this when you once you run your ngrok the terminal is going to look something like this OK so now next step is  
-making a connection with Twilio so now all you have to do is just copy this forwarding URL on everyone's laptop the  
-forwarding URL will be different so now next step is for connecting the two devices you have to just copy paste copy the  
-URL and then by copying the URL you just need to put the URL in in the Twilio sandbox for WhatsApp you would be able to  
+making a connection with Twilio so now all you have to do is just copy this forwarding url on everyone's laptop the  
+forwarding url will be different so now next step is for connecting the two devices you have to just copy paste copy the  
+url and then by copying the url you just need to put the url in in the Twilio sandbox for WhatsApp you would be able to  
 see this Twilio sandbox in the console itself just go on to the Twilio website all these things are available there and  
-as I had mentioned above add your ngrok forwarding URL in the text box so you have to add the ngrok URL here and then  
-after adding the ngrok URL at the end you have to put slash and followed by the end point hello world that we had used  
-so forwarding URL followed by the end point that was hello world so this is basically now everything is set now Twilio  
+as I had mentioned above add your ngrok forwarding url in the text box so you have to add the ngrok url here and then  
+after adding the ngrok url at the end you have to put slash and followed by the end point hello world that we had used  
+so forwarding url followed by the end point that was hello world so this is basically now everything is set now Twilio  
 knows how the communication between the devices needs to take place and now if you test your Flask service again you  
 would see that the communication is taking place whenever you send hi will you would send you hello followed by a high  
 or based on whatever code that you have written in the in your application so this is a very simple application that I  
 had demoed on how to build a bot and the next one was how to how do we send a dynamic response or how dynamic responses  
 are to be sent so we in the above example we were sending the static responses that if whenever you send hello it will  
 send you high but for dynamic responses what can be done is there are lot of APIs already available so there is some  
-examples of APIs are there is Google maps API there is cad pictures API you have Twitter API news API GitHub API now you  
+examples of APIs are there is Google maps API there is cad pictures API you have Twitter API news API Github API now you  
 can use all these use cases with your WhatsApp so one use case could be you are sending some location or you are suppose  
 sending latitude and longitude and then Google maps returns you the location on the map or you are sending some location  
 and the Google map returns you that exact map location or you you are interested in seeing some cat picture so you just  
@@ -243,7 +243,7 @@ WhatsApp as a platform for marketing so it has pretty good business use case att
 are using it for providing customer support and even some companies are using it for broadcasting the messages regarding  
 events and all so there can be various business use cases attached to WhatsApp so this was all I had and if you are  
 interested in building the vocab bot itself so here is a blog that I had recently written for Twilio themselves so here  
-is the bot URL so whenever you are trying to build it if you want to build the same one or trying to have some idea you  
+is the bot url so whenever you are trying to build it if you want to build the same one or trying to have some idea you  
 can just check out this blog the blog has is beginner friendly blog so it has detailed explanation of why a particular  
 decision is taken and why I am doing what I am doing so you can just add a lot bought logic based on your own needs and  
 requirements so and the last step after discussing these APIs is as throughout we were using Python so in Python just  
@@ -260,7 +260,7 @@ sending all your information returning all your information you can just send th
 small snippet just explains that part and based on your own use case you can write your own logic and a lot of times it  
 it is only about writing conditional statements and if you are interested in exploring all of this further so if you are  
 interested in Flask then you can check out the Flask official documentation and blog link I have already shared with you  
-all and then GitHub has a long list of public APIs that you can use I have only I had only listed a couple of them so  
+all and then Github has a long list of public APIs that you can use I have only I had only listed a couple of them so  
 you can have a look at all these public APIs as well when you built one of your own so thank you that was all I had for  
 the session does anybody have any questions please feel free to post them in the chat and I can read them thanks so much  
 for the presentation it was great and thank you thank you OK so I'm just gonna turn on my mic I don't see any  
@@ -289,7 +289,7 @@ so a lot of things are already built in and then other parts you have to develop
 framework that is used the next question is thank you for your questions afterwards there's our slack channel where we  
 can post them to Data Umbrella has a discord server so and it's on our website there's a link to how to join on the  
 website so if you go to dataumbrella.org you can join discord that way it says the publishing link is not found oh yeah  
-just a second I think there is some problem [music] you will have to scroll down on this link and then there is a  
+just a second I think there is some problem [Music] you will have to scroll down on this link and then there is a  
 section where I am publishing my application on Heroku so from that whole blog you can take that part of how our  
 application is published on Heroku OK all right great and if anybody has any more questions now is the time to ask and  
 I'm there on Twitter so if there are any further questions so I can take it up there as well that's right has our  
