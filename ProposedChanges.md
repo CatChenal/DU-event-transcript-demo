@@ -199,9 +199,10 @@ Change 'Meetup Event' to the more generic 'Venue': The main event link may not a
         |   |   EventMeta.py
         |   |   EventTranscription.py
         |   |   Utils.py
-        |   |   Workflow.py [W.I.P. UX functions.]
+        |   |   Controls.py [W.I.P. classes for page of ipywidgets]
+        |   |   Workflow.py [W.I.P. UX functions]
         |   |       
-        |   +---documentation [Not finalized. Code for documenting.]
+        |   +---documentation [Not finalized. Code for documenting]
         |           
         +---notebooks
         |   |   Implementation_Details.ipynb [Details about workflow & functions.]

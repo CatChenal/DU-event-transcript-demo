@@ -1,6 +1,6 @@
 # gitignore file for Data Umbrella events-transcript repo
-# audio files can be large, uncomment if problem.
-#*.mp4
+# audio files can be too large (>50 MB).
+*.mp4
 
 # Scrapy stuff:
 .scrapy
