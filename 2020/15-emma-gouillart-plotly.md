@@ -1,7 +1,6 @@
 # Emily Gouillart:  Data Visualization with Plotly
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/15-emma-gouillart-plotly.md
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/272683860/
 - Video:  https://youtu.be/BxIoQ0gsxzA
 - Slides: N.A.

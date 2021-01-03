@@ -1,9 +1,8 @@
 # Hugo Bowne-Anderson and James Bourbeau:  Data Science and Machine Learning at Scale
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/16-hugo-james-dask.md
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/273593514/
-- Video:   https://youtu.be/MHAjCcBfT_A
+- Video:  https://youtu.be/MHAjCcBfT_A
 - Slides:  N.A.
 - GitHub Repo:  https://github.com/coiled/data-science-at-scale
 - Jupyter Notebook:  https://github.com/coiled/data-science-at-scale/tree/master/notebooks/data-umbrella-2020-10-27 

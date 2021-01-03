@@ -1,7 +1,6 @@
 # Rebecca Kelly:  kdb Time Series Database
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/11-rebecca-kelly-kdb.md
 - Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/271984379/
 - Video:  https://youtu.be/92YticvZzCM
 - Slides:  N.A. 

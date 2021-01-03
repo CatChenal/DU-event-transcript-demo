@@ -3,6 +3,7 @@
 import os # pathlib has no remove()
 from pathlib import Path
 import json
+from warnings import warn
 
 # To create often-used subfolders:
 def get_project_dirs(which=['data', 'images'],
@@ -21,6 +22,14 @@ def get_project_dirs(which=['data', 'images'],
         dir_lst.append(DIR)
     return dir_lst
 
+
+def get_subfolder(subfolder_name, parent_dir=None):
+    if parent_dir is None:
+        parent_dir = Path.cwd()
+    p = parent_dir.joinpath(subfolder_name)
+    if not p.exists():
+        Path.mkdir(p)
+    return p
 
 def get_id_from_YT_url(url):
     start_idx = len('http://') + 1
@@ -167,6 +176,12 @@ def get_file_lines(fullpath):
         text = fh.readlines()
     return text
 
+
+def check_year(yr):
+    ok = len(str(yr)) == 4
+    if not ok:
+        warn('Provide a four-digit year.')
+    return ok
 
 # ...............................................    
 # tests (temp) 

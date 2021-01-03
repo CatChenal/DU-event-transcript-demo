@@ -1,7 +1,6 @@
 # Megan Robertson: 3 Lessons from 3 Years of Data Science
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/14-megan-robertson-career.md
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/272851917/
 - Video:  https://youtu.be/vu7pTNby0Og
 - Slides:  N.A. 

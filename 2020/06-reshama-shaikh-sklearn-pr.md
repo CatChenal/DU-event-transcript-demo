@@ -1,14 +1,13 @@
 # Reshama Shaikh: Example of Contributing and Submitting a Pull Request to [scikit-learn](https://github.com/scikit-learn)
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/06-reshama-shaikh-sklearn-pr.md
 - Meetup Event:  N.A. 
 - Video:  https://youtu.be/PU1WyDPGePI 
 - Slides:  N.A.  
 - GitHub Repo:  N.A. 
 - Jupyter Notebook:  N.A.  
 - Transcriber:  Reshama Shaikh
-- Twitter, Transcriber: [Reshama Shaikh](https://twitter.com/reshamas)
+- Twitter: [Reshama Shaikh](https://twitter.com/reshamas)
 
 ## Video
 <a href="https://youtu.be/PU1WyDPGePI">

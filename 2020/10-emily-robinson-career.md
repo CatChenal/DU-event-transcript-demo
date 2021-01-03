@@ -1,15 +1,14 @@
 # Emily Robinson: Build a Career in Data Science
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/10-emily-robinson-career.md
 - Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/271590867/
 - Video:  https://youtu.be/HsFFuFYz7zE
 - Slides:  N.A.
 - GitHub Repo:  N.A. 
 - Jupyter Notebook: N.A.
-- Transcriber: Kevin Kipkemoi
-- LinkedIn, Transcriber: [Kevin Kipkemoi](https://www.linkedin.com/in/kevkipkemoi)
-- Book, Transcriber: [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science?a_aid=dataumbrella&a_bid=e9fbded0) 40% discount
+- Transcriber:  Kevin Kipkemoi
+- LinkedIn:  [Kevin Kipkemoi](https://www.linkedin.com/in/kevkipkemoi)
+- Book:  [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science?a_aid=dataumbrella&a_bid=e9fbded0) 40% discount
 
 ## Video
 
@@ -19,11 +18,7 @@
          width="25%" />
 </a>
 
-
 ## Transcript
-
-## [Video](https://youtu.be/HsFFuFYz7zE) (1:35:06)
-<a href="https://youtu.be/HsFFuFYz7zE"><img src="images/emily_robinson_career/erc_main.png" width="90%" /></a>
 
 ### Slide 1: Agenda (0:00)
 <a href="https://youtu.be/HsFFuFYz7zE?t=15"><img src="images/emily_robinson_career/erc_s1.png" width="50%" /></a>

@@ -1,43 +1,46 @@
 ,places
-0,indonesia
-1,india
-2,europe
-3,california
-4,illinois
-5,new york
-6,new jersey
-7,manhattan
-8,brooklyn
-9,bronx
-10,queens
-11,staten island
-12,long island
-13,pennsylvania
-14,north america
-15,san fran
-16,africa
-17,richmond
-18,rome
-19,san francisco
-20,lima
-21,united states
-22,russia
-23,chad
-24,maine
-25,washington
-26,australia
+0,united states
+1,san francisco
+2,chad
+3,new york city
+4,nashville
+5,pennsylvania
+6,london
+7,sydney
+8,north america
+9,russia
+10,america
+11,beijing
+12,indonesia
+13,australia
+14,europe
+15,africa
+16,edinburgh
+17,new york
+18,lisbon
+19,lima
+20,long island
+21,richmond
+22,san fran
+23,massachusetts
+24,new jersey
+25,california
+26,manhattan
 27,los angeles
-28,nashville
-29,scotland
-30,london
-31,connecticut
-32,america
-33,massachusetts
-34,beijing
-35,paris
-36,afghanistan
-37,palestine
-38,sydney
-39,lisbon
-40,portugal
-41,edinburgh
+28,washington
+29,staten island
+30,university of oxford
+31,portugal
+32,illinois
+33,paris
+34,india
+35,bronx
+36,columbia university
+37,rome
+38,maine
+39,queens
+40,brooklyn
+41,scotland
+42,afghanistan
+43,connecticut
+44,palestine

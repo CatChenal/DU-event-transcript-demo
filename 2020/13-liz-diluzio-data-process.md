@@ -1,15 +1,13 @@
 # Liz DiLuzio:  Create Nimble Data Collection & Reporting Processes
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/13-liz-diluzio-data-process.md
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/272472729/
 - Video:  https://youtu.be/LZuJlZIDIbo
 - Slides:  https://docs.google.com/presentation/d/18jJUHA5KtWWTM9cRweLAccG8MZGctfZjtiI7AYoCAXg/edit#slide=id.p
 - GitHub Repo:  N.A.  
 - Jupyter Notebook:  N.A.  
 - Transcriber: Lily Su 
-- Twitter, Transcriber: [Lily Su](https://twitter.com/printing_3D)
-
+- Twitter: [Lily Su](https://twitter.com/printing_3D)
 
 ## Video
 <a href="https://youtu.be/LZuJlZIDIbo">

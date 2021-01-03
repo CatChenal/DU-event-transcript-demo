@@ -2,7 +2,7 @@
 
 This project's goal is to automate portions of the tasks needed to convert the captions of presentation videos in the Data Umbrella [YouTube channel](X).   
 The `pytube` library is used to access the video and its metadata, e.g. audio track(s) and automatically generated captions, which constitute the raw text for the formatted transcripts published by year in the `Transcripts` folder of the [Data Umbrella](https://github.com/data-umbrella) (DU) repo.  
-Towards this aim, the audio of the video is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the roughly processed auto-generated video captions.
+Towards this aim, the audio of the video is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the re-processed auto-generated video captions.
 
 # Transcription by DU repo contributors
 

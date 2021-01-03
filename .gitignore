@@ -1,6 +1,13 @@
 # gitignore file for Data Umbrella events-transcript repo
-# audio files can be large: not uploaded.
-*.mp4
+# audio files can be large, uncomment if problem.
+#*.mp4
+
+# Scrapy stuff:
+.scrapy
+_temp*
+_tmp*
+_unused*
+_notes
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -89,13 +96,6 @@ db.sqlite3
 # Flask stuff:
 instance/
 .webassets-cache
-
-# Scrapy stuff:
-.scrapy
-_temp*
-_tmp*
-_unused*
-_notes
 
 # Sphinx documentation
 docs/_build/

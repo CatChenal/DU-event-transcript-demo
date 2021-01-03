@@ -1,7 +1,6 @@
 # Matt Brems:  Data Science with Missing Data
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/08-matt-brems-missing-data.md
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/271243174/
 - Video:  https://youtu.be/LJKYXq3WHTw
 - Slides:  https://github.com/matthewbrems/missing_data_short_version/blob/master/missing_data_slides.pdf

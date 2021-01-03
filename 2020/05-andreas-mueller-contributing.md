@@ -1,17 +1,15 @@
 # Andreas Mueller:  Data Umbrella Crash Course in Contributing to [scikit-learn](https://github.com/scikit-learn)
 
 ## Key Links
-- Transcript:  https://github.com/data-umbrella/event-transcripts/blob/main/2020/05-andreas-mueller-contributing.md
 - Meetup Event:  https://github.com/data-umbrella/2020-sklearn-sprint/projects/1
 - Video:  https://www.youtube.com/watch?v=5OL8XoMMOfA&feature=youtu.be&t=1
 - Slides:  [Crash Course in Contributing to Open Source Projects](https://github.com/data-umbrella/2020-sklearn-sprint/blob/master/data-umbrella-sprint-intro.pdf) 
 - GitHub Repo:  https://github.com/data-umbrella/2020-sklearn-sprint/projects/1 
 - Jupyter Notebook:  N.A.   
 - Transcriber:  Reshama Shaikh
-- Twitter, Presenter:  [Andreas Mueller](https://twitter.com/amuellerml)
-- Twitter, Transcriber:  [Reshama Shaikh](https://twitter.com/reshamas) 
-- Discord, Data Umbrella: [Discord](https://discord.com/channels/701827230703026247/703378318438826024)
-- Gitter: [scikit-learn](https://gitter.im/scikit-learn)
+- Twitter:  [Andreas Mueller](https://twitter.com/amuellerml), [Reshama Shaikh](https://twitter.com/reshamas) 
+- Discord:  [Data Umbrella Discord](https://discord.com/channels/701827230703026247/703378318438826024)
+- Gitter:  [scikit-learn](https://gitter.im/scikit-learn)
 - Sprint Video:  [Scikit-learn Sprint Instructions](https://youtu.be/5OL8XoMMOfA) (30 minutes)
 - Contributing Primer: **[Contributing Workflow Commands](contributing/workflow.md)** (environment set-up, repo, submitting PR)
 - Contributing to Scikit-learn: [Scikit-learn Contributing Documentation](http://scikit-learn.org/stable/developers/contributing.html)
