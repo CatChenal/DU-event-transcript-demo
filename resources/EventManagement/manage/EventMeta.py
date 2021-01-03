@@ -35,8 +35,7 @@ DIR_META = get_subfolder('meta', parent_dir=DIR_DATA)
 #'event-transcripts-demo' 
 # '-demo': for this proof of concept only, else will be 'event-transcripts'
 DEMO = REPO_NAME.endswith('demo')
-DEMO_README = 'README.md'
-# was 'README_new.md' bc original file was kept as README.md
+DEMO_README = 'README_new.md'
 
 def main_readme_path():
     md_file = DEMO_README if DEMO else 'README.md'
