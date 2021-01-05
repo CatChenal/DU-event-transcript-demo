@@ -414,7 +414,7 @@ class TranscriptMeta:
         
         self.event_dict = new_meta
    
-    
+        
     def redo_initial_transcript(self):
         """
         Wrapper to instantiate YT class & (re)do
@@ -695,7 +695,7 @@ class TranscriptMeta:
         return
    
 
-    def save_transcript_md(self):
+    def save_transcript_md(self, new_trx=None):
         """
         Save new transcript.
         """
@@ -707,7 +707,7 @@ class TranscriptMeta:
             fh.write(new_md)
             
         # Include initial transcript text:
-        self.insert_md_transcript()
+        self.insert_md_transcript(new_trx)
         # F'Starter transcript created:\n {md_out}'
         return
     

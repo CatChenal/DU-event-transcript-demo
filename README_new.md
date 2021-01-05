@@ -34,7 +34,8 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 18 | Thomas Fan          | [Streamlit for Data Science](2020/18-thomas-fan-streamlit.md) | ? | Not yet processed (editor needed) | |
 | 19 | Matti Picus         | [Contributing to NumPy](2020/19-matti-picus-numpy.md) | ? | Not yet processed (editor needed) | |
 | 20 | Marco Gorelli       | [Contributing to pandas](2020/20-marco-gorelli-pandas.md)| ? | Not yet processed (editor needed) | |  
-| 21| Cat Chenal| [Demo Presentation Title](2021/21-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event| 
+| 21| Cat Chenal| [Demo Presentation Title](2021/21-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event|  
+| 21| Cat Chenal| [Demo Presentation Title](2021/21-cat-chenal-foo-foo.md)| cat chenal| Not yet processed (editor needed)| Dummy event| 
 <!-- main_tbl_end -->
 
 # NEW!:  

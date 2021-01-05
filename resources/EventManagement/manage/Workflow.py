@@ -415,6 +415,9 @@ def validate_form_entries(accord, entry_dict, MetaObj):
             raise ValueError(F'Cannot save: {t} is required.')
             
         if data_dict[k] != val:
+            if k in ['presenter', 'transcriber', 'title']:
+                val = val.title()
+                
             data_dict[k] = val
             if k =='video_url':
                 dom, vid = UTL.split_url(val)
@@ -422,7 +425,8 @@ def validate_form_entries(accord, entry_dict, MetaObj):
         
         if k == 'transcriber':
             if val == Meta.NA or val == '':
-                data_dict['transcriber'] = '?' 
+                data_dict['transcriber'] = '?'
+                
                 
     MetaObj.validate_dict(data_dict)
     return data_dict
@@ -437,7 +441,8 @@ def get_demo_input_dict():
 - Twitter: Use this format: [full name 1](twitter url), etc.     
 - Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page) """
     # To preset widget boxes with values:
-    demo_list = ['2020', 'cat chenal', 'my presentation title', 'foo foo', 
+    demo_list = [Meta.CURRENT_YEAR,
+                 'cat chenal', 'my presentation', 'foo foo', 
                  "https://www.youtube.com/watch?v=MHAjCcBfT_A", None, None, None,
                  None, None, 'https://github.com/CatChenal', None, None,
                  Meta.TrStatus.TODO.value, 'Dummy event', extra ]

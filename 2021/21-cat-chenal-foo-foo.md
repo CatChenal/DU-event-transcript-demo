@@ -6,10 +6,11 @@
 - Slides:  N.A.  
 - GitHub Repo:  https://github.com/CatChenal  
 - Jupyter Notebook:  N.A.  
-- Transcriber:  ?  
-- Binder: each listed item should have a 'list header', e.g. '- Binder'  
-- Twitter: Use this format: [full name 1](twitter url), etc.     
-- Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page)   
+- Transcriber:  cat chenal  
+- Binder:  each listed item should have a 'list header', e.g. ' 
+- Twitter:  Use this format: [full name 1](twitter url), etc. 
+- Wiki:  This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page) 
+  
 
 ## Video
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=MHAjCcBfT_A" target="_blank">
@@ -23,22 +24,22 @@
 ### Introduction
 
 Okay hello and welcome to Data Umbrella's webinar for October so I'm just going to go over the agenda I'm going to do a  
-brief introduction then there will be the workshop by hugo and James and you can ask questions along the way in the chat  
+brief introduction then there will be the workshop by Hugo and James and you can ask questions along the way in the chat  
 or actually the best place to ask questions is the Q&A and there's an option to upvote as well so yet asking the Q&A if  
 you happen to post it on the chat by mistake I can also transfer it over to Q&A so that would be fine too and this  
 webinar is being recorded briefly about me I am a statistician and data scientist and I am the founder of Data Umbrella  
 I am on a lot of platforms as Reshama so feel free to follow me on Twitter and LinkedIn we have a code of conduct we're  
-dedicated to providing harassment free experience for everyone thank you for helping to make this a welcoming friendly  
+dedicated to providing a harassment-free experience for everyone thank you for helping to make this a welcoming friendly  
 professional community for all and this code of conduct applies to the chat as well so our mission is to provide an  
-inclusive community for underrepresented persons in data science and we are an all volunteer run organization you can  
+inclusive community for underrepresented persons in data science and we are an all volunteer-run organization you can  
 support Data Umbrella by doing the following things you can follow our code of conduct and keep our community a place  
 where everybody wants to keep coming to you can donate to our open collective and that helps to pay meet-up dues and  
 other operational costs and you can check out this link here on GitHub we have this new initiative where all the videos  
 are being transcribed and so is to make them more accessible so we take the YouTube videos and we put the raw there and  
 so we've had a number of volunteers help us transcribe it so feel free to check out this link and maybe if you do this  
-video maybe the two speakers will follow you on Twitter I can't promise anything but it's possible dave umbrella has a  
+video maybe the two speakers will follow you on Twitter I can't promise anything but it's possible. Data Umbrella has a  
 job board and it's at jobs.org and once this gets started I'll put some links in the chat the job that we are  
-highlighting today is is the machine learning engineer job by development seed and development seat is based in  
+highlighting today is the machine learning engineer job by development seed and development seat is based in  
 Washington DC and Lisbon Portugal and they do I'm going to go to the next slide what they do is they're doing social  
 good work and so they're doing for instance mapping elections from Afghanistan to the US analyzing public health and  
 economic data from Palestine to Illinois and leading the strategy and development behind data world bank and some other  
@@ -50,15 +51,14 @@ events coming up in November and December on open source so subscribe to our new
 social media platforms as Data Umbrella Meetup is the best place to join to find out about upcoming events our website  
 has resources follow us on Twitter we also share a lot of information on LinkedIn and if you want to subscribe to our  
 YouTube channel we record all of our talks and post them there within about a week of the talk so it's a good way to get  
-information OK and now we are ready to get started  
+information. OK and now we are ready to get started so I will hand it over to put myself on mute and I will hand it over   to Hugo and James and let you take over.
  
 
-#### 00:04:03,120::		4 minutes mark -> new paragraph 
+### Presentation
  
-so I will hand it over to put myself on mute and I will hand it over to hugo and James and let you take over but thank  
-you all for joining I just want to thank Reshama Christina and and everyone else who tied all the tireless effort that  
-that goes into putting these meet-ups and these online sessions together I I think one thing I want to say is actually  
-the the last in-person workshop I gave either at the end of February or early March was data umbrellas in inaugural  
+Thank you all for joining I just want to thank Reshama, Christina, and everyone else who tied all the tireless effort   
+that goes into putting these Meetups and these online sessions together I think one thing I want to say is actually  
+the last in-person workshop I gave either at the end of February or early March was data umbrellas in inaugural  
 tutorial and Meetup if I if I recall correctly on on bayesian bayesian thinking and hacker statistics and simulation and  
 that type of stuff so it's it's just wonderful to be back particularly with my colleague and friend friend James we're  
 building really cool distributed data science products at coiled we'll say a bit about that but we'll do some  

@@ -8,6 +8,7 @@ from typing import (List, Dict, Tuple, Sequence,
 
 from enum import Enum
 from functools import partial
+from collections import OrderedDict
 import ipywidgets as ipw
 
 from manage import (EventMeta as Meta,
@@ -21,12 +22,16 @@ status_opts = [s.value for s in Meta.TrStatus][:-1]
 
 class PageControls:
     def __init__(self, page_idx, status_opts=status_opts):
-        if page_idx not in [1,2]:
+        if page_idx not in [0, 1,2]:
             msg = "The page_idx refers to the App.center "
-            msg += "tab index for 'MODIFY' or 'EDIT', "
-            msg += "hence only one of [1, 2] is valid."
+            msg += "tab index for 'ADD', MODIFY' or 'EDIT',"
+            msg += " hence only one of [0,1,2] is valid."
             raise ValueError (msg)
             
+        lo_page = ipw.Layout(display='flex',
+                             flex_flow='column',
+                             align_items='stretch',
+                             margin='0px 0px 0px 30px')
         self.page_idx = page_idx
         
         df, empty_last_row, delims = Meta.df_from_readme_tbl()
@@ -35,46 +40,65 @@ class PageControls:
         self.idns = df[2:].N.sort_values(ascending=False).values.tolist()
         self.TR = None
         
-        # output wgts 1st:
-        self.idn_sel_out = ipw.Output()
-        self.load_btn_out = ipw.Output()
-       
-        self.yr_sel = ipw.Select(options=self.yrs,
-                                 layout=ipw.Layout(width='50px'))
-        self.idn_sel = ipw.Select(options=self.idns, value=None,
-                                  layout=ipw.Layout(width='60px'))
-        self.idn_sel.observe(self.sel_change, 'value')
-        self.btn_load = ipw.Button(description='LOAD', button_style='info',
-                                   disabled=True)
-        self.btn_load.on_click(self.load_btn_click)
+        if self.page_idx == 0:
+            self.verb = 'add'
+            # Instanciate obj for new event:
+            self.TR = Meta.TranscriptMeta()
+            if Meta.DEMO:
+                # demo data items
+                user_dict = FLO.get_demo_input_dict()  
+            else:
+                user_dict = FLO.get_new_input_flds()
+            entry_group = FLO.get_entry_accordion(user_dict)
+            self.page = ipw.VBox(children=(),
+                                 layout=lo_page)
+            self.page.children += (self.get_sel_banner(),)
+            self.page.children += (entry_group,)
+            setattr(self.page, 'user_dict', user_dict)
+        else:
+            self.initial_transcriber = None
+            self.initial_status = None
+            
+            # output wgts 1st:
+            self.idn_sel_out = ipw.Output()
+            self.load_btn_out = ipw.Output()
+
+            self.yr_sel = ipw.Select(options=self.yrs,
+                                     layout=ipw.Layout(width='50px'))
+            self.idn_sel = ipw.Select(options=self.idns, value=None,
+                                      layout=ipw.Layout(width='60px'))
+            self.idn_sel.observe(self.sel_change, 'value')
+            self.btn_load = ipw.Button(description='LOAD', button_style='info',
+                                       disabled=True)
+            self.btn_load.on_click(self.load_btn_click)
         
-        if self.page_idx == 2:
-            #self.verb = 'edit'
-            # set by get_selection_hdr()
-            self.editarea = None
-            self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
-                                             value='Audio')
-            self.transcriber_txt = ipw.Text(value=None)
-            self.status_opts = status_opts
-            self.status_sel = ipw.Select(options=status_opts, value=None,
-                                         disabled=True)
-        #else:
-        #    self.verb = 'modify'
-        
-        # start the page with the selection controls only:
-        self.page = ipw.VBox(children=(),
-                             layout=ipw.Layout(display='flex',
-                                               flex_flow='column',
-                                               align_items='stretch',
-                                               #width='100%',
-                                               margin='0px 0px 0px 30px'))
-        with self.idn_sel_out:
-            print('< year / file >')
-        self.page.children = (self.get_selection_hdr(),)
+            if self.page_idx == 2:
+                self.verb = 'edit'
+                # set by get_selection_hdr()
+                self.editarea = None
+                self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
+                                                 value='Audio')
+                self.transcriber_txt = ipw.Text(value=None)
+                self.status_opts = status_opts
+                self.status_sel = ipw.Select(options=status_opts, value=None,
+                                             disabled=True)
+            else:
+                self.verb = 'modify'
+
+            # start the page with the selection controls only:
+            self.page = ipw.VBox(children=(),
+                                 layout=lo_page)
+            with self.idn_sel_out:
+                print('< year / file >')
+            self.page.children = (self.get_selection_hdr(),)
+            # set by load_btn_click:
+            setattr(self.page, 'user_dict', None)
         
         
     def get_sel_banner(self):
-        if self.page_idx == 1:
+        if self.page_idx == 0:
+            sel_banner = '<H3>Provide the Event related data.</H3>'
+        elif self.page_idx == 1:
             sel_banner = '<H3>Select the Event Year and Id.</H3>'
         else:
             sel_banner = '<H3>Select the Event Year, Id, AV player (and if need be, '
@@ -113,9 +137,31 @@ class PageControls:
                                           ])
                                 ], layout=lo_sel_hbx)
         return sel_hbox
-    
-    
+
+
+    def sel_change(self, change):
+        """
+        TODO
+        
+        need to populate self.idn_sel according to self.yr_sel.value
+        """
+        self.idn_sel_out.clear_output()
+        with self.idn_sel_out:
+            if (self.yr_sel.value is not None 
+                and self.idn_sel.value is not None):
+                msk = (self.df.year==self.yr_sel.value)
+                msk = msk & (self.df.N==self.idn_sel.value)
+                fname = self.df.loc[msk].name.values[0]
+                if self.page_idx == 2:
+                    self.transcriber_txt.value = self.df.loc[msk].Transcriber.values[0]
+                    self.initial_transcriber = self.transcriber_txt.value
+                self.btn_load.disabled = False
+                print(self.yr_sel.value + ' / '+ fname)
+                
+                
     def load_btn_click(self,b):
+        if self.page_idx == 0:
+            return
         self.load_btn_out.clear_output()
         with self.load_btn_out:
             try:
@@ -125,16 +171,22 @@ class PageControls:
                     exposed = FLO.load_entry_dict(self.TR)   
                     entry_form = FLO.get_entry_accordion(exposed)                
                     self.page.children += (entry_form,)
+                    self.page.user_dict = exposed
                 else:       
                     self.status_sel.disabled = False
                     status = self.TR.event_dict['status']
                     if status in self.status_opts:
-                        self.status_sel.value = status
+                        self.status_sel.value = status 
                     else:
                         self.status_sel.value = self.status_opts[-1]
+                    self.initial_status = status
+                    
+                    # reset default if no audio:    
+                    if not self.TR.event_dict['audio_track'].exists():
+                        self.av_radio.value = 'Video'
+                        print("No audio.")
                         
                     if self.av_radio.value == 'Audio':
-                        #local file:
                         track = self.TR.event_dict['audio_track']
                         AV = ipw.Audio().from_file(track, autoplay=False)
                     else:
@@ -152,23 +204,9 @@ class PageControls:
                 self.yr_sel.disable = True
                 self.idn_sel.disable = True
                 b.disabled = True
-                print("Edit along!")
+                print(F"{self.verb.title()} along!")
             except:
                 print("Error loading!")
-
-                
-    def sel_change(self, change):
-        self.idn_sel_out.clear_output()
-        with self.idn_sel_out:
-            if (self.yr_sel.value is not None 
-                and self.idn_sel.value is not None):
-                msk = (self.df.year==self.yr_sel.value)
-                msk = msk & (self.df.N==self.idn_sel.value)
-                fname = self.df.loc[msk].name.values[0]
-                if self.page_idx == 2:
-                    self.transcriber_txt.value = self.df.loc[msk].Transcriber.values[0]
-                self.btn_load.disabled = False
-                print(self.yr_sel.value + ' / '+ fname)
                 
 
 class AppControls:
