@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # Utils.py
+# Programmer: Cat Chenal
+#
 import os # pathlib has no remove()
 from pathlib import Path
 import json

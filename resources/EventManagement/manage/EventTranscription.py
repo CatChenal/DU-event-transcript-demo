@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # EventTranscription.py
+# Programmer: Cat Chenal
 #
 from pathlib import Path
 from functools import partial

@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # Workflow.py
-
+# Programmer: Cat Chenal
+#
+# TODO: Split the 'Show Example' toggle for extra references
+#       into separate btn at bottom of input group Accordion.
+#       -> simpler data retrieval.
+#
 from pathlib import Path
 from collections import OrderedDict
 from enum import Enum
-from functools import partial
 
-from IPython.display import display, HTML, Markdown, Audio
+from IPython.display import display, HTML, Markdown
 import ipywidgets as ipw
 
 from manage import (EventMeta as Meta,
@@ -139,17 +143,6 @@ def show_du_logo_hdr(as_html=True):
     else:
         return div + F'{logo_link}</div>'
 
-    
-def show_editor(track, trx_text):
-    sound = Audio(filename=track)
-    ta_layout = ipw.Layout(display='flex',
-                           flex_flow='column',
-                           margin='0px 0px 0px 30px',
-                           width='90%', height='500px')
-
-    editarea = ipw.Textarea(value=trx_text,
-                            layout=ta_layout)
-    display(sound, editarea)
 # .......................................................................
 # Interactive input: new record:
 
@@ -205,13 +198,11 @@ def get_new_input_flds():
     return new_input_d
 
 
-
-
 # ........................................................................
 # Layout specs (styles):
 
 lo_txt = ipw.Layout(width='75%')
-#wgText = partial(ipw.Text, lo_txt)
+
 lo_txtarea = ipw.Layout(display='flex',
                         flex_flow='column',
                         margin='0px 0px 0px 30px',
@@ -328,7 +319,7 @@ def input_wgt_group(new_input_d):
     Input parameter is dict output from get_new_input_flds():
     d[key] = (widget type, placeholder text, req_info, value).
     """
-    # TODO: independent button following accordion
+    # TODO: independent 'Show Example' button following accordion
     togl_out = ipw.Output(layout=lo_togl_out)
     @togl_out.capture(clear_output=True)
     def show_example(togl):
@@ -441,7 +432,7 @@ def get_demo_input_dict():
 - Twitter: Use this format: [full name 1](twitter url), etc.     
 - Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page) """
     # To preset widget boxes with values:
-    demo_list = [Meta.CURRENT_YEAR,
+    demo_list = [str(Meta.CURRENT_YEAR),
                  'cat chenal', 'my presentation', 'foo foo', 
                  "https://www.youtube.com/watch?v=MHAjCcBfT_A", None, None, None,
                  None, None, 'https://github.com/CatChenal', None, None,

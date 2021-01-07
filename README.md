@@ -1,8 +1,9 @@
-# DEMO Project's Implementation specifications
+# DEMO Project's Implementation specifications (Python 3.7.6)
 ## Author: Cat Chenal
 ---
 # Genesis:
 I wanted to contribute to Data Umbrella's events transcription, so I looked into the YouTube video metadata (using `pytube`) to download the auto-generated captions as a starter text. As this still required too much cleaning, I modified `pytube`'s xml-to-text processing function to obtain a more decent one... Then, I had to share!
+
 
 # Purpose:
 This file details the proposed changes to the [data-umbrella/event-transcripts](https://github.com/data-umbrella/event-transcripts) Repo in order to enabled the semi-automation of two workflows depending on the user's task/role, i.e. add an event or edit an event starter transcript.

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# EventMeta.py :: w/o jinja templating
+# EventMeta.py
+# Programmer: Cat Chenal
 #
 from pathlib import Path
 from warnings import warn
@@ -190,8 +191,9 @@ def df_from_readme_tbl(main_readme=MAIN_README):
         tbl_arr.append(split_tbl_line(e))
     df = pd.DataFrame(tbl_arr, columns=tbl_info[0])
 
-    empty_last_row = tbl_info[-1]
-    if empty_last_row:
+    #empty_last_row = tbl_info[-1]
+    if tbl_info[-1]:
+        #empty_last_row
         df.drop(df.index.argmax())
 
     # Add columns 'year', 'name'
@@ -202,7 +204,7 @@ def df_from_readme_tbl(main_readme=MAIN_README):
     df['year'] = [v[0] for v in md]
     df['name'] = [v[1] for v in md]
     
-    return df, empty_last_row, tbl_info[2]
+    return df, tbl_info[2]
 
 
 def meta_basename(year, idn, vid):
@@ -239,17 +241,22 @@ REPR_INFO += "print(TranscriptMeta.event_dict['formatted_transcript']) >"
 class TranscriptMeta:
     
     def __init__(self, idn=None, year=CURRENT_YEAR):
+        if year is None:
+            year=CURRENT_YEAR
         self.year = str(year)
         self.readme = MAIN_README
         
         self.tbl_info = df_from_readme_tbl(self.readme)
-        self.df, self.empty_lastrow, self.tbl_delims = self.tbl_info
-        self.row_offset = 1 if self.empty_lastrow else 2
+        self.df, self.tbl_delims = self.tbl_info
+        #self.empty_lastrow, 
+        self.row_offset = 2 #if self.empty_lastrow else 2
         
         self.TPL = HDR_TPL
         self.TPL_KEYS = self.get_tpl_keys()
         
+        self.NEW = False
         if idn is None:
+            self.NEW = True
             self.event_dict = self.new_event_dict()
         else:
             self.idn = idn_frmt(idn)
@@ -264,7 +271,8 @@ class TranscriptMeta:
             
     def refresh_tbl_info(self):
         self.tbl_info = df_from_readme_tbl(self.readme)
-        self.df, self.empty_lastrow, self.tbl_delims = self.tbl_info
+        # rm: self.empty_lastrow, 
+        self.df, self.tbl_delims = self.tbl_info
         
  
     def get_tpl_keys(self):
@@ -289,8 +297,19 @@ class TranscriptMeta:
         for k in all_keys:
             event_dict[k] = NA
         return event_dict
+
     
-    
+    def last_of_yr_info(self):
+        yrdf = self.df.loc[self.df.year == self.year]
+        if yrdf.shape[0]:
+            last_idx = yrdf.index.max()
+            N = yrdf.loc[last_idx,'N']
+        else:
+            last_idx = self.df.index.max()
+            N = 0
+        return last_idx, N
+
+
     def new_event_dict(self):
         """
         Create a 'starter' event dict with event id generated
@@ -300,8 +319,10 @@ class TranscriptMeta:
 
         # Update dict with defaults:
         new_dict['year'] = self.year
-        new = self.df.index.argmax() + self.row_offset
-        self.idn = idn_frmt(new)
+        
+        last_idx, N = self.last_of_yr_info()  
+        #new = self.df.index.argmax() + self.row_offset
+        self.idn = idn_frmt(int(N) + 1)
         new_dict['idn'] = self.idn
         new_dict['transcriber'] = '?'
         new_dict['extra_references'] = ''
@@ -402,6 +423,7 @@ class TranscriptMeta:
         self.validate_dict(new_meta)
         
         new_meta['presenter'] = new_meta['presenter'].title()
+        new_meta['transcriber'] = new_meta['transcriber'].title()
         new_meta['title'] = new_meta['title'].title()
         new_meta['title_kw'] = new_meta['title_kw'].replace(' ','-').lower()
         
@@ -471,6 +493,7 @@ class TranscriptMeta:
 
     @staticmethod
     def parse_href(href_block):
+        """Parse html video link w/soup."""
         href_html = soup(href_block, 'html.parser')
         # meta keys needed: 
         video_hrefs = OrderedDict([('yt_video_id',NA),
@@ -528,13 +551,11 @@ class TranscriptMeta:
             print(fname, '\n', e)
             return
    
-        # Parse html video link w/soup:
         msg = "File is missing '{}' header."
         video_hdr = "## Video"
         v0 = mdlines.find(video_hdr)
         if v0 == -1:
             raise ValueError(msg.format('## Video'))
-        #v1 = mdlines.find("## Transcript")
         v1 = self.insertion_idx(mdlines)
         if v1 != -1:
             txt_len = len(mdlines)
@@ -651,7 +672,7 @@ class TranscriptMeta:
         bkp = DIR_DATA.joinpath('backup', self.readme.name)
         # Backup the file
         shutil.copy(self.readme, bkp)
-        
+
         # Get the text
         try:
             readme_txt = get_file_lines(self.readme)
@@ -660,38 +681,65 @@ class TranscriptMeta:
             shutil.copy(bkp, self.readme)
             readme_txt = get_file_lines(self.readme)
 
-        # Get the table data:
-        i, j = self.tbl_delims
-        off1 = 3  # offset 1 = delim row + 2 header rows
-        off2 = -1 if self.empty_lastrow else 0
-        tbl = readme_txt[i+off1:j+off2]
-        
-        #| #| Speaker| Talk Transcript| Transcriber| Status| Notes|
-        # Construct last row:
-        pipestr = '| '
-        # Talk Transcript = md link: [title](year/readme)
-        talk = F"[{self.event_dict['title']}]"
-        talk += F"({self.event_dict['year']}/{self.event_dict['transcript_md']})"
-        fields = [self.event_dict['idn'],
-                  self.event_dict['presenter'],
-                  talk, 
-                  self.event_dict['transcriber'],
-                  self.event_dict['status'],
-                  self.event_dict['notes']
-                 ]
-        ro = pipestr + pipestr.join(fields) + pipestr + '\n'
-        tbl.append(ro)
-    
-        # Update main text w/table data:
-        readme_txt[i+off1:j] = tbl
-    
-        # Re-create readme:
-        with open(self.readme, 'w') as fh:
-            fh.writelines(readme_txt)
+        # Get the start/end of the md table data:
+        s, e = self.tbl_delims
+        off1 = 3  # offset == 1 delim row + 2 header rows
+        #off2 = -1 if self.empty_lastrow else 0
 
-        # Refresh info:
-        self.refresh_tbl_info()
-        #F'Table in {self.readme.name} was updated.'
+        try:
+            # Talk Transcript, md link: [title](year/readme)
+            talk = F"[{self.event_dict['title']}]({self.event_dict['year']}"
+            talk += F"/{self.event_dict['transcript_md']})"
+
+            # fields to match df columns:
+            fields = [self.event_dict['idn'],
+                      self.event_dict['presenter'],
+                      talk, 
+                      self.event_dict['transcriber'],
+                      self.event_dict['status'],
+                      self.event_dict['notes'],
+                      self.event_dict['year'],
+                      self.event_dict['transcript_md']
+                     ]
+            data = dict(list(zip(self.df.columns.tolist(), fields)))
+            last_idx, N = self.last_of_yr_info()
+            newdf = self.df.copy()
+
+            if self.NEW:
+                # Update df with new row data:
+                # fake idx for insertion:
+                new_idx = last_idx + 0.5
+                line = pd.DataFrame(data, index=[new_idx])
+                newdf = newdf.append(line)
+                newdf = newdf.sort_index().reset_index(drop=True)
+            else:
+                idx = last_idx
+                while newdf.loc[idx].N != self.idn:
+                    idx -= 1
+                    if newdf.loc[idx].N == self.idn:
+                        break
+                newdf.loc[idx] = data
+
+            # Construct md table rows:
+            pipes = '| '
+            md_tbl = []
+            for _, fields in enumerate(newdf[newdf.columns[:-2]].values):
+                md_tbl.append(pipes + pipes.join(fields) + pipes + '\n')
+
+            # Update main text w/table data:
+            readme_txt[s+off1:e] = md_tbl
+
+            # Re-create readme:
+            with open(self.readme, 'w') as fh:
+                fh.writelines(readme_txt)
+
+            # Refresh info:
+            self.refresh_tbl_info()
+            #F'Table in {self.readme.name} was updated.'
+        except:
+            # rollback
+            shutil.copy(bkp, self.readme)
+            print('README not updated on error.')
         return
    
 
@@ -751,3 +799,23 @@ def dummy_update(meta_obj, meta_d, video_url, meetup_url,
 
     meta_obj.update_dict(meta_d)
     return
+
+
+def get_dummy_data(year=2020):
+    """Return a dict."""
+    tm = TranscriptMeta(year=year)
+    d = tm.event_dict.copy()
+
+    yrdf = tm.df.loc[tm.df.year == tm.year]
+    last_idx = yrdf.index.max()
+    N = yrdf.loc[last_idx,'N']
+    new = yrdf.loc[last_idx:last_idx].values[0]
+
+    d['year'] = tm.year
+    d['presenter'] = 'Cat Chenal'
+    #parts = new[2].partition('(')
+    d['title'] = 'Brand new year!'
+    d['title_kw'] = 'bar demo'
+    d['video_url'] = 'https://youtu.be/MHAjCcBfT_A'
+    d['yt_video_id'] = 'MHAjCcBfT_A'
+    return d

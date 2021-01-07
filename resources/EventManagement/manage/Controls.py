@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 # Controls.py
-# test for using a class to populate AppLayout.center Tabs wgt.
-
-from typing import (List, Dict, Tuple, Sequence, 
-                    NewType, Callable, TypeVar, 
-                    Generic, Iterable, Union)
-
-from enum import Enum
-from functools import partial
+# Programmer: Cat Chenal
+#
+# TODO: A 'Clear Event' button?
+#
 from collections import OrderedDict
 import ipywidgets as ipw
 
@@ -22,7 +18,7 @@ status_opts = [s.value for s in Meta.TrStatus][:-1]
 
 class PageControls:
     def __init__(self, page_idx, status_opts=status_opts):
-        if page_idx not in [0, 1,2]:
+        if page_idx not in [0,1,2]:
             msg = "The page_idx refers to the App.center "
             msg += "tab index for 'ADD', MODIFY' or 'EDIT',"
             msg += " hence only one of [0,1,2] is valid."
@@ -32,12 +28,12 @@ class PageControls:
                              flex_flow='column',
                              align_items='stretch',
                              margin='0px 0px 0px 30px')
-        self.page_idx = page_idx
         
-        df, empty_last_row, delims = Meta.df_from_readme_tbl()
-        self.df = df
-        self.yrs = df[2:].year.unique().tolist()
-        self.idns = df[2:].N.sort_values(ascending=False).values.tolist()
+        self.page_idx = page_idx
+        self.status_opts = status_opts
+        
+        self.df, _ = Meta.df_from_readme_tbl()
+        self.yrs = self.df[self.df.year != Meta.NA].year.unique().tolist()
         self.TR = None
         
         if self.page_idx == 0:
@@ -52,6 +48,7 @@ class PageControls:
             entry_group = FLO.get_entry_accordion(user_dict)
             self.page = ipw.VBox(children=(),
                                  layout=lo_page)
+            
             self.page.children += (self.get_sel_banner(),)
             self.page.children += (entry_group,)
             setattr(self.page, 'user_dict', user_dict)
@@ -60,26 +57,30 @@ class PageControls:
             self.initial_status = None
             
             # output wgts 1st:
-            self.idn_sel_out = ipw.Output()
-            self.load_btn_out = ipw.Output()
+            self.idn_sel_out = ipw.Output(layout=ipw.Layout(width='300px',
+                                                            height='15px'))
+            self.load_btn_out = ipw.Output(layout=ipw.Layout(height='30px'))
 
-            self.yr_sel = ipw.Select(options=self.yrs,
+            self.yr_sel = ipw.Select(options=self.yrs, value=None,
                                      layout=ipw.Layout(width='50px'))
-            self.idn_sel = ipw.Select(options=self.idns, value=None,
+            self.yr_sel.observe(self.obs_yr_sel, 'value')
+            
+            self.idn_sel = ipw.Select(options=[], value=None,
                                       layout=ipw.Layout(width='60px'))
-            self.idn_sel.observe(self.sel_change, 'value')
+            self.idn_sel.observe(self.obs_idn_sel, 'value')
+            
             self.btn_load = ipw.Button(description='LOAD', button_style='info',
                                        disabled=True)
             self.btn_load.on_click(self.load_btn_click)
         
             if self.page_idx == 2:
                 self.verb = 'edit'
+                
                 # set by get_selection_hdr()
                 self.editarea = None
                 self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
                                                  value='Audio')
-                self.transcriber_txt = ipw.Text(value=None)
-                self.status_opts = status_opts
+                self.transcriber_txt = ipw.Text(value='?')
                 self.status_sel = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
             else:
@@ -89,7 +90,7 @@ class PageControls:
             self.page = ipw.VBox(children=(),
                                  layout=lo_page)
             with self.idn_sel_out:
-                print('< year / file >')
+                print('< File year / File name >')
             self.page.children = (self.get_selection_hdr(),)
             # set by load_btn_click:
             setattr(self.page, 'user_dict', None)
@@ -107,12 +108,14 @@ class PageControls:
     
     
     def get_selection_hdr(self):
-        lo_btn_vbx = ipw.Layout(flex_flow='column',
-                                justify_content='flex-end') 
-        lo_sel_hbx = ipw.Layout(margin='0px 0px 0px 30px')
+        lo_btn_vbx = ipw.Layout(flex_flow='row',
+                                justify_content='space-between') #'flex-end') 
+        lo_sel_hbx = ipw.Layout(justify_content='space-between',
+                                margin='0px 0px 2px 30px')
         
         if self.page_idx == 1:
-            yr_idn_hbx = ipw.HBox([self.yr_sel, self.idn_sel,
+            yr_idn_hbx = ipw.HBox([self.yr_sel,
+                                   self.idn_sel,
                                    self.idn_sel_out])
             sel_hbox = ipw.VBox([self.get_sel_banner(),
                                  ipw.HBox([yr_idn_hbx,
@@ -122,8 +125,9 @@ class PageControls:
                                           ])
                                 ], layout=lo_sel_hbx)
         else:
-            yr_idn_hbx = ipw.HBox([self.yr_sel, self.idn_sel])
-            av_idout_trx_vbx = ipw.VBox([ipw.HBox([self.av_radio]),
+            yr_idn_hbx = ipw.HBox([self.yr_sel,
+                                   self.idn_sel])
+            av_idout_trx_vbx = ipw.VBox([self.av_radio,
                                          self.idn_sel_out,
                                          self.transcriber_txt
                                         ])
@@ -138,17 +142,25 @@ class PageControls:
                                 ], layout=lo_sel_hbx)
         return sel_hbox
 
+    
+    def obs_yr_sel(self, change):
+        yr = change['owner'].value
+        if self.idn_sel.value is not None:
+            self.idn_sel_out.clear_output()
+        idn_opts = self.df[self.df.year == yr].N.sort_values(ascending=False).values.tolist()
+        #with self.idn_sel.hold_trait_notifications():
+        self.idn_sel.options = idn_opts
+        self.idn_sel.index = None
 
-    def sel_change(self, change):
-        """
-        TODO
-        
-        need to populate self.idn_sel according to self.yr_sel.value
-        """
+         
+    def obs_idn_sel(self, change):
         self.idn_sel_out.clear_output()
+        if self.page_idx == 2:
+            self.transcriber_txt.value = '?'
         with self.idn_sel_out:
-            if (self.yr_sel.value is not None 
-                and self.idn_sel.value is not None):
+            if (self.yr_sel.index is not None 
+                and self.idn_sel.index is not None):
+                
                 msk = (self.df.year==self.yr_sel.value)
                 msk = msk & (self.df.N==self.idn_sel.value)
                 fname = self.df.loc[msk].name.values[0]
@@ -158,10 +170,8 @@ class PageControls:
                 self.btn_load.disabled = False
                 print(self.yr_sel.value + ' / '+ fname)
                 
-                
-    def load_btn_click(self,b):
-        if self.page_idx == 0:
-            return
+               
+    def load_btn_click(self, b):
         self.load_btn_out.clear_output()
         with self.load_btn_out:
             try:
@@ -183,6 +193,7 @@ class PageControls:
                     
                     # reset default if no audio:    
                     if not self.TR.event_dict['audio_track'].exists():
+                        #TODO: download it
                         self.av_radio.value = 'Video'
                         print("No audio.")
                         
@@ -210,12 +221,268 @@ class PageControls:
                 
 
 class AppControls:
-    def __init__(self, app_components_dict):
-        self.TR = None
+    def __init__(self):
+        self.actions = OrderedDict([('Add an event',
+                                     ['Enter Info','Validate','Save','Show Readme', 'Show File']),
+                                    ('Modify an event',
+                                     ['Modify Event','Validate','Save','Show Readme', 'Show File']),
+                                    ('Edit a transcript',
+                                     ['Edit Transcript','Save','Show Readme', 'Show File'])
+                                   ])
         
-        # output wgts 1st:
-        self.validate_out = ipw.Output()
+        self.PC = None # Controls.PageControl instance
+        
+        # output controls first:
+        self.info_out = ipw.Output() # == right-sidebar
+        
+        self.left_sidebar = self.get_left()
+        self.center = self.get_center()
+        self.left_sidebar.observe(self.menu_selection, 'value')
+        
+        self.center.observe(self.info_display, 'selected_index')
+        self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
+                             (self.center, 'selected_index'))
 
-        #justify_content='space-between'
-    pass
+        self.page = ipw.AppLayout(header=self.get_app_hdr(),
+                                  left_sidebar=self.left_sidebar,
+                                  center=self.center,
+                                  right_sidebar=self.info_out,
+                                  footer=None,
+                                  pane_widths=[1, 5, 1],
+                                  pane_heights=[1, 3, 1]
+                                  )
+        setattr(self.page, 'data_dict', None)
 
+
+    def get_app_hdr(self):
+        style = "text-align:center;padding:5px;background:#c2d3ef;"
+        style += "color:#ffffff;font-size:3em;"
+        style += "width:100%,height=50%"
+        div = F' <div style="{style}">Data Umbrella Event Management</div>'
+        hdr_html = FLO.show_du_logo_hdr(as_html=False) + div
+        return ipw.HTML(hdr_html)
+
+
+    def get_center(self):
+        """ Create 3 Tabs for actions + 2 for files."""
+        lo_tabs = ipw.Layout(display='flex',
+                             flex_flow='column',
+                             align_items='stretch',
+                             justify_content='center',
+                             width='98%')
+        tabs = ipw.Tab(selected_index=None, layout=lo_tabs)
+        # Tabs:
+        ks = list(self.actions.keys()) + ['readme', 'file']
+        # 1st tab child: message output
+        tabs.children = [ipw.VBox([ipw.Output()]) for k in ks]
+        for i, k in enumerate(ks):
+            tabs.set_title(i, k.split()[0].upper())
+        return tabs
+
+    
+    def get_left(self):
+        """
+        Create Accordion MENU with VBox for actions.keys as children.
+        Populate Accordion MENU with ToggleButtons children that have:
+         - a 'parent_idx' attribute
+         - observe function for ToggleButtons children
+        """
+        acc_items = [ipw.VBox(description=k) for k in list(self.actions.keys())]
+        menu_acc = ipw.Accordion(children=acc_items,
+                                 selected_index=None)
+        for i, (k, v) in enumerate(self.actions.items()):
+            btn = ipw.ToggleButtons(options=v, value=None,
+                                    button_style='info')
+            setattr(btn, 'parent_idx', i)
+            btn.observe(self.menu_tog_sel, names='value')
+            menu_acc.children[i].children = [btn]
+            menu_acc.set_title(i, k.upper())
+        return menu_acc
+    
+    
+    # left_sidebar.observe
+    def menu_selection(change):
+        """ 
+        Activate Tabs index per left sidebar (menu) index.
+        One-way only: menu.index -> tabs.index
+        """
+        self.center.selected_index = self.left_sidebar.selected_index
+
+
+    # center.observe
+    def info_display(self, change):
+        """Right side panel: info about selected op."""
+        self.page.right_sidebar.clear_output() #self.page.
+        wgt = change['owner']
+        # Link tab selection index with info panel:
+        if wgt.selected_index is None:
+            t = 3
+        else:
+            t = wgt.selected_index
+        if t > 3:
+            return
+        event_fn = {0:'ADD', 1:'MODIFY', 2:'EDIT', 3:'INIT'}
+        which = FLO.EventFunction[event_fn[t]]
+        EF = FLO.DisplaySectionInfo(which)
+        info_val = EF.show_section_info()
+        with self.page.right_sidebar:
+            display(info_val)
+   
+
+    def msg_out(self, idx, msg):
+        self.center.children[idx].children[0].clear_output()
+        with self.center.children[idx].children[0]:
+            display(msg)
+
+    
+    def validate(self, idx):
+        self.center.children[idx].children[0].clear_output()
+        
+        input_form = self.PC.page.children[1]
+        with self.center.children[idx].children[0]:
+            try:
+                self.page.data_dict = FLO.validate_form_entries(input_form,
+                                                           self.PC.page.user_dict,
+                                                           self.PC.TR)
+                print('Validated!')
+            except:
+                print('Validation Error: Fix & Try again.')
+                
+    
+    def save_entry(self, idx):
+        self.center.children[idx].children[0].clear_output()
+        
+        with self.center.children[idx].children[0]:
+            if self.page.data_dict is None:
+                print('Validate first!')
+                return
+            if self.PC.TR is None:
+                print('TR object not instanciated.')
+                return
+            try:
+                self.PC.TR.update_dict(self.page.data_dict)
+                print('Update dict: OK!')
+            except:
+                print('Update dict: Something went wrong.')
+                return
+            try:
+                self.PC.TR.update_readme()
+                print('Update readme: OK!')
+            except:
+                print('Update readme: Something went wrong.')
+                return
+            try:
+                self.PC.TR.save_transcript_md()
+                print('Save: Done!')
+                #if idx == 1:
+                #    self.PC.page.children[0].children[1].children[1].disabled = False
+            except:
+                if idx == 0:
+                    msg = 'Save starter transcript: Something went wrong.'
+                else:
+                    msg = 'Save transcript: Something went wrong.'
+                print(msg)
+
+
+    def save_edit(self, idx):
+        """ Save edited transcript. """
+        self.center.children[idx].children[0].clear_output()
+
+        with self.center.children[idx].children[0]:
+            if self.PC.transcriber_txt.value == '?':
+                print("'?' is not a good name!")
+            try:
+                upd = self.PC.initial_status != self.PC.status_sel.value
+                upd = upd or (self.PC.initial_transcriber != self.PC.transcriber_txt.value)
+                if upd:
+                    self.PC.TR.event_dict['status'] = self.PC.status_sel.value
+                    self.PC.TR.event_dict['transcriber'] = self.PC.transcriber_txt.value
+                    self.PC.TR.update_readme()
+                    print('Updated README.')
+            except:
+                print('Could not update README.')
+                return
+            try:
+                self.PC.TR.save_transcript_md(new_trx=self.PC.editarea.value)
+                self.PC.page.children[0].children[1].children[3].children[0].disabled = False
+                self.PC.editarea.value = ''
+                print('Updated Event file.')
+            except:
+                print('Could not update Event file.')
+
+
+    def show_mdfile(self, idx):
+        """Add tab for Md file. Here, idx = tab index"""
+        # Add 2nd Output for the file:
+        if len(self.center.children[idx].children) == 1:
+            self.center.children[idx].children += (ipw.Output(),)
+        self.center.children[idx].children[1].clear_output()
+        self.center.selected_index = idx
+        
+        if idx == 3:
+            with self.center.children[3].children[1]:
+                Meta.show_md_file(main_readme)
+        else:
+            if self.PC.TR is not None:
+                yr = self.PC.TR.event_dict['year']
+                fname = self.PC.TR.event_dict['transcript_md']
+                mdfile = Meta.REPO_PATH.joinpath(yr, fname)
+                if mdfile.exists():
+                    with self.center.children[4].children[1]:
+                        Meta.show_md_file(mdfile, kind='Transcript')
+                else:
+                    self.msg_out(4, F'File not found: {mdfile}.')
+            else:
+                self.msg_out(4, 'PageControls.TR object not instanciated.')
+
+
+    def menu_tog_sel(self, change):
+        wgt = change['owner']
+        iparent = wgt.parent_idx
+        tog_val = wgt.value
+
+        if iparent == 0:
+            if tog_val == 'Enter Info':
+                self.PC = PageControls(0)
+                entry_group = self.PC.page
+                # Add 2nd control in tab vbox => input form:
+                self.center.children[0].children += (entry_group,)
+            elif tog_val == 'Validate':
+                self.validate(iparent)
+            elif tog_val == 'Save':
+                self.save_entry(iparent)
+            elif tog_val == 'Show Readme':
+                self.show_mdfile(3)
+            elif tog_val == 'Show File':
+                self.show_mdfile(4)
+
+        elif iparent == 1:
+            if tog_val == 'Modify Event':
+                self.PC = PageControls(1)
+                edit_page = self.PC.page
+                self.center.children[1].children += (edit_page, )
+            elif tog_val == 'Validate':
+                self.validate(iparent)
+            elif tog_val == 'Save':
+                self.save_entry(iparent)
+            elif tog_val == 'Show Readme':
+                self.show_mdfile(3)
+            elif tog_val == 'Show File':
+                self.show_mdfile(4)
+
+        elif iparent == 2:
+            if tog_val == 'Edit Transcript':
+                self.PC = PageControls(2)
+                edit_page = self.PC.page
+                self.center.children[2].children += (edit_page, )
+            elif tog_val == 'Save':
+                self.save_edit(iparent)
+            elif tog_val == 'Show Readme':
+                self.show_mdfile(3)
+            elif tog_val == 'Show File':
+                self.show_mdfile(4)
+
+
+    def __repr__(self):
+        from pprint import pformat
+        return pformat(self.__dict__)
