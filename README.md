@@ -29,7 +29,7 @@ The code enabling this resides in the 'EventManagement' project folder, which ha
 | 4    | Split the comments from the Status & put them into Notes| README table | Data, commit message standardization | Implemented as an Enum, Status could be the trigger for e.g. a GitHub Action if it is changed to PARTIAL_HELP = "Partial (new editor requested)" |
 | 5    | Move the Note column at the end as 'Notes' | README table | Mostly empty column at end | Esthetics | 
 | 6    | Add a paragraph under the table to urge (plead?) contributors to only use the project for editing | README | It's better | Maintain consistency |
-| 7    | Add a new about unicode characters in Markdown file. | README | Error | Correct parsing | 
+| 7    | Add a note about non-Unicode characters in Markdown file. | README | Error | Correct parsing | 
 | FUTURE | **These changes are recommended:** (not implemented in the demo) ||||
 | 1 | Replace the video href link (under '## Video') with an embed HTML string | Event md files | Readers can watch while reading | Especially good for reviewers (currently used in the GUI for the Editing task) |
 | 2 | Change 'Transcriber' to 'Editor'    | Repo |||
@@ -105,12 +105,12 @@ The transcript files have a common header (referred to as the "transcript file h
 The 'transcription' Status has been standardized via the following Enum class:
 ```
 class TrStatus(Enum):
-    NOREC = "Not recorded"                            # for 'legacy' events or new, non-recorded events
-    TODO = "Not yet processed (editor needed)"        # for inital setup of the 'starter transcript'
-    PARTIAL_WIP = "Partial (w.i.p.)"                  # to indicate a partial update by Contributor
-    PARTIAL_HELP = "Partial (new editor requested)"   # to indicate Contributor will not complete the editing
-    REVIEW = "Needs reviewer"                         # to indicate the editing needs final approval
-    COMPLETE = "Complete"                             # to indicate the contribution is acceptable
+    NOREC = "Not recorded"                          # for 'legacy' events or new, non-recorded events
+    TODO = "Not yet processed (editor needed)"      # for inital setup of the 'starter transcript'
+    PARTIAL_WIP = "Partial (w.i.p.)"                # indicates a partial update by Contributor
+    PARTIAL_HELP = "Partial (new editor requested)" # indicates Contributor will not complete the editing
+    REVIEW = "Needs reviewer"                       # indicates the editing needs final approval
+    COMPLETE = "Complete"                           # indicates the contribution is acceptable
 ```
 
 ## Transcript chunking and formatting

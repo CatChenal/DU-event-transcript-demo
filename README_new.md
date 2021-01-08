@@ -42,9 +42,11 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 # NEW!:  
 Use the `./resources/EventManagement` [project](./resources/EventManagement/README.md) to administer or edit the events' transcripts.
 
-#### Note: To test whether your editing has introduced unicode characters (which cannot be processed in this project), open the file in a notebook cell:
+#### Techincal Note: To test whether your editing has introduced non-unicode characters, open the file in a notebook cell:
 ```
 from IPython.display import Markdown
 
 Markdown(filename=<filepath>)
 ```
+The current implementation does not decode these characters because the files are directly opened with Markdown (as in the above example), either to render the file, or obtain the Mardkown code _post_ rendering (e.g. Markdown(<file>).data.  See [UnicodeEncodeError](https://wiki.python.org/moin/UnicodeEncodeError).  
+
