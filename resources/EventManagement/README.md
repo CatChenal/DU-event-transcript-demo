@@ -1,5 +1,8 @@
 # Data Umbrella Audio_Transcription Project - README
 
+### Preview: The EDIT page:
+![EDIT page](./images/Edit_page.png)
+
 This project's goal is to automate portions of the tasks needed to convert the captions of presentation videos in the Data Umbrella [YouTube channel](X).   
 The `pytube` library is used to access the video and its metadata, e.g. audio track(s) and automatically generated captions, which constitute the raw text for the formatted transcripts published by year in the `Transcripts` folder of the [Data Umbrella](https://github.com/data-umbrella) (DU) repo.  
 Towards this aim, the audio of the video is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the re-processed auto-generated video captions.
@@ -57,3 +60,14 @@ The project implements functions related to two roles, which are functional, not
 * Modify paragraph breaks. The initial transcript is chunked into paragraphs corresponding to 4 minutes intervals, which is a user parameter, as is the wrapping width.
 * Provide additional sections relevant to the presentation, e.g. extra references.  
 * Update the presentation transcript Markdown file via a pull request (PR).  
+
+    
+    
+### Technical Note: To test whether your editing has introduced non-unicode characters, open the file in a notebook cell:
+```
+from IPython.display import Markdown
+
+Markdown(filename=<filepath>)
+```
+The current implementation does not decode these characters because the files are directly opened with Markdown (as in the above example), either to render the file, or obtain the Mardkown code _post_ rendering (e.g. Markdown(<file>).data.  See [UnicodeEncodeError](https://wiki.python.org/moin/UnicodeEncodeError).  
+

@@ -1,22 +1,22 @@
-# Cat Chenal, Sing Song: Brand New Year!  
+# Cat Chenal: My Presentation  
 
 ## Key Links  
 - Meetup Event:  N.A.  
 - Video:  https://youtu.be/MHAjCcBfT_A  
 - Slides:  N.A.  
-- GitHub Repo:  N.A.  
+- GitHub Repo:  https://github.com/CatChenal  
 - Jupyter Notebook:  N.A.  
-- Transcriber:  Me Too  
-
-## Other References (this header is optional)
-- Binder: each listed item should have a 'list header', e.g. '- Binder'  
-- Twitter: Use this format: [full name 1](twitter url), etc.     
-- Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page)   
+- Transcriber:  ?  
+## Other References
+- Binder:  each listed item should have a 'list header', e.g. ' 
+- Twitter:  Use this format: [full name 1](twitter url), etc. 
+- Wiki:  This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page) 
+  
 
 ## Video
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=MHAjCcBfT_A" target="_blank">
     <img src="http://img.youtube.com/vi/MHAjCcBfT_A/0.jpg" 
-         alt="Brand New Year!"
+         alt="My Presentation"
          width="25%"/>
 </a>
 
@@ -24,69 +24,69 @@
 <!-- Editing Guide: The pipe (|) position in this comment is 120:                                                       | -->
 ### Introduction
 
-Okay hello and welcome to Data Umbrella's webinar for October so I'm just going to go over the agenda I'm going to do a  
-brief introduction then there will be the workshop by hugo and James and you can ask questions along the way in the chat  
+OK hello and welcome to Data Umbrella's webinar for October so I'm just going to go over the agenda I'm going to do a  
+brief introduction then there will be the workshop by Hugo and James and you can ask questions along the way in the chat  
 or actually the best place to ask questions is the Q&A and there's an option to upvote as well so yet asking the Q&A if  
 you happen to post it on the chat by mistake I can also transfer it over to Q&A so that would be fine too and this  
 webinar is being recorded briefly about me I am a statistician and data scientist and I am the founder of Data Umbrella  
 I am on a lot of platforms as Reshama so feel free to follow me on Twitter and LinkedIn we have a code of conduct we're  
-dedicated to providing harassment free experience for everyone thank you for helping to make this a welcoming friendly  
+dedicated to providing a harassment-free experience for everyone thank you for helping to make this a welcoming friendly  
 professional community for all and this code of conduct applies to the chat as well so our mission is to provide an  
-inclusive community for underrepresented persons in data science and we are an all volunteer run organization you can  
+inclusive community for underrepresented persons in data science and we are an all volunteer-run organization you can  
 support Data Umbrella by doing the following things you can follow our code of conduct and keep our community a place  
 where everybody wants to keep coming to you can donate to our open collective and that helps to pay meet-up dues and  
 other operational costs and you can check out this link here on GitHub we have this new initiative where all the videos  
 are being transcribed and so is to make them more accessible so we take the YouTube videos and we put the raw there and  
 so we've had a number of volunteers help us transcribe it so feel free to check out this link and maybe if you do this  
-video maybe the two speakers will follow you on Twitter I can't promise anything but it's possible dave umbrella has a  
+video maybe the two speakers will follow you on Twitter I can't promise anything but it's possible Data Umbrella has a  
 job board and it's at jobs.org and once this gets started I'll put some links in the chat the job that we are  
-highlighting today is is the machine learning engineer job by development seed and development seat is based in  
+highlighting today is the machine learning engineer job by development seed and development seat is based in  
 Washington DC and Lisbon Portugal and they do I'm going to go to the next slide what they do is they're doing social  
 good work and so they're doing for instance mapping elections from Afghanistan to the US analyzing public health and  
 economic data from Palestine to Illinois and leading the strategy and development behind data world bank and some other  
 organizations and I will share a link to their job posting in the chat as well as soon as I finish this brief  
-introduction check out our website for resources there's a lot of resources on learning Python and r also for  
+introduction check out our website for resources there's a lot of resources on learning Python and R also for  
 contributing to open source also for guides on accessibility and responsibility and allyship we have a monthly  
 newsletter that goes out towards the end of the month and it has information on our upcoming events we have two great  
 events coming up in November and December on open source so subscribe to our newsletter to be in the know we are on all  
 social media platforms as Data Umbrella Meetup is the best place to join to find out about upcoming events our website  
 has resources follow us on Twitter we also share a lot of information on LinkedIn and if you want to subscribe to our  
 YouTube channel we record all of our talks and post them there within about a week of the talk so it's a good way to get  
-information OK and now we are ready to get started  
+information OK and now we are ready to get started so I will hand it over to put myself on mute and I will hand it over  
+to Hugo and James and let you take over but thank you all for joining!  
  
 
 #### 00:04:03,120::		4 minutes mark -> new paragraph 
  
-so I will hand it over to put myself on mute and I will hand it over to hugo and James and let you take over but thank  
-you all for joining I just want to thank Reshama Christina and and everyone else who tied all the tireless effort that  
-that goes into putting these meet-ups and these online sessions together I I think one thing I want to say is actually  
-the the last in-person workshop I gave either at the end of February or early March was data umbrellas in inaugural  
-tutorial and Meetup if I if I recall correctly on on bayesian bayesian thinking and hacker statistics and simulation and  
-that type of stuff so it's it's just wonderful to be back particularly with my colleague and friend friend James we're  
-building really cool distributed data science products at coiled we'll say a bit about that but we'll do some  
-introductions in in a bit I just wanted to get you all accustomed to it was February thank you reishma we're working  
-with Jupyter notebooks in a GitHub repository the repository is pinned to the top of the chat this is what it looks like  
-these are all the files this is the file system now we use something called binder which is a project out of and related  
-to project project Jupyter which provides infrastructure to run notebooks without any local installs so there are two  
-ways you can you can code along on this tutorial the first is and I won't get you to do this yet is to launch binder the  
-reason I won't get you to do that yet is because once you launch it we have 10 minutes to start coding or the binder  
-session times out I've been burnt by that before actually several times I'm surprised I even remembered it this time the  
-other thing you can do is install everything locally by cloning the repository downloading anaconda creating a conda  
-environment if you haven't done that I suggest you do not do that now and you launch launch the binder James is going to  
-start by telling us a few a few things about about GAs and distributed compute in general my question for you James is  
-if we get people to launch this now will we get to execute a cell code cell in 10 minutes I would let's hold off for now  
+I just want to thank Reshama, Christina, and everyone else who tied all the tireless effort that goes into putting these  
+meet-ups and these online sessions together I think one thing I want to say is actually the last in-person workshop I  
+gave either at the end of February or early March was Data Umbrella's in inaugural tutorial and Meetup if I recall  
+correctly on Bayesian thinking and hacker statistics and simulation and that type of stuff so it's just wonderful to be  
+back particularly with my colleague and friend James we're building really cool distributed data science products at  
+coiled we'll say a bit about that but we'll do some introductions in a bit I just wanted to get you all accustomed to.  
+It was February thank you Reshama. We're working with Jupyter notebooks in a GitHub repository the repository is pinned  
+to the top of the chat. This is what it looks like these are all the files this is the file system now we use something  
+called Binder which is a project out of and related to project Jupyter which provides an infrastructure to run notebooks  
+without any local installs so there are two ways you can code along on this tutorial the first is and I won't get you to  
+do this yet is to launch Binder the reason I won't get you to do that yet is because once you launch it we have 10 minutes  
+to start coding or the Binder session times out. I've been burnt by that before actually several times I'm surprised I even  
+remembered it this time the other thing you can do is install everything locally by cloning the repository downloading  
+Anaconda creating a conda environment if you haven't done that I suggest you do not do that now and you launch the Binder.  
+
+James is going to start by telling us a few things about GAs and distributed computing in general. My question for you James    
+is: if we get people to launch this now will we get to execute a cell code cell in 10 minutes I would let's hold off for now  
 maybe yep maybe I'll indicate when we should launch binder OK fantastic cool and just what I'm looking at right now is  
 the GitHub repository on your browser OK exactly so I will not launch binder now I will not get you to now I've I'm  
 doing this locally and we see that I'm in notebook zero and if you want to actually have a look at this notebook before  
 launching binder it's in the notebooks Data Umbrella subdirectory and its notebook zero and we're going to hopefully  
-make it through the overview then chatting about dusk dusk delayed and and data framing and machine learning great so we  
-have hashim has said you could open in vs code as well you could I mean that would require all your local installs and  
-that that type of stuff as well but we're to introduce me and James we we work at coiled where we build products for  
-distributed compute in infrastructure as we'll see one of the big problems with like bursting to the cloud is all the  
-like kubernetes aws docker stuff so we build a one-click host of deployments for das but for data science and machine  
-learning in general James maintains task along with Matt Matt Rocklin who created dusk with a team people who was  
+make it through the overview then chatting about Dask delayed and and data framing and machine learning great so we  
+have Hashim has said you could open in VSCode as well you could I mean that would require all your local installs and  
+that that type of stuff as well but we're to introduce me and James we work at coiled where we build products for  
+distributed computing infrastructure as we'll see one of the big problems with like bursting to the cloud is all the  
+like Kubernetes AWS Docker stuff so we build a one-click host of deployments for das but for data science and machine  
+learning in general James maintains task along with Matt Matt Rocklin who created dusk with a team of people who was  
 working with Continuum Anaconda at the time and James is a software engineer at called and I run data science evangelism  
-marketing work on a bunch of product product stuff as well wear a bunch of different different hats  
+marketing work on a bunch of product stuff as well wear a bunch of different hats  
  
 
 #### 00:08:01,680::		4 minutes mark -> new paragraph 
@@ -101,9 +101,9 @@ to desk originally I saw Cameron's note the ghost in the machine aren't playing 
 truth is that dark plays so nicely with the entire pi data ecosystem so as we'll see if you want to write dash code for  
 data frames dash data frames it really mimics your Pandas code same with numpy same with scikit-learn OK and the other  
 thing is dark essentially runs the Python code under the hood so your mental model of what's happening is actually  
-corresponds to the code being being executed OK now I'd like to pass over to James but it looks like he's disappeared  
+corresponds to the code being executed OK now I'd like to pass over to James but it looks like he's disappeared  
 again I'm still here if you can hear me I've just turned my camera off oh yeah OK great I'm gonna turn my camera  
-hopefully that will help yeah and I might do do the same for bandwidth bandwidth issues so if if you want to jump in and  
+hopefully that will help yeah and I might do the same for bandwidth issues so if if you want to jump in and  
 and talk about dark at a high level I'm sharing my screen and we can scroll through yeah that sounds great so that's  
 sort of a nutshell you can think of it as being composed of two main well components the first we call collections these  
 are the user interfaces that you use to actually construct a computation you would like to compute in parallel or on  
@@ -111,13 +111,13 @@ distributed hardware there are a few different interfaces that desk implements f
 nd array computations there's das data frame for working with tabular data you can think of those as like GAsk array as  
 a parallel version of numpy das data frame has a parallel version of Pandas and so on there are also a couple other  
 interfaces that we'll be talking about das delayed for instance we'll talk about that today we'll also talk about the  
-futures API those are sort of for lower level custom algorithms in sort of paralyzing existing existing code the main  
+futures API those are sort of for lower-level custom algorithms in sort of paralyzing existing code the main  
 takeaway is that there are several sort of familiar APIs that desk implements and that will use today to actually  
 construct your computation so that's the first part of desk it is these dash collections you then take these collections  
 set up your steps for your computation and then pass them off to the second component which are desk schedulers and  
 these will actually go through and execute your computation potentially in parallel there are two flavors of schedulers  
-that desk offers the first is a are called single machine schedulers and these just take advantage of your local  
-hardware they will spin up a a local thread or process pool and start submitting tasks in your computation to to be  
+that desk offers the first are called single machine schedulers and these just take advantage of your local  
+hardware they will spin up a local thread or process pool and start submitting tasks in your computation to be  
 executed in parallel either on multiple threads or multiple processes there's also a distributed scheduler or maybe a  
 better term for would actually be called the advanced scheduler because it works well on a single machine but it also  
 scales out to multiple machines so for instance as you'll see later we will actually spin up a distributed scheduler  
@@ -126,7 +126,7 @@ that has workers on remote
 
 #### 00:12:00,160::		4 minutes mark -> new paragraph 
  
-machines on aws so you can actually scale out beyond your local resources like say what's on your laptop kind of  
+machines on AWS so you can actually scale out beyond your local resources like say what's on your laptop kind of  
 scrolling down then to the image of the cluster we can see the main components of the distributed scheduler and James I  
 might get people to spin up the binder now because we're going to execute codes now is a good point yep so just here's a  
 quick break point before you know a teaser for schedulers and what's happening there I'll ask you to in the repository  

@@ -108,9 +108,6 @@ class DisplaySectionInfo:
         Return formated HTML(<div>) if as_html=True(default),
         else return the html string.
         """
-        #marg = 100 if (self.function.name == 'ADD'
-        #               or self.function.name == 'INIT') else 40
-        #margin-left:{marg}px;
         style = F"text-align:justify;font-size:1em;width:100%;"
         div = F'<div style="{style}">{self.info}</div>'
         if as_html:
@@ -149,10 +146,16 @@ def show_du_logo_hdr(as_html=True):
 defaultsNA = "(defaults to N.A. if not provided)"
 autogen = "(Auto-generated if not provided)"
 reqd = "(Required)"
-    
+
+
 def get_new_input_flds():
     """
     GUI exposed metadata info or fields.
+    exposed_flds = ['year','presenter', 'title', 'title_kw',
+                    'video_url','video_href', 'video_href_src',
+                    'video_href_alt','event_url', 'slides_url',
+                    'repo_url', 'notebook_url','transcriber',
+                    'status', 'notes', 'extra_references']
     """
     # items: [field, placeholder, info, value]
     new_input_flds = [["year", str(Meta.CURRENT_YEAR),
@@ -184,46 +187,54 @@ def get_new_input_flds():
                       ["transcriber", "Transcriber's name (First Last)",
                        "(Defaults to ? if not provided)", None],
                       ['status', "Status", Meta.TrStatus.TODO.value, None],
-                      ['notes', "Notes in README table", "", None]
+                      ['notes', "Notes in README table", "", None],
+                      ['extra_references',
+                       'Additional references (beyond those in standard header)',
+                       '(header will only have defaults fields if not provided)',
+                       None]
                       ]
 
     new_input_d = OrderedDict([(fld[0],
                                 [ipw.Text,
                                  fld[1], fld[2], fld[3]]) for fld in new_input_flds]
                              )
-    # Last, special case: Textarea
-    plc = "Additional references (beyond those in standard header)"
-    info = "(header will only have defaults fields if not provided)"
-    new_input_d['extra_references'] = [ipw.Textarea, plc, info, None]
+    # Last, special case: reset to Textarea
+    new_input_d['extra_references'][0] = ipw.Textarea
     return new_input_d
+
+
+def btn_togl_extra_refs_example():
+    """ Show a data entry example for the field 'extra_references'."""
+    lo_togl_btn = ipw.Layout(display='flex',
+                             flex_flow='row',
+                             justify_content='center',
+                             margin='0px 0px 0px 30px',
+                             width='95%')
+
+    lo_togl_out = ipw.Layout(display='flex',
+                             flex_flow='column',
+                             margin='0px 0px 0px 30px',
+                             width='95%')
+    # Callback for toggle:
+    def show_example(togl):
+        with togl_out:
+            if togl['new']:  
+                display(Markdown(EXTRA_REFS_EXAMPLE))
+            else:
+                togl_out.clear_output()
+                
+    desc = "Entry example for 'Extra References'"
+    togl = ipw.ToggleButton(description=desc,
+                            button_style='info',
+                            icon='eye',
+                            layout=lo_togl_btn)
+    togl_out = ipw.Output(layout=lo_togl_out)
+    togl.observe(show_example, 'value')
+    return ipw.VBox([togl, togl_out])
 
 
 # ........................................................................
 # Layout specs (styles):
-
-lo_txt = ipw.Layout(width='75%')
-
-lo_txtarea = ipw.Layout(display='flex',
-                        flex_flow='column',
-                        margin='0px 0px 0px 30px',
-                        width='90%', height='90px')
-    
-lo_box_form_item = ipw.Layout(display='flex',
-                              flex_flow='row',
-                              justify_content='space-between',
-                              margin='0px 10px 0px 5px', 
-                              width='95%')
-
-lo_togl_btn = ipw.Layout(display='flex',
-                        flex_flow='row',
-                        justify_content='center',
-                        margin='0px 0px 0px 30px',
-                        width='90%')
-
-lo_togl_out = ipw.Layout(display='flex',
-                             flex_flow='column',
-                             margin='0px 0px 0px 30px',
-                             width='95%')
 
 # Accordion container:
 lo_accord = ipw.Layout(display='flex',
@@ -233,24 +244,14 @@ lo_accord = ipw.Layout(display='flex',
                        margin='0px 10px 0px 30px',
                        width='85%')
 
+lo_box_form_item = ipw.Layout(display='flex',
+                              flex_flow='row',
+                              justify_content='space-between',
+                              margin='0px 10px 0px 5px', 
+                              width='95%')
 
-def btn_togl_extra_refs_example():
-    """ Show a data entry example for the field 'extra_references'."""
-    # Callback for toggle:
-    def show_example(togl):
-        with togl_out:
-            if togl['new']:  
-                display(Markdown(EXTRA_REFS_EXAMPLE))
-            else:
-                togl_out.clear_output()
-    desc = "Show an example of 'Extra References' entry"
-    togl = ipw.ToggleButton(description=desc,
-                            icon='eye',
-                            layout=lo_togl_btn)
-    togl_out = ipw.Output(layout=lo_togl_out)
-    togl.observe(show_example, 'value')
-    return togl, togl_out
-    
+lo_txt = ipw.Layout(width='75%')
+
 
 def wgtbox_from_kv(k, fld_val):
     """
@@ -265,25 +266,23 @@ def wgtbox_from_kv(k, fld_val):
     (wgt, plc, info, val) = fld_val
         
     color = 'red' if info == reqd else 'black'
-    box_itm1 = ipw.HTML(F"<p><font color='{color}'>{info}&nbsp; </p>")
+    itm1 = ipw.HTML(F"<p><font color='{color}'>{info}&nbsp; </p>")
 
     if k != "extra_references":
-        w_Box = ipw.Box([box_itm1,
-                         wgt(value=val, placeholder=plc, layout=lo_txt)],
+        w_Box = ipw.Box([itm1,
+                         wgt(value=val,placeholder=plc,
+                             layout=lo_txt)],
                         layout=lo_box_form_item
-                       )
-    else:
-        # add btn to show input example
-        w_togl, w_togl_out = btn_togl_extra_refs_example()
-
-        w_Box = ipw.VBox([ipw.Box([box_itm1,
-                                   wgt(value=val, 
-                                       layout=lo_txtarea)],
-                                  layout=lo_box_form_item
-                                  ),
-                          w_togl,
-                          w_togl_out]
                         )
+    else:
+        # add btn to show input example:
+        tog_vbx = btn_togl_extra_refs_example()
+        w_Box = ipw.VBox([ipw.Box([itm1,
+                                   wgt(value=val,placeholder=plc,
+                                       layout=lo_txt)],
+                                   layout=lo_box_form_item),
+                          tog_vbx]
+                         )
             
     setattr(w_Box, 'name', k.replace('_', ' ').upper())
     return w_Box
@@ -296,15 +295,12 @@ def wgt_Accord(children=None):
     is used for titling of the Accordion parent row.
     Children created by wgtbox_from_kv() have a name attribute.
     """
-    if children is None:
-        return ipw.Accordion(selected_index=None, layout=lo_accord)
-    
-    w_acc = ipw.Accordion(children=children, selected_index=None,
-                          layout=lo_accord)
+    kids = children or []
+    w_acc = ipw.Accordion(children=kids,
+                          selected_index=None,layout=lo_accord)
     # get names -> titles
     for i, n in enumerate([child.name for child in children]):
-        w_acc.set_title(i, n)
-        
+        w_acc.set_title(i, n)    
     return w_acc
 
 
@@ -314,71 +310,17 @@ def get_entry_accordion(input_dict):
     return wgt_Accord(children)
 
 
-def input_wgt_group(new_input_d):
-    """
-    Input parameter is dict output from get_new_input_flds():
-    d[key] = (widget type, placeholder text, req_info, value).
-    """
-    # TODO: independent 'Show Example' button following accordion
-    togl_out = ipw.Output(layout=lo_togl_out)
-    @togl_out.capture(clear_output=True)
-    def show_example(togl):
-        if togl['new']:  
-            display(Markdown(EXTRA_REFS_EXAMPLE))
-
-    togl = ipw.ToggleButton(description="Show an example of 'Extra References' entry",
-                            disabled=False,
-                            icon='eye',
-                            layout=lo_togl_btn)
-    togl.observe(show_example, 'value')
-    # ..................................................................
-
-    # Accordion items:
-    form_items = []
-    acc_titles = []
-    for i, (k, (wgt, plc, lbl, val)) in enumerate(new_input_d.items()):
-
-        acc_titles.append(k.replace('_', ' ').upper())
-            
-        color = 'red' if lbl == reqd else 'black'
-        box_itm1 = ipw.HTML(F"<p><font color='{color}'>{lbl}&nbsp; </p>")
-        
-        if k != "extra_references":
-            form_items.append(ipw.Box([box_itm1, wgt(value=val,
-                                                      placeholder=plc,
-                                                      layout=lo_txt)],
-                                      layout=lo_box_form_item
-                                     )
-                              )
-        else:
-            # add btn to show input example
-            form_items.append(ipw.VBox([ipw.Box([box_itm1,
-                                                  wgt(value=val,
-                                                      layout=lo_txt)],
-                                                  layout=lo_box_form_item),
-                                        togl, togl_out]
-                                      )
-                             ) 
-        
-    add_acc = ipw.Accordion(children=form_items, selected_index=None,
-                            layout=lo_accord)
-    for i, v in enumerate(acc_titles):
-        add_acc.set_title(i, v)
-        
-    return add_acc
-
-
-def load_entry_dict(tr_obj):
+def load_entry_dict(tm_obj):
     """
     Return a dict of the entries in the TranscriptMeta object 
-    (tr_obj) event_dict that are exposed by the Accordion entry form.
+    (tm_obj) event_dict that are exposed by the Accordion entry form.
     """
     exposed_d = get_new_input_flds()
-    ks = list(tr_obj.event_dict.keys())
+    ks = list(tm_obj.event_dict.keys())
     common_ks = set(ks) & set(list(exposed_d.keys()))
     for k in common_ks:
-        # load the value, last item:
-        exposed_d[k][-1] = tr_obj.event_dict[k]
+        # load the value= last item:
+        exposed_d[k][-1] = tm_obj.event_dict[k]
     return exposed_d
 
 
@@ -405,10 +347,7 @@ def validate_form_entries(accord, entry_dict, MetaObj):
             print(t)
             raise ValueError(F'Cannot save: {t} is required.')
             
-        if data_dict[k] != val:
-            if k in ['presenter', 'transcriber', 'title']:
-                val = val.title()
-                
+        if data_dict[k] != val:                
             data_dict[k] = val
             if k =='video_url':
                 dom, vid = UTL.split_url(val)
@@ -417,7 +356,6 @@ def validate_form_entries(accord, entry_dict, MetaObj):
         if k == 'transcriber':
             if val == Meta.NA or val == '':
                 data_dict['transcriber'] = '?'
-                
                 
     MetaObj.validate_dict(data_dict)
     return data_dict

@@ -46,21 +46,20 @@ class PageControls:
             else:
                 user_dict = FLO.get_new_input_flds()
             entry_group = FLO.get_entry_accordion(user_dict)
-            self.page = ipw.VBox(children=(),
+            self.page = ipw.VBox(children=[self.get_sel_banner()],
                                  layout=lo_page)
-            
-            self.page.children += (self.get_sel_banner(),)
             self.page.children += (entry_group,)
             setattr(self.page, 'user_dict', user_dict)
+            
         else:
             self.initial_transcriber = None
             self.initial_status = None
             
+            lo_idn_sel_out = ipw.Layout(width='300px', height='15px')
             # output wgts 1st:
-            self.idn_sel_out = ipw.Output(layout=ipw.Layout(width='300px',
-                                                            height='15px'))
+            self.idn_sel_out = ipw.Output(layout=lo_idn_sel_out)
             self.load_btn_out = ipw.Output(layout=ipw.Layout(height='30px'))
-
+                
             self.yr_sel = ipw.Select(options=self.yrs, value=None,
                                      layout=ipw.Layout(width='50px'))
             self.yr_sel.observe(self.obs_yr_sel, 'value')
@@ -69,81 +68,84 @@ class PageControls:
                                       layout=ipw.Layout(width='60px'))
             self.idn_sel.observe(self.obs_idn_sel, 'value')
             
-            self.btn_load = ipw.Button(description='LOAD', button_style='info',
+            self.btn_load = ipw.Button(description='LOAD',
+                                       button_style='info',
                                        disabled=True)
             self.btn_load.on_click(self.load_btn_click)
         
-            if self.page_idx == 2:
+            if self.page_idx == 1:
+                self.verb = 'modify'
+            else:
                 self.verb = 'edit'
+                # add'l widgets:
                 
-                # set by get_selection_hdr()
+                # used by get_selection_hdr()
                 self.editarea = None
                 self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
                                                  value='Audio')
                 self.transcriber_txt = ipw.Text(value='?')
                 self.status_sel = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
-            else:
-                self.verb = 'modify'
-
+                
             # start the page with the selection controls only:
-            self.page = ipw.VBox(children=(),
+            self.page = ipw.VBox(children=[self.get_selection_hdr()],
                                  layout=lo_page)
-            with self.idn_sel_out:
-                print('< File year / File name >')
-            self.page.children = (self.get_selection_hdr(),)
             # set by load_btn_click:
             setattr(self.page, 'user_dict', None)
-        
+            # aliases to ease resetting: p.load_ref.disabled = True
+            #setattr(self.page, 'yrid_ref',
+            #        self.page.children[0].children[1].children[0])
+            #setattr(self.page, 'load_ref',
+            #        self.page.children[0].children[1].children[-1].children[0])
+            with self.idn_sel_out:
+                print('< File year / File name >')
+            
         
     def get_sel_banner(self):
+        """Tab form informational header."""
         if self.page_idx == 0:
             sel_banner = '<H3>Provide the Event related data.</H3>'
         elif self.page_idx == 1:
             sel_banner = '<H3>Select the Event Year and Id.</H3>'
         else:
-            sel_banner = '<H3>Select the Event Year, Id, AV player (and if need be, '
-            sel_banner += 'update the Transcriber & the Status before saving!).</H3>'
+            sel_banner = '<H3>Select the Event Year, Id, AV player '
+            sel_banner += '(and if need be, update the Transcriber'
+            sel_banner += ' & the Status before saving!).</H3>'
         return ipw.HTML(value=sel_banner)
     
     
     def get_selection_hdr(self):
+        """
+        ADD|MODIFY Input form header: selection wgts in VBox.
+        """
+        # Final VBox components/kids:
+        k_0 = self.get_sel_banner() #:: 1st child
+        # load btn:: last
         lo_btn_vbx = ipw.Layout(flex_flow='row',
-                                justify_content='space-between') #'flex-end') 
-        lo_sel_hbx = ipw.Layout(justify_content='space-between',
-                                margin='0px 0px 2px 30px')
-        
+                                justify_content='space-between')
+        k_1_last = ipw.VBox([self.btn_load, self.load_btn_out],
+                            layout=lo_btn_vbx)
         if self.page_idx == 1:
-            yr_idn_hbx = ipw.HBox([self.yr_sel,
-                                   self.idn_sel,
-                                   self.idn_sel_out])
-            sel_hbox = ipw.VBox([self.get_sel_banner(),
-                                 ipw.HBox([yr_idn_hbx,
-                                           ipw.VBox([self.btn_load,
-                                                     self.load_btn_out],
-                                                    layout=lo_btn_vbx)
-                                          ])
-                                ], layout=lo_sel_hbx)
+            k_1_0 = ipw.HBox([self.yr_sel, self.idn_sel,
+                              self.idn_sel_out])
+            k_1 = ipw.HBox([k_1_0, k_1_last])
         else:
-            yr_idn_hbx = ipw.HBox([self.yr_sel,
-                                   self.idn_sel])
-            av_idout_trx_vbx = ipw.VBox([self.av_radio,
-                                         self.idn_sel_out,
-                                         self.transcriber_txt
-                                        ])
-            sel_hbox = ipw.VBox([self.get_sel_banner(),
-                                 ipw.HBox([yr_idn_hbx,
-                                           av_idout_trx_vbx,
-                                           self.status_sel,
-                                           ipw.VBox([self.btn_load,
-                                                     self.load_btn_out],
-                                                    layout=lo_btn_vbx)
-                                          ])
-                                ], layout=lo_sel_hbx)
-        return sel_hbox
+            k_1_0 = ipw.HBox([self.yr_sel, self.idn_sel])                                 
+            k_1_1 = ipw.VBox([self.av_radio,
+                              self.idn_sel_out,
+                              self.transcriber_txt])
+            k_1 =  ipw.HBox([k_1_0, k_1_1,
+                             self.status_sel, #k_1_2
+                             k_1_last])
+            
+        lo_sel_vbx = ipw.Layout(justify_content='space-between',
+                                margin='0px 0px 2px 30px')
+        sel_vbx = ipw.VBox([k_0, k_1], layout=lo_sel_vbx)
+        return sel_vbx
 
     
     def obs_yr_sel(self, change):
+        """Observe fn for year selection box."""
         yr = change['owner'].value
         if self.idn_sel.value is not None:
             self.idn_sel_out.clear_output()
@@ -154,34 +156,39 @@ class PageControls:
 
          
     def obs_idn_sel(self, change):
+        """Observe fn for idn slection box."""
         self.idn_sel_out.clear_output()
         if self.page_idx == 2:
             self.transcriber_txt.value = '?'
         with self.idn_sel_out:
-            if (self.yr_sel.index is not None 
-                and self.idn_sel.index is not None):
+            if ((self.yr_sel.index is not None) 
+                and (self.idn_sel.index is not None)):
                 
                 msk = (self.df.year==self.yr_sel.value)
                 msk = msk & (self.df.N==self.idn_sel.value)
                 fname = self.df.loc[msk].name.values[0]
                 if self.page_idx == 2:
                     self.transcriber_txt.value = self.df.loc[msk].Transcriber.values[0]
-                    self.initial_transcriber = self.transcriber_txt.value
+                    if self.initial_transcriber is None:
+                        self.initial_transcriber = self.transcriber_txt.value
                 self.btn_load.disabled = False
                 print(self.yr_sel.value + ' / '+ fname)
+            else:
+                self.btn_load.disabled = True
                 
                
     def load_btn_click(self, b):
         self.load_btn_out.clear_output()
+                        
         with self.load_btn_out:
             try:
                 self.TR = Meta.TranscriptMeta(self.idn_sel.value,
                                               self.yr_sel.value)
                 if self.page_idx == 1:
                     exposed = FLO.load_entry_dict(self.TR)   
-                    entry_form = FLO.get_entry_accordion(exposed)                
+                    entry_form = FLO.get_entry_accordion(exposed)
+                    self.page.user_dict = exposed  
                     self.page.children += (entry_form,)
-                    self.page.user_dict = exposed
                 else:       
                     self.status_sel.disabled = False
                     status = self.TR.event_dict['status']
@@ -191,9 +198,9 @@ class PageControls:
                         self.status_sel.value = self.status_opts[-1]
                     self.initial_status = status
                     
-                    # reset default if no audio:    
+                    # reset default if no audio:
+                    #TODO: download it
                     if not self.TR.event_dict['audio_track'].exists():
-                        #TODO: download it
                         self.av_radio.value = 'Video'
                         print("No audio.")
                         
@@ -214,6 +221,7 @@ class PageControls:
 
                 self.yr_sel.disable = True
                 self.idn_sel.disable = True
+                
                 b.disabled = True
                 print(F"{self.verb.title()} along!")
             except:
@@ -312,7 +320,9 @@ class AppControls:
     # center.observe
     def info_display(self, change):
         """Right side panel: info about selected op."""
-        self.page.right_sidebar.clear_output() #self.page.
+        # Here page. needed bc right_sidebar only defined at
+        # page (AppLayout) level.
+        self.page.right_sidebar.clear_output()
         wgt = change['owner']
         # Link tab selection index with info panel:
         if wgt.selected_index is None:
@@ -325,6 +335,10 @@ class AppControls:
         which = FLO.EventFunction[event_fn[t]]
         EF = FLO.DisplaySectionInfo(which)
         info_val = EF.show_section_info()
+        if t < 3:
+            #self.msg_out(t, F'owner type(wgt): {type(wgt)}')
+            self.left_sidebar.selected_index = t
+            self.left_sidebar.children[t].children[0].index = None
         with self.page.right_sidebar:
             display(info_val)
    
@@ -336,9 +350,8 @@ class AppControls:
 
     
     def validate(self, idx):
-        self.center.children[idx].children[0].clear_output()
-        
         input_form = self.PC.page.children[1]
+        self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
             try:
                 self.page.data_dict = FLO.validate_form_entries(input_form,
@@ -351,7 +364,6 @@ class AppControls:
     
     def save_entry(self, idx):
         self.center.children[idx].children[0].clear_output()
-        
         with self.center.children[idx].children[0]:
             if self.page.data_dict is None:
                 print('Validate first!')
@@ -374,8 +386,6 @@ class AppControls:
             try:
                 self.PC.TR.save_transcript_md()
                 print('Save: Done!')
-                #if idx == 1:
-                #    self.PC.page.children[0].children[1].children[1].disabled = False
             except:
                 if idx == 0:
                     msg = 'Save starter transcript: Something went wrong.'
@@ -385,9 +395,9 @@ class AppControls:
 
 
     def save_edit(self, idx):
-        """ Save edited transcript. """
+        """Save edited transcript."""
         self.center.children[idx].children[0].clear_output()
-
+        #TODO: reset/disabled the selection header?
         with self.center.children[idx].children[0]:
             if self.PC.transcriber_txt.value == '?':
                 print("'?' is not a good name!")
@@ -404,6 +414,7 @@ class AppControls:
                 return
             try:
                 self.PC.TR.save_transcript_md(new_trx=self.PC.editarea.value)
+                # disabled = True?
                 self.PC.page.children[0].children[1].children[3].children[0].disabled = False
                 self.PC.editarea.value = ''
                 print('Updated Event file.')
@@ -446,7 +457,7 @@ class AppControls:
                 self.PC = PageControls(0)
                 entry_group = self.PC.page
                 # Add 2nd control in tab vbox => input form:
-                self.center.children[0].children += (entry_group,)
+                self.center.children[0].children += (entry_group,)                
             elif tog_val == 'Validate':
                 self.validate(iparent)
             elif tog_val == 'Save':

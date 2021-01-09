@@ -36,17 +36,10 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 01| Cat Chenal| [Demo Presentation Title](2021/01-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event| 
 | 02| Cat Chenal, Sing Song| [Better Demo Presentation Ii](2021/02-cat-sing-demo-foo.md)| Samtoo Me| Partial (w.i.p.)| Test for existing update from EventMeta.class| 
 | 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
-| 04| Cat Chenal, Sing Song| [Brand New Year!](2021/04-cat-sing-demo-demo.md)| ?| Not yet processed (editor needed)| Test, 04 dummy transcript| 
+| 04| Cat Chenal, Sing Song| [Brand New Year!](2021/04-cat-sing-demo-demo.md)| Me Too| Not yet processed (editor needed)| Test, 04 dummy transcript| 
+| 05| Cat Chenal| [My Presentation](2021/05-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event| 
+| 06| Cat Chenal| [My Presentation](2021/06-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event| 
 <!-- main_tbl_end -->
 
-# NEW!:  
-Use the `./resources/EventManagement` [project](./resources/EventManagement/README.md) to administer or edit the events' transcripts.
-
-#### Techincal Note: To test whether your editing has introduced non-unicode characters, open the file in a notebook cell:
-```
-from IPython.display import Markdown
-
-Markdown(filename=<filepath>)
-```
-The current implementation does not decode these characters because the files are directly opened with Markdown (as in the above example), either to render the file, or obtain the Mardkown code _post_ rendering (e.g. Markdown(<file>).data.  See [UnicodeEncodeError](https://wiki.python.org/moin/UnicodeEncodeError).  
-
+## NEW!
+### Use the `./resources/EventManagement` [project](./resources/EventManagement/README.md) to administer or edit the events' transcripts.
