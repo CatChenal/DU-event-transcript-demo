@@ -1,4 +1,4 @@
-# Hugo Bowne-Anderson and James Bourbeau:  Data Science and Machine Learning at Scale
+# Hugo Bowne-Anderson, James Bourbeau:  Data Science and Machine Learning at Scale
 
 ## Key Links
 - Meetup Event:  https://www.meetup.com/data-umbrella/events/273593514/

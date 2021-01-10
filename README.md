@@ -198,23 +198,22 @@ Change 'Meetup Event' to the more generic 'Venue': The main event link may not a
         +---images [Mostly for documentation]
         |       
         +---manage
+        |   |   Controls.py
         |   |   EventMeta.py
         |   |   EventTranscription.py
         |   |   Utils.py
-        |   |   Controls.py [W.I.P. classes for page of ipywidgets]
-        |   |   Workflow.py [W.I.P. UX functions]
         |   |       
         |   +---documentation [Not finalized. Code for documenting]
         |           
         +---notebooks
+        |   |   File_Maintenance.ipynb [Details on amending text processing files.]
         |   |   Implementation_Details.ipynb [Details about workflow & functions.]
-        |   |   WorkflowGUI.ipynb [Temp. Code to build ipywidgets GUI.]
+        |   |   WorkflowGUI.ipynb [Project "GUI notebook".]
 
 ```
 # Comparison of an existing ('normalized') event file with what would be the starter file produced by `EventManagement`.
 ### Files: ./Existing_event_file.md, ./New_event_file.md    
    
-# TODO:
-[ ] Finish GUI  
+# TODO:  
 [ ] More testing  
 [ ] Add flowcharts to documentation: if done properly, one picture could explain each task workflow.  

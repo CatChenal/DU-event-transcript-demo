@@ -6,6 +6,10 @@ import os # pathlib has no remove()
 from pathlib import Path
 import json
 from warnings import warn
+from collections import OrderedDict
+from enum import Enum
+from IPython.display import HTML
+
 
 # To create often-used subfolders:
 def get_project_dirs(which=['data', 'images'],
@@ -32,6 +36,7 @@ def get_subfolder(subfolder_name, parent_dir=None):
     if not p.exists():
         Path.mkdir(p)
     return p
+
 
 def get_id_from_YT_url(url):
     start_idx = len('http://') + 1
@@ -184,6 +189,132 @@ def check_year(yr):
     if not ok:
         warn('Provide a four-digit year.')
     return ok
+
+
+# ..............................................................................
+def show_du_logo_hdr(as_html=True):
+    """
+    Return formated HTML(<div>) if as_html=True (default),
+    else return the html string.
+    """
+    logo_src = "https://raw.githubusercontent.com/data-umbrella/"
+    logo_src += "event-transcripts/master/images/full_logo_transparent.png"
+    logo_link = '<a href="https://www.dataumbrella.org" target="_blank"> '
+    logo_link += F'<img src="{logo_src}" width="20%" /></a>'
+    div = '<div style="text-align:center;padding:5px;width:98%">' 
+    if as_html:
+        return HTML(div + F'{logo_link}</div>')
+    else:
+        return div + F'{logo_link}</div>'
+    
+
+# ..............................................................................
+EXTRA_REFS_EXAMPLE = """
+<div style="overflow:auto;">
+<h3>The `extra_references` value is a Markdown str that should conform to the entries preceding it:</h3>
+<div style="overflow:auto;margin-left: 5%;">
+<pre style="width:900px;">
+# For example, to add a separate section called 'Other References' (##, H2 header),
+# you would type the lines within the double quotes below:
+""
+## Other References (this header is optional)
+- Binder: each listed item should have a 'list header', e.g. '- Binder'  
+- Twitter: Use this format: [full name 1](twitter url), etc.     
+- Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page)  
+""
+</pre>
+</div>  
+
+### The rendered output under the templated header items would be:
+## Other References\n- Binder: each listed item should have a 'list header', e.g. '- Binder'  \n- Twitter: Use this format: [full name 1](twitter url), etc.  \n
+- Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page)  \n
+---
+</div>
+"""
+
+
+# ..............................................................................
+section_info_add = """
+This section pertains to the <strong>Admin</strong> functions related to the creation of a new event, i.e.:  
+<ul>
+  <li>the creation of a new row in the main table of the README file, and </li>
+  <li>the creation of a starter transcript Markdown file, which includes the initial transcript.</li>
+</ul>
+"""
+section_info_modify = """
+This section pertains to the <strong>Admin</strong> functions related to the modificaton of an event, 
+either via modification of the main table in the README file, or via modification
+of the header portion of the transcript Markdown file. A user can:  
+<ul>
+  <li>Modify an event just added (if that's the case), to e.g.: fix a typo, add a last    
+   name, change the Status, add a Note, etc.</li>
+"""
+section_info_edit = """
+This section pertains to the <strong>Editor</strong> functions related to the editing of an event's 
+transcript. Only the transcript text will be extracted from and replaced in the associated transcript file. 
+
+<h4>Note</h4>
+A recommended task after an editing session, and specifically before pushing  
+a PR, is to update the Status (and perhaps the Editor/Reviewer's names) by using     
+an Admin function to modify the event.
+"""
+
+EventInfo = OrderedDict([('ADD', section_info_add),
+                         ('MODIFY', section_info_modify),
+                         ('EDIT', section_info_edit),
+                         ('INIT', '')]
+                       )
+
+
+class EventFunction(Enum):
+    # order follows menu order in accordion wgt.
+    ADD = 'Add a Data Umbrella Event'
+    MODIFY = 'Modify a Data Umbrella Event'
+    EDIT = 'Edit a Data Umbrella Event Transcript'
+    INIT = 'Data Umbrella Event Management'
+
+
+class DisplaySectionInfo:
+    def __init__(self, EventFunction):
+        self.function = EventFunction
+        self.info = EventInfo[EventFunction.name]
+
+    def show_section_hdr(self, as_html=True):
+        """
+        Return formated HTML(<div>) if as_html=True(default),
+        else return the html string.
+        """
+        val = self.function.value
+        style = "text-align:center;padding:5px;background:#c2d3ef;"
+        style += "color:#ffffff;font-size:3em;"
+        style += "width:100%,height=40%"
+        div = F'<div style="{style}">{val}</div>'
+        if as_html:
+            return HTML(div)
+        else:
+            return div
+        
+    def show_section_info(self, as_html=True):
+        """
+        Return formated HTML(<div>) if as_html=True(default),
+        else return the html string.
+        """
+        style = F"text-align:justify;font-size:1em;width:100%;"
+        div = F'<div style="{style}">{self.info}</div>'
+        if as_html:
+            return HTML(div)
+        else:
+            return div
+    
+    def show_header_with_info(self, as_html=False):
+        """Return both section header & info,"""
+        div = self.show_section_hdr(as_html)
+        div += self.show_section_info(as_html)
+        if as_html:
+            return HTML(div)
+        else:
+            return div
+
 
 # ...............................................    
 # tests (temp) 
