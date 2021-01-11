@@ -61,8 +61,14 @@ The project implements functions related to two roles, which are functional, not
 * Provide additional sections relevant to the presentation, e.g. extra references.  
 * Update the presentation transcript Markdown file via a pull request (PR).  
 
-    
-    
+# EventManagement Summary:
+## You can:
+- Add a new event in the README table & create its associated <year>/<file> with a 'starter transcript'    
+- Modify some data in the README table or header of the event <year>/<file>  
+- Edit the starter transcript of the event <year>/<file>  
+## Here: [Add, Modify ( or Edit a transcript via GUI](./notebooks/WorkflowGUI.ipynb)
+
+---    
 ### Technical Note: To test whether your editing has introduced non-unicode characters, open the file in a notebook cell:
 ```
 from IPython.display import Markdown
