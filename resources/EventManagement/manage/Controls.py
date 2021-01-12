@@ -2,9 +2,7 @@
 # Controls.py
 # Programmer: Cat Chenal
 #
-# TODO: A 'Clear Event' button?
-#
-from IPython.display import display, HTML, Markdown
+from IPython.display import Markdown
 import ipywidgets as ipw
 from collections import OrderedDict
 
@@ -267,7 +265,7 @@ class PageControls:
             
         lo_page = ipw.Layout(display='flex',
                              flex_flow='column',
-                             align_items='stretch',
+                             #align_items='stretch',
                              margin='0px 0px 0px 30px')
         
         self.page_idx = page_idx
@@ -287,9 +285,6 @@ class PageControls:
             else:
                 user_dict = get_new_input_flds()
             entry_group = get_entry_accordion(user_dict)
-            #self.page = ipw.VBox([self.get_sel_banner()],
-            #                     layout=lo_page)
-            #self.page.children += (entry_group,)
             #modified: p = VBox[banner, VBox[other]] 
             self.page = ipw.VBox([self.get_sel_banner(),
                                   ipw.VBox([entry_group])],
@@ -299,7 +294,7 @@ class PageControls:
             self.initial_transcriber = None
             self.initial_status = None
             
-            lo_idn_sel_out = ipw.Layout(width='300px', height='15px')
+            lo_idn_sel_out = ipw.Layout(height='20px')
             # output wgts 1st:
             self.idn_sel_out = ipw.Output(layout=lo_idn_sel_out)
             self.load_btn_out = ipw.Output(layout=ipw.Layout(height='30px'))
@@ -318,6 +313,9 @@ class PageControls:
                                        button_style='info',
                                        disabled=True)
             self.btn_load.on_click(self.load_btn_click)
+            
+            # Put selection controls into grid 'template':
+            self.sel_hdr_grid = self.get_sel_hdr_grid()
         
             if self.page_idx == 1:
                 self.verb = 'modify'
@@ -331,25 +329,25 @@ class PageControls:
                 self.transcriber_txt = ipw.Text(value='?')
                 self.status_sel = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
-                # prepped for load btn outcome:
                 lo_ta = ipw.Layout(display='flex',
-                                       flex_flow='column',
-                                       width='100%', height='500px')
+                                   flex_flow='column',
+                                   width='98%', height='500px')
                 self.editarea = ipw.Textarea(value=None,
                                              layout=lo_ta)
             
+            self.populate_sel_hdr_grid()
             # start page w/selection controls + 1 empty vbx:
             with self.idn_sel_out:
-                print('< File year / File name >')
-            self.page = ipw.VBox([self.get_selection_hdr(),
+                print('< File year/File name >')
+            # prepped for load btn outcome:
+            self.page = ipw.VBox([self.sel_hdr_grid,
                                   ipw.VBox([])],
                                  layout=lo_page)
             setattr(self.page, 'user_dict', None)
             
-            
-        
+       
     def get_sel_banner(self):
-        """Tab form informational header."""
+        """Page informational header."""
         if self.page_idx == 0:
             sel_banner = '<H3>Provide the Event related data.</H3>'
         elif self.page_idx == 1:
@@ -361,34 +359,42 @@ class PageControls:
         return ipw.HTML(value=sel_banner)
     
     
-    def get_selection_hdr(self):
+    def get_sel_hdr_grid(self):
         """
-        ADD|MODIFY Input form header: selection wgts in VBox.
+        Setup a grid of common widgets common to MODIFY, EDIT.
+        Grid empty boxes to be populated as per .page_idx.
         """
-        # Final VBox components/kids:
-        k_0 = self.get_sel_banner() #:: 1st child
-        # load btn:: last
+        if self.page_idx < 1:
+            return None
+        #lo_sel_vbx = ipw.Layout(justify_content='space-between')
+        #                        margin='0px 0px 2px 30px')
+        grid = ipw.GridspecLayout(2, 3) #,layout=lo_sel_vbx)
+        
+        grid[0, 0:] = self.get_sel_banner()
+        if self.page_idx == 1:
+            grid[1, 0:2] = ipw.HBox([])
+        else:
+            grid[1, 0] = ipw.HBox([])
+            grid[1, 1] = ipw.VBox([])
         lo_btn_vbx = ipw.Layout(flex_flow='column',
                                 justify_content='space-between')
-        k_1_last = ipw.VBox([self.btn_load, self.load_btn_out],
-                            layout=lo_btn_vbx)
+        grid[1, 2] = ipw.VBox([self.btn_load,
+                               self.load_btn_out],
+                              layout=lo_btn_vbx)
+        return grid
+
+
+    def populate_sel_hdr_grid(self):
+        """Populate .sel_hdr_grid."""
         if self.page_idx == 1:
-            k_1_0 = ipw.HBox([self.yr_sel, self.idn_sel,
-                              self.idn_sel_out])
-            k_1 = ipw.HBox([k_1_0, k_1_last])
+            self.sel_hdr_grid[1, 0:2].children = [self.yr_sel, 
+                                                  self.idn_sel, 
+                                                  self.idn_sel_out]
         else:
-            k_1_0 = ipw.HBox([self.yr_sel, self.idn_sel])                                 
-            k_1_1 = ipw.VBox([self.av_radio,
-                              self.idn_sel_out,
-                              self.transcriber_txt])
-            k_1 =  ipw.HBox([k_1_0, k_1_1,
-                             self.status_sel, #k_1_2
-                             k_1_last])
-            
-        lo_sel_vbx = ipw.Layout(justify_content='space-between',
-                                margin='0px 0px 2px 30px')
-        sel_vbx = ipw.VBox([k_0, k_1], layout=lo_sel_vbx)
-        return sel_vbx
+            self.sel_hdr_grid[1, 0].children = [self.yr_sel, self.idn_sel]
+            self.sel_hdr_grid[1, 1].children = [self.av_radio,
+                                                self.idn_sel_out,
+                                                self.transcriber_txt]
 
     
     def obs_yr_sel(self, change):
@@ -405,8 +411,8 @@ class PageControls:
     def obs_idn_sel(self, change):
         """Observe fn for idn slection box."""
         self.idn_sel_out.clear_output()
-        if self.page_idx == 2:
-            self.transcriber_txt.value = '?'
+        #if self.page_idx == 2:
+        #    self.transcriber_txt.value = '?'
         with self.idn_sel_out:
             if ((self.yr_sel.index is not None) 
                 and (self.idn_sel.index is not None)):
@@ -419,7 +425,7 @@ class PageControls:
                     if self.initial_transcriber is None:
                         self.initial_transcriber = self.transcriber_txt.value
                 self.btn_load.disabled = False
-                print(self.yr_sel.value + ' / '+ fname)
+                print(self.yr_sel.value + '/'+ fname)
             else:
                 self.btn_load.disabled = True
                 
@@ -448,7 +454,8 @@ class PageControls:
                         self.status_sel.value = status 
                     else:
                         self.status_sel.value = self.status_opts[-1]
-                    self.initial_status = status
+                    if self.initial_status is None:
+                        self.initial_status = status
                     
                     # reset default if no audio:
                     #TODO: download it
@@ -493,10 +500,7 @@ class AppControls:
                                    ])
         
         self.PC = None # Controls.PageControl instance
-        
-        # output controls first:
-        self.info_out = ipw.Output() # == right-sidebar
-        
+
         self.left_sidebar = self.get_left()
         self.center = self.get_center()
         self.left_sidebar.observe(self.menu_selection, 'value')
@@ -506,13 +510,13 @@ class AppControls:
                              (self.center, 'selected_index'))
 
         self.app = ipw.AppLayout(header=self.get_app_hdr(),
-                                  left_sidebar=self.left_sidebar,
-                                  center=self.center,
-                                  right_sidebar=self.info_out,
-                                  footer=None,
-                                  pane_widths=[1, 5, 1],
-                                  pane_heights=[1, 3, 1]
-                                  )
+                                 left_sidebar=self.left_sidebar,
+                                 center=self.center,
+                                 right_sidebar=ipw.Output(),
+                                 footer=None,
+                                 pane_widths=[1, 5, 1],
+                                 pane_heights=[1, 3, 1]
+                                 )
         setattr(self.app, 'data_dict', None)
 
 
@@ -536,9 +540,6 @@ class AppControls:
         # Tabs:
         ks = list(self.actions.keys()) + ['readme', 'file']
         # 1st tab child: message output
-        
-        # TODO: as with PC: add empty vbx in order
-        # to reset the page by resetting .children[1].children
         tabs.children = [ipw.VBox([ipw.Output(),
                                    ipw.VBox([])]) for k in ks]
         for i, k in enumerate(ks):
@@ -578,10 +579,7 @@ class AppControls:
     # center.observe
     def info_display(self, change):
         """Right side panel: info about selected op."""
-        # Here page. needed bc right_sidebar only defined at
-        # page (AppLayout) level.
-        #self.page.right_sidebar.clear_output()
-        self.info_out.clear_output()
+        self.app.right_sidebar.clear_output()
         wgt = change['owner']
         # Link tab selection index with info panel:
         if wgt.selected_index is None:
@@ -598,14 +596,14 @@ class AppControls:
             self.left_sidebar.selected_index = t
             self.left_sidebar.children[t].children[0].index = None
 
-        with self.info_out:
+        with self.app.right_sidebar:
             display(info_val)
    
 
     def msg_out(self, idx, msg):
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
-            display(msg)
+            print(msg)
 
     
     def validate(self, idx):
@@ -616,50 +614,49 @@ class AppControls:
                 self.app.data_dict = validate_form_entries(input_form,
                                                        self.PC.page.user_dict,
                                                        self.PC.TR)
-                display('Validated!')
+                print('Validated!')
             except:
-                display('Validation Error: Fix & Try again.')
+                print('Validation Error: Fix & Try again.')
                 
     
     def save_entry(self, idx):
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
             if self.app.data_dict is None:
-                display('Validate first!')
+                print('Validate first!')
                 return
             if self.PC.TR is None:
-                display('TR object not instantiated.')
+                print('TR object not instantiated.')
                 return
             try:
-                self.PC.TR.update_dict(self.page.data_dict)
-                display('Update dict: OK!')
+                self.PC.TR.update_dict(self.app.data_dict)
+                print('Update dict: OK!')
             except:
-                display('Update dict: Something went wrong.')
+                print('Update dict: Something went wrong.')
                 return
             try:
                 self.PC.TR.update_readme()
-                display('Update readme: OK!')
+                print('Update readme: OK!')
             except:
-                display('Update readme: Something went wrong.')
+                print('Update readme: Something went wrong.')
                 return
             try:
                 self.PC.TR.save_transcript_md()
-                display('Save: Done!')
+                print('Save: Done!')
             except:
                 if idx == 0:
                     msg = 'Save starter transcript: Something went wrong.'
                 else:
                     msg = 'Save transcript: Something went wrong.'
-                display(msg)
+                print(msg)
 
 
     def save_edit(self, idx):
         """Save edited transcript."""
         self.center.children[idx].children[0].clear_output()
-        #TODO: reset/disabled the selection header?
         with self.center.children[idx].children[0]:
             if self.PC.transcriber_txt.value == '?':
-                display("'?' is not a good name!")
+                print("'?' is not a good name!")
             try:
                 upd = self.PC.initial_status != self.PC.status_sel.value
                 upd = upd or (self.PC.initial_transcriber != self.PC.transcriber_txt.value)
@@ -667,30 +664,33 @@ class AppControls:
                     self.PC.TR.event_dict['status'] = self.PC.status_sel.value
                     self.PC.TR.event_dict['transcriber'] = self.PC.transcriber_txt.value
                     self.PC.TR.update_readme()
-                    display('Updated README.')
+                    print('Updated README.')
             except:
-                display('Could not update README.')
+                print('Could not update README.')
                 return
             try:
                 self.PC.TR.save_transcript_md(new_trx=self.PC.editarea.value)
                 # disabled = True?
                 self.PC.page.children[0].children[1].children[3].children[0].disabled = False
                 self.PC.editarea.value = ''
-                display('Updated Event file.')
+                print('Updated Event file.')
             except:
-                display('Could not update Event file.')
+                print('Could not update Event file.')
 
 
     def show_mdfile(self, idx):
-        """Add tab for Md file. Here, idx = tab index"""
-        # Add 2nd Output for the file:
-        if len(self.center.children[idx].children) == 1:
-            self.center.children[idx].children += (ipw.Output(),)
-        self.center.children[idx].children[1].clear_output()
+        """Here, idx = tab index"""
+        self.center.children[idx].children[0].clear_output()
+        # vbx:
+        if len(self.center.children[idx].children[1].children) == 0:
+            self.center.children[idx].children[1].children += (ipw.Output(),)
+        else:
+            self.center.children[idx].children[1].children[0].clear_output()
+    
         self.center.selected_index = idx
         
         if idx == 3:
-            with self.center.children[3].children[1]:
+            with self.center.children[3].children[1].children[0]:
                 Meta.show_md_file(Meta.MAIN_README)
         else:
             if self.PC.TR is not None:
@@ -698,8 +698,7 @@ class AppControls:
                 fname = self.PC.TR.event_dict['transcript_md']
                 mdfile = Meta.REPO_PATH.joinpath(yr, fname)
                 if mdfile.exists():
-                    with self.center.children[4].children[1]:
-                        #display(Meta.show_md_file(mdfile, kind='Transcript'))
+                    with self.center.children[4].children[1].children[0]:
                         Meta.show_md_file(mdfile, kind='Transcript')
                 else:
                     self.msg_out(4, F'File not found: {mdfile}.')
@@ -716,11 +715,10 @@ class AppControls:
             if tog_val == 'Enter Info':
                 self.PC = PageControls(0)
                 entry_group = self.PC.page
-                # Add 2nd control in tab 2nd vbox => input form:
-                #input_form = self.PC.page.children[1].children[0]
+                # Add 2nd control in tab 2nd vbox:
                 if len(self.center.children[0].children[1].children) == 1:
                     self.center.children[0].children[1].children = ()
-                self.center.children[0].children[1].children += (entry_group,)                
+                self.center.children[0].children[1].children += (entry_group,)
             elif tog_val == 'Validate':
                 self.validate(iparent)
             elif tog_val == 'Save':
