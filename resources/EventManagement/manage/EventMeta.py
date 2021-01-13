@@ -46,16 +46,17 @@ MAIN_README = main_readme_path()
 
 
 def show_md_file(md_file, kind='README'):
+    """md_file is either a Path filepath or url."""
     if isinstance(md_file, Path):
         which = 'Local'
-        readme = Markdown(filename=md_file)
+        txt = F'### {which} {kind} file: {md_file.name}\n---\n---\n'
+        txt += Markdown(filename=md_file).data
     else:
         which = 'Live'
-        readme = Markdown(md_file)
-    
-    display(Markdown(F'### {which} {kind} file:\n---\n---'),
-            readme,
-            Markdown('---\n---'))
+        txt = F'### {which} {kind} file: \n---\n---\n'
+        txt += Markdown(md_file).data
+    txt +='\n---\n---'
+    display(Markdown(txt))
 
     
 NA = 'N.A.' # 'Not Applicable or Not Available; 'N/A' is 'N over A'.

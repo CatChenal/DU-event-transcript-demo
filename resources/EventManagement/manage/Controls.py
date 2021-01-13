@@ -2,13 +2,12 @@
 # Controls.py
 # Programmer: Cat Chenal
 #
+from pathlib import Path
 from IPython.display import Markdown
 import ipywidgets as ipw
 from collections import OrderedDict
 
-from manage import (EventMeta as Meta,
-                    EventTranscription as TRX,
-                    Utils as UTL)
+from manage import EventMeta as Meta, Utils as UTL
 
 
 # ..............................................................................
@@ -206,7 +205,7 @@ def get_entry_accordion(input_dict):
 def load_entry_dict(tm_obj):
     """
     Return a dict of the entries in the TranscriptMeta object 
-    (tm_obj) event_dict that are exposed by the Accordion container.
+    (tm_obj) event_dict to be exposed by the Accordion container.
     """
     exposed_d = get_new_input_flds()
     ks = list(tm_obj.event_dict.keys())
@@ -218,15 +217,11 @@ def load_entry_dict(tm_obj):
 
 
 # ..............................................................................
-def validate_form_entries(accord, entry_dict, tm_obj):
-    """
-    Return a copy of TranscriptMeta (tm_obj) event_dict populated
-    with user's entries.
-    The output dict can then be passed to tm_obj.update_dict().
-    """ 
-    data_dict = tm_obj.event_dict.copy()
-
-    for i, (k, v) in enumerate(entry_dict.items()):
+def get_accordion_entries(accord):
+    """Dict of (possibly modified) Accordion entries."""
+    exposed_ks = list(get_new_input_flds().keys())
+    d = dict()
+    for i, k in enumerate(exposed_ks):
         if k != 'extra_references':
             child = accord.children[i].children[1]
         else:
@@ -234,18 +229,45 @@ def validate_form_entries(accord, entry_dict, tm_obj):
             child = accord.children[i].children[0].children[1]
 
         val = child.get_interact_value() or Meta.NA
+        d[k] = val
+    return d
+
+
+def validate_form_entries(entry_dict, tm_obj):
+    """
+    Return a copy of TranscriptMeta (tm_obj) event_dict populated
+    with user's entries.
+    The output dict can then be passed to tm_obj.update_dict().
+    :entry_dict: output of get_accordion_entries(accord).
+    """ 
+    # check:
+    exposed = get_new_input_flds()
+    exposed_ks = list(exposed.keys())
+    user_ks = list(entry_dict.keys())
+    assert len(exposed_ks) == len(user_ks)
+    
+    data_dict = tm_obj.event_dict.copy()
+
+    for i, (k, v) in enumerate(entry_dict.items()):
+        #if k != 'extra_references':
+        #    child = accord.children[i].children[1]
+        #else:
+        #    # child inside a vbox
+        #    child = accord.children[i].children[0].children[1]
+
+        #val = child.get_interact_value() or Meta.NA
         # check 1: NA but required -> end
-        if val == Meta.NA and v[-2] == reqd:
-            t = accord.get_title(i)
-            raise ValueError(F'Cannot save: {t} is required.')
+        if v == Meta.NA and exposed[k][-2] == reqd:
+            #t = accord.get_title(i)
+            raise ValueError(F'Cannot save: {k} is required.')
             
         if k == 'transcriber':
-            if val == Meta.NA or val == '':
+            if v == Meta.NA or v == '':
                 data_dict['transcriber'] = '?'  
         else:               
-            data_dict[k] = val
+            data_dict[k] = v
             if k =='video_url':
-                dom, vid = UTL.split_url(val)
+                dom, vid = UTL.split_url(v)
                 data_dict['yt_video_id'] = vid     
                         
     tm_obj.validate_dict(data_dict)
@@ -265,13 +287,13 @@ class PageControls:
             
         lo_page = ipw.Layout(display='flex',
                              flex_flow='column',
-                             #align_items='stretch',
                              margin='0px 0px 0px 30px')
         
         self.page_idx = page_idx
         self.status_opts = status_opts
         
-        self.df, _ = Meta.df_from_readme_tbl()
+        rdmdf, _ = Meta.df_from_readme_tbl()
+        self.df = rdmdf
         self.yrs = self.df[self.df.year != Meta.NA].year.unique().tolist()
         self.TR = None
         
@@ -285,7 +307,6 @@ class PageControls:
             else:
                 user_dict = get_new_input_flds()
             entry_group = get_entry_accordion(user_dict)
-            #modified: p = VBox[banner, VBox[other]] 
             self.page = ipw.VBox([self.get_sel_banner(),
                                   ipw.VBox([entry_group])],
                                  layout=lo_page)
@@ -411,8 +432,6 @@ class PageControls:
     def obs_idn_sel(self, change):
         """Observe fn for idn slection box."""
         self.idn_sel_out.clear_output()
-        #if self.page_idx == 2:
-        #    self.transcriber_txt.value = '?'
         with self.idn_sel_out:
             if ((self.yr_sel.index is not None) 
                 and (self.idn_sel.index is not None)):
@@ -429,7 +448,21 @@ class PageControls:
             else:
                 self.btn_load.disabled = True
                 
-               
+
+    def download_audio(self):
+        if self.TR is None:
+            return
+        idn, year = self.TR.idn, self.TR.year
+        video_url = self.TR.event_dict['video_url']
+        vid = self.TR.event_dict['yt_video_id']
+        if self.TR.YT is None:
+            from manage import EventTranscription as TRX
+            self.TR.YT = TRX.YTVAudio(year,idn,video_url,vid)
+            self.TR.YT.download_audio()
+            self.TR.event_dict['audio_track'] = self.TR.YT.audio_filepath
+        return
+         
+            
     def load_btn_click(self, b):
         """ Load btn on Modify, Edit pages."""
         self.load_btn_out.clear_output()                        
@@ -457,11 +490,15 @@ class PageControls:
                     if self.initial_status is None:
                         self.initial_status = status
                     
-                    # reset default if no audio:
-                    #TODO: download it
+                    # reset default if no audio could be downloaded:
                     if not self.TR.event_dict['audio_track'].exists():
-                        self.av_radio.value = 'Video'
-                        print("No audio.")
+                        try:
+                            self.download_audio()
+                            print("Audio not found. Downloading...")
+                        except:
+                            self.av_radio.value = 'Video'
+                            print("Problem downloading audio.")
+                            
                     use_audio = self.av_radio.value == 'Audio'
                     
                     trx_text = self.TR.get_transcript_text()
@@ -481,14 +518,21 @@ class PageControls:
 
                         self.page.children[1].children += (self.editarea,)
 
-                #self.yr_sel.disabled = True
-                #self.idn_sel.disabled = True
                 b.disabled = True
                 print(F"{self.verb.title()} along!")
             except:
                 print("Error loading!")
                 
 
+def get_app_hdr():
+    style = "text-align:center;padding:5px;background:#c2d3ef;"
+    style += "color:#ffffff;font-size:3em;"
+    style += "width:100%,height=50%"
+    div = F' <div style="{style}">Data Umbrella Event Management</div>'
+    hdr_html = UTL.show_du_logo_hdr(as_html=False) #+ div
+    return ipw.HTML(hdr_html+ div)
+    
+    
 class AppControls:
     def __init__(self):
         self.actions = OrderedDict([('Add an event',
@@ -500,16 +544,18 @@ class AppControls:
                                    ])
         
         self.PC = None # Controls.PageControl instance
-
-        self.left_sidebar = self.get_left()
-        self.center = self.get_center()
-        self.left_sidebar.observe(self.menu_selection, 'value')
+        self.to_delete = None # validate_1
         
+        self.left_sidebar = self.get_left()
+        self.left_sidebar.observe(self.menu_selection, 'value')
+        self.center = self.get_center()
         self.center.observe(self.info_display, 'selected_index')
         self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
                              (self.center, 'selected_index'))
-
-        self.app = ipw.AppLayout(header=self.get_app_hdr(),
+        
+        # Removed header: no 'gui shifting' w/o it. ??
+        self.app = ipw.AppLayout(header=None,
+                                 #self.get_app_hdr(),
                                  left_sidebar=self.left_sidebar,
                                  center=self.center,
                                  right_sidebar=ipw.Output(),
@@ -518,15 +564,6 @@ class AppControls:
                                  pane_heights=[1, 3, 1]
                                  )
         setattr(self.app, 'data_dict', None)
-
-
-    def get_app_hdr(self):
-        style = "text-align:center;padding:5px;background:#c2d3ef;"
-        style += "color:#ffffff;font-size:3em;"
-        style += "width:100%,height=50%"
-        div = F' <div style="{style}">Data Umbrella Event Management</div>'
-        hdr_html = UTL.show_du_logo_hdr(as_html=False) + div
-        return ipw.HTML(hdr_html)
 
 
     def get_center(self):
@@ -606,17 +643,43 @@ class AppControls:
             print(msg)
 
     
-    def validate(self, idx):
+    def validate_0(self, idx):
         input_form = self.PC.page.children[1].children[0]
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
             try:
-                self.app.data_dict = validate_form_entries(input_form,
-                                                       self.PC.page.user_dict,
-                                                       self.PC.TR)
+                self.PC.page.user_dict = get_accordion_entries(input_form)
+                self.app.data_dict = validate_form_entries(self.PC.page.user_dict,
+                                                           self.PC.TR)
                 print('Validated!')
+
             except:
                 print('Validation Error: Fix & Try again.')
+
+            
+    def validate_1(self, idx):
+        grid_sel_idn_out = self.PC.page.children[0][1,1].children[-1]
+        initial_md = grid_sel_idn_out.outputs[0]['text'][5:-1]
+        
+        input_form = self.PC.page.children[1].children[0]
+        
+        self.center.children[idx].children[0].clear_output()
+        with self.center.children[idx].children[0]:
+            try:
+                d = get_accordion_entries(input_form)
+                self.PC.page.user_dict = d
+                self.app.data_dict = validate_form_entries(self.PC.page.user_dict,
+                                                           self.PC.TR)
+                print('Validated!')
+                d['idn'] = self.PC.TR.idn
+                d = self.PC.TR.set_path_keys(d)
+                if initial_md != d['transcript_md']:
+                    mdfile = UTL.get_subfolder(d['year'], Meta.REPO_PATH)
+                    mdfile = mdfile.joinpath(initial_md)
+                    self.to_delete = mdfile
+                    print(F'File to delete: {initial_md}')
+            except:
+                print('Validation Error: Fix & Try again.')                
                 
     
     def save_entry(self, idx):
@@ -643,12 +706,21 @@ class AppControls:
             try:
                 self.PC.TR.save_transcript_md()
                 print('Save: Done!')
+                if idx == 1:
+                    if self.to_delete is not None:
+                        self.to_delete.unlink()
+                        self.to_delete = None
             except:
                 if idx == 0:
                     msg = 'Save starter transcript: Something went wrong.'
                 else:
                     msg = 'Save transcript: Something went wrong.'
                 print(msg)
+        # refresh df:
+        newdf, _ = Meta.df_from_readme_tbl()
+        self.PC.df = newdf
+        if self.PC.verb != 'add':
+            self.PC.idn_sel.value = None
 
 
     def save_edit(self, idx):
@@ -658,11 +730,13 @@ class AppControls:
             if self.PC.transcriber_txt.value == '?':
                 print("'?' is not a good name!")
             try:
-                upd = self.PC.initial_status != self.PC.status_sel.value
-                upd = upd or (self.PC.initial_transcriber != self.PC.transcriber_txt.value)
-                if upd:
+                do_readme = self.PC.initial_status != self.PC.status_sel.value
+                do_trx = self.PC.initial_transcriber != self.PC.transcriber_txt.value
+                if do_readme:
                     self.PC.TR.event_dict['status'] = self.PC.status_sel.value
+                if do_trx:
                     self.PC.TR.event_dict['transcriber'] = self.PC.transcriber_txt.value
+                if do_readme or do_trx:        
                     self.PC.TR.update_readme()
                     print('Updated README.')
             except:
@@ -670,12 +744,15 @@ class AppControls:
                 return
             try:
                 self.PC.TR.save_transcript_md(new_trx=self.PC.editarea.value)
-                # disabled = True?
-                self.PC.page.children[0].children[1].children[3].children[0].disabled = False
+                self.PC.btn_load.disabled = False
                 self.PC.editarea.value = ''
                 print('Updated Event file.')
             except:
                 print('Could not update Event file.')
+        # refresh df:
+        newdf, _ = Meta.df_from_readme_tbl()
+        self.PC.df = newdf
+        self.PC.idn_sel.value = None
 
 
     def show_mdfile(self, idx):
@@ -687,8 +764,6 @@ class AppControls:
         else:
             self.center.children[idx].children[1].children[0].clear_output()
     
-        self.center.selected_index = idx
-        
         if idx == 3:
             with self.center.children[3].children[1].children[0]:
                 Meta.show_md_file(Meta.MAIN_README)
@@ -704,6 +779,7 @@ class AppControls:
                     self.msg_out(4, F'File not found: {mdfile}.')
             else:
                 self.msg_out(4, 'PageControls.TR object not instantiated.')
+        self.center.selected_index = idx
 
 
     def menu_tog_sel(self, change):
@@ -720,7 +796,7 @@ class AppControls:
                     self.center.children[0].children[1].children = ()
                 self.center.children[0].children[1].children += (entry_group,)
             elif tog_val == 'Validate':
-                self.validate(iparent)
+                self.validate_0(iparent)
             elif tog_val == 'Save':
                 self.save_entry(iparent)
             elif tog_val == 'Show Readme':
@@ -734,9 +810,9 @@ class AppControls:
                 edit_page = self.PC.page
                 if len(self.center.children[1].children[1].children) == 1:
                     self.center.children[1].children[1].children = ()
-                self.center.children[1].children[1].children += (edit_page, )
+                self.center.children[1].children[1].children += (edit_page,)
             elif tog_val == 'Validate':
-                self.validate(iparent)
+                self.validate_1(iparent)
             elif tog_val == 'Save':
                 self.save_entry(iparent)
             elif tog_val == 'Show Readme':
@@ -750,7 +826,7 @@ class AppControls:
                 edit_page = self.PC.page
                 if len(self.center.children[2].children[1].children) == 1:
                     self.center.children[2].children[1].children = ()
-                self.center.children[2].children[1].children += (edit_page, )
+                self.center.children[2].children[1].children += (edit_page,)
             elif tog_val == 'Save':
                 self.save_edit(iparent)
             elif tog_val == 'Show Readme':
