@@ -53,7 +53,7 @@ The code enabling this resides in the 'EventManagement' project folder, which ha
 ### The events Markdown files in the year folders have been 'header-normalized' to enable a templated approach to document generation. (A good example for this normalization is Event "05".)
 
 <strong>Note:</strong><br>
-The added advantage of using a template is to prevent information from a different event transcript file to appear in a new one as a result of a 'cut & paste' operation when that info has escaped the editor's attention. For example, this is the case in `./2020/17-carol-python.md`:
+The added advantage of using a template is to prevent information from a different event transcript file to appear in a new one as a result of a 'cut & paste' operation when that info has escaped the editor's attention. For example, this was the case in `./2020/17-carol-python.md`:
 * Presentation title: 'Contributing to Core Python'
 * Video thumbnail `alt`: "Data Science and Machine Learning at Scale"
 * Video link is missing thumbnail: the template would automatically create one!  
