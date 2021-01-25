@@ -29,18 +29,18 @@ The code enabling this resides in the 'EventManagement' project folder, which ha
 | ---  | ---          | ---        | ---     | ---      |
 | 1    | Add the `EventManagement` project to `/.resources` | Repo | Functionality | _"Automate the boring stuff"_ |
 | 2    | Add a `.gitignore` in repo (prepped to filter out .mp4 files if needed) | Repo | Best practice | Avoid clutter, size limits; mp4 stay local |
-| 3    | **Perform global normalization:** |  Repo | Consistency | Quality control, automation | 
-| 3.1  | Replace 'N/A' with 'N.A.' |  Repo | 'N/A' is 'N over A' (math) | Written English |
-| 3.2  | Change '? [needs a transcriber]' to '?' | Repo | Redundant | Notes and Status have that information |
-| 3.3  | Remove self-referencing link ("- Transcript") | Event md files | Redundant | Simplify |
-| 3.4  | Correct sources of UnicodeDecodeError | Event md files | ipython.display.Markdown cannot load it | To render file within nb |
-| 3.4  | Add list headings, amend duplicates | Event md files | To enable correct parsing, e.g. a second "- Video" would overwrite the 1st | Parsing |
-| 3.5  | Apply unique file naming pattern | Repo | Automated naming | Consistent naming, e.g.: 17-carol-python.md -> 17-carol-willing-python.md |
+| 3    | Move the Note column at the end as 'Notes' | README table | Mostly empty column at end | Esthetics | 
 | 4    | Split the comments from the Status & put them into Notes| README table | Data, commit message standardization | Implemented as an Enum, Status could be the trigger for e.g. a GitHub Action if it is changed to PARTIAL_HELP = "Partial (new editor requested)" |
-| 5    | Move the Note column at the end as 'Notes' | README table | Mostly empty column at end | Esthetics | 
+| 5    | **Perform global normalization:** |  Repo | Consistency | Quality control, automation | 
+| 5.1  | Replace 'N/A' with 'N.A.' |  Repo | 'N/A' is 'N over A' (math) | Written English |
+| 5.2  | Change '? [needs a transcriber]' to '?' | Repo | Redundant | Notes and Status have that information |
+| 5.3  | Remove self-referencing link ("- Transcript") | Event md files | Redundant | Simplify |
+| 5.4  | Correct sources of UnicodeDecodeError | Event md files | ipython.display.Markdown cannot load it | To render file within nb |
+| 5.4  | Add list headings, amend duplicates | Event md files | To enable correct parsing, e.g. a second "- Video" would overwrite the 1st | Parsing |
+| 5.5  | Apply unique file naming pattern | Repo | Automated naming | Consistent naming, e.g.: 17-carol-python.md -> 17-carol-willing-python.md |
 | 6    | Add a paragraph under the table to urge (plead?) contributors to only use the project for editing | README | It's better | Maintain consistency |
 | 7    | Add a note about non-Unicode characters in Markdown file. | README | Error | Correct parsing | 
-| FUTURE | **These changes are recommended:** (not implemented in this demo) ||||
+| **FUTURE** | **Recommended changes:** (not implemented in this demo) ||||
 | F1 | Replace the video href link (under '## Video') with an embed HTML string | Event md files | Readers can watch while reading | Especially good for reviewers (currently used in the GUI-Editing task as Media choice: Audio or Video) |
 | F2 | Change 'Transcriber' to 'Editor' | Repo | Most of the transcripts need editing||
 | F3 | Add a column for Reviewer | README table | Assign credit | Encourage contribution? | 
@@ -48,7 +48,6 @@ The code enabling this resides in the 'EventManagement' project folder, which ha
 | F5 | Add a 'Year' column | README table | Explain why event '01' follows event '20' | Explicitly indicate folder location (currently hidden in link) |
 | F5'| Amend the file links to reveal path| README | E.g.: [2021/21: Command Line Focused Dev](2021/21-nick-command.md) | Alternative to F5. Numbering in demo is reset in year folder.|
 
-Change 'Meetup Event' to the more generic 'Venue': The main event link may not always come via Meetup, plus,.
 
 ### The file `README_new.md` reflects the changes associated with the README modifications above listed.
 ### The events Markdown files in the year folders have been 'header-normalized' to enable a templated approach to document generation. (A good example for this normalization is Event "05".)
