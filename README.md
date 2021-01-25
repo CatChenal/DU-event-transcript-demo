@@ -199,7 +199,7 @@ The implementation predates any 2021 events: the demo restart numbering at 01 in
         |   +---backup [To save readme before changes]
         |   |       README.md.bkp
         |   |       
-        |   \---documentation [Not finalized.]
+        |   \---documentation [Not finalized]
         |
         |   [Files for text clean up:]
         |   corrections.csv  [for corrections & special formatting, e.g. whatsapp->WhatsApp]
@@ -219,9 +219,8 @@ The implementation predates any 2021 events: the demo restart numbering at 01 in
         |   +---documentation [Not finalized. Code for documenting]
         |           
         +---notebooks
-        |   |   How_Tos.ipynb                 [Details on amending text processing files & reprocessing of initial transcript.]
-        |   |   Implementation_Details.ipynb [Details about workflow & functions.]
-        |   |   ManageGUI.ipynb [The project "GUI in a notebook".]
+        |   |   How_Tos.ipynb   [Details on amending text processing files & re-processing of initial transcript]
+        |   |   ManageGUI.ipynb [The project "GUI in a notebook"]
 
 ```
 # Comparison of an existing ('normalized') event file with what would be the starter file produced by `EventManagement`.
