@@ -445,18 +445,23 @@ class TranscriptMeta:
         
         self.event_dict = new_meta
    
-        
+
+    def set_YT(self):
+        if self.YT is not None:
+            return
+        from manage import EventTranscription as TRX
+        self.YT = TRX.YTVAudio(self.year, self.idn,
+                               self.event_dict['video_url'],
+                               self.event_dict['yt_video_id'])
+            
+            
     def redo_initial_transcript(self):
         """
         Wrapper to instantiate YT class & (re)do
         initial transcription.
         """
-        idn, year = self.idn, self.year
-        video_url = self.event_dict['video_url']
-        vid = self.event_dict['yt_video_id']
-        if self.YT is None:
-            from manage import EventTranscription as TRX
-            self.YT = TRX.YTVAudio(year,idn,video_url,vid)
+        self.set_YT()
+            
         # Reformatting the text is 1 reason for redoing: 
         if self.new_minutes_mark is not None:
             self.YT.minutes_mark = self.new_minutes_mark
