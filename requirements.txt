@@ -3,5 +3,4 @@ beautifulsoup4
 ipywidgets
 pytube
 defusedxml
-from html import unescape
 textwrap

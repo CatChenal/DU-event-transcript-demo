@@ -37,6 +37,9 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 02| Cat Chenal, Sing Song| [Better Demo Presentation Ii](2021/02-cat-sing-demo-foo.md)| Samtoo Me| Partial (w.i.p.)| Test for existing update from EventMeta.class| 
 | 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
 | 04| Cat Chenal, Sing Song| [Brand New Year!](2021/04-cat-sing-demo-demo.md)| Me Too| Not yet processed (editor needed)| Test, 04 dummy transcript| 
+| 05| Cat Chenal| [My New Presentation](2021/05-cat-chenal-some-other-demo.md)| ?| Not yet processed (editor needed)| testing fname change| 
+| 06| Cat Chenal| [Talk About Demo](2021/06-cat-chenal-foo-demo.md)| Cat Chenal| Not yet processed (editor needed)| demo dummy event| 
+| 07| Cat Chenal| [New Demo Presentation](2021/07-cat-chenal-new-demo.md)| ?| Not yet processed (editor needed)| New dummy event| 
 <!-- main_tbl_end -->
 
 ## NEW!

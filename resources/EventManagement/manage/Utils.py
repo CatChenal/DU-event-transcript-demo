@@ -202,10 +202,11 @@ def show_du_logo_hdr(as_html=True):
     logo_link = '<a href="https://www.dataumbrella.org" target="_blank"> '
     logo_link += F'<img src="{logo_src}" width="20%" /></a>'
     div = '<div style="text-align:center;padding:5px;width:98%">' 
+    div += F'{logo_link}</div>'
     if as_html:
-        return HTML(div + F'{logo_link}</div>')
+        return HTML(div)
     else:
-        return div + F'{logo_link}</div>'
+        return div
     
 
 # ..............................................................................
@@ -234,30 +235,32 @@ EXTRA_REFS_EXAMPLE = """
 
 
 # ..............................................................................
-section_info_add = """
-This section pertains to the <strong>Admin</strong> functions related to the creation of a new event, i.e.:  
-<ul>
-  <li>the creation of a new row in the main table of the README file, and </li>
-  <li>the creation of a starter transcript Markdown file, which includes the initial transcript.</li>
-</ul>
-"""
-section_info_modify = """
-This section pertains to the <strong>Admin</strong> functions related to the modificaton of an event, 
-either via modification of the main table in the README file, or via modification
-of the header portion of the transcript Markdown file. A user can:  
-<ul>
-  <li>Modify an event just added (if that's the case), to e.g.: fix a typo, add a last    
-   name, change the Status, add a Note, etc.</li>
-"""
-section_info_edit = """
-This section pertains to the <strong>Editor</strong> functions related to the editing of an event's 
-transcript. Only the transcript text will be extracted from and replaced in the associated transcript file. 
+info_div = '<div style="text-align:left;padding:5px;width:98%;"'
+#info_div += 'margin-top:5px;margin-left:220px;margin-bottom:5px;margin-right:5px">' 
 
-<h4>Note</h4>
-A recommended task after an editing session, and specifically before pushing  
-a PR, is to update the Status (and perhaps the Editor/Reviewer's names) by using     
-an Admin function to modify the event.
-"""
+section_info_add = info_div + """
+<h3>ADD</h3>
+<p>Create a new event:  
+<ul>
+  <li>A new row in the main table of the README file, and </li>
+  <li>A starter transcript Markdown file, which includes the initial transcript.</li>
+</ul>
+</p>
+"""  + '</div>'
+section_info_modify = info_div + """
+<h3>MODIFY</h3>
+<p>Select and modify an event: any change provided via the input form will be 
+applied to the README table and/or the transcript Markdown file.</p>
+"""  + '</div>'
+section_info_edit = info_div + """
+<h3>EDIT</h3>
+<p>Edit an event's transcript. Only the transcript text will be extracted from, 
+then replaced into the associated transcript file.<br>The Audio file will be 
+downloaded if not found.</p>
+<p><strong>Note: </strong>Before saving an editing session, remember to update 
+the Status and/or the Editor/Reviewer's names.
+"""  + '</div>'
+
 
 EventInfo = OrderedDict([('ADD', section_info_add),
                          ('MODIFY', section_info_modify),

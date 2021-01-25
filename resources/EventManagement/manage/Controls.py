@@ -287,7 +287,7 @@ class PageControls:
             
         lo_page = ipw.Layout(display='flex',
                              flex_flow='column',
-                             margin='0px 0px 0px 30px')
+                             margin='0px 0px 0px 10px')
         
         self.page_idx = page_idx
         self.status_opts = status_opts
@@ -347,7 +347,7 @@ class PageControls:
                 # for get_selection_hdr():
                 self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
                                                  value='Audio')
-                self.transcriber_txt = ipw.Text(value='?')
+                self.transcriber_txt = ipw.Text(value='? (transcriber)')
                 self.status_sel = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
                 lo_ta = ipw.Layout(display='flex',
@@ -385,21 +385,24 @@ class PageControls:
         Setup a grid of common widgets common to MODIFY, EDIT.
         Grid empty boxes to be populated as per .page_idx.
         """
-        if self.page_idx < 1:
-            return None
+        if self.page_idx == 0:
+            return
         #lo_sel_vbx = ipw.Layout(justify_content='space-between')
         #                        margin='0px 0px 2px 30px')
-        grid = ipw.GridspecLayout(2, 3) #,layout=lo_sel_vbx)
-        
-        grid[0, 0:] = self.get_sel_banner()
-        if self.page_idx == 1:
-            grid[1, 0:2] = ipw.HBox([])
-        else:
-            grid[1, 0] = ipw.HBox([])
-            grid[1, 1] = ipw.VBox([])
+        grid = ipw.GridspecLayout(2, 4) #,layout=lo_sel_vbx)
         lo_btn_vbx = ipw.Layout(flex_flow='column',
                                 justify_content='space-between')
-        grid[1, 2] = ipw.VBox([self.btn_load,
+        
+        grid[0, 0:] = self.get_sel_banner()
+        
+        #if self.page_idx == 1:
+        grid[1, 0:3] = ipw.HBox([])
+        #else:
+        #    grid[1, 0:2] = ipw.HBox([])
+        #    #grid[1, 1] = ipw.VBox([]) 
+        #    grid[1, 2] = ipw.VBox([])#, layout=lo_btn_vbx)
+        
+        grid[1, 3] = ipw.VBox([self.btn_load,
                                self.load_btn_out],
                               layout=lo_btn_vbx)
         return grid
@@ -407,15 +410,26 @@ class PageControls:
 
     def populate_sel_hdr_grid(self):
         """Populate .sel_hdr_grid."""
+        if self.page_idx == 0:
+            return
         if self.page_idx == 1:
+            # 1 hbx (+ trailing vbx for btn)
             self.sel_hdr_grid[1, 0:2].children = [self.yr_sel, 
                                                   self.idn_sel, 
                                                   self.idn_sel_out]
         else:
-            self.sel_hdr_grid[1, 0].children = [self.yr_sel, self.idn_sel]
-            self.sel_hdr_grid[1, 1].children = [self.av_radio,
-                                                self.idn_sel_out,
-                                                self.transcriber_txt]
+            #hbx(yr | idn), vbx(idn_out| av_radio),vbx(transcriber|status)
+            #vx = ipw.VBox([self.idn_sel_out, self.av_radio])
+            self.sel_hdr_grid[1, 0:3].children = [self.yr_sel,
+                                                  self.idn_sel,
+                                                  ipw.VBox([self.idn_sel_out,
+                                                            self.av_radio]),
+                                                  ipw.VBox([self.transcriber_txt,
+                                                            self.status_sel])]
+            #self.sel_hdr_grid[1, 1].children = [self.idn_sel_out,
+            #                                    self.av_radio]
+            #self.sel_hdr_grid[1, 2].children = [self.transcriber_txt,
+            #                                    self.status_sel]
 
     
     def obs_yr_sel(self, change):
@@ -430,7 +444,7 @@ class PageControls:
 
          
     def obs_idn_sel(self, change):
-        """Observe fn for idn slection box."""
+        """Observe fn for idn selection box."""
         self.idn_sel_out.clear_output()
         with self.idn_sel_out:
             if ((self.yr_sel.index is not None) 
@@ -492,9 +506,9 @@ class PageControls:
                     
                     # reset default if no audio could be downloaded:
                     if not self.TR.event_dict['audio_track'].exists():
+                        print("Audio not found. Downloading...")
                         try:
                             self.download_audio()
-                            print("Audio not found. Downloading...")
                         except:
                             self.av_radio.value = 'Video'
                             print("Problem downloading audio.")
@@ -529,8 +543,8 @@ def get_app_hdr():
     style += "color:#ffffff;font-size:3em;"
     style += "width:100%,height=50%"
     div = F' <div style="{style}">Data Umbrella Event Management</div>'
-    hdr_html = UTL.show_du_logo_hdr(as_html=False) #+ div
-    return ipw.HTML(hdr_html+ div)
+    hdr_html = UTL.show_du_logo_hdr(as_html=False)
+    return ipw.HTML(hdr_html + div)
     
     
 class AppControls:
@@ -544,10 +558,17 @@ class AppControls:
                                    ])
         
         self.PC = None # Controls.PageControl instance
-        self.to_delete = None # validate_1
+        self.to_delete = None # set by validate_1()
         
         self.left_sidebar = self.get_left()
         self.left_sidebar.observe(self.menu_selection, 'value')
+        
+        lo_info_out = ipw.Layout(display='flex',
+                                 flex_flow='column',
+                                 margin='0px 0px 0px 30px',
+                                 width='98%')
+        self.info_out = ipw.Output()
+        
         self.center = self.get_center()
         self.center.observe(self.info_display, 'selected_index')
         self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
@@ -558,7 +579,7 @@ class AppControls:
                                  #self.get_app_hdr(),
                                  left_sidebar=self.left_sidebar,
                                  center=self.center,
-                                 right_sidebar=ipw.Output(),
+                                 right_sidebar=self.info_out,
                                  footer=None,
                                  pane_widths=[1, 5, 1],
                                  pane_heights=[1, 3, 1]
@@ -615,8 +636,9 @@ class AppControls:
 
     # center.observe
     def info_display(self, change):
-        """Right side panel: info about selected op."""
-        self.app.right_sidebar.clear_output()
+        """App header panel: info about selected op.
+        """
+        self.info_out.clear_output()
         wgt = change['owner']
         # Link tab selection index with info panel:
         if wgt.selected_index is None:
@@ -633,8 +655,8 @@ class AppControls:
             self.left_sidebar.selected_index = t
             self.left_sidebar.children[t].children[0].index = None
 
-        with self.app.right_sidebar:
-            display(info_val)
+            with self.info_out:
+                display(info_val)
    
 
     def msg_out(self, idx, msg):
@@ -727,7 +749,7 @@ class AppControls:
         """Save edited transcript."""
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
-            if self.PC.transcriber_txt.value == '?':
+            if self.PC.transcriber_txt.value.startswith('?'):
                 print("'?' is not a good name!")
             try:
                 do_readme = self.PC.initial_status != self.PC.status_sel.value

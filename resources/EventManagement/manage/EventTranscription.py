@@ -38,11 +38,6 @@ upper_file = Meta.DIR_DATA.joinpath('upper_terms.csv')
 # Replacement pairs: from(lowercase), to; for special str 
 # & those mangled by Google's autocaptioning:
 corrections_file = Meta.DIR_DATA.joinpath('corrections.csv')
-substitutions = dict([('names',names_file),
-                      ('people', people_file),
-                      ('places', places_file),
-                      ('upper', upper_file),
-                      ('corrections', corrections_file)])
 
 def get_corrections_dict():
     return readcsv(corrections_file).set_index('k').to_dict()['v']
@@ -320,25 +315,13 @@ def check_list(list_to_search, new_terms):
     return tot
 
 
-def add_corrections0(corrections_dict, new_tuples):
-    if not isinstance(corrections_dict, dict):
-        raise ValueError("corrections_dict is not a dict.")
-    if not isinstance(new_tuples, list):
-        raise ValueError("new_tuples is not a list.")
-    
-    for i, t in enumerate(new_tuples):
-        corrections_dict[t[0]] = t[1]
-        
-    save_file(correct_json, corrections_dict)
-    return load_file_contents(correct_json)
-
-
 def check_corrections(corrections_dict, new_tuples):
     if not isinstance(corrections_dict, dict):
         raise ValueError("corrections_dict is not a dict.")
     if not isinstance(new_tuples, list):
         raise ValueError("new_tuples is not a list.")
-        
+    if not isinstance(new_tuples[0], tuple):
+        raise ValueError("new_tuples is not a list of tuples.")    
     tot = 0
     for i, t in enumerate(new_tuples):
         o = corrections_dict.get(t[0], -1)
@@ -350,19 +333,26 @@ def check_corrections(corrections_dict, new_tuples):
 
 def add_corrections(new_tuples):
     """
-    csv implementation.
     Update csv file & return updated dict.
     """
     if not isinstance(new_tuples, list):
         raise ValueError("new_tuples is not a list.")
-    
-    df = readcsv(corrections_fname)
+    if not isinstance(new_tuples[0], tuple):
+        raise ValueError("new_tuples is not a list of tuples.")
+    df = readcsv(corrections_file)
     imax = df.index.argmax() + 1
     for i, t in enumerate(new_tuples):
         df.loc[imax+i] = [t[0], t[1]]
-    df.to_csv(corrections_fname)
+    df.to_csv(corrections_file)
     
     return get_corrections_dict()
+
+
+substitutions = dict([('names',names_file),
+                      ('people', people_file),
+                      ('places', places_file),
+                      ('upper', upper_file),
+                      ('corrections', corrections_file)])
 
 
 def update_substitution_file(which=None, user_list=None, 
