@@ -1,0 +1,44 @@
+regex test on regex101.com
+
+#regex = "(?:(?![/?vt=_])([0-9A-Z0-9a-zA-Z_].*))"
+
+#new 
+regex = "(?:(?:www\.)?(?:youtube|youtu)(?:(?:\.com|\.be)\/)(?:embed\/)?(?:watch\?)?(?:feature=player_embedded)?&?(?:v=)?([0-z]{11}|[0-z]{4}(?:\-|\_)[0-z]{4}|.(?:\-|\_)[0-z]{9}))"
+
+rx = re.compile(regex)
+rx.match('youtube.com/watch?v=iwGFalTRHDA').groups()
+
+...........................................................
+
+youtu.be/0L1uM_18TTA
+youtu.be/0L1uM_18TTA?t=1
+www.youtube.com/watch?v=0L1uM_18TTA
+www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be
+www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=2m5s
+www.youtube.com/watch?feature=player_embedded&v=0L1uM_18TTA
+www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=1
+
+import re
+
+regex = r"(?:(?![/?vt=_])([0-9A-Z0-9_-].*))"
+
+test_str = ("youtu.be/0L1uM_18TTA\n"
+	"youtu.be/0L1uM_18TTA?t=1\n"
+	"www.youtube.com/watch?v=0L1uM_18TTA\n"
+	"www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be\n"
+	"www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=2m5s\n"
+	"www.youtube.com/watch?feature=player_embedded&v=0L1uM_18TTA\n"
+	"www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=1\n")
+
+matches = re.finditer(regex, test_str)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
+
+# Note: for Python 2.7 compatibility, use ur"" to prefix the regex and u"" to prefix the test string and substitution.

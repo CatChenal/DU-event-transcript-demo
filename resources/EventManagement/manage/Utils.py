@@ -40,20 +40,19 @@ def get_subfolder(subfolder_name, parent_dir=None):
 
 def get_id_from_YT_url(url):
     import re
-
-    regex = r"(?:(?![/?vt=_])([0-9A-Z0-9_-].*))"
-    match = re.search(regex, url)
-    if match is None:
-        return ''
-
-    e = None
-    found = url[match.start():]
-    if '?' in found:
-        e = found.index('?')
-    elif '&' in found:
-        e = found.index('&')
-    idx = found if e is None else found[:e]
-    return idx
+    
+    vid = ''
+    regex = """
+    (?:(?:youtube|youtu)(?:(?:\.com|\.be)\/)(?:embed\/)?(?:watch\?)?
+    (?:feature=player_embedded)?&?(?:v=)?
+    # named group here, vid:
+    (?P<vid>[0-z]{11}|[0-z]{4}(?:\-|\_)[0-z]{4}|.(?:\-|\_)[0-z]{9}))
+    """
+    rc = re.compile(regex,re.VERBOSE)
+    matches = rc.search(url)
+    if matches:
+        vid = matches.groupdict()['vid']
+    return vid
 
 
 def split_url(url, is_meetup=False):
@@ -338,11 +337,11 @@ def test_save_file(fullpath):
 
 
 def test_split_url():
-    dom = r'https://www.meetup.com/nyc-data-umbrella/events/'
+    dom = 'https://www.meetup.com/nyc-data-umbrella/events/'
     url = 'https://www.meetup.com/nyc-data-umbrella/events/271116695/'
     is_meetup = True
     d, idx = split_url(url, is_meetup)
-    print(F'Test meetup:\n\t{d}\n\t{idx}')
+    print(F'Test meetup...')
     assert (d, idx) == (dom, '271116695')
     
     yt_frmts = [('https://youtu.be/0L1uM_18TTA','https://youtu.be/'),
@@ -356,19 +355,25 @@ def test_split_url():
                 ('http://www.youtube.com/watch?feature=player_embedded&v=0L1uM_18TTA',
                  'http://www.youtube.com/watch?feature=player_embedded&v='),
                 ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=1',
-                 'https://www.youtube.com/watch?v=')
+                 'https://www.youtube.com/watch?v='),
+                ('youtube.com/watch?v=iwGFalTRHDA', 'youtube.com/watch?v=' )
                ]
+    n_urls = len(yt_frmts)
     is_meetup = False
-    print('\nTest youtube:')
+    print('Test youtube...')
     for i, u in enumerate(yt_frmts):
         
         d, idx = split_url(u[0], is_meetup)
-        print(F'\n{i}:\t{d}\n\t{idx}')
         try:
-            assert (d, idx) == (u[1], '0L1uM_18TTA')
+            if i < n_urls - 1:
+                assert (d, idx) == (u[1], '0L1uM_18TTA')
+            else:
+                assert (d, idx) == (u[1], 'iwGFalTRHDA')
         except AssertionError:
-            print(F'\tFailed on: {u[0]}')
+            #print(F'\n{i}:\t{d}; vid::\t{idx}')
+            print(F'{i}:\tFailed on: {u[0]}')
             pass
+    print('All done.')
 
 
 def p_time_test():
