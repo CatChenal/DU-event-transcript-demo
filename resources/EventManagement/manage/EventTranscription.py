@@ -260,8 +260,6 @@ class YTVAudio:
         Wrapper for xml_caption_to_str.
         Initial call: replace_dict=None, so default_replacements
         dict is generated.
-        :param minutes_mark (int,6): for time chuncking of text.
-        :param wrap_width (int,90): wrapping width.
         """
         minutes_mark = self.minutes_mark
         wrap_width = self.wrap_width

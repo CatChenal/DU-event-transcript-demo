@@ -17,7 +17,8 @@
 
 ## Video
 <a href="https://youtu.be/5OL8XoMMOfA?t=1">
-    <img src="images/sklearn_video1.png" width="25%" />
+    <img src="images/sklearn_video1.png"
+         width="25%" />
 </a>
 
 ## Transcript

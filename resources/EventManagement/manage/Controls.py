@@ -249,16 +249,8 @@ def validate_form_entries(entry_dict, tm_obj):
     data_dict = tm_obj.event_dict.copy()
 
     for i, (k, v) in enumerate(entry_dict.items()):
-        #if k != 'extra_references':
-        #    child = accord.children[i].children[1]
-        #else:
-        #    # child inside a vbox
-        #    child = accord.children[i].children[0].children[1]
-
-        #val = child.get_interact_value() or Meta.NA
         # check 1: NA but required -> end
         if v == Meta.NA and exposed[k][-2] == reqd:
-            #t = accord.get_title(i)
             raise ValueError(F'Cannot save: {k} is required.')
             
         if k == 'transcriber':

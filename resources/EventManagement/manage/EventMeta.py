@@ -450,12 +450,13 @@ class TranscriptMeta:
         if self.YT is not None:
             return
         from manage import EventTranscription as TRX
-        self.YT = TRX.YTVAudio(self.year, self.idn,
+        self.YT = TRX.YTVAudio(self.year,
+                               self.idn,
                                self.event_dict['video_url'],
                                self.event_dict['yt_video_id'])
             
             
-    def redo_initial_transcript(self):
+    def redo_initial_transcript(self, replace=True):
         """
         Wrapper to instantiate YT class & (re)do
         initial transcription.
@@ -518,7 +519,7 @@ class TranscriptMeta:
         
         for link in href_html.find_all('a', {'href': True}):
             video_hrefs['href'] = link.get('href')
-            _, vid = split_url(video_hrefs['href'])
+            dom, vid = split_url(video_hrefs['href'])
             video_hrefs['yt_video_id'] = vid
             
             for c in link.find_all('img'):
@@ -630,8 +631,11 @@ class TranscriptMeta:
                     # the transcript text following "## Transcript"
                     break
                 elif hdr == 'Video':
-                    vid = vhrefs['yt_video_id']
-                    event_dict['yt_video_id'] = vid
+                    if vhrefs['yt_video_id'] == '':
+                        dom, vid = split_url(event_dict['video_url'])
+                        event_dict['yt_video_id'] = vid
+                    else:
+                        event_dict['yt_video_id'] = vhrefs['yt_video_id']
                     event_dict['video_href'] = vhrefs['href']
                     event_dict['video_href_src'] = vhrefs['src']
                     event_dict['video_href_alt'] = vhrefs['alt']
