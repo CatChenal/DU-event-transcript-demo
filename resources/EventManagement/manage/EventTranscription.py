@@ -113,8 +113,23 @@ def clean_text(text, TW,
     wrapped = "".join(md_lines)
 
     return wrapped
-    
-    
+
+
+def float_to_stime(duration):
+    """
+    Convert decimal durations into proper srt format.
+    Return a tuple:
+      (formatted time duration, whole minute)
+    Example:
+      float_to_strtime(3.89) -> ('00:00:03,890', 0)
+    """    
+    fraction, whole = math.modf(duration)
+    tm_whole = time.gmtime(whole)
+    time_fmt = time.strftime("%H:%M:%S,", tm_whole)
+    ms = F"{fraction:.3f}".replace("0.", "")
+    return time_fmt + ms, tm_whole.tm_min
+        
+        
 class YTVAudio:
     """
     Class for downloading YouTube Video (YTV) audio and 
@@ -179,23 +194,6 @@ class YTVAudio:
 
         return load_file_contents(xml_fname)
 
-
-    @staticmethod
-    def float_to_stime(d):
-        """
-        Convert decimal durations into proper srt format.
-        Return a tuple:
-          (formatted time duration, whole minute)
-        Example:
-          float_to_strtime(3.89)
-          ('00:00:03,890', 0)
-        """    
-        fraction, whole = math.modf(d)
-        tm_whole = time.gmtime(whole)
-        time_fmt = time.strftime("%H:%M:%S,", tm_whole)
-        ms = F"{fraction:.3f}".replace("0.", "")
-        return time_fmt + ms, tm_whole.tm_min
-        
         
     def xml_caption_to_text(self, xml_captions, 
                             uppercase_list, titlecase_list,
@@ -217,7 +215,7 @@ class YTVAudio:
         root = ET.fromstring(xml_captions, forbid_dtd=True)
         for i, child in enumerate(root):
             # need to keep track of min interval to add a paragraph
-            start, tm_min = self.float_to_stime(float(child.attrib['start']))
+            start, tm_min = float_to_stime(float(child.attrib['start']))
             
             # Not all xml files are lowercase, but clean_text()
             # works with lowercase
@@ -285,35 +283,58 @@ class YTVAudio:
                                                       wrap_width)
             text = self.get_first_line(wrap_width) + raw_transcript
             save_file(trx_fname, text)
-        return #load_file_contents(trx_fname)
-    
+        return
 
-def search_list(list_to_search, search_str):
-    idx = -1
+
+def check_list(list_to_search, new_terms, verbose=True):
+    def search_list(list_to_search, search_str):
+        idx = -1
+        try:
+            idx = list_to_search.index(search_str.lower())
+        except ValueError:
+            pass
+        return idx
+
     if not isinstance(list_to_search, list):
-        raise ValueError("lst_to_search is not a list.")
-    try:
-        idx = list_to_search.index(search_str.lower())
-    except ValueError:
-        pass
-    return idx
-
-
-def check_list(list_to_search, new_terms):
-    if not isinstance(list_to_search, list):
-        raise ValueError("lst_to_search is not a list.")
+        raise ValueError("list_to_search is not a list.")
     if not isinstance(new_terms, list):
         new_terms = list(new_terms)
         
     tot = 0
-    for t in new_terms:
+    reduced = []
+    for i, t in enumerate(new_terms):
+        t = t.lower()
         i = search_list(list_to_search, t)
-        print(t, i)
-        tot += i
-    return tot
+        if i == -1:
+            reduced.append(t)
+            tot += 1
+            found = '<not found>'
+        else:
+            found = '<found>'
+        if verbose:
+            print('\t', t, found)
+
+    if tot == 0:
+        msg = '#### All found. Nothing to add.'
+    else:
+        msg = "#### Next, __run__: `TRX.update_substitution_file` with: "
+        msg += " `which`=<one of ['names','people','places','upper']>, "
+        if tot == len(new_terms):
+            msg += " `user_list`=\<list before check\>)"
+        else:
+            msg += " `user_list`=\<reduced list\>)"
+    
+    if verbose:
+        display(Markdown(msg))
+        return tot, reduced
+    else:
+        return tot, reduced, msg
 
 
-def check_corrections(corrections_dict, new_tuples):
+def check_corrections(corrections_dict, new_tuples, verbose=True):
+    """
+    Return total not found, reduced list [, msg if not verbose].
+    """
     if not isinstance(corrections_dict, dict):
         raise ValueError("corrections_dict is not a dict.")
     if not isinstance(new_tuples, list):
@@ -321,27 +342,50 @@ def check_corrections(corrections_dict, new_tuples):
     if not isinstance(new_tuples[0], tuple):
         raise ValueError("new_tuples is not a list of tuples.")    
     tot = 0
+    reduced = []
     for i, t in enumerate(new_tuples):
+        t = (t[0].lower(), t[1])
         o = corrections_dict.get(t[0], -1)
-        print(i, t, o)
         if o == -1:
-            tot -= 1
-    return tot
+            found = '<not found>'
+            reduced.append(t)
+            tot += 1
+        else:
+            if o != t[1]:
+                found = F'<different val>: existing: {o}'
+            else:
+                found = o
+        if verbose:
+            print(i, t, found)
+
+    if tot == len(new_tuples):
+        msg = '#### Next, __run__: `: TRX.add_corrections(<list before check>)`'
+    elif tot == 0:
+        msg = '#### All found. Nothing to add.'
+    else:
+        msg = '#### Next, __run__: `: TRX.add_corrections(<reduced list>)`'
+    if verbose:
+        display(Markdown(msg))
+        return tot, reduced
+    else:
+        return tot, reduced, msg
 
 
 def add_corrections(new_tuples):
     """
     Update csv file & return updated dict.
+    TODO: check if key exists:: same value?
     """
     if not isinstance(new_tuples, list):
         raise ValueError("new_tuples is not a list.")
     if not isinstance(new_tuples[0], tuple):
         raise ValueError("new_tuples is not a list of tuples.")
-    df = readcsv(corrections_file)
-    imax = df.index.argmax() + 1
-    for i, t in enumerate(new_tuples):
-        df.loc[imax+i] = [t[0], t[1]]
-    df.to_csv(corrections_file)
+    if new_tuples:
+        df = readcsv(corrections_file)
+        imax = df.index.argmax() + 1
+        for i, t in enumerate(new_tuples):
+            df.loc[imax+i] = [t[0], t[1]]
+        df.to_csv(corrections_file)
     
     return get_corrections_dict()
 

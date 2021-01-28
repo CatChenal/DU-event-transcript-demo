@@ -9,13 +9,11 @@
 - Transcriber:  ?
 
 ## Video
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=BxIoQ0gsxzA" target="_blank">
-    <img src="" 
-         alt="Data Science and Machine Learning at Scale" 
-         width="25%" />
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=MHAjCcBfT_A" target="_blank">
+  <img src="http://img.youtube.com/vi/MHAjCcBfT_A/0.jpg"
+       alt="Data Science and Machine Learning at Scale" width="50%" />
 </a>
-
+       
 ## Transcript
 
 okay

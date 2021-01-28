@@ -2,7 +2,6 @@
 # Utils.py
 # Programmer: Cat Chenal
 #
-import os # pathlib has no remove()
 from pathlib import Path
 import json
 from warnings import warn
@@ -38,20 +37,41 @@ def get_subfolder(subfolder_name, parent_dir=None):
     return p
 
 
+def get_id_from_YT_url0(url):
+    """
+    previous fn
+    """
+    import re
+    
+    regex = r"(?:(?![/?vt=_])([0-9A-Z0-9_-].*))"
+    match = re.search(regex, url)
+    if match is None:
+        return ''
+
+    e = None
+    found = url[match.start():]
+    if '?' in found:
+        e = found.index('?')
+    elif '&' in found:
+        e = found.index('&')
+    idx = found if e is None else found[:e]
+    return idx
+
+
 def get_id_from_YT_url(url):
+    """
+    Regex source: 
+    https://stackoverflow.com/questions/42440678/
+    regular-expression-for-youtube-video-id
+    """
     import re
     
     vid = ''
-    regex = """
-    (?:(?:youtube|youtu)(?:(?:\.com|\.be)\/)(?:embed\/)?(?:watch\?)?
-    (?:feature=player_embedded)?&?(?:v=)?
-    # named group here, vid:
-    (?P<vid>[0-z]{11}|[0-z]{4}(?:\-|\_)[0-z]{4}|.(?:\-|\_)[0-z]{9}))
-    """
-    rc = re.compile(regex,re.VERBOSE)
+    regex = "(?:youtube(?:-nocookie)?\.com|youtu\.be).*[=/]([-\\w]{11})(?:\\?|=|&|$)"
+    rc = re.compile(regex)
     matches = rc.search(url)
     if matches:
-        vid = matches.groupdict()['vid']
+        vid = matches.groups()[0]
     return vid
 
 
@@ -128,12 +148,11 @@ def save_file(filepath, s, ext=None, replace=True):
     
     if replace:
         if outfile.exists():
-            os.remove(outfile)
+            outfile.unlink()
             
     if not outfile.exists():
         if to_json:
             with open(outfile, 'w') as f:
-                #json.dumps(s, f)
                 f.write(json.dumps(s))
         else:
             with open(outfile, 'w') as f:
@@ -344,19 +363,24 @@ def test_split_url():
     print(F'Test meetup...')
     assert (d, idx) == (dom, '271116695')
     
-    yt_frmts = [('https://youtu.be/0L1uM_18TTA','https://youtu.be/'),
-                ('https://youtu.be/0L1uM_18TTA?t=1', 'https://youtu.be/'),
-                ('https://www.youtube.com/watch?v=0L1uM_18TTA', 
-                 'https://www.youtube.com/watch?v='),
+    yt_frmts = [('https://youtu.be/0L1uM_18TTA','0L1uM_18TTA'),
+                ('https://youtu.be/0L1uM_18TTA?t=1','0L1uM_18TTA'),
+                ('https://www.youtube.com/watch?v=0L1uM_18TTA',
+                 '0L1uM_18TTA'),
                 ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be',
-                 'https://www.youtube.com/watch?v='),
+                 '0L1uM_18TTA'),
                 ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=2m5s',
-                 'https://www.youtube.com/watch?v='),
+                 '0L1uM_18TTA'),
                 ('http://www.youtube.com/watch?feature=player_embedded&v=0L1uM_18TTA',
-                 'http://www.youtube.com/watch?feature=player_embedded&v='),
+                 '0L1uM_18TTA'),
                 ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=1',
-                 'https://www.youtube.com/watch?v='),
-                ('youtube.com/watch?v=iwGFalTRHDA', 'youtube.com/watch?v=' )
+                 '0L1uM_18TTA'),
+                ('youtube.com/watch?v=iwGFalTRHDA',
+                 'iwGFalTRHDA'),
+                ('http://www.youtube.com/watch?feature=player_embedded&v=Pkg-DKkObKs',
+                 'Pkg-DKkObKs'),
+                ('http://www.youtube.com/watch?feature=player_embedded&v=TVe-uT_So6c',
+                 'TVe-uT_So6c'),
                ]
     n_urls = len(yt_frmts)
     is_meetup = False
@@ -365,13 +389,10 @@ def test_split_url():
         
         d, idx = split_url(u[0], is_meetup)
         try:
-            if i < n_urls - 1:
-                assert (d, idx) == (u[1], '0L1uM_18TTA')
-            else:
-                assert (d, idx) == (u[1], 'iwGFalTRHDA')
+            assert idx == u[1]
         except AssertionError:
             #print(F'\n{i}:\t{d}; vid::\t{idx}')
-            print(F'{i}:\tFailed on: {u[0]}')
+            print(F'{i}:\tFailed on: {u[0]} with: {idx}')
             pass
     print('All done.')
 

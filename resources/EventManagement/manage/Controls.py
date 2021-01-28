@@ -529,7 +529,7 @@ class PageControls:
             except:
                 print("Error loading!")
                 
-
+# .......................................................................
 def get_app_hdr():
     style = "text-align:center;padding:5px;background:#c2d3ef;"
     style += "color:#ffffff;font-size:3em;"
@@ -542,11 +542,14 @@ def get_app_hdr():
 class AppControls:
     def __init__(self):
         self.actions = OrderedDict([('Add an event',
-                                     ['Enter Info','Validate','Save','Show Readme', 'Show File']),
+                                     ['Enter Info','Validate','Save',
+                                      'Show Readme', 'Show File']),
                                     ('Modify an event',
-                                     ['Modify Event','Validate','Save','Show Readme', 'Show File']),
+                                     ['Modify Event','Validate','Save',
+                                      'Show Readme', 'Show File']),
                                     ('Edit a transcript',
-                                     ['Edit Transcript','Save','Show Readme', 'Show File'])
+                                     ['Edit Transcript','Save',
+                                      'Show Readme', 'Show File'])
                                    ])
         
         self.PC = None # Controls.PageControl instance
@@ -567,8 +570,7 @@ class AppControls:
                              (self.center, 'selected_index'))
         
         # Removed header: no 'gui shifting' w/o it. ??
-        self.app = ipw.AppLayout(header=None,
-                                 #self.get_app_hdr(),
+        self.app = ipw.AppLayout(header=None, # was get_app_hdr(),
                                  left_sidebar=self.left_sidebar,
                                  center=self.center,
                                  right_sidebar=self.info_out,

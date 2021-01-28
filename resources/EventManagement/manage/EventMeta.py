@@ -162,7 +162,8 @@ def get_table_info(main_readme):
     """
     readme_text = get_file_lines(main_readme)
     
-    # Delimiters of Markdown table (in NEW readme):
+    # Delimiters of Markdown table
+    # (must match those in NEW readme):
     TBL0 = '<!-- main_tbl_start -->'
     TBL1 = '<!-- main_tbl_end -->'
     
@@ -250,7 +251,7 @@ class TranscriptMeta:
         
         self.tbl_info = df_from_readme_tbl(self.readme)
         self.df, self.tbl_delims = self.tbl_info
-        #self.empty_lastrow, 
+        # rm: self.empty_lastrow, 
         self.row_offset = 2 #if self.empty_lastrow else 2
         
         self.TPL = HDR_TPL
@@ -264,9 +265,9 @@ class TranscriptMeta:
             self.idn = idn_frmt(idn)
             self.event_dict = self.parse_md()
             
-        # TRX.YTVAudio class
+        # TRX.YTVAudio class:
         self.YT = None
-        # To override defaults in redo_initial_transcript
+        # To override defaults in redo_initial_transcript:
         self.new_minutes_mark = None
         self.new_wrap_width = None
         
@@ -322,8 +323,7 @@ class TranscriptMeta:
         # Update dict with defaults:
         new_dict['year'] = self.year
         
-        last_idx, N = self.last_of_yr_info()  
-        #new = self.df.index.argmax() + self.row_offset
+        last_idx, N = self.last_of_yr_info()
         self.idn = idn_frmt(int(N) + 1)
         new_dict['idn'] = self.idn
         new_dict['transcriber'] = '?'
@@ -350,7 +350,7 @@ class TranscriptMeta:
         if ',' in presenter:
             # retrieve first names (up to 2):
             names = [n.split() for n in presenter.split(',')[:2]]
-            # first names only if multi
+            # if multi, use first names only
             pres_first, pres_last = names[0][0], names[1][0]
         else:
             pres_first, pres_last = presenter.split()
@@ -519,7 +519,7 @@ class TranscriptMeta:
         
         for link in href_html.find_all('a', {'href': True}):
             video_hrefs['href'] = link.get('href')
-            dom, vid = split_url(video_hrefs['href'])
+            _, vid = split_url(video_hrefs['href'])
             video_hrefs['yt_video_id'] = vid
             
             for c in link.find_all('img'):
@@ -534,7 +534,7 @@ class TranscriptMeta:
  
             return video_hrefs
 
-
+    
     @staticmethod
     def insertion_idx(text):
         v1 = text.find("## Transcript")
@@ -632,10 +632,11 @@ class TranscriptMeta:
                     break
                 elif hdr == 'Video':
                     if vhrefs['yt_video_id'] == '':
-                        dom, vid = split_url(event_dict['video_url'])
+                        _, vid = split_url(event_dict['video_url'])
                         event_dict['yt_video_id'] = vid
                     else:
                         event_dict['yt_video_id'] = vhrefs['yt_video_id']
+                    vid = event_dict['yt_video_id']
                     event_dict['video_href'] = vhrefs['href']
                     event_dict['video_href_src'] = vhrefs['src']
                     event_dict['video_href_alt'] = vhrefs['alt']
