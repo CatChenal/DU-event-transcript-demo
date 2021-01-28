@@ -35,7 +35,7 @@ names_file = Meta.DIR_DATA.joinpath('title_names.csv')
 places_file = Meta.DIR_DATA.joinpath('title_places.csv')
 # List of terms (e.g. acronyms) for uppercasing:
 upper_file = Meta.DIR_DATA.joinpath('upper_terms.csv')
-# Replacement pairs: from(lowercase), to; for special str 
+# Replacement pairs: (from, to); for special str 
 # & those mangled by Google's autocaptioning:
 corrections_file = Meta.DIR_DATA.joinpath('corrections.csv')
 
@@ -317,7 +317,7 @@ def check_list(list_to_search, new_terms, verbose=True):
     if tot == 0:
         msg = '#### All found. Nothing to add.'
     else:
-        msg = "#### Next, __run__: `TRX.update_substitution_file` with: "
+        msg = "#### Next, __run__: `TRX.update_conversion_file` with: "
         msg += " `which`=<one of ['names','people','places','upper']>, "
         if tot == len(new_terms):
             msg += " `user_list`=\<list before check\>)"
@@ -397,10 +397,10 @@ substitutions = dict([('names',names_file),
                       ('corrections', corrections_file)])
 
 
-def update_substitution_file(which=None, user_list=None, 
-                             op='add'):
+def update_conversion_file(which=None, user_list=None, 
+                           op='add'):
     """
-    Update one of the 4 substitutions csv files:
+    Update one of the 4 conversions csv files:
     For titlecasing: title_names.csv,
                      title_people.csv,
                      title_places.csv;
@@ -409,10 +409,10 @@ def update_substitution_file(which=None, user_list=None,
     :param user_list (list): list of terms to add or remove.
     :param op (str): either 'add' or 'remove'.
     Call example:
-    update_substitution_file(which='upper',user_list=['nlp','ner'])
+    update_conversion_file(which='upper',user_list=['nlp','ner'])
     """
     if which is None or user_list is None:
-        msg = "EventTranscription.update_substitution_file:: "
+        msg = "EventTranscription.update_conversion_file:: "
         msg += "No parameters."
         warn(msg)
         return
