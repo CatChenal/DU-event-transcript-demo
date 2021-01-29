@@ -327,7 +327,7 @@ class PageControls:
                                        disabled=True)
             self.btn_load.on_click(self.load_btn_click)
             
-            # Put selection controls into grid 'template':
+            # Put selection controls into gridbox:
             self.sel_hdr_grid = self.get_sel_hdr_grid()
         
             if self.page_idx == 1:
@@ -339,9 +339,11 @@ class PageControls:
                 # for get_selection_hdr():
                 self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
                                                  value='Audio')
-                self.transcriber_txt = ipw.Text(value='? (transcriber)')
+                self.transcriber_txt = ipw.Text(value='? (transcriber)',
+                                                description='You?')
                 self.status_sel = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
+                
                 lo_ta = ipw.Layout(display='flex',
                                    flex_flow='column',
                                    width='98%', height='500px')
@@ -352,7 +354,7 @@ class PageControls:
             # start page w/selection controls + 1 empty vbx:
             with self.idn_sel_out:
                 print('< File year/File name >')
-            # prepped for load btn outcome:
+            # prepped for load btn product:
             self.page = ipw.VBox([self.sel_hdr_grid,
                                   ipw.VBox([])],
                                  layout=lo_page)
@@ -379,24 +381,27 @@ class PageControls:
         """
         if self.page_idx == 0:
             return
-        #lo_sel_vbx = ipw.Layout(justify_content='space-between')
-        #                        margin='0px 0px 2px 30px')
-        grid = ipw.GridspecLayout(2, 4) #,layout=lo_sel_vbx)
-        lo_btn_vbx = ipw.Layout(flex_flow='column',
-                                justify_content='space-between')
-        
-        grid[0, 0:] = self.get_sel_banner()
-        
-        #if self.page_idx == 1:
-        grid[1, 0:3] = ipw.HBox([])
-        #else:
-        #    grid[1, 0:2] = ipw.HBox([])
-        #    #grid[1, 1] = ipw.VBox([]) 
-        #    grid[1, 2] = ipw.VBox([])#, layout=lo_btn_vbx)
-        
-        grid[1, 3] = ipw.VBox([self.btn_load,
-                               self.load_btn_out],
-                              layout=lo_btn_vbx)
+
+        header = self.get_sel_banner()
+        main = ipw.HBox(children=[],
+                        layout=ipw.Layout(width='auto',
+                                          grid_area='main'))
+        sidebar = ipw.VBox(children=[],
+                           layout=ipw.Layout(width='auto',
+                                             grid_area='sidebar'))
+        footer  = ipw.HBox([],
+                           layout=ipw.Layout(width='auto',
+                                             grid_area='footer'))
+
+        lo_grid = ipw.Layout(grid_template_rows='auto auto auto',
+                             grid_template_columns='1fr, 1fr, 1fr', 
+                             grid_template_areas= '''
+                                "header header header"
+                                "main main sidebar"
+                                "footer footer footer"
+                                ''')
+        grid = ipw.GridBox(children=[header, main, sidebar, footer],
+                           layout=lo_grid) 
         return grid
 
 
@@ -404,26 +409,29 @@ class PageControls:
         """Populate .sel_hdr_grid."""
         if self.page_idx == 0:
             return
+        
+        kids_sidebar = [self.btn_load, self.load_btn_out]
         if self.page_idx == 1:
-            # 1 hbx (+ trailing vbx for btn)
-            self.sel_hdr_grid[1, 0:2].children = [self.yr_sel, 
-                                                  self.idn_sel, 
-                                                  self.idn_sel_out]
+            kids_main = [self.yr_sel, self.idn_sel, self.idn_sel_out]
+            #kids_sidebar = [btn_load, btn_load_out]
         else:
-            #hbx(yr | idn), vbx(idn_out| av_radio),vbx(transcriber|status)
-            #vx = ipw.VBox([self.idn_sel_out, self.av_radio])
-            self.sel_hdr_grid[1, 0:3].children = [self.yr_sel,
-                                                  self.idn_sel,
-                                                  ipw.VBox([self.idn_sel_out,
-                                                            self.av_radio]),
-                                                  ipw.VBox([self.transcriber_txt,
-                                                            self.status_sel])]
-            #self.sel_hdr_grid[1, 1].children = [self.idn_sel_out,
-            #                                    self.av_radio]
-            #self.sel_hdr_grid[1, 2].children = [self.transcriber_txt,
-            #                                    self.status_sel]
+            kids_main = [self.yr_sel, self.idn_sel,
+                         ipw.VBox([self.idn_sel_out, self.av_radio]),
+                         ipw.VBox([self.transcriber_txt, self.status_sel])]
+            #kids_sidebar = [btn_load, btn_load_out]
+            # TODO: 
+            # Add btn to load controls in footer to update conversion files:
+            # kids_sidebar = [btn_load, btn_load_out,
+            #                 ipw.VBox(children=[btn_conversions,
+            #                                    btn_conversions_out])]
+            # btn_conversions.on_click - > populate footer with upd wgts:
+            # kids = [ sel_kind, html_info, txt_input, btn_update, btn_update_out ]
+            # grid.children[-1].children = kids
+        
+        self.sel_hdr_grid.children[1].children = kids_main
+        self.sel_hdr_grid.children[2].children = kids_sidebar
 
-    
+        
     def obs_yr_sel(self, change):
         """Observe fn for year selection box."""
         yr = change['owner'].value
