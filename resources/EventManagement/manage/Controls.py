@@ -5,7 +5,9 @@
 from pathlib import Path
 from IPython.display import Markdown
 import ipywidgets as ipw
-from collections import OrderedDict
+from functools import partial
+from collections import OrderedDict, Counter
+#import re
 
 from manage import EventMeta as Meta, Utils as UTL
 
@@ -131,8 +133,8 @@ def btn_togl_extra_refs_example():
 
 def wgtbox_from_kv(k, fld_val):
     """
-    Return an ipw Box widget according to param `fld_val`, which is the
-    value of k key from the dict returned by `get_new_input_flds()` 
+    Return a Box widget according to param `fld_val`, which is the
+    value of key k from the dict returned by `get_new_input_flds()` 
     (or from any other dict with same types).
     :param fld_val (list, len=4): [<wiget type>,<placeholder>,<info>,<value>]
     """
@@ -269,6 +271,19 @@ def validate_form_entries(entry_dict, tm_obj):
 # ..............................................................................
 status_opts = [s.value for s in Meta.TrStatus][:-1]
 
+def get_info_banner(page_idx):
+    """Page informational header."""
+    if page_idx == 0:
+        sel_banner = '<H3>Provide the Event related data.</H3>'
+    elif page_idx == 1:
+        sel_banner = '<H3>Select the Event Year and Id.</H3>'
+    else:
+        sel_banner = '<H3>Select the Event Year, Id, AV player '
+        sel_banner += '(and if need be, update the Transcriber'
+        sel_banner += ' & the Status before saving!).</H3>'
+    return ipw.HTML(value=sel_banner)
+
+
 class PageControls:
     def __init__(self, page_idx, status_opts=status_opts):
         if page_idx not in [0,1,2]:
@@ -299,7 +314,7 @@ class PageControls:
             else:
                 user_dict = get_new_input_flds()
             entry_group = get_entry_accordion(user_dict)
-            self.page = ipw.VBox([self.get_sel_banner(),
+            self.page = ipw.VBox([get_info_banner(0),
                                   ipw.VBox([entry_group])],
                                  layout=lo_page)
             setattr(self.page, 'user_dict', user_dict)
@@ -359,19 +374,6 @@ class PageControls:
                                   ipw.VBox([])],
                                  layout=lo_page)
             setattr(self.page, 'user_dict', None)
-            
-       
-    def get_sel_banner(self):
-        """Page informational header."""
-        if self.page_idx == 0:
-            sel_banner = '<H3>Provide the Event related data.</H3>'
-        elif self.page_idx == 1:
-            sel_banner = '<H3>Select the Event Year and Id.</H3>'
-        else:
-            sel_banner = '<H3>Select the Event Year, Id, AV player '
-            sel_banner += '(and if need be, update the Transcriber'
-            sel_banner += ' & the Status before saving!).</H3>'
-        return ipw.HTML(value=sel_banner)
     
     
     def get_sel_hdr_grid(self):
@@ -382,7 +384,7 @@ class PageControls:
         if self.page_idx == 0:
             return
 
-        header = self.get_sel_banner()
+        header = get_info_banner(self.page_idx)
         main = ipw.HBox(children=[],
                         layout=ipw.Layout(width='auto',
                                           grid_area='main'))
@@ -413,20 +415,10 @@ class PageControls:
         kids_sidebar = [self.btn_load, self.load_btn_out]
         if self.page_idx == 1:
             kids_main = [self.yr_sel, self.idn_sel, self.idn_sel_out]
-            #kids_sidebar = [btn_load, btn_load_out]
         else:
             kids_main = [self.yr_sel, self.idn_sel,
                          ipw.VBox([self.idn_sel_out, self.av_radio]),
                          ipw.VBox([self.transcriber_txt, self.status_sel])]
-            #kids_sidebar = [btn_load, btn_load_out]
-            # TODO: 
-            # Add btn to load controls in footer to update conversion files:
-            # kids_sidebar = [btn_load, btn_load_out,
-            #                 ipw.VBox(children=[btn_conversions,
-            #                                    btn_conversions_out])]
-            # btn_conversions.on_click - > populate footer with upd wgts:
-            # kids = [ sel_kind, html_info, txt_input, btn_update, btn_update_out ]
-            # grid.children[-1].children = kids
         
         self.sel_hdr_grid.children[1].children = kids_main
         self.sel_hdr_grid.children[2].children = kids_sidebar

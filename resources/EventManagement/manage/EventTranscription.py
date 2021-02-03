@@ -371,7 +371,7 @@ def check_corrections(corrections_dict, new_tuples, verbose=True):
         return tot, reduced, msg
 
 
-def add_corrections(new_tuples):
+def add_corrections(new_tuples, return_dict=True):
     """
     Update csv file & return updated dict.
     TODO: check if key exists:: same value?
@@ -386,12 +386,14 @@ def add_corrections(new_tuples):
         for i, t in enumerate(new_tuples):
             df.loc[imax+i] = [t[0], t[1]]
         df.to_csv(corrections_file)
-    
-    return get_corrections_dict()
+    if return_dict:
+        return get_corrections_dict()
+    else:
+        return
 
 
-substitutions = dict([('names',names_file),
-                      ('people', people_file),
+substitutions = dict([('people', people_file),
+                      ('names',names_file),
                       ('places', places_file),
                       ('upper', upper_file),
                       ('corrections', corrections_file)])
