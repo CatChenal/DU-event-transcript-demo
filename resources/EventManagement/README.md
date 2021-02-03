@@ -3,9 +3,12 @@
 ### Preview: The EDIT page:
 ![EDIT page](./images/Edit_page.png)
 
-This project's goal is to automate portions of the tasks needed to convert the captions of presentation videos in the Data Umbrella [YouTube channel](X).   
-The `pytube` library is used to access the video and its metadata, e.g. audio track(s) and automatically generated captions, which constitute the raw text for the formatted transcripts published by year in the `Transcripts` folder of the [Data Umbrella](https://github.com/data-umbrella) (DU) repo.  
-Towards this aim, the audio of the video is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the re-processed auto-generated video captions.
+This project's goal is to automate portions of the tasks needed to convert the captions of presentation videos in the Data Umbrella [YouTube channel](https://www.youtube.com/channel/UC4mrlyLbUN2q92W7P0u_Nzg).   
+The `pytube` library is used to access the video and its metadata, e.g. audio track and auto-generated captions, which constitute the raw text for the formatted transcripts published by year in the `Transcripts` folder of the [Data Umbrella](https://github.com/data-umbrella) (DU) repo. 
+This automation is implemented via a notebook-base GUI built with the `ipywidgets` library, and can be found in ManageGUI.ipynb in the project notebooks folder (EventManagement/notebooks).
+Towards the aim of completing the most teadious task, i.e. editing the transcript, the audio of the video (or the video), is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the transcript. The GUI EDIT page combines all this functionality in a nifty header. Additionally, this page now allows editors to update the csv files used for propercasing and corrections and to re-process the transcript text.
+
+## Current focus: Add punctuation to the transcript using a transformer model.
 
 # Transcription by DU repo contributors
 
