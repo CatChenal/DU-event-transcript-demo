@@ -3,11 +3,10 @@
 # Programmer: Cat Chenal
 #
 from pathlib import Path
-from IPython.display import Markdown
+from IPython.display import Markdown, HTML
 import ipywidgets as ipw
 from functools import partial
 from collections import OrderedDict, Counter
-#import re
 
 from manage import EventMeta as Meta, Utils as UTL
 
@@ -102,20 +101,20 @@ def get_demo_input_dict():
 # ..............................................................................
 def btn_togl_extra_refs_example():
     """ Show a data entry example for the field 'extra_references'."""
-    lo_togl_btn = ipw.Layout(display='flex',
+    lo_togl = ipw.Layout(display='flex',
                              flex_flow='row',
                              justify_content='center',
                              margin='0px 0px 0px 30px',
                              width='95%')
 
-    lo_togl_out = ipw.Layout(display='flex',
+    lo_out_togl = ipw.Layout(display='flex',
                              flex_flow='column',
                              margin='0px 0px 0px 30px',
                              width='95%')
     
     # Callback for toggle:
     def show_example(togl):
-        with togl_out:
+        with out_togl:
             if togl['new']:  
                 display(Markdown(UTL.EXTRA_REFS_EXAMPLE))
             else:
@@ -125,10 +124,10 @@ def btn_togl_extra_refs_example():
     togl = ipw.ToggleButton(description=desc,
                             button_style='info',
                             icon='eye',
-                            layout=lo_togl_btn)
-    togl_out = ipw.Output(layout=lo_togl_out)
+                            layout=lo_togl)
+    out_togl = ipw.Output(layout=lo_out_togl)
     togl.observe(show_example, 'value')
-    return ipw.VBox([togl, togl_out])
+    return ipw.VBox([togl, out_togl])
 
 
 def wgtbox_from_kv(k, fld_val):
@@ -174,27 +173,29 @@ def wgtbox_from_kv(k, fld_val):
     return w_Box
     
 
-def wgt_Accord(children=None):
+def wgt_Accord(children=None, lo_accord=None):
     """
     Return ipw.Accordion widget with possible children.
     If given, each child is assumed to have a name attribute, which
     is used for titling of the Accordion parent row.
     Children created by wgtbox_from_kv() have a name attribute.
+    :param: lo_accord: ipw.Layout.
     """
-    lo_accord = ipw.Layout(display='flex',
-                           flex_flow='column',
-                           border='solid 1px',
-                           align_items='stretch',
-                           margin='0px 10px 0px 30px',
-                           width='85%')
-
+    if lo_accord is None:
+        lo_accord = ipw.Layout(display='flex',
+                               flex_flow='column',
+                               #border='solid 1px',
+                               align_items='stretch',
+                               margin='0px 10px 0px 30px',
+                               width='85%')
+        
     kids = children or []
     w_acc = ipw.Accordion(children=kids,
                           selected_index=None,
                           layout=lo_accord)
     # get names -> titles
-    for i, n in enumerate([child.name for child in w_acc.children]):
-        w_acc.set_title(i, n)    
+    for i, c in enumerate([child for child in w_acc.children]):
+        w_acc.set_title(i, getattr(c, 'name', ''))    
     return w_acc
 
 
@@ -322,28 +323,28 @@ class PageControls:
             self.initial_transcriber = None
             self.initial_status = None
             
-            lo_idn_sel_out = ipw.Layout(height='20px')
             # output wgts 1st:
-            self.idn_sel_out = ipw.Output(layout=lo_idn_sel_out)
-            self.load_btn_out = ipw.Output(layout=ipw.Layout(height='30px'))
+            self.out_sel_idn = ipw.Output(layout=ipw.Layout(height='30px'))
+            self.out_btn_load = ipw.Output(layout=ipw.Layout(height='30px'))
                 
-            self.yr_sel = ipw.Select(options=self.yrs, value=None,
+            self.sel_yr = ipw.Select(options=self.yrs, value=None,
                                      layout=ipw.Layout(width='55px',
                                                        height='90px'))
-            self.yr_sel.observe(self.obs_yr_sel, 'value')
+            self.sel_yr.observe(self.obs_sel_yr, 'value')
             
-            self.idn_sel = ipw.Select(options=[], value=None,
+            self.sel_idn = ipw.Select(options=[], value=None,
                                       layout=ipw.Layout(width='55px',
                                                         height='90px'))
-            self.idn_sel.observe(self.obs_idn_sel, 'value')
+            self.sel_idn.observe(self.obs_sel_idn, 'value')
             
             self.btn_load = ipw.Button(description='LOAD',
                                        button_style='info',
                                        disabled=True)
-            self.btn_load.on_click(self.load_btn_click)
+            self.btn_load.on_click(self.click_btn_load)
             
             # Put selection controls into gridbox:
-            self.sel_hdr_grid = self.get_sel_hdr_grid()
+            #self.sel_hdr_grid = self.get_sel_hdr_grid()
+            self.sel_hdr_grid = self.get_grid(header_fn=get_info_banner)
         
             if self.page_idx == 1:
                 self.verb = 'modify'
@@ -351,23 +352,47 @@ class PageControls:
                 self.verb = 'edit'
                 # add'l widgets:
                 
-                # for get_selection_hdr():
-                self.av_radio = ipw.RadioButtons(options=['Audio','Video'],
-                                                 value='Audio')
-                self.transcriber_txt = ipw.Text(value='? (transcriber)',
+                # for populating sel_hdr_grid:
+                self.rad_av = ipw.RadioButtons(options=['Audio','Video'],
+                                               value='Audio')
+                self.txt_transcriber = ipw.Text(value='? (transcriber)',
                                                 description='You?')
-                self.status_sel = ipw.Select(options=status_opts, value=None,
+                self.sel_status = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
+                self.txa_editarea = ipw.Textarea(value=None,
+                                                 layout=ipw.Layout(display='flex',
+                                                                   flex_flow='column',
+                                                                   width='98%',
+                                                                   height='500px'))
+                # grid footer controls:
+                #lo_out = ipw.Layout(height='30px')
+                self.out_sel_files = ipw.Output()
+                self.out_btn_update = ipw.Output()
+                self.out_btn_redo = ipw.Output()
                 
-                lo_ta = ipw.Layout(display='flex',
-                                   flex_flow='column',
-                                   width='98%', height='500px')
-                self.editarea = ipw.Textarea(value=None,
-                                             layout=lo_ta)
+                self.btn_update = ipw.Button(description='UPDATE',
+                                        tooltip='Validate & save your changes.',
+                                        button_style='info')
+                self.btn_redo = ipw.Button(description='REPROCESS',
+                                      tooltip='Redo the transcription with the new files.',
+                                      button_style='info',
+                                      #disabled=True
+                                          )
+                self.txt_input = ipw.Text(layout=ipw.Layout(width='420px'))
+                self.sel_files = ipw.widgets.Select(value=None,
+                                                    options=['People','Names',
+                                                             'Places','Upper',
+                                                             'Corrections'])
+                self.sel_files.observe(self.obs_sel_files)
+                self.btn_update.on_click(self.click_btn_update)
+                self.btn_redo.on_click(self.click_btn_redo)
+
+                
+            #self.populate_sel_hdr_grid()
+            self.populate_grid()
             
-            self.populate_sel_hdr_grid()
             # start page w/selection controls + 1 empty vbx:
-            with self.idn_sel_out:
+            with self.out_sel_idn:
                 print('< File year/File name >')
             # prepped for load btn product:
             self.page = ipw.VBox([self.sel_hdr_grid,
@@ -376,85 +401,6 @@ class PageControls:
             setattr(self.page, 'user_dict', None)
     
     
-    def get_sel_hdr_grid(self):
-        """
-        Setup a grid of common widgets common to MODIFY, EDIT.
-        Grid empty boxes to be populated as per .page_idx.
-        """
-        if self.page_idx == 0:
-            return
-
-        header = get_info_banner(self.page_idx)
-        main = ipw.HBox(children=[],
-                        layout=ipw.Layout(width='auto',
-                                          grid_area='main'))
-        sidebar = ipw.VBox(children=[],
-                           layout=ipw.Layout(width='auto',
-                                             grid_area='sidebar'))
-        footer  = ipw.HBox([],
-                           layout=ipw.Layout(width='auto',
-                                             grid_area='footer'))
-
-        lo_grid = ipw.Layout(grid_template_rows='auto auto auto',
-                             grid_template_columns='1fr, 1fr, 1fr', 
-                             grid_template_areas= '''
-                                "header header header"
-                                "main main sidebar"
-                                "footer footer footer"
-                                ''')
-        grid = ipw.GridBox(children=[header, main, sidebar, footer],
-                           layout=lo_grid) 
-        return grid
-
-
-    def populate_sel_hdr_grid(self):
-        """Populate .sel_hdr_grid."""
-        if self.page_idx == 0:
-            return
-        
-        kids_sidebar = [self.btn_load, self.load_btn_out]
-        if self.page_idx == 1:
-            kids_main = [self.yr_sel, self.idn_sel, self.idn_sel_out]
-        else:
-            kids_main = [self.yr_sel, self.idn_sel,
-                         ipw.VBox([self.idn_sel_out, self.av_radio]),
-                         ipw.VBox([self.transcriber_txt, self.status_sel])]
-        
-        self.sel_hdr_grid.children[1].children = kids_main
-        self.sel_hdr_grid.children[2].children = kids_sidebar
-
-        
-    def obs_yr_sel(self, change):
-        """Observe fn for year selection box."""
-        yr = change['owner'].value
-        if self.idn_sel.value is not None:
-            self.idn_sel_out.clear_output()
-        idn_opts = self.df[self.df.year == yr].N.sort_values(ascending=False).values.tolist()
-        #with self.idn_sel.hold_trait_notifications():
-        self.idn_sel.options = idn_opts
-        self.idn_sel.index = None
-
-         
-    def obs_idn_sel(self, change):
-        """Observe fn for idn selection box."""
-        self.idn_sel_out.clear_output()
-        with self.idn_sel_out:
-            if ((self.yr_sel.index is not None) 
-                and (self.idn_sel.index is not None)):
-                
-                msk = (self.df.year==self.yr_sel.value)
-                msk = msk & (self.df.N==self.idn_sel.value)
-                fname = self.df.loc[msk].name.values[0]
-                if self.page_idx == 2:
-                    self.transcriber_txt.value = self.df.loc[msk].Transcriber.values[0]
-                    if self.initial_transcriber is None:
-                        self.initial_transcriber = self.transcriber_txt.value
-                self.btn_load.disabled = False
-                print(self.yr_sel.value + '/'+ fname)
-            else:
-                self.btn_load.disabled = True
-                
-
     def download_audio(self):
         if self.TR is None:
             return
@@ -467,15 +413,190 @@ class PageControls:
             self.TR.YT.download_audio()
             self.TR.event_dict['audio_track'] = self.TR.YT.audio_filepath
         return
-         
+
+
+    def get_grid(self, grid_name=None, header_fn=None, exclude=None):
+        """
+        Wrapper to get a starter GridBox with pre-defined areas to
+        obtain, at most, a 3x3 grid.
+        :param: idx: index referencing a caller widget, i.e. tab index.
+        :param: grid_name: Name (attribute) to id the grid
+        :param: exclude: None (default), or header|footer areas to exclude,
+                e.g ['footer']
+        :param: header_fn: Function populating the page header grid area
+                           if any; Takes idx as param: header_fn(idx).
+        """
+        if self.page_idx == 0:
+            return
+
+        def lo_grid_area(a):
+            return ipw.Layout(width='auto', grid_area=a)
+
+        # always included:
+        main = ipw.HBox(children=[],
+                        layout=lo_grid_area('main'))
+        sidebar = ipw.VBox(children=[],
+                           layout=lo_grid_area('sidebar'))
+
+        if exclude is not None:
+            if len(exclude) == 2:
+                # Assume header & footer excluded
+                tpl_areas= '''"main main sidebar"'''
+                kids = [main, sidebar]
+            else:    
+                if 'header' not in exclude:
+                    tpl_areas= '''
+                        "header header header"
+                        "main main sidebar"
+                        '''
+                    if header_fn is None:
+                        header = ipw.HBox(children=[],
+                                          layout=lo_grid_area('header'))
+                    else:
+                        header = header_fn(self.page_idx)
+
+                    kids = [header, main, sidebar]
+
+                if 'footer' not in exclude:
+                    tpl_areas= '''
+                        "main main sidebar"
+                        "footer footer footer"
+                        '''
+                    footer = ipw.HBox(children=[],
+                                      layout=lo_grid_area('footer'))
+                    kids = [main, sidebar, footer]
+        else:
+            tpl_areas= '''
+                "header header header"
+                "main main sidebar"
+                "footer footer footer"
+                '''
+            if header_fn is None:
+                header = ipw.HBox(children=[],
+                                  layout=lo_grid_area('header'))
+            else:
+                header = header_fn(self.page_idx)
+            footer = ipw.HBox(children=[],
+                              layout=lo_grid_area('footer'))            
+            kids = [header, main, sidebar, footer]
+
+        lo_grid = ipw.Layout(grid_template_rows='auto auto auto',
+                             grid_template_columns='1fr, 1fr, 1fr', 
+                             grid_template_areas= tpl_areas)
+        grid = ipw.GridBox(children=kids,
+                           layout=lo_grid)
+        setattr(grid, 'name', grid_name or '')
+
+        return grid
+
+    
+    def get_update_grid(self):
+        """
+        Return a GridBox with controls for file update.
+        """
+        vbx = partial(ipw.VBox,
+              layout=ipw.Layout(display='flex',
+                                flex_flow='column',
+                                align_items='flex-start'))
+        title = 'Update a file for propercasing or corrections | '
+        title += 'Reprocess the transcript'
+        g = self.get_grid(title, exclude=['header', 'footer'])
+        # preset msg:
+        with self.out_sel_files:
+            msg = "<h5>Use this text box to enter your entries:</h5>"
+            display(HTML(msg))
+
+        g.children[0].children = [self.sel_files,
+                                  vbx([self.out_sel_files,
+                                       self.txt_input])]
+        g.children[1].children = [vbx([self.btn_update,
+                                       self.out_btn_update]),
+                                  vbx([self.btn_redo,
+                                       self.out_btn_redo])]
+        return g
+    
+    
+    def populate_grid(self):
+        """
+        Populate GridBox g main, sidebar and footer (if idx==2) areas.
+        """
+        if  self.page_idx == 0:
+            return
+        
+        g = self.sel_hdr_grid.children
+        if self.page_idx == 1:
+            g[1].children = [self.sel_yr, self.sel_idn, self.out_sel_idn]
+            g[2].children = [self.btn_load, self.out_btn_load]
+        else:
+            g[1].children = [self.sel_yr, self.sel_idn,
+                             ipw.VBox([self.out_sel_idn, self.rad_av]),
+                             ipw.VBox([self.txt_transcriber,
+                                       self.sel_status])]
+            g[2].children = [self.btn_load, self.out_btn_load]
+            # load controls in Accordion:
+            lo_accord = ipw.Layout(display='flex',
+                       flex_flow='column',
+                       align_items='stretch',
+                       width='100%'
+                      ) 
+            g[3].children = [wgt_Accord([self.get_update_grid()],
+                                        lo_accord)]
+
+    
+    def obs_sel_files(self, change):
+        """Observe fn for sel_files."""
+        fname = change['owner'].value
+        if fname is None:
+            msg = "<h5>Use this text box to enter your list of entries:</h5>"
+        elif fname == 'Corrections':
+            msg = "<h5>Provide your entries as a list of string tuples, "
+            msg += "e.g.: <code>('&lt;from&gt;', '&lt;to&gt;'), ...</code><br>"
+            msg += "Note: existing keys are not overwritten.</h5>"
+        else:
+            msg = "<h5>Separate your entries with a comma.</h5>"
+        self.out_sel_files.clear_output()
+        with self.out_sel_files:
+            display(HTML(msg))
+
+
+    def obs_sel_yr(self, change):
+        """Observe fn for year selection box."""
+        yr = change['owner'].value
+        idn_opts = self.df[self.df.year == yr].N.sort_values(ascending=False).values.tolist()
+        with self.sel_idn.hold_trait_notifications():
+            if self.sel_idn.index is not None:
+                self.out_sel_idn.clear_output()
+            self.sel_idn.options = idn_opts
+        self.sel_idn.index = None
             
-    def load_btn_click(self, b):
+         
+    def obs_sel_idn(self, change):
+        """Observe fn for idn selection box."""
+        self.out_sel_idn.clear_output()
+        with self.out_sel_idn:
+            if ((self.sel_yr.index is not None) 
+                and (self.sel_idn.index is not None)):
+                
+                msk = (self.df.year==self.sel_yr.value)
+                msk = msk & (self.df.N==self.sel_idn.value)
+                fname = self.df.loc[msk].name.values[0]
+                if self.page_idx == 2:
+                    self.txt_transcriber.value = self.df.loc[msk].Transcriber.values[0]
+                    if self.initial_transcriber is None:
+                        self.initial_transcriber = self.txt_transcriber.value
+                self.btn_load.disabled = False
+                print(self.sel_yr.value + '/'+ fname)
+            else:
+                self.btn_load.disabled = True
+                
+
+    def click_btn_load(self, b):
         """ Load btn on Modify, Edit pages."""
-        self.load_btn_out.clear_output()                        
-        with self.load_btn_out:
+        self.out_btn_load.clear_output()                        
+        with self.out_btn_load:
             try:
-                self.TR = Meta.TranscriptMeta(self.idn_sel.value,
-                                              self.yr_sel.value)
+                self.TR = Meta.TranscriptMeta(self.sel_idn.value,
+                                              self.sel_yr.value)
                 if self.page_idx == 1:
                     exposed = load_entry_dict(self.TR)
                     self.page.user_dict = exposed
@@ -487,12 +608,12 @@ class PageControls:
                         self.page.children[1].children += (entry_form,)
                     
                 else:       
-                    self.status_sel.disabled = False
+                    self.sel_status.disabled = False
                     status = self.TR.event_dict['status']
                     if status in self.status_opts:
-                        self.status_sel.value = status 
+                        self.sel_status.value = status 
                     else:
-                        self.status_sel.value = self.status_opts[-1]
+                        self.sel_status.value = self.status_opts[-1]
                     if self.initial_status is None:
                         self.initial_status = status
                     
@@ -502,13 +623,13 @@ class PageControls:
                         try:
                             self.download_audio()
                         except:
-                            self.av_radio.value = 'Video'
+                            self.rad_av.value = 'Video'
                             print("Problem downloading audio.")
                             
-                    use_audio = self.av_radio.value == 'Audio'
+                    use_audio = self.rad_av.value == 'Audio'
                     
                     trx_text = self.TR.get_transcript_text()
-                    self.editarea.value = trx_text
+                    self.txa_editarea.value = trx_text
                     
                     with self.page.children[1].hold_trait_notifications():
                         if len(self.page.children[1].children) == 2:
@@ -522,14 +643,203 @@ class PageControls:
                             E = ipw.HTML(value=self.TR.event_dict['video_embed'])
                             self.page.children[1].children += (E,)
 
-                        self.page.children[1].children += (self.editarea,)
+                        self.page.children[1].children += (self.txa_editarea,)
 
                 b.disabled = True
                 print(F"{self.verb.title()} along!")
             except:
                 print("Error loading!")
+
+
+    def click_btn_update(self, b):
+        self.out_btn_update.clear_output()
+        # footer :: HBox > Accordion > GridBox
+        footer_g = self.sel_hdr_grid.children[3].children[0].children[0]
+        #footer_g = page_hdr_grid.children[3].children[0].children[0]
+        v_file = footer_g.children[0].children[0].value
+        v_entries = footer_g.children[0].children[1].children[1].value or None
+        
+        if v_file is None or v_entries is None:
+            with self.out_btn_update:
+                print('Select a file and provide new entries.')
+            return
+        
+        with self.out_btn_update:
+            print('Validating...')
                 
-# .......................................................................
+        valid, msg = validate_user_list(v_entries, v_file)
+        if valid is None:
+            with self.out_btn_update:
+                print(msg)
+            return
+        
+        if v_file == 'Corrections':
+            corrections = TRX.get_corrections_dict()
+            tot, reduced_list, msg = TRX.check_corrections(corrections,
+                                                           valid,
+                                                           verbose=False)
+            if tot:
+                if 'reduced' in msg:
+                    if reduced_list:
+                        TRX.add_corrections(reduced_list, return_dict=False)
+                else:
+                    TRX.add_corrections(valid, return_dict=False)
+            else:
+                with self.out_btn_update:
+                    print(msg)
+                return
+        else:
+            
+            v_file = v_file.lower()
+            fname = TRX.substitutions[v_file]
+            current_list = TRX.readcsv(fname)[v_file].tolist()
+
+            tot, reduced_list = TRX.check_list(current_list, valid,
+                                               verbose=False)
+            if tot:
+                if 'reduced' in msg:
+                    if reduced_list:
+                        TRX.update_conversion_file(v_file, reduced_list)
+                else:
+                    TRX.update_conversion_file(v_file, valid)
+            else:
+                with self.out_btn_update:
+                    print(msg)
+
+                with self.out_btn_update:
+                    print('Doing fake update...')
+                update_ok = True
+                if update_ok:
+                    self.btn_redo.disabled = False
+                else:
+                    with self.out_btn_update:
+                        print('Coud not fake update!')
+
+
+    def click_btn_redo(self, b):
+        self.out_btn_redo.clear_output()
+        ok = False
+        if ((self.sel_yr.index is None) 
+                and (self.sel_idn.index is None)):
+            msg = 'Select year and transcript id first!'
+        else:
+            if self.TR is None:
+                self.TR = Meta.TranscriptMeta(self.sel_idn.value,
+                                              self.sel_yr.value)
+            try:
+                self.TR.redo_initial_transcript()
+                self.TR.insert_md_transcript()
+                ok = True
+            except:
+                msg = 'Could not redo.'
+        if ok:
+            msg = 'Done! Collapse this section & LOAD.'
+        with self.out_btn_redo:
+            print(msg)
+
+
+# .........................................................
+def validate_user_list(entries, file, verbose=False):
+    """
+    Validate gui entries for propercasing or corrections.
+    Return a list of validated entries (None or list) along 
+    with a message if verbose=False (default).
+    """
+    def results(msg, data=None, verbose=None):
+        if verbose:
+            print(msg)
+            return data
+        else:
+            return data, msg
+        
+    entries = entries.strip()
+    if not entries:
+        msg = "No content!"
+        return results(msg)
+
+    if entries[-1] == ',':
+        entries = entries[:-1]
+    ii = entries.find('(') + 1 # 0 if find returns -1
+    jj = entries.find(')') + 1
+    
+    validated = []
+    
+    if file == 'Corrections':
+        if not ii and not jj:
+            msg = "Missing parentheses: tuples needed!"
+            return results(msg)
+
+        cnt = Counter(entries)
+        if cnt['('] != cnt[')']:
+            if cnt['('] > cnt[')']:
+                msg = "Missing a closing parenthesis!"
+            else:
+                msg = "Missing an opening parenthesis!"
+            return results(msg)
+        
+        p = entries.partition(')')
+        while p[0]:
+            p0 = p[0][1:].split(',')
+            try:
+                str_from = eval(p0[0].strip().lower())
+            except:
+                str_from = p0[0].strip().lower()
+            try:
+                str_to = eval(p0[1].strip())
+            except:
+                str_to = p0[1].strip()
+                                
+            validated.append((str_from, str_to))
+            if p[2] != '':
+                p2 = p[2][1:].strip()
+                p = p2.partition(')')
+            else:
+                break
+        if not validated:
+            msg = "Could not parse tuples!"
+    else:
+        if ii or jj:
+            msg = "Parentheses detected: not for propercasing!"
+            return results(msg)
+        
+        for e in entries.split(','):
+            try:
+                validated.append(eval(e.strip().lower()))
+            except:
+                validated.append(e.strip().lower())
+
+        if not validated:
+            msg = "Could not parse list!"
+            
+    if not validated:
+        return results(msg)
+
+    return validated, 'OK'
+        
+
+def test_validate_user_list(verbose=False):
+    corr_val1 = "('dummy', 'Entry')"
+    corr_val2 = "('dummy', 'Entry'), ('foo', 'list'), "
+    lst_val1 = "'dummy', 'Entry'"
+    lst_val2 = "'dummy', 'Entry', 'foo', 'bar', "
+    lst_val3 = "'cat chenal', 'will tell', "
+
+    which = ['Corrections','Corrections','Names','Places','People',]
+    for i,data in enumerate([corr_val1, corr_val2,lst_val1,lst_val2,lst_val3]):
+        out, msg = validate_user_list(data, which[i], verbose)
+        print(data, which, ':\n\t', msg, out)
+        assert msg == 'OK'
+        
+    #new tests:
+    out, msg = validate_user_list(lst_val1, 'Corrections', verbose)
+    print('\nList instead of tuples for Corrections.\n', lst_val1, ':\n\t', msg, out)
+    assert out is None
+    out, msg = validate_user_list(corr_val1, 'Upper', verbose)
+    print('Tuple instead of list for Upper.\n',corr_val1, ':\n\t', msg, out) 
+    assert out is None
+    
+
+# APP GUI ...............................................................
 def get_app_hdr():
     style = "text-align:center;padding:5px;background:#c2d3ef;"
     style += "color:#ffffff;font-size:3em;"
@@ -557,23 +867,17 @@ class AppControls:
         
         self.left_sidebar = self.get_left()
         self.left_sidebar.observe(self.menu_selection, 'value')
-        
-        lo_info_out = ipw.Layout(display='flex',
-                                 flex_flow='column',
-                                 margin='0px 0px 0px 30px',
-                                 width='98%')
-        self.info_out = ipw.Output()
-        
+        self.out_info = ipw.Output()
         self.center = self.get_center()
         self.center.observe(self.info_display, 'selected_index')
         self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
                              (self.center, 'selected_index'))
         
         # Removed header: no 'gui shifting' w/o it. ??
-        self.app = ipw.AppLayout(header=None, # was get_app_hdr(),
+        self.app = ipw.AppLayout(header=None, # was get_app_hdr,
                                  left_sidebar=self.left_sidebar,
                                  center=self.center,
-                                 right_sidebar=self.info_out,
+                                 right_sidebar=self.out_info,
                                  footer=None,
                                  pane_widths=[1, 5, 1],
                                  pane_heights=[1, 3, 1]
@@ -632,7 +936,7 @@ class AppControls:
     def info_display(self, change):
         """App header panel: info about selected op.
         """
-        self.info_out.clear_output()
+        self.out_info.clear_output()
         wgt = change['owner']
         # Link tab selection index with info panel:
         if wgt.selected_index is None:
@@ -649,7 +953,7 @@ class AppControls:
             self.left_sidebar.selected_index = t
             self.left_sidebar.children[t].children[0].index = None
 
-            with self.info_out:
+            with self.out_info:
                 display(info_val)
    
 
