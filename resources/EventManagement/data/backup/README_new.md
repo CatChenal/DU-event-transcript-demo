@@ -33,14 +33,12 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 18| Thomas Fan| [Streamlit for Data Science](2020/18-thomas-fan-streamlit.md)| ?| Not yet processed (editor needed)| | 
 | 19| Matti Picus| [Contributing to NumPy](2020/19-matti-picus-numpy.md)| ?| Not yet processed (editor needed)| | 
 | 20| Marco Gorelli| [Contributing to pandas](2020/20-marco-gorelli-pandas.md)| ?| Not yet processed (editor needed)| | 
-| 01| Cat Chenal| [Demo Presentation Title](2021/01-cat-chenal-foo-foo.md)| ?| Not yet processed (editor needed)| Dummy event| 
+| 01| Nick Janetakis| [Creating a Command Line Focused Development Environment](2021/01-nick-janetakis-command.md)| ?| Not yet processed (editor needed)| | 
 | 02| Cat Chenal, Sing Song| [Better Demo Presentation Ii](2021/02-cat-sing-demo-foo.md)| Samtoo Me| Partial (w.i.p.)| Test for existing update from EventMeta.class| 
 | 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
-| 04| Cat Chenal, Sing Song| [Brand New Year!](2021/04-cat-sing-demo-demo.md)| Me Too| Not yet processed (editor needed)| Test, 04 dummy transcript| 
-| 05| Cat Chenal| [My New Presentation](2021/05-cat-chenal-some-other-demo.md)| ?| Not yet processed (editor needed)| testing fname change| 
-| 06| Cat Chenal| [Talk About Demo](2021/06-cat-chenal-foo-demo.md)| Cat Chenal| Not yet processed (editor needed)| demo dummy event| 
-| 07| Cat Chenal| [New Demo Presentation](2021/07-cat-chenal-new-demo.md)| ?| Not yet processed (editor needed)| New dummy event| 
+| 04| Cat Chenal, Reshama Shaik| [My Demo Presentation](2021/04-cat-reshama-demo-foo.md)| ?| Not yet processed (editor needed)| Dummy event 2| 
 <!-- main_tbl_end -->
+<!-- Note: There should not be any empty table row before the end of table marker above.-->
 
 ## NEW!
 ### Use the `./resources/EventManagement` [project](./resources/EventManagement/README.md) to administer or edit the events' transcripts.
