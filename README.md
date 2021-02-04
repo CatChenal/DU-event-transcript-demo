@@ -41,6 +41,28 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 <!-- Note: There should not be any empty table row before the end of table marker above.-->
 
 ## NEW!
-### This is the README file of the event management demo (or dev) project for the Data Umbrella transcript repo. Further details about the implementation and its benefits, i.e. the 'sales points' and specifications of the project, can be found in ./resources/EventManagement/dev_only_docs/README.md and associated files.
+### This is the README file of the event management demo (or dev) project for the Data Umbrella transcript repo. Further details about the implementation and its benefits, i.e. the 'sales points' and specifications of the project, can be found in the [Dev Project README](./resources/EventManagement/dev_only_docs/README.md) and associated files in the `/EventManagement/dev_only_docs` folder. 
+
+### Try this demo:
+- Clone or download this repo.
+- Create or activate an evironment for python 3.7
+- Install the external libraries (requirement.txt):
+```
+pandas
+beautifulsoup4
+ipywidgets
+pytube
+defusedxml
+textwrap
+```
+- Install Jupyter Lab. [(Installation details)](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html).  
+The ipywidgets-based GUI is functional in a Jupyter notebook but will not be optimal as the notebook has a fixed width, which degrades the flexibility afforded by the GUI's EDIT page.
+- Optional, but HIGHLY recommended: [Grammarly browser extension](https://www.grammarly.com). This makes the Editing task much easier!
+- cd to your local `DU-event-transcript-demo` and launch Jupyter Lab:  
+```
+ cd <parent path>/DU-event-transcript-demo
+ jupyter lab
+```
+- In jlab, navigate to `./resources/EventManagement/notebooks` and open `ManageGUI.ipynb`. Start playing!
+
 ### [Project README](./resources/EventManagement/README.md)
-### [Try the GUI!](./resources/EventManagement/notebooks/ManageGUI.ipynb) to administer or edit the events' transcripts.

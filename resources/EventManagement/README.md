@@ -8,8 +8,6 @@ The `pytube` library is used to access the video and its metadata, e.g. audio tr
 This automation is implemented via a notebook-base GUI built with the `ipywidgets` library, and can be found in ManageGUI.ipynb in the project notebooks folder (EventManagement/notebooks).
 Towards the aim of completing the most teadious task, i.e. editing the transcript, the audio of the video (or the video), is save locally so that it can be played, stopped, and restarted at will in a Jupyter notebook during the reviewing of the transcript. The GUI EDIT page combines all this functionality in a nifty header. Additionally, this page now allows editors to update the csv files used for propercasing and corrections and to re-process the transcript text.
 
-## Current focus: Add punctuation to the transcript using a transformer model.
-
 # Transcription by DU repo contributors
 
 Volunteer transcribers indicate their intention to produce the transcript (in part or in whole) by:
@@ -79,6 +77,3 @@ from IPython.display import Markdown
 Markdown(filename=<filepath>)
 ```
 The current implementation does not decode these characters because the files are directly opened with Markdown (as in the above example), either to render the file, or obtain the Mardkown code _post_ rendering (e.g. Markdown(<file>).data.  See [UnicodeEncodeError](https://wiki.python.org/moin/UnicodeEncodeError).  
-
-## TODO:
-[ ] Amend `EventTranscription.add_corrections` to only add new entries
