@@ -19,7 +19,7 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 04| Ali Spittel| [Navigating Your Tech Career](2020/04-ali-spittel-career.md)| Janine| Needs reviewer| | 
 | 05| Andreas Mueller| [Crash Course in Contributing to Scikit-learn](2020/05-andreas-mueller-contributing.md)| Reshama Shaikh| Complete| | 
 | 06| Reshama Shaikh| [Example PR for Scikit-learn](2020/06-reshama-shaikh-sklearn-pr.md)| Reshama Shaikh, Mark| Complete| | 
-| 07| Shailvi Wakhlu| [Fixing Bad Data and Using SQL](2020/07-shailvi-wakhlu-fixing-data.md)| Juanita| Complete| | 
+| 07| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/07-cat-reshama-new-demo.md)| Mae Song| Not yet processed (editor needed)| | 
 | 08| Matt Brems| [Data Science with Missing Data](2020/08-matt-brems-missing-data.md)| Barbara| Needs reviewer| | 
 | 09| Sam Bail| [Intro to Terminal](2020/09-sam-bail-terminal.md)| Isaack| Complete| | 
 | 10| Emily Robinson| [Build a Career in Data Science](2020/10-emily-robinson-career.md)| Kevin| Complete| | 
@@ -33,10 +33,15 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 18| Thomas Fan| [Streamlit for Data Science](2020/18-thomas-fan-streamlit.md)| ?| Not yet processed (editor needed)| | 
 | 19| Matti Picus| [Contributing to NumPy](2020/19-matti-picus-numpy.md)| ?| Not yet processed (editor needed)| | 
 | 20| Marco Gorelli| [Contributing to pandas](2020/20-marco-gorelli-pandas.md)| ?| Not yet processed (editor needed)| | 
+| 21| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2020/21-cat-reshama-audio-demo.md)| Sing Song| Not yet processed (editor needed)| | 
+| 22| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2020/22-cat-reshama-new-demo.md)| Sam Tell| Not yet processed (editor needed)| | 
+| 23| Cat Chenal| [Automating Audio Tanscription.](2020/23-cat-chenal-foo-demo.md)| Bill Yip| Not yet processed (editor needed)| | 
 | 01| Nick Janetakis| [Creating a Command Line Focused Development Environment](2021/01-nick-janetakis-command.md)| ?| Not yet processed (editor needed)| | 
 | 02| Cat Chenal, Sing Song| [Better Demo Presentation Ii](2021/02-cat-sing-demo-foo.md)| Samtoo Me| Partial (w.i.p.)| Test for existing update from EventMeta.class| 
 | 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
 | 04| Cat Chenal, Reshama Shaik| [My Demo Presentation](2021/04-cat-reshama-demo-foo.md)| ?| Not yet processed (editor needed)| Dummy event 2| 
+| 05| Mini Max| [New Demo Presentation](2021/05-mini-max-demo-baz.md)| ?| Not yet processed (editor needed)| Dummy event| 
+| 06| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/06-cat-reshama-better-demo.md)| Mae Song| Not yet processed (editor needed)| | 
 <!-- main_tbl_end -->
 <!-- Note: There should not be any empty table row before the end of table marker above.-->
 

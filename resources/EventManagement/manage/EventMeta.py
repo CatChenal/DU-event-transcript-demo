@@ -14,29 +14,24 @@ import re
 from pprint import pformat
 from IPython.display import Markdown
 
-from manage.Utils import (save_file,
-                          load_file_contents,
-                          get_file_lines,
-                          get_project_dirs,
-                          get_subfolder,
-                          split_url)
-
+from manage import Utils as UTL
 #..........................................................
+#DEFAULT_HOST = "Reshama Shaikh"  # not used
 # Repo info, the parent folder of ./resources:
 REPO_PATH = Path(__file__).parents[3]
 REPO_NAME = REPO_PATH.name
 
 CURRENT_YEAR = dt.today().year
-DIR_YR = get_subfolder(str(CURRENT_YEAR), parent_dir=REPO_PATH)
+DIR_YR = UTL.get_subfolder(str(CURRENT_YEAR), parent_dir=REPO_PATH)
 
 # EventManagement project folders:
-DIR_DATA, DIR_IMG = get_project_dirs()
-DIR_META = get_subfolder('meta', parent_dir=DIR_DATA)
+DIR_DATA, DIR_IMG = UTL.get_project_dirs()
+DIR_META = UTL.get_subfolder('meta', parent_dir=DIR_DATA)
 
 #'event-transcripts-demo' 
 # '-demo': for this proof of concept only, else will be 'event-transcripts'
 DEMO = REPO_NAME.endswith('demo')
-DEMO_README = 'README_new.md'
+DEMO_README = 'README.md' # was README_new.md
 
 def main_readme_path():
     md_file = DEMO_README if DEMO else 'README.md'
@@ -44,26 +39,13 @@ def main_readme_path():
 
 MAIN_README = main_readme_path()
 
-
-def show_md_file(md_file, kind='README'):
-    """md_file is either a Path filepath or url."""
-    if isinstance(md_file, Path):
-        which = 'Local'
-        txt = F'### {which} {kind} file: {md_file.name}\n---\n---\n'
-        txt += Markdown(filename=md_file).data
-    else:
-        which = 'Live'
-        txt = F'### {which} {kind} file: \n---\n---\n'
-        txt += Markdown(md_file).data
-    txt +='\n---\n---'
-    display(Markdown(txt))
-
-    
 NA = 'N.A.' # 'Not Applicable or Not Available; 'N/A' is 'N over A'.
 def isNA(txt):
     return txt in [NA, 'N/A']
 
-#DEFAULT_HOST = "Reshama Shaikh"  # not used
+def key_isna(k, d):
+    return isNA(d[k])
+    
 
 # YouTube domains
 YT_URL = "https://youtu.be/"
@@ -77,7 +59,7 @@ HREF_DOM = "http://www.youtube.com/watch?feature=player_embedded&v="
 flds_internals = ['year',
                   'idn', # index of new row in main readme table
                   'video_url',
-                  'title_kw', # topic, possibly extracted from title
+                  'title_kw', # topic or space-sep'd topics from title
                   'transcript_md', # filename for saving & linking
                   'audio_track', # ../data/meta/<year>_<idn>_<video_id>.mp4
                   'audio_text',  # ../data/meta/<year>_<idn>_<video_id>.txt
@@ -102,7 +84,7 @@ H2_HDRS_KEYS = OrderedDict([('Meetup Event', 'event_url'),
                                        'video_embed'])
                             ])
 
-REQ_FLDS = ['year', 'idn', 'presenter', 'title',
+REQ_FLDS = ['year', 'idn', 'presenter', 'title', 'title_kw',
             'video_url', 'yt_video_id', 'status']
 
 HDR_TPL = """# {presenter}: {title}  
@@ -144,10 +126,32 @@ class TrStatus(Enum):
 
 
 def split_tbl_line(txt):
+    """Split a Markdown table row into its values."""
     t = [w.strip() for w in txt.split('|')]
     return t[1:-1]
 
 
+def get_tbl_delims(md_text):
+    """
+    Return indices of the README table
+    delimiters (html comments).
+    """
+    # Delimiters in README must match:
+    TBL0 = '<!-- main_tbl_start -->'
+    TBL1 = '<!-- main_tbl_end -->'
+    
+    msg = 'README table.{} delimiter missing:\n{}'
+    try:
+        idx0 = md_text.index(TBL0+'\n')
+    except:
+        raise ValueError(msg.format('start', TBL0))
+    try:
+        idx1 = md_text.index(TBL1+'\n')
+    except:
+        raise ValueError(msg.format('end', TBL1))
+    return idx0, idx1
+
+                         
 def get_table_info(main_readme):
     """
     Extract the table portion of the readme text.
@@ -160,15 +164,10 @@ def get_table_info(main_readme):
       tbl_info[2]: start/end markers indices, [s,e]
       tbl_info[-1]: whether last row was empty
     """
-    readme_text = get_file_lines(main_readme)
+    readme_text = UTL.get_file_lines(main_readme)
     
-    # Delimiters of Markdown table
-    # (must match those in NEW readme):
-    TBL0 = '<!-- main_tbl_start -->'
-    TBL1 = '<!-- main_tbl_end -->'
+    idx0, idx1 = get_tbl_delims(readme_text)
     
-    idx0 = readme_text.index(TBL0+'\n')
-    idx1 = readme_text.index(TBL1+'\n')
     tbl = readme_text[idx0+1:idx1]
     cols = split_tbl_line(tbl[0].replace('#', 'N'))
     
@@ -184,7 +183,7 @@ def get_table_info(main_readme):
 
 def df_from_readme_tbl(main_readme=MAIN_README):
     """
-    Return the table in README as a pd.df.
+    Return the table in README as a pandas df.
     See `get_table_info` docstring.
     """
     tbl_info = get_table_info(main_readme)
@@ -229,13 +228,6 @@ def default_href_src(vid):
     return YT_IMG_URL0 + vid + YT_IMG_URL1
 
 
-def key_exists(k, d):
-    return d.get(k) is not None
-
-
-def key_isna(k, d):
-    return d[k] == NA
-    
 # ....................................................................
 # class TranscriptMeta
 REPR_INFO = "< NOT SHOWN (can be VERY long).\nTo view  it, run "
@@ -246,12 +238,14 @@ class TranscriptMeta:
     def __init__(self, idn=None, year=CURRENT_YEAR):
         if year is None:
             year=CURRENT_YEAR
-        self.year = str(year)
+        yr = str(year)
+        if len(yr) == 2: yr = '20' + yr
+        self.year = yr
         self.readme = MAIN_README
         
         self.tbl_info = df_from_readme_tbl(self.readme)
         self.df, self.tbl_delims = self.tbl_info
-        # rm: self.empty_lastrow, 
+        # rmd: self.empty_lastrow, 
         self.row_offset = 2 #if self.empty_lastrow else 2
         
         self.TPL = HDR_TPL
@@ -270,6 +264,8 @@ class TranscriptMeta:
         # To override defaults in redo_initial_transcript:
         self.new_minutes_mark = None
         self.new_wrap_width = None
+        # set by update_dict():
+        self.to_delete = None
         
             
     def refresh_tbl_info(self):
@@ -292,7 +288,9 @@ class TranscriptMeta:
     
 
     def get_event_dict(self):
-        """Init values = NA"""
+        """
+        Return dict from TPL_KEYS with all values = NA
+        """
         all_keys = self.TPL_KEYS + flds_internals
         assert(len(all_keys) == len(set(all_keys)))
 
@@ -304,6 +302,7 @@ class TranscriptMeta:
     
     def last_of_yr_info(self):
         yrdf = self.df.loc[self.df.year == self.year]
+        yrdf = yrdf.sort_values(['year','N'])
         if yrdf.shape[0]:
             last_idx = yrdf.index.max()
             N = yrdf.loc[last_idx,'N']
@@ -331,7 +330,8 @@ class TranscriptMeta:
         new_dict['has_transcript'] = False
         new_dict['status'] = TrStatus.TODO.value
         new_dict['notes'] = ''
-        new_dict['video_href_w'] = DEF_IMG_W #thumbnail
+        # thumbnail, currently; should be embed:
+        new_dict['video_href_w'] = DEF_IMG_W
         
         v1 = self.insertion_idx(HDR_TPL.format(**new_dict))
         new_dict['trans_idx'] = v1
@@ -357,7 +357,7 @@ class TranscriptMeta:
             
         transx = F"{d['idn']}-{pres_first}-{pres_last}"
         
-        if not key_exists('title_kw', d):
+        if d.get('title_kw') is None:
             d['title_kw'] = NA
             
         if not key_isna('title_kw', d):
@@ -427,6 +427,7 @@ class TranscriptMeta:
     def update_dict(self, new_meta):
         """
         Update event_dict with new data.
+        Added: check new values in transcript_md
         """
         if new_meta['status'] == NA:
             new_meta['status'] = TrStatus.TODO.value
@@ -434,9 +435,30 @@ class TranscriptMeta:
         
         new_meta = self.titleize(new_meta)
         new_meta['title_kw'] = new_meta['title_kw'].replace(' ','-').lower()
-        
         new_meta = self.set_path_keys(new_meta)
         new_meta = self.set_audiov_keys(new_meta)
+        
+        current_md = self.event_dict['transcript_md']
+        current_yr = self.event_dict['year']
+        
+        new_yr = new_meta['year']
+        #new_md = UTL.get_subfolder(new_yr, REPO_PATH)
+        #new_md = new_md.joinpath(new_yr)
+        
+        if current_yr != new_yr:
+            self.year = new_yr
+        if self.event_dict['idn'] != new_meta['idn']:
+            self.idn = idn_frmt(new_meta['idn'])
+            
+        if (current_md != new_meta['transcript_md']
+            or current_yr != new_yr):
+            mdfile = UTL.get_subfolder(current_yr, REPO_PATH)
+            mdfile = mdfile.joinpath(current_md)
+            if mdfile.exists():
+                self.to_delete = mdfile
+            else:
+                self.to_delete = None
+                
         
         # Finally, update the insertion index given
         # the lines generated by the data:
@@ -454,16 +476,33 @@ class TranscriptMeta:
                                self.idn,
                                self.event_dict['video_url'],
                                self.event_dict['yt_video_id'])
-            
-            
+
+
+    @staticmethod
+    def check_nlp_imports():
+        """ 
+        Temp code for checking imports as per
+        _future_ requirements_admin.txt, reqs for
+        Admin (Organizer) to obtain initial transcript
+        that includes punctuation & associated
+        uppercasing via _future_ DL model.
+        """
+        # stand-in for try/except on import of DL mdls
+        nlp_imports = True
+        return nlp_imports
+    
+        
     def redo_initial_transcript(self, replace=True):
         """
         Wrapper to instantiate YT class & (re)do
         initial transcription.
         """
         self.set_YT()
+
+        if not self.check_nlp_imports():
+            self.new_minutes_mark = None
             
-        # Reformatting the text is 1 reason for redoing: 
+        # Reformatting the text is 1 reason for redoing:
         if self.new_minutes_mark is not None:
             self.YT.minutes_mark = self.new_minutes_mark
         if self.new_wrap_width is not None:
@@ -484,7 +523,7 @@ class TranscriptMeta:
         md_name = idf.name.values[0]
  
         mdfile = REPO_PATH.joinpath(year, md_name)
-        md_txt = load_file_contents(mdfile)
+        md_txt = UTL.load_file_contents(mdfile)
         
         trans_idx = self.insertion_idx(md_txt)
         text = md_txt[:trans_idx]
@@ -494,7 +533,7 @@ class TranscriptMeta:
             if not raw.exists():
                 self.redo_initial_transcript()
                 
-            new_trx = load_file_contents(raw)
+            new_trx = UTL.load_file_contents(raw)
      
         text += '\n' + new_trx
         with open(mdfile, 'w') as fh:
@@ -519,7 +558,7 @@ class TranscriptMeta:
         
         for link in href_html.find_all('a', {'href': True}):
             video_hrefs['href'] = link.get('href')
-            _, vid = split_url(video_hrefs['href'])
+            _, vid = UTL.split_url(video_hrefs['href'])
             video_hrefs['yt_video_id'] = vid
             
             for c in link.find_all('img'):
@@ -632,7 +671,7 @@ class TranscriptMeta:
                     break
                 elif hdr == 'Video':
                     if vhrefs['yt_video_id'] == '':
-                        _, vid = split_url(event_dict['video_url'])
+                        _, vid = UTL.split_url(event_dict['video_url'])
                         event_dict['yt_video_id'] = vid
                     else:
                         event_dict['yt_video_id'] = vhrefs['yt_video_id']
@@ -694,11 +733,11 @@ class TranscriptMeta:
 
         # Get the text
         try:
-            readme_txt = get_file_lines(self.readme)
+            readme_txt = UTL.get_file_lines(self.readme)
         except FileNotFoundError:
             # try reverting to previously backup copy
             shutil.copy(bkp, self.readme)
-            readme_txt = get_file_lines(self.readme)
+            readme_txt = UTL.get_file_lines(self.readme)
 
         # Get the start/end of the md table data:
         s, e = self.tbl_delims
@@ -776,6 +815,11 @@ class TranscriptMeta:
         # Include initial transcript text:
         self.insert_md_transcript(new_trx)
         # F'Starter transcript created:\n {md_out}'
+        
+        if not self.NEW and self.to_delete is not None:
+            # Delete file with diff name after an update:
+            self.to_delete.unlink()
+            self.to_delete = None
         return
     
     
@@ -787,54 +831,38 @@ class TranscriptMeta:
             return pformat(without_trx)
         return pformat(self.event_dict)
 
-    
-# Demo update   
-def dummy_update(meta_obj, meta_d, video_url, meetup_url,
-                 title='Automating Audio Transcription.',
-                 titlekw='audio foo',
-                 presenter='Cat Chenal, Reshama Shaikh',
-                 include_extra=True):
 
-    meta_d['year'] = CURRENT_YEAR
-    meta_d['video_url'] = video_url
-    vsite, vid = split_url(video_url)
-    meta_d['yt_video_id'] = vid
-    meta_d['video_href'] = HREF_DOM + vid
-    meta_d['video_href_src'] = YT_IMG_URL0 + vid + YT_IMG_URL1
-    if meta_d['video_href_alt'] == NA:
-        meta_d['video_href_alt'] = title
-    meta_d['repo_url'] = 'https://github.com/CatChenal'       
-    meta_d['event_url'] = meetup_url
-    meta_d['title'] = title
-    meta_d['title_kw'] = titlekw
-    meta_d['presenter'] = presenter
-    meta_d['notes'] = 'Dummy entry for demo.'
-    if include_extra:
-        extra = "## Other References\n"
-        extra += "- Binder:  <url>\n- Paper:  <Paper url or citation>  \n"
-        extra += F"- Wiki:  This is an excellent [wiki on {meta_d['title_kw']}]"
-        extra += "(http://en.wikipedia.org/wiki/Main_Page)  \n"""
-        meta_d['extra_references'] = extra
+dummy_kv_pairs = [('presenter', 'cat Chenal, Reshama Shaikh'),
+                  ('title','Automating Audio tanscription.'),
+                  ('title_kw','audio demo'),
+                  ('video_url','https://youtu.be/MHAjCcBfT_A'),
+                  ('extra_references', 
+                  """## Other References\n
+                  - Binder:  <url>\n- Paper:  <Paper url or citation>  \n
+                  - Wiki:  This is an excellent [wiki]  \n
+                  (http://en.wikipedia.org/wiki/Main_Page)  \n""")]
 
-    #meta_obj.update_dict(meta_d)
-    return
-
-
-def get_dummy_data(year=2020):
+def get_dummy_data(year=CURRENT_YEAR,
+                   new_kv_pairs=dummy_kv_pairs,
+                   include_extra=True):
     """Return a dict."""
     tm = TranscriptMeta(year=year)
     d = tm.event_dict.copy()
-
-    yrdf = tm.df.loc[tm.df.year == tm.year]
-    last_idx = yrdf.index.max()
-    N = yrdf.loc[last_idx,'N']
-    new = yrdf.loc[last_idx:last_idx].values[0]
-
-    d['year'] = tm.year
-    d['presenter'] = 'Cat Chenal'
-    #parts = new[2].partition('(')
-    d['title'] = 'Brand new year!'
-    d['title_kw'] = 'bar demo'
-    d['video_url'] = 'https://youtu.be/MHAjCcBfT_A'
-    d['yt_video_id'] = 'MHAjCcBfT_A'
+    del tm
+    
+    for i, (k,v) in enumerate(new_kv_pairs):
+        # abort on key mismatch:
+        if d.get(k) is None:
+            raise KeyError(F"get_dummy_data::Invalid key: {k}")
+            
+        if k == 'video_url':
+            _, vid = UTL.split_url(v)
+            d['video_url'] = v
+            d['yt_video_id'] = vid
+        
+        elif k == 'extra_references' and include_extra:
+            d['extra_references'] = v
+        else:
+            d[k] = v
+ 
     return d

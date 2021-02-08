@@ -4,9 +4,9 @@
 #
 from pathlib import Path
 import json
-from warnings import warn
 from collections import OrderedDict
 from enum import Enum
+import re
 from IPython.display import HTML
 
 
@@ -37,35 +37,12 @@ def get_subfolder(subfolder_name, parent_dir=None):
     return p
 
 
-def get_id_from_YT_url0(url):
-    """
-    previous fn
-    """
-    import re
-    
-    regex = r"(?:(?![/?vt=_])([0-9A-Z0-9_-].*))"
-    match = re.search(regex, url)
-    if match is None:
-        return ''
-
-    e = None
-    found = url[match.start():]
-    if '?' in found:
-        e = found.index('?')
-    elif '&' in found:
-        e = found.index('&')
-    idx = found if e is None else found[:e]
-    return idx
-
-
 def get_id_from_YT_url(url):
     """
     Regex source: 
     https://stackoverflow.com/questions/42440678/
     regular-expression-for-youtube-video-id
     """
-    import re
-    
     vid = ''
     regex = "(?:youtube(?:-nocookie)?\.com|youtu\.be).*[=/]([-\\w]{11})(?:\\?|=|&|$)"
     rc = re.compile(regex)
@@ -185,35 +162,35 @@ def load_file_contents(filepath):
     return content
 
 
-def save_json(obj, fname):
-    with open(fname, 'w') as fh:
-        json.dump(obj, fh)
-
-        
-def load_json(fname):
-    with open(fname) as fh:
-        content = json.load(fh)
-    return content
-
-
 def get_file_lines(fullpath):
+    msg = "Utils.get_file_lines:: "
+    if fullpath.is_dir():
+        msg += "filepath is a dir: filename also needed."
+        raise ValueError(msg)
+
     with open(fullpath) as fh:
         text = fh.readlines()
     return text
 
-
-def check_year(yr):
-    ok = len(str(yr)) == 4
-    if not ok:
-        warn('Provide a four-digit year.')
-    return ok
-
-
 # ..............................................................................
+def show_md_file(md_file, kind='README'):
+    """md_file is either a Path filepath or url."""
+    if isinstance(md_file, Path):
+        which = 'Local'
+        txt = F'### {which} {kind} file: {md_file.name}\n---\n---\n'
+        txt += Markdown(filename=md_file).data
+    else:
+        which = 'Live'
+        txt = F'### {which} {kind} file: \n---\n---\n'
+        txt += Markdown(md_file).data
+    txt +='\n---\n---'
+    display(Markdown(txt))
+    
+
 def show_du_logo_hdr(as_html=True):
     """
-    Return formated HTML(<div>) if as_html=True (default),
-    else return the html string.
+    Render a constructed div string in HTML
+    if as_html=True (default), else return the html string.
     """
     logo_src = "https://raw.githubusercontent.com/data-umbrella/"
     logo_src += "event-transcripts/master/images/full_logo_transparent.png"
@@ -254,7 +231,6 @@ EXTRA_REFS_EXAMPLE = """
 
 # ..............................................................................
 info_div = '<div style="text-align:left;padding:5px;width:98%;"'
-#info_div += 'margin-top:5px;margin-left:220px;margin-bottom:5px;margin-right:5px">' 
 
 section_info_add = info_div + """
 <h3>ADD</h3>
@@ -278,7 +254,6 @@ downloaded if not found.</p>
 <p><strong>Note: </strong>Before saving an editing session, remember to update 
 the Status and/or the Editor/Reviewer's names.
 """  + '</div>'
-
 
 EventInfo = OrderedDict([('ADD', section_info_add),
                          ('MODIFY', section_info_modify),
@@ -335,80 +310,3 @@ class DisplaySectionInfo:
             return HTML(div)
         else:
             return div
-
-
-# ...............................................    
-# tests (temp) 
-# ...............................................
-def test_save_file(fullpath):
-    # TODO
-    s_txt = ''
-    s_dict = {}
-    
-    # dir:
-    p = fullpath.parents[0]
-    save_file(p, s, ext=None, replace=True)
-    #assertRaises(ValueError, msg="Param filepath is a directory: file path needed.")
-    
-    # s_txt -> json
-    # s_dict -> json
-    return
-
-
-def test_split_url():
-    dom = 'https://www.meetup.com/nyc-data-umbrella/events/'
-    url = 'https://www.meetup.com/nyc-data-umbrella/events/271116695/'
-    is_meetup = True
-    d, idx = split_url(url, is_meetup)
-    print(F'Test meetup...')
-    assert (d, idx) == (dom, '271116695')
-    
-    yt_frmts = [('https://youtu.be/0L1uM_18TTA','0L1uM_18TTA'),
-                ('https://youtu.be/0L1uM_18TTA?t=1','0L1uM_18TTA'),
-                ('https://www.youtube.com/watch?v=0L1uM_18TTA',
-                 '0L1uM_18TTA'),
-                ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be',
-                 '0L1uM_18TTA'),
-                ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=2m5s',
-                 '0L1uM_18TTA'),
-                ('http://www.youtube.com/watch?feature=player_embedded&v=0L1uM_18TTA',
-                 '0L1uM_18TTA'),
-                ('https://www.youtube.com/watch?v=0L1uM_18TTA&feature=youtu.be&t=1',
-                 '0L1uM_18TTA'),
-                ('youtube.com/watch?v=iwGFalTRHDA',
-                 'iwGFalTRHDA'),
-                ('http://www.youtube.com/watch?feature=player_embedded&v=Pkg-DKkObKs',
-                 'Pkg-DKkObKs'),
-                ('http://www.youtube.com/watch?feature=player_embedded&v=TVe-uT_So6c',
-                 'TVe-uT_So6c'),
-               ]
-    n_urls = len(yt_frmts)
-    is_meetup = False
-    print('Test youtube...')
-    for i, u in enumerate(yt_frmts):
-        
-        d, idx = split_url(u[0], is_meetup)
-        try:
-            assert idx == u[1]
-        except AssertionError:
-            #print(F'\n{i}:\t{d}; vid::\t{idx}')
-            print(F'{i}:\tFailed on: {u[0]} with: {idx}')
-            pass
-    print('All done.')
-
-
-def p_time_test():
-    s1 = "it's 10 30 p.m your time "
-    s2 = "   10 30 p.m your time "
-    s3 = "	yeah I think yeah 10 15. "
-    p_time = re.compile('([\S\s]*)(\d{1,2}) (\d{1,2}) ([pa].m) ([\S\s]*)')
-
-    for s in [s1, s2, s3]:
-        print("Search str: {!r}".format(s))
-        new_s = ''
-        m = p_time.match(s)
-        if m is not None:
-            new_s = m.group(1) + m.group(2) + ":" + m.group(3) + " " + m.group(4) + " " + m.group(5)
-            print("   New str: {!r}".format(new_s))
-        else:
-            print("No pattern found.")

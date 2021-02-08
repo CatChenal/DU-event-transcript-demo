@@ -1,6 +1,7 @@
 # gitignore file for Data Umbrella events-transcript repo
-# audio files can be too large (>50 MB).
-*.mp4
+# used in demo project https://github.com/CatChenal/DU-event-transcript-demo/
+# exclude xml, txt and .mp4 files related to video:
+/resources/EventManagement/data/meta
 
 # Scrapy stuff:
 .scrapy

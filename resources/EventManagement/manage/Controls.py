@@ -34,8 +34,8 @@ def get_new_input_flds():
                       ["title", "Presentation title - lower case ok!", 
                        reqd, None],
                       ["title_kw", 
-                       "Short, descriptive word(s); part of the transcript file name.",
-                       "(E.g., space-separated word(s): flask demo)", None],
+                       "Descriptive word(s) for the file name e.g. flask demo",
+                       reqd, None],
                       ["video_url", "URL of the YouTube video",
                        reqd, None],
                       ["video_href", "URL for the video link", 
@@ -73,7 +73,7 @@ def get_new_input_flds():
 
 
 # ..............................................................................
-def get_demo_input_dict():
+def get_demo_input_dict(year=Meta.CURRENT_YEAR):
     """ Return dict with preset values for demo."""
     new_input_d = get_new_input_flds()
     
@@ -81,7 +81,7 @@ def get_demo_input_dict():
 - Twitter: Use this format: [full name 1](twitter url), etc.     
 - Wiki: This is an excellent [wiki on transcription](http://en.wikipedia.org/wiki/Main_Page) """
     # To preset widget boxes with values:
-    demo_list = [str(Meta.CURRENT_YEAR),
+    demo_list = [str(year),
                  'cat chenal', 'my presentation', 'foo foo', 
                  "https://www.youtube.com/watch?v=MHAjCcBfT_A", None, None, None,
                  None, None, 'https://github.com/CatChenal', None, None,
@@ -352,18 +352,15 @@ class PageControls:
                 self.verb = 'edit'
                 # add'l widgets:
                 
-                # for populating sel_hdr_grid:
                 self.rad_av = ipw.RadioButtons(options=['Audio','Video'],
                                                value='Audio')
                 self.txt_transcriber = ipw.Text(value='? (transcriber)',
                                                 description='You?')
                 self.sel_status = ipw.Select(options=status_opts, value=None,
                                              disabled=True)
-                self.txa_editarea = ipw.Textarea(value=None,
-                                                 layout=ipw.Layout(display='flex',
-                                                                   flex_flow='column',
-                                                                   width='98%',
-                                                                   height='500px'))
+                lo_txa = ipw.Layout(display='flex', flex_flow='column',
+                                    width='98%', height='500px')
+                self.txa_editarea = ipw.Textarea(value=None, layout=lo_txa)
                 # grid footer controls:
                 #lo_out = ipw.Layout(height='30px')
                 self.out_sel_files = ipw.Output()
@@ -372,12 +369,12 @@ class PageControls:
                 
                 self.btn_update = ipw.Button(description='UPDATE',
                                         tooltip='Validate & save your changes.',
-                                        button_style='info')
+                                        button_style='info',
+                                        disabled=True)
                 self.btn_redo = ipw.Button(description='REPROCESS',
                                       tooltip='Redo the transcription with the new files.',
                                       button_style='info',
-                                      #disabled=True
-                                          )
+                                      disabled=True)
                 self.txt_input = ipw.Text(layout=ipw.Layout(width='420px'))
                 self.sel_files = ipw.widgets.Select(value=None,
                                                     options=['People','Names',
@@ -387,8 +384,6 @@ class PageControls:
                 self.btn_update.on_click(self.click_btn_update)
                 self.btn_redo.on_click(self.click_btn_redo)
 
-                
-            #self.populate_sel_hdr_grid()
             self.populate_grid()
             
             # start page w/selection controls + 1 empty vbx:
@@ -429,14 +424,14 @@ class PageControls:
         if self.page_idx == 0:
             return
 
-        def lo_grid_area(a):
+        def lo_grida(a):
             return ipw.Layout(width='auto', grid_area=a)
 
         # always included:
         main = ipw.HBox(children=[],
-                        layout=lo_grid_area('main'))
+                        layout=lo_grida('main'))
         sidebar = ipw.VBox(children=[],
-                           layout=lo_grid_area('sidebar'))
+                           layout=lo_grida('sidebar'))
 
         if exclude is not None:
             if len(exclude) == 2:
@@ -451,7 +446,7 @@ class PageControls:
                         '''
                     if header_fn is None:
                         header = ipw.HBox(children=[],
-                                          layout=lo_grid_area('header'))
+                                          layout=lo_grida('header'))
                     else:
                         header = header_fn(self.page_idx)
 
@@ -463,7 +458,7 @@ class PageControls:
                         "footer footer footer"
                         '''
                     footer = ipw.HBox(children=[],
-                                      layout=lo_grid_area('footer'))
+                                      layout=lo_grida('footer'))
                     kids = [main, sidebar, footer]
         else:
             tpl_areas= '''
@@ -473,11 +468,11 @@ class PageControls:
                 '''
             if header_fn is None:
                 header = ipw.HBox(children=[],
-                                  layout=lo_grid_area('header'))
+                                  layout=lo_grida('header'))
             else:
                 header = header_fn(self.page_idx)
             footer = ipw.HBox(children=[],
-                              layout=lo_grid_area('footer'))            
+                              layout=lo_grida('footer'))            
             kids = [header, main, sidebar, footer]
 
         lo_grid = ipw.Layout(grid_template_rows='auto auto auto',
@@ -492,7 +487,8 @@ class PageControls:
     
     def get_update_grid(self):
         """
-        Return a GridBox with controls for file update.
+        Return a GridBox with controls for proper-
+        casing and corrections files update.
         """
         vbx = partial(ipw.VBox,
               layout=ipw.Layout(display='flex',
@@ -669,6 +665,7 @@ class PageControls:
                 
         valid, msg = validate_user_list(v_entries, v_file)
         if valid is None:
+            self.out_btn_update.clear_output()
             with self.out_btn_update:
                 print(msg)
             return
@@ -685,11 +682,11 @@ class PageControls:
                 else:
                     TRX.add_corrections(valid, return_dict=False)
             else:
+                self.out_btn_update.clear_output()
                 with self.out_btn_update:
                     print(msg)
                 return
         else:
-            
             v_file = v_file.lower()
             fname = TRX.substitutions[v_file]
             current_list = TRX.readcsv(fname)[v_file].tolist()
@@ -703,6 +700,7 @@ class PageControls:
                 else:
                     TRX.update_conversion_file(v_file, valid)
             else:
+                self.out_btn_update.clear_output()
                 with self.out_btn_update:
                     print(msg)
 
@@ -863,7 +861,7 @@ class AppControls:
                                    ])
         
         self.PC = None # Controls.PageControl instance
-        self.to_delete = None # set by validate_1()
+        #self.to_delete = None # set by validate_1()
         
         self.left_sidebar = self.get_left()
         self.left_sidebar.observe(self.menu_selection, 'value')
@@ -873,8 +871,12 @@ class AppControls:
         self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
                              (self.center, 'selected_index'))
         
-        # Removed header: no 'gui shifting' w/o it. ??
-        self.app = ipw.AppLayout(header=None, # was get_app_hdr,
+        # Removed header: no 'gui shifting' w/o it??
+        # Preset with tab 2 selected:
+        self.left_sidebar.selected_index = 2
+        # ... and populated with controls:
+        self.left_sidebar.children[2].children[0].index = 0
+        self.app = ipw.AppLayout(header=None,
                                  left_sidebar=self.left_sidebar,
                                  center=self.center,
                                  right_sidebar=self.out_info,
@@ -964,6 +966,9 @@ class AppControls:
 
     
     def validate_0(self, idx):
+        """
+        Validate data for new event.
+        """
         input_form = self.PC.page.children[1].children[0]
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
@@ -978,9 +983,12 @@ class AppControls:
 
             
     def validate_1(self, idx):
-        grid_sel_idn_out = self.PC.page.children[0][1,1].children[-1]
+        """
+        Validate new data for existing event.
+        """
+        main = self.PC.page.children[0].children[1]
+        grid_sel_idn_out = main.children[2]
         initial_md = grid_sel_idn_out.outputs[0]['text'][5:-1]
-        
         input_form = self.PC.page.children[1].children[0]
         
         self.center.children[idx].children[0].clear_output()
@@ -988,16 +996,19 @@ class AppControls:
             try:
                 d = get_accordion_entries(input_form)
                 self.PC.page.user_dict = d
-                self.app.data_dict = validate_form_entries(self.PC.page.user_dict,
+                self.app.data_dict = validate_form_entries(d,
                                                            self.PC.TR)
                 print('Validated!')
                 d['idn'] = self.PC.TR.idn
                 d = self.PC.TR.set_path_keys(d)
-                if initial_md != d['transcript_md']:
-                    mdfile = UTL.get_subfolder(d['year'], Meta.REPO_PATH)
-                    mdfile = mdfile.joinpath(initial_md)
-                    self.to_delete = mdfile
-                    print(F'File to delete: {initial_md}')
+                # update dict used in save_entry()
+                #self.app.data_dict = d
+                
+                #if initial_md != d['transcript_md']:
+                #    mdfile = UTL.get_subfolder(d['year'], Meta.REPO_PATH)
+                #    mdfile = mdfile.joinpath(initial_md)
+                #    self.to_delete = mdfile
+                #    print(F'File to delete: {initial_md}')
             except:
                 print('Validation Error: Fix & Try again.')                
                 
@@ -1026,10 +1037,10 @@ class AppControls:
             try:
                 self.PC.TR.save_transcript_md()
                 print('Save: Done!')
-                if idx == 1:
-                    if self.to_delete is not None:
-                        self.to_delete.unlink()
-                        self.to_delete = None
+                #if idx == 1:
+                #    if self.to_delete is not None:
+                #        self.to_delete.unlink()
+                #        self.to_delete = None
             except:
                 if idx == 0:
                     msg = 'Save starter transcript: Something went wrong.'
@@ -1037,25 +1048,27 @@ class AppControls:
                     msg = 'Save transcript: Something went wrong.'
                 print(msg)
         # refresh df:
+        # TR.update_readme() includes refresh_tbl_info, so ok
+        # to use self.PC.df = self.PC.TR.df?
         newdf, _ = Meta.df_from_readme_tbl()
         self.PC.df = newdf
         if self.PC.verb != 'add':
-            self.PC.idn_sel.value = None
+            self.PC.sel_idn.value = None
 
 
     def save_edit(self, idx):
         """Save edited transcript."""
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
-            if self.PC.transcriber_txt.value.startswith('?'):
+            if self.PC.txt_transcriber.value.startswith('?'):
                 print("'?' is not a good name!")
             try:
                 do_readme = self.PC.initial_status != self.PC.status_sel.value
-                do_trx = self.PC.initial_transcriber != self.PC.transcriber_txt.value
+                do_trx = self.PC.initial_transcriber != self.PC.txt_transcriber.value
                 if do_readme:
                     self.PC.TR.event_dict['status'] = self.PC.status_sel.value
                 if do_trx:
-                    self.PC.TR.event_dict['transcriber'] = self.PC.transcriber_txt.value
+                    self.PC.TR.event_dict['transcriber'] = self.PC.txt_transcriber.value
                 if do_readme or do_trx:        
                     self.PC.TR.update_readme()
                     print('Updated README.')
@@ -1063,16 +1076,16 @@ class AppControls:
                 print('Could not update README.')
                 return
             try:
-                self.PC.TR.save_transcript_md(new_trx=self.PC.editarea.value)
+                self.PC.TR.save_transcript_md(new_trx=self.PC.txa_editarea.value)
                 self.PC.btn_load.disabled = False
-                self.PC.editarea.value = ''
+                self.PC.txa_editarea.value = ''
                 print('Updated Event file.')
             except:
                 print('Could not update Event file.')
         # refresh df:
         newdf, _ = Meta.df_from_readme_tbl()
         self.PC.df = newdf
-        self.PC.idn_sel.value = None
+        self.PC.sel_idn.value = None
 
 
     def show_mdfile(self, idx):
@@ -1086,7 +1099,7 @@ class AppControls:
     
         if idx == 3:
             with self.center.children[3].children[1].children[0]:
-                Meta.show_md_file(Meta.MAIN_README)
+                UTL.show_md_file(Meta.MAIN_README)
         else:
             if self.PC.TR is not None:
                 yr = self.PC.TR.event_dict['year']
@@ -1094,7 +1107,7 @@ class AppControls:
                 mdfile = Meta.REPO_PATH.joinpath(yr, fname)
                 if mdfile.exists():
                     with self.center.children[4].children[1].children[0]:
-                        Meta.show_md_file(mdfile, kind='Transcript')
+                        UTL.show_md_file(mdfile, kind='Transcript')
                 else:
                     self.msg_out(4, F'File not found: {mdfile}.')
             else:

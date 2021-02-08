@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-_json
 # Audit.py
 # Programmer: Cat Chenal
 #
@@ -40,10 +40,10 @@ def get_all_transcripts(meta_only=False,
                         replace_xml=False,
                         replace_trx=False):
     """
-    Audit/Testing on all events.
-    meta_only:  for testing md file parsing (done by __init__)
-    replace_xml: 
-    replace_trx:
+    Audit on all events.
+    :param: meta_only:  for testing md file parsing (done by __init__)
+    :param: replace_xml: 
+    :param: replace_trx:
     """
     df, tbl_delims = Meta.df_from_readme_tbl()
     df = df[2:] # exclude not recorded
@@ -58,7 +58,7 @@ def get_all_transcripts(meta_only=False,
         if meta_only:
             continue
             
-        tr.set_YT()  #saved xml captions in init
+        tr.set_YT()  # xml captions saved in init
         if audit_captions:
             tr.YT.minutes_mark = mins
             xml_islower, parag = audit_xml_captions(tr.YT.captions_xml, mins)

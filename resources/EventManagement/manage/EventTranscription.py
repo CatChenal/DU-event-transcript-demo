@@ -49,11 +49,11 @@ def clean_text(text, TW,
     """
     Clean text using regex and wrap using a 
     pre-defined textwrap.TextWrapper instance.
-    :param text (str): paragraph
-    :param TW (textwrap.TextWrapper): instance
-    :param uppercase_list, titlecase_list (list):
+    :param: text (str): paragraph
+    :param: TW (textwrap.TextWrapper): instance
+    :param: uppercase_list, titlecase_list (list):
            terms for upper or title casing, respectively.
-    :param corrections (dict): all other substitutions.
+    :param: corrections (dict): all other substitutions.
     """
     def time_repl(mo):
         """Fix spoken time; mo=match obj"""
@@ -138,15 +138,15 @@ class YTVAudio:
     
     def __init__(self, year, idn, video_url, vid):
         """
-        :param replace_audio_file (bool): redo download of audio.
+        :param: replace_audio_file (bool): redo download of audio.
         """
         self.minutes_mark = 4
         self.wrap_width = 120
         self.video_url = video_url
+        self.video = self.set_YT_video()
         self.meta_path = Meta.DIR_META
         self.basename = Meta.meta_basename(year, idn, vid)
         self.audio_filepath = self.meta_path.joinpath(self.basename + '.mp4')
-        self.video = self.set_YT_video()
         self.captions_xml = self.get_xml_captions()
 
     
@@ -155,20 +155,19 @@ class YTVAudio:
         try:
             v = YouTube(self.video_url)
         except Exception as e:
-            warn(F"YTAudio.YT_video:: failed.\n {e}")
+            raise ValueError(F"YTAudio.YT_video:: set_YT_video failed.\n {e}")
         return v
 
 
     def download_audio(self, replace=False):
         if self.video is None:
-            print('Video not set')
             return
         audio = self.video.streams.get_audio_only()
         fname = self.basename + '.mp4'
    
         if replace or not self.audio_filepath.exists():
-            # pytube has changed again: if
-            # filename=fname -> saved as <idn>_<vid>mp4.mp4
+            # pytube has changed: if
+            # filename==fname: saved as <idn>_<vid>mp4.mp4
             audio.download(output_path=self.meta_path,
                            filename=self.basename)
             #print(F"Audio saved as:\n{self.audio_filepath}")
@@ -178,11 +177,10 @@ class YTVAudio:
     def get_xml_captions(self, replace=False):
         """
         Save auto-generated video captions to xml.
-        :param replace(bool): replace (download again) if 
+        :param: replace(bool): replace (download again) if 
                               file exists.
         """
         if self.video is None:
-            print('Video not set')
             return
         fname = self.basename + '.xml'
         xml_fname = self.meta_path.joinpath(fname)
@@ -256,8 +254,6 @@ class YTVAudio:
     def get_initial_transcript(self, replace=False):
         """ 
         Wrapper for xml_caption_to_str.
-        Initial call: replace_dict=None, so default_replacements
-        dict is generated.
         """
         minutes_mark = self.minutes_mark
         wrap_width = self.wrap_width
@@ -374,7 +370,6 @@ def check_corrections(corrections_dict, new_tuples, verbose=True):
 def add_corrections(new_tuples, return_dict=True):
     """
     Update csv file & return updated dict.
-    TODO: check if key exists:: same value?
     """
     if not isinstance(new_tuples, list):
         raise ValueError("new_tuples is not a list.")
@@ -407,16 +402,16 @@ def update_conversion_file(which=None, user_list=None,
                      title_people.csv,
                      title_places.csv;
     For uppercasing: upper_terms.csv
-    :param which (str): one of ['names','people','places','upper']
-    :param user_list (list): list of terms to add or remove.
-    :param op (str): either 'add' or 'remove'.
+    :param: which (str): one of ['names','people','places','upper']
+    :param: user_list (list): list of terms to add or remove.
+    :param: op (str): either 'add' or 'remove'.
     Call example:
     update_conversion_file(which='upper',user_list=['nlp','ner'])
     """
     if which is None or user_list is None:
         msg = "EventTranscription.update_conversion_file:: "
-        msg += "No parameters."
-        warn(msg)
+        msg += "`which` and `user_list` cannot be None."
+        raise ValueError(msg)
         return
 
     kind = ['names', 'people', 'places', 'upper']
