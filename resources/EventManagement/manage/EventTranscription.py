@@ -155,7 +155,7 @@ class YTVAudio:
         try:
             v = YouTube(self.video_url)
         except Exception as e:
-            raise ValueError(F"YTAudio.YT_video:: set_YT_video failed.\n {e}")
+            raise ValueError(F"YTAudio.video:: set_YT_video failed.\n {e}")
         return v
 
 

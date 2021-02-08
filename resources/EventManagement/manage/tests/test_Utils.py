@@ -66,19 +66,6 @@ def test_save_file(fullpath):
     # s_dict -> json
     return
 
-def p_time_test():
-    s1 = "it's 10 30 p.m your time "
-    s2 = "   10 30 p.m your time "
-    s3 = "	yeah I think yeah 10 15. "
-    p_time = re.compile('([\S\s]*)(\d{1,2}) (\d{1,2}) ([pa].m) ([\S\s]*)')
 
-    for s in [s1, s2, s3]:
-        print("Search str: {!r}".format(s))
-        new_s = ''
-        m = p_time.match(s)
-        if m is not None:
-            new_s = m.group(1) + m.group(2) + ":" + m.group(3) + " " + m.group(4) + " " + m.group(5)
-            print("   New str: {!r}".format(new_s))
-        else:
-            print("No pattern found.")
+
                      
