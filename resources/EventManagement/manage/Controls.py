@@ -100,7 +100,8 @@ def get_new_input_flds():
                        defaultsNA, None],
                       ["transcriber", "Transcriber's name (First Last)",
                        "(Defaults to ? if not provided)", None],
-                      ['status', "Status", Meta.TrStatus.TODO.value, None],
+                      ['status', Meta.TrStatus.TODO.value,
+                       "(Defaults to 'Not yet processed (editor needed)')", None],
                       ['notes', "Notes in README table", "", None],
                       ['extra_references',
                        'Additional references (beyond those in standard header)',
@@ -198,12 +199,21 @@ def wgtbox_from_kv(k, fld_val):
     color = 'red' if info == reqd else 'black'
     itm1 = ipw.HTML(F"<p><font color='{color}'>{info}&nbsp; </p>")
 
-    if k != "extra_references":
-        w_Box = ipw.Box([itm1,
-                         wgt(value=val,placeholder=plc,
-                             layout=lo_txt)],
-                        layout=lo_box_form_item
-                        )
+    if k != 'extra_references':
+        if k != 'status':
+            w_Box = ipw.Box([itm1,
+                             wgt(value=val, placeholder=plc,
+                                 layout=lo_txt)],
+                            layout=lo_box_form_item
+                            )
+        else:
+            wgt = ipw.Select
+            w_Box = ipw.Box([itm1,
+                             wgt(options=[s.value for s in Meta.TrStatus],
+                                 value=val,
+                                 layout=lo_txt)],
+                            layout=lo_box_form_item
+                            )
     else:
         # add btn to show input example:
         tog_vbx = btn_togl_extra_refs_example()
@@ -1152,7 +1162,6 @@ class AppControls:
         iparent = wgt.parent_idx
         tog_val = wgt.value
         
-        self.center.children[iparent].children[0].clear_output()
         if iparent == 0:
             if tog_val == 'Enter Info':
                 self.PC = PageControls(0)
