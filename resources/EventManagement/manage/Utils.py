@@ -7,7 +7,7 @@ import json
 from collections import OrderedDict
 from enum import Enum
 import re
-from IPython.display import HTML
+from IPython.display import HTML, Markdown
 
 
 # To create often-used subfolders:

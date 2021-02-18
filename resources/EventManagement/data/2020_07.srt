@@ -1,0 +1,5055 @@
+1
+00:00:01,010 --> 00:00:06,779
+okay so it's it's really great
+
+2
+00:00:03,570 --> 00:00:09,570
+my name is Rashmi Shaikh and I am the
+
+3
+00:00:06,779 --> 00:00:12,300
+founder of data umbrella I am also an
+
+4
+00:00:09,570 --> 00:00:16,020
+organizer for NYC hi ladies and I am
+
+5
+00:00:12,300 --> 00:00:21,150
+based out of New York City welcome to
+
+6
+00:00:16,020 --> 00:00:23,609
+our welcome to our session the mission
+
+7
+00:00:21,150 --> 00:00:25,380
+of data umbrella is to provide a
+
+8
+00:00:23,609 --> 00:00:27,869
+welcoming and educational space for
+
+9
+00:00:25,380 --> 00:00:30,359
+underrepresented persons in data science
+
+10
+00:00:27,869 --> 00:00:32,189
+we welcome allies to help us in our
+
+11
+00:00:30,359 --> 00:00:35,670
+mission and we welcome all different
+
+12
+00:00:32,189 --> 00:00:38,399
+skill levels we are on twitter at theta
+
+13
+00:00:35,670 --> 00:00:41,760
+umbrella so feel free to tweet and share
+
+14
+00:00:38,399 --> 00:00:44,250
+about the event and follow us also
+
+15
+00:00:41,760 --> 00:00:46,469
+there's a LinkedIn page for us where I
+
+16
+00:00:44,250 --> 00:00:47,820
+usually share job posting so you're
+
+17
+00:00:46,469 --> 00:00:49,860
+welcome to join there and there's
+
+18
+00:00:47,820 --> 00:00:54,300
+information on the website about a
+
+19
+00:00:49,860 --> 00:00:55,770
+discord for community I just want to go
+
+20
+00:00:54,300 --> 00:00:57,390
+over the code of conduct that you know
+
+21
+00:00:55,770 --> 00:00:59,670
+we're dedicated to providing harassment
+
+22
+00:00:57,390 --> 00:01:01,680
+free experience for everyone be kind to
+
+23
+00:00:59,670 --> 00:01:03,149
+others be professional and respectful we
+
+24
+00:01:01,680 --> 00:01:09,270
+really want to build a friendly
+
+25
+00:01:03,149 --> 00:01:11,909
+community here our Twitter is just to be
+
+26
+00:01:09,270 --> 00:01:16,200
+P at data umbrella and also at NYC PI
+
+27
+00:01:11,909 --> 00:01:18,240
+ladies and this is our meetup page so
+
+28
+00:01:16,200 --> 00:01:21,270
+we'll be posting I'll be posting any
+
+29
+00:01:18,240 --> 00:01:22,650
+upcoming events on the meetup page even
+
+30
+00:01:21,270 --> 00:01:25,009
+though this is webinar and it's
+
+31
+00:01:22,650 --> 00:01:27,630
+available to anybody around the world
+
+32
+00:01:25,009 --> 00:01:32,009
+its meetup pages like the central page
+
+33
+00:01:27,630 --> 00:01:35,159
+where the events are posted oh I want to
+
+34
+00:01:32,009 --> 00:01:37,829
+thank our speaker she'll be from joining
+
+35
+00:01:35,159 --> 00:01:40,350
+from San Francisco and I want to thank
+
+36
+00:01:37,829 --> 00:01:45,090
+our sponsor for providing this webinar
+
+37
+00:01:40,350 --> 00:01:46,380
+platform which is neo4j and I'm just
+
+38
+00:01:45,090 --> 00:01:48,780
+going to introduce Shelley I actually
+
+39
+00:01:46,380 --> 00:01:50,579
+met Shelby back in August in San
+
+40
+00:01:48,780 --> 00:01:53,369
+Francisco when I was there for the right
+
+41
+00:01:50,579 --> 00:01:56,430
+speak code conference Shelby is the head
+
+42
+00:01:53,369 --> 00:01:58,110
+of analytics at Komodo health and as an
+
+43
+00:01:56,430 --> 00:01:59,850
+analyst professional and former software
+
+44
+00:01:58,110 --> 00:02:01,740
+engineer Shelby has been involved in
+
+45
+00:01:59,850 --> 00:02:04,140
+shaping great products or companies big
+
+46
+00:02:01,740 --> 00:02:06,530
+and small for the last 13 plus years
+
+47
+00:02:04,140 --> 00:02:09,330
+she's worked on various analyses
+
+48
+00:02:06,530 --> 00:02:11,970
+previously she worked at Salesforce and
+
+49
+00:02:09,330 --> 00:02:12,870
+she I guess the really impressive thing
+
+50
+00:02:11,970 --> 00:02:15,090
+here
+
+51
+00:02:12,870 --> 00:02:17,490
+additionally is that she has worked with
+
+52
+00:02:15,090 --> 00:02:30,300
+a really large data a data at scale um
+
+53
+00:02:17,490 --> 00:02:31,620
+40 million plus users and then I think
+
+54
+00:02:30,300 --> 00:02:37,110
+you should be able to screen share now
+
+55
+00:02:31,620 --> 00:02:45,380
+don't get perfect Oh give me a second
+
+56
+00:02:37,110 --> 00:02:45,380
+goal all right can you see my screen
+
+57
+00:02:47,810 --> 00:03:00,140
+hey I equal to see my screen yes okay
+
+58
+00:02:56,250 --> 00:03:02,460
+perfect um okay thank you yeah all right
+
+59
+00:03:00,140 --> 00:03:03,480
+anyways thank you all so much for
+
+60
+00:03:02,460 --> 00:03:05,460
+joining in today
+
+61
+00:03:03,480 --> 00:03:07,130
+my name is shall give a clue thanks
+
+62
+00:03:05,460 --> 00:03:09,990
+again Reshma for the introduction and
+
+63
+00:03:07,130 --> 00:03:12,540
+today I am going to walk you all through
+
+64
+00:03:09,990 --> 00:03:15,000
+how I think that Sherlock Holmes would
+
+65
+00:03:12,540 --> 00:03:17,010
+have fixed back data and I hope you're
+
+66
+00:03:15,000 --> 00:03:20,880
+all as excited about investigating data
+
+67
+00:03:17,010 --> 00:03:23,940
+anomalies as I am so just to pick a
+
+68
+00:03:20,880 --> 00:03:26,910
+little bit about me so this is me as a
+
+69
+00:03:23,940 --> 00:03:29,820
+child I used to spend a lot of time
+
+70
+00:03:26,910 --> 00:03:31,620
+reading detective novels and after I had
+
+71
+00:03:29,820 --> 00:03:34,650
+finished reading one I used to go around
+
+72
+00:03:31,620 --> 00:03:36,959
+hunting in my backyard for cues I have
+
+73
+00:03:34,650 --> 00:03:39,360
+no idea what I was what mystery I was
+
+74
+00:03:36,959 --> 00:03:41,610
+trying to solve but one day I found this
+
+75
+00:03:39,360 --> 00:03:43,620
+big huge lemon as you can see it's
+
+76
+00:03:41,610 --> 00:03:45,360
+almost the size of my face
+
+77
+00:03:43,620 --> 00:03:48,180
+and I didn't even know we had a lemon
+
+78
+00:03:45,360 --> 00:03:49,890
+tree so for my five-year-old for my 11
+
+79
+00:03:48,180 --> 00:03:51,900
+year old self this was actually the most
+
+80
+00:03:49,890 --> 00:03:54,810
+important discovery I had ever made at
+
+81
+00:03:51,900 --> 00:03:56,400
+that point and it just convinced me that
+
+82
+00:03:54,810 --> 00:03:59,700
+I'm gonna go on to do very exciting
+
+83
+00:03:56,400 --> 00:04:01,470
+things in my future and I don't think I
+
+84
+00:03:59,700 --> 00:04:03,570
+ended up doing some exciting things I
+
+85
+00:04:01,470 --> 00:04:06,720
+worked with a lot of different companies
+
+86
+00:04:03,570 --> 00:04:08,760
+of different sizes mostly in analytics
+
+87
+00:04:06,720 --> 00:04:11,340
+which I've been involved in for almost a
+
+88
+00:04:08,760 --> 00:04:14,850
+decade but even though I started as an
+
+89
+00:04:11,340 --> 00:04:17,609
+engineer and now I am the head of
+
+90
+00:04:14,850 --> 00:04:22,590
+analytics at Komodo health where I lead
+
+91
+00:04:17,609 --> 00:04:25,410
+a team of eight data scientists so today
+
+92
+00:04:22,590 --> 00:04:25,950
+we're gonna talk about three things one
+
+93
+00:04:25,410 --> 00:04:28,710
+what is
+
+94
+00:04:25,950 --> 00:04:34,580
+bad data and why should you care about
+
+95
+00:04:28,710 --> 00:04:39,240
+it and how do we actually fix it so
+
+96
+00:04:34,580 --> 00:04:41,310
+sorry bad data is essentially my
+
+97
+00:04:39,240 --> 00:04:44,000
+definition is that it's inaccurate
+
+98
+00:04:41,310 --> 00:04:46,260
+incomplete or misleading data and
+
+99
+00:04:44,000 --> 00:04:49,530
+essentially what that encompasses is
+
+100
+00:04:46,260 --> 00:04:52,050
+anything that's wrong anytime there is
+
+101
+00:04:49,530 --> 00:04:53,850
+missing information or there's duplicate
+
+102
+00:04:52,050 --> 00:04:56,430
+information but it's not actually tagged
+
+103
+00:04:53,850 --> 00:04:58,050
+as such or there's some information or
+
+104
+00:04:56,430 --> 00:05:00,810
+data that's low quality that's
+
+105
+00:04:58,050 --> 00:05:02,610
+incorrectly transformed that can imply
+
+106
+00:05:00,810 --> 00:05:04,800
+something different than what what it
+
+107
+00:05:02,610 --> 00:05:07,890
+really means all of that comes under the
+
+108
+00:05:04,800 --> 00:05:09,750
+umbrella of bad data now this is
+
+109
+00:05:07,890 --> 00:05:11,790
+obviously just my definition I'm sure
+
+110
+00:05:09,750 --> 00:05:15,120
+what you really want is a scientific
+
+111
+00:05:11,790 --> 00:05:18,090
+definition and this is this is the best
+
+112
+00:05:15,120 --> 00:05:19,140
+that I came up with bad data is anything
+
+113
+00:05:18,090 --> 00:05:21,810
+that makes you want to throw your
+
+114
+00:05:19,140 --> 00:05:26,370
+computer across the room because it just
+
+115
+00:05:21,810 --> 00:05:29,400
+makes everything terrible so I would
+
+116
+00:05:26,370 --> 00:05:32,070
+like to call out that what bad data is
+
+117
+00:05:29,400 --> 00:05:34,170
+it is just if it's not something that
+
+118
+00:05:32,070 --> 00:05:36,360
+you want to see or if it's not something
+
+119
+00:05:34,170 --> 00:05:39,030
+that you feel good about like that
+
+120
+00:05:36,360 --> 00:05:40,860
+doesn't make it bad data it's it still
+
+121
+00:05:39,030 --> 00:05:41,760
+has to fit the requirement of it being
+
+122
+00:05:40,860 --> 00:05:44,640
+inaccurate
+
+123
+00:05:41,760 --> 00:05:46,440
+in some way and just because you don't
+
+124
+00:05:44,640 --> 00:05:50,100
+like what it tells you it doesn't make
+
+125
+00:05:46,440 --> 00:05:52,170
+it bad so with that distinction
+
+126
+00:05:50,100 --> 00:05:55,920
+you know let's actually walk through a
+
+127
+00:05:52,170 --> 00:05:59,460
+couple of quick examples of how I think
+
+128
+00:05:55,920 --> 00:06:01,290
+bad data actually manifests so one of
+
+129
+00:05:59,460 --> 00:06:04,590
+the most common things that I have seen
+
+130
+00:06:01,290 --> 00:06:06,720
+is that you know you're trying to pull
+
+131
+00:06:04,590 --> 00:06:09,270
+up revenue numbers because revenue is
+
+132
+00:06:06,720 --> 00:06:11,160
+important and you have a sales force
+
+133
+00:06:09,270 --> 00:06:13,530
+table that says you made 32 million
+
+134
+00:06:11,160 --> 00:06:15,720
+dollars last year and you have an
+
+135
+00:06:13,530 --> 00:06:18,210
+internal table that says you made 35
+
+136
+00:06:15,720 --> 00:06:20,210
+million dollars so automatically the
+
+137
+00:06:18,210 --> 00:06:22,530
+question is well which one is right and
+
+138
+00:06:20,210 --> 00:06:24,570
+you know that three million dollar gap
+
+139
+00:06:22,530 --> 00:06:27,180
+that is going to decide whether your
+
+140
+00:06:24,570 --> 00:06:29,280
+company invests in more snacks for your
+
+141
+00:06:27,180 --> 00:06:31,550
+kitchen for example so it's a really
+
+142
+00:06:29,280 --> 00:06:34,590
+important thing to sort of solve for and
+
+143
+00:06:31,550 --> 00:06:36,120
+you want to make sure that you trust the
+
+144
+00:06:34,590 --> 00:06:37,440
+data that you have and if you don't
+
+145
+00:06:36,120 --> 00:06:39,630
+trust it like you have some caveats
+
+146
+00:06:37,440 --> 00:06:42,460
+attached to it and things like that
+
+147
+00:06:39,630 --> 00:06:46,030
+the other really common thing that shows
+
+148
+00:06:42,460 --> 00:06:48,400
+up is just you know something where the
+
+149
+00:06:46,030 --> 00:06:50,980
+analysis just looks really suspicious so
+
+150
+00:06:48,400 --> 00:06:53,890
+in the in you know in this new chart you
+
+151
+00:06:50,980 --> 00:06:56,320
+can see that you it shows you revenue by
+
+152
+00:06:53,890 --> 00:06:58,150
+country and it shows you you have twenty
+
+153
+00:06:56,320 --> 00:07:01,210
+five million dollars that you made in UK
+
+154
+00:06:58,150 --> 00:07:03,130
+and then you note that you're actually a
+
+155
+00:07:01,210 --> 00:07:04,720
+company that's located in North America
+
+156
+00:07:03,130 --> 00:07:06,850
+you haven't even ever marketed in Europe
+
+157
+00:07:04,720 --> 00:07:09,520
+see all the North American countries
+
+158
+00:07:06,850 --> 00:07:11,530
+make sense so you know who are all these
+
+159
+00:07:09,520 --> 00:07:13,240
+people in UK who are buying your product
+
+160
+00:07:11,530 --> 00:07:15,910
+it just doesn't make sense that it would
+
+161
+00:07:13,240 --> 00:07:18,370
+be the biggest country where you'd have
+
+162
+00:07:15,910 --> 00:07:20,830
+revenue from so things like this they
+
+163
+00:07:18,370 --> 00:07:22,600
+basically you know are a starting point
+
+164
+00:07:20,830 --> 00:07:26,080
+where you start wondering what's going
+
+165
+00:07:22,600 --> 00:07:27,580
+on and you know what is this bad data or
+
+166
+00:07:26,080 --> 00:07:30,280
+like where is all this information
+
+167
+00:07:27,580 --> 00:07:35,410
+coming from and the next logical
+
+168
+00:07:30,280 --> 00:07:37,210
+question that comes up is you know where
+
+169
+00:07:35,410 --> 00:07:40,930
+where is this bad data getting created
+
+170
+00:07:37,210 --> 00:07:43,660
+created in the first place so for me
+
+171
+00:07:40,930 --> 00:07:45,940
+like the way I think about it there is
+
+172
+00:07:43,660 --> 00:07:49,390
+essentially a life cycle of data that
+
+173
+00:07:45,940 --> 00:07:52,300
+has many phases and each of those phases
+
+174
+00:07:49,390 --> 00:07:54,580
+has some inherent risks that are
+
+175
+00:07:52,300 --> 00:07:56,919
+associated with it where bad data can be
+
+176
+00:07:54,580 --> 00:07:58,780
+introduced so I know there's a lot of
+
+177
+00:07:56,919 --> 00:08:00,880
+information on this slide and I'm going
+
+178
+00:07:58,780 --> 00:08:02,890
+to try to break it down I put it as one
+
+179
+00:08:00,880 --> 00:08:06,250
+visual because I actually personally
+
+180
+00:08:02,890 --> 00:08:08,050
+have this printed out on my desk because
+
+181
+00:08:06,250 --> 00:08:10,450
+I like to refer to it just to sort of
+
+182
+00:08:08,050 --> 00:08:11,860
+fact check you know any investigation
+
+183
+00:08:10,450 --> 00:08:13,120
+that I'm struggling with I try to make
+
+184
+00:08:11,860 --> 00:08:16,360
+sure I'm covering my bases
+
+185
+00:08:13,120 --> 00:08:19,030
+so say let me let me walk you through
+
+186
+00:08:16,360 --> 00:08:21,190
+what's actually in here so on the on the
+
+187
+00:08:19,030 --> 00:08:25,090
+left you see the the five different
+
+188
+00:08:21,190 --> 00:08:27,010
+phases of introducing bad data so the
+
+189
+00:08:25,090 --> 00:08:30,900
+first one that we start off is is just
+
+190
+00:08:27,010 --> 00:08:33,660
+the definition this is where you know
+
+191
+00:08:30,900 --> 00:08:36,250
+the data team and the product team are
+
+192
+00:08:33,660 --> 00:08:38,289
+reconciling and they're saying what are
+
+193
+00:08:36,250 --> 00:08:41,680
+the features that we even want to
+
+194
+00:08:38,289 --> 00:08:43,630
+consider as one coherent unit and then
+
+195
+00:08:41,680 --> 00:08:45,300
+what data requirements do we sort of
+
+196
+00:08:43,630 --> 00:08:48,880
+associated with it
+
+197
+00:08:45,300 --> 00:08:51,100
+after that you go on to login where you
+
+198
+00:08:48,880 --> 00:08:52,570
+actually translate some of those
+
+199
+00:08:51,100 --> 00:08:54,280
+definitions that
+
+200
+00:08:52,570 --> 00:08:57,430
+you had created in the previous step and
+
+201
+00:08:54,280 --> 00:09:01,930
+turn them into actual code that you can
+
+202
+00:08:57,430 --> 00:09:04,240
+use to log and store that data after
+
+203
+00:09:01,930 --> 00:09:06,880
+that you are transforming that data in
+
+204
+00:09:04,240 --> 00:09:08,440
+some way and what you're essentially
+
+205
+00:09:06,880 --> 00:09:11,620
+looking at is you're looking at your
+
+206
+00:09:08,440 --> 00:09:15,220
+business rules and you're applying those
+
+207
+00:09:11,620 --> 00:09:16,990
+rules to do that tracked data so that
+
+208
+00:09:15,220 --> 00:09:18,640
+you can convert it into a format that
+
+209
+00:09:16,990 --> 00:09:22,690
+actually makes sense that is actually
+
+210
+00:09:18,640 --> 00:09:25,450
+usable after that comes the fun part
+
+211
+00:09:22,690 --> 00:09:27,400
+you're actually analyzing it so data
+
+212
+00:09:25,450 --> 00:09:29,260
+scientists typically they have to
+
+213
+00:09:27,400 --> 00:09:31,240
+interpret the data based on you know
+
+214
+00:09:29,260 --> 00:09:34,210
+actual business questions that they're
+
+215
+00:09:31,240 --> 00:09:36,550
+trying to solve for and that is that is
+
+216
+00:09:34,210 --> 00:09:39,520
+where a lot of the action happens
+
+217
+00:09:36,550 --> 00:09:42,790
+and finally after this you actually
+
+218
+00:09:39,520 --> 00:09:44,500
+share out your results and it can happen
+
+219
+00:09:42,790 --> 00:09:46,690
+in a bunch of different ways it can
+
+220
+00:09:44,500 --> 00:09:49,840
+happen in the way of an ad hoc analysis
+
+221
+00:09:46,690 --> 00:09:52,090
+or some some self-service reports things
+
+222
+00:09:49,840 --> 00:09:55,020
+like that and all of these these things
+
+223
+00:09:52,090 --> 00:09:58,210
+are shared directly with stakeholders so
+
+224
+00:09:55,020 --> 00:09:59,830
+during all of these phases I've you know
+
+225
+00:09:58,210 --> 00:10:02,830
+on the on the right I've kind of
+
+226
+00:09:59,830 --> 00:10:04,960
+highlighted a few common things that I
+
+227
+00:10:02,830 --> 00:10:06,640
+observe in each of the phases like which
+
+228
+00:10:04,960 --> 00:10:09,790
+are just according to me they're the
+
+229
+00:10:06,640 --> 00:10:10,990
+most they're the most logical places
+
+230
+00:10:09,790 --> 00:10:13,030
+where something goes wrong
+
+231
+00:10:10,990 --> 00:10:15,610
+so I actually look at all of these
+
+232
+00:10:13,030 --> 00:10:17,110
+things just as a as a sanity check when
+
+233
+00:10:15,610 --> 00:10:18,880
+I'm trying to investigate what happened
+
+234
+00:10:17,110 --> 00:10:21,130
+I'm going to walk you through a couple
+
+235
+00:10:18,880 --> 00:10:23,050
+of them I won't walk you through all but
+
+236
+00:10:21,130 --> 00:10:25,920
+because some of them I'll be discussing
+
+237
+00:10:23,050 --> 00:10:28,300
+later when I'm talking about fixes so
+
+238
+00:10:25,920 --> 00:10:30,910
+you know some of the most obvious ones
+
+239
+00:10:28,300 --> 00:10:35,890
+all most common ones that I see is
+
+240
+00:10:30,910 --> 00:10:37,300
+actually in the definition stage so you
+
+241
+00:10:35,890 --> 00:10:39,700
+know when we when we think about
+
+242
+00:10:37,300 --> 00:10:42,130
+features anything that we are trying to
+
+243
+00:10:39,700 --> 00:10:44,770
+track it has some sort of a definition
+
+244
+00:10:42,130 --> 00:10:47,230
+associated with it and how we define
+
+245
+00:10:44,770 --> 00:10:49,330
+that feature can make a lot of
+
+246
+00:10:47,230 --> 00:10:52,630
+difference in to what insights they're
+
+247
+00:10:49,330 --> 00:10:56,200
+able to get from it at a later stage so
+
+248
+00:10:52,630 --> 00:10:58,960
+if you don't evenly apply the same you
+
+249
+00:10:56,200 --> 00:11:01,090
+know same sort of intention behind some
+
+250
+00:10:58,960 --> 00:11:03,610
+of these feature definitions it can get
+
+251
+00:11:01,090 --> 00:11:06,570
+quite confusing later on so an example
+
+252
+00:11:03,610 --> 00:11:06,570
+here is that let's say you
+
+253
+00:11:06,640 --> 00:11:12,640
+you know your product team says I want
+
+254
+00:11:09,220 --> 00:11:15,070
+to track all clicks on this page any
+
+255
+00:11:12,640 --> 00:11:15,730
+click that happens I want to check it so
+
+256
+00:11:15,070 --> 00:11:17,970
+that's so pretty
+
+257
+00:11:15,730 --> 00:11:22,540
+like it's a pretty all-encompassing
+
+258
+00:11:17,970 --> 00:11:24,520
+definition but you also have you know as
+
+259
+00:11:22,540 --> 00:11:27,310
+a team that's dedicated to tracking
+
+260
+00:11:24,520 --> 00:11:29,080
+things that occur on mobile and so in
+
+261
+00:11:27,310 --> 00:11:31,000
+mobile environment they'll be like yeah
+
+262
+00:11:29,080 --> 00:11:32,950
+I want to track the chicks there too so
+
+263
+00:11:31,000 --> 00:11:36,640
+initially you logically think that all
+
+264
+00:11:32,950 --> 00:11:39,040
+my all my clicks on the on the website
+
+265
+00:11:36,640 --> 00:11:40,780
+are being tracked and some some subset
+
+266
+00:11:39,040 --> 00:11:45,130
+of them would have happened on the
+
+267
+00:11:40,780 --> 00:11:48,010
+mobile but if mobile team decides to not
+
+268
+00:11:45,130 --> 00:11:49,360
+track all the clicks and only like three
+
+269
+00:11:48,010 --> 00:11:52,150
+of the buttons that you can possibly
+
+270
+00:11:49,360 --> 00:11:55,090
+click then you have definitions that are
+
+271
+00:11:52,150 --> 00:11:58,270
+not evenly aligned because you'd assume
+
+272
+00:11:55,090 --> 00:12:00,700
+that you know the the website clicks are
+
+273
+00:11:58,270 --> 00:12:03,880
+still kind of the superset of everything
+
+274
+00:12:00,700 --> 00:12:06,880
+but you'd expect that the mobile subset
+
+275
+00:12:03,880 --> 00:12:09,700
+is a full subset for all mobile clicks
+
+276
+00:12:06,880 --> 00:12:12,280
+but it's actually only tracking three
+
+277
+00:12:09,700 --> 00:12:16,540
+three types of clicks so that can cause
+
+278
+00:12:12,280 --> 00:12:18,520
+issues because anybody who's done this
+
+279
+00:12:16,540 --> 00:12:20,380
+long enough knows that they'll always be
+
+280
+00:12:18,520 --> 00:12:22,360
+that one person who'll say I want that
+
+281
+00:12:20,380 --> 00:12:24,370
+one click on mobile that nobody's
+
+282
+00:12:22,360 --> 00:12:25,600
+tracking like give me information on
+
+283
+00:12:24,370 --> 00:12:26,830
+that like you know you're giving me
+
+284
+00:12:25,600 --> 00:12:29,290
+information about everything else what
+
+285
+00:12:26,830 --> 00:12:31,900
+about that one so the more thoughtful
+
+286
+00:12:29,290 --> 00:12:33,670
+you are upfront about like making sure
+
+287
+00:12:31,900 --> 00:12:35,440
+you're tracking everything evenly it'll
+
+288
+00:12:33,670 --> 00:12:40,330
+it'll just be easier in the in the long
+
+289
+00:12:35,440 --> 00:12:43,150
+run the other example is at the analysis
+
+290
+00:12:40,330 --> 00:12:44,650
+phase so you know I think that's again
+
+291
+00:12:43,150 --> 00:12:47,650
+one of the most common things that
+
+292
+00:12:44,650 --> 00:12:50,950
+happen that you just don't define the
+
+293
+00:12:47,650 --> 00:12:54,580
+problem it's it's very ambiguous because
+
+294
+00:12:50,950 --> 00:12:57,670
+especially when we're you know one human
+
+295
+00:12:54,580 --> 00:12:59,590
+talking to another human you know you're
+
+296
+00:12:57,670 --> 00:13:01,180
+two separate humans so you're always
+
+297
+00:12:59,590 --> 00:13:02,650
+gonna have some things that you're not
+
+298
+00:13:01,180 --> 00:13:06,100
+where you're not aligned where you don't
+
+299
+00:13:02,650 --> 00:13:07,930
+understand each other and you know if
+
+300
+00:13:06,100 --> 00:13:09,700
+you're talking to a product manager they
+
+301
+00:13:07,930 --> 00:13:11,410
+can make certain assumptions that like
+
+302
+00:13:09,700 --> 00:13:14,110
+oh I'm sure they already know this and
+
+303
+00:13:11,410 --> 00:13:15,970
+then you can make certain assumptions
+
+304
+00:13:14,110 --> 00:13:18,910
+like oh I already like of course they
+
+305
+00:13:15,970 --> 00:13:20,870
+know that this can't happen so if you
+
+306
+00:13:18,910 --> 00:13:23,900
+don't actually clarify some of those
+
+307
+00:13:20,870 --> 00:13:27,460
+that can result in some very tough
+
+308
+00:13:23,900 --> 00:13:30,140
+consequences you know you may end up
+
+309
+00:13:27,460 --> 00:13:32,540
+spending a lot of time doing some work
+
+310
+00:13:30,140 --> 00:13:34,070
+which has to be redone because there was
+
+311
+00:13:32,540 --> 00:13:36,200
+an incorrect assumption in the first
+
+312
+00:13:34,070 --> 00:13:38,120
+place or worse
+
+313
+00:13:36,200 --> 00:13:40,220
+maybe the error never gets discovered
+
+314
+00:13:38,120 --> 00:13:41,600
+because you are all you're both calling
+
+315
+00:13:40,220 --> 00:13:42,560
+in the same thing but you're actually
+
+316
+00:13:41,600 --> 00:13:47,510
+doing something that's completely
+
+317
+00:13:42,560 --> 00:13:49,520
+different so these type of examples you
+
+318
+00:13:47,510 --> 00:13:51,320
+know you can you can kind of look
+
+319
+00:13:49,520 --> 00:13:53,180
+through the remaining ones later but
+
+320
+00:13:51,320 --> 00:13:57,850
+these are some common things that kind
+
+321
+00:13:53,180 --> 00:14:00,740
+of show up all right so why should
+
+322
+00:13:57,850 --> 00:14:02,720
+organizations or you know anybody even
+
+323
+00:14:00,740 --> 00:14:06,220
+care about all this bad data now that
+
+324
+00:14:02,720 --> 00:14:10,100
+we've seen a couple of ways it showed up
+
+325
+00:14:06,220 --> 00:14:12,400
+so I think inherently the big takeaway
+
+326
+00:14:10,100 --> 00:14:16,190
+that I have seen over the years is that
+
+327
+00:14:12,400 --> 00:14:18,800
+bad data is just costly it's costly at
+
+328
+00:14:16,190 --> 00:14:21,950
+every single level across the company I
+
+329
+00:14:18,800 --> 00:14:24,020
+think you know to start with the people
+
+330
+00:14:21,950 --> 00:14:26,750
+who are working who have to deal with it
+
+331
+00:14:24,020 --> 00:14:29,360
+it is it hampers their productivity
+
+332
+00:14:26,750 --> 00:14:31,220
+if you don't upfront spend that time and
+
+333
+00:14:29,360 --> 00:14:33,920
+effort in trying to keep things clean
+
+334
+00:14:31,220 --> 00:14:36,110
+and it affects our morale because they
+
+335
+00:14:33,920 --> 00:14:37,910
+feel that you know this is this is just
+
+336
+00:14:36,110 --> 00:14:40,940
+I spend so much time doing something I
+
+337
+00:14:37,910 --> 00:14:43,040
+don't want to do it can also affect it
+
+338
+00:14:40,940 --> 00:14:45,020
+can cause liabilities you can sometimes
+
+339
+00:14:43,040 --> 00:14:47,750
+end up sharing information that you had
+
+340
+00:14:45,020 --> 00:14:49,730
+you're not supposed to or you shared
+
+341
+00:14:47,750 --> 00:14:53,090
+incorrect information that's specially a
+
+342
+00:14:49,730 --> 00:14:55,490
+problem if if you're a public traded
+
+343
+00:14:53,090 --> 00:14:58,010
+publicly traded company and you had an
+
+344
+00:14:55,490 --> 00:15:01,010
+earnings call where you said I have you
+
+345
+00:14:58,010 --> 00:15:03,560
+know X number of monthly active users
+
+346
+00:15:01,010 --> 00:15:05,660
+and then the next earnings call you're
+
+347
+00:15:03,560 --> 00:15:08,480
+like well just kidding it's actually 20%
+
+348
+00:15:05,660 --> 00:15:10,190
+lower because I made a mistake that's
+
+349
+00:15:08,480 --> 00:15:12,740
+not gonna look good and you might your
+
+350
+00:15:10,190 --> 00:15:16,520
+company might actually get sued for for
+
+351
+00:15:12,740 --> 00:15:19,460
+misleading shareholders so bias of
+
+352
+00:15:16,520 --> 00:15:21,650
+course is a big problem you know if you
+
+353
+00:15:19,460 --> 00:15:23,900
+if you have some if you have some data
+
+354
+00:15:21,650 --> 00:15:26,300
+that's inherently biased and that's not
+
+355
+00:15:23,900 --> 00:15:28,730
+known to you like that's just it's it's
+
+356
+00:15:26,300 --> 00:15:31,130
+it's a it's it's a it's a issue because
+
+357
+00:15:28,730 --> 00:15:33,470
+it can cause harm to people based on
+
+358
+00:15:31,130 --> 00:15:34,339
+whatever decisions are being made with
+
+359
+00:15:33,470 --> 00:15:37,670
+that data
+
+360
+00:15:34,339 --> 00:15:40,129
+and overall you know you can also just
+
+361
+00:15:37,670 --> 00:15:42,110
+straight-up lose revenue so if you have
+
+362
+00:15:40,129 --> 00:15:44,509
+a bad data pipeline and data goes
+
+363
+00:15:42,110 --> 00:15:46,819
+missing maybe your marketing team
+
+364
+00:15:44,509 --> 00:15:48,949
+doesn't have leads to follow up on and
+
+365
+00:15:46,819 --> 00:15:52,550
+that can lead to material revenue
+
+366
+00:15:48,949 --> 00:15:55,249
+revenue costs overall I think the
+
+367
+00:15:52,550 --> 00:15:57,439
+biggest the biggest reason that I think
+
+368
+00:15:55,249 --> 00:16:00,860
+this is important is also because it
+
+369
+00:15:57,439 --> 00:16:02,899
+lowers trust the minute your customers
+
+370
+00:16:00,860 --> 00:16:05,660
+find out that there is something sketchy
+
+371
+00:16:02,899 --> 00:16:08,180
+going on with your data that can often
+
+372
+00:16:05,660 --> 00:16:09,649
+be just game over for you because if
+
+373
+00:16:08,180 --> 00:16:15,139
+they do if they don't trust your data
+
+374
+00:16:09,649 --> 00:16:17,480
+they don't it had a really trust you the
+
+375
+00:16:15,139 --> 00:16:19,249
+one thing that I again like to sort of
+
+376
+00:16:17,480 --> 00:16:21,620
+highlight a little bit more is that I
+
+377
+00:16:19,249 --> 00:16:23,660
+think you know besides all those other
+
+378
+00:16:21,620 --> 00:16:26,420
+reasons which have a cost attached to it
+
+379
+00:16:23,660 --> 00:16:28,879
+I think just the fact that data
+
+380
+00:16:26,420 --> 00:16:31,249
+scientists have no moral because it's
+
+381
+00:16:28,879 --> 00:16:33,769
+something like this is reason enough for
+
+382
+00:16:31,249 --> 00:16:36,889
+people to care about it you know data
+
+383
+00:16:33,769 --> 00:16:38,779
+scientists have to find the error find
+
+384
+00:16:36,889 --> 00:16:40,929
+the source validate cross checking it so
+
+385
+00:16:38,779 --> 00:16:44,089
+it's a lot of work that goes into
+
+386
+00:16:40,929 --> 00:16:46,939
+resolving some of these issues and I
+
+387
+00:16:44,089 --> 00:16:48,949
+think inherently it very much is a part
+
+388
+00:16:46,939 --> 00:16:50,959
+of a data scientist job to do this but
+
+389
+00:16:48,949 --> 00:16:53,120
+inherently they feel well my skills are
+
+390
+00:16:50,959 --> 00:16:56,319
+so much you know there's so much other
+
+391
+00:16:53,120 --> 00:16:59,269
+cool stuff that I can be doing and so
+
+392
+00:16:56,319 --> 00:17:01,309
+everyone wants to be they everyone wants
+
+393
+00:16:59,269 --> 00:17:03,470
+their talents to be used in an optimal
+
+394
+00:17:01,309 --> 00:17:05,750
+way and you don't want people leaving
+
+395
+00:17:03,470 --> 00:17:09,789
+leaving a job just because they're
+
+396
+00:17:05,750 --> 00:17:15,409
+always dealing with dirty data issues so
+
+397
+00:17:09,789 --> 00:17:20,480
+good so next you know how do we actually
+
+398
+00:17:15,409 --> 00:17:22,309
+solve it my my thought here is I think I
+
+399
+00:17:20,480 --> 00:17:25,640
+think we solve it by thinking like
+
+400
+00:17:22,309 --> 00:17:28,159
+Sherlock Holmes and for for those of you
+
+401
+00:17:25,640 --> 00:17:30,500
+who are not familiar with him Sherlock
+
+402
+00:17:28,159 --> 00:17:33,620
+Holmes is a fictitious character created
+
+403
+00:17:30,500 --> 00:17:35,390
+by Sir Arthur Conan Doyle he is arguably
+
+404
+00:17:33,620 --> 00:17:37,730
+one of the most famous fictional
+
+405
+00:17:35,390 --> 00:17:40,100
+detectives and there's a lot of books
+
+406
+00:17:37,730 --> 00:17:42,320
+and movies about like that character so
+
+407
+00:17:40,100 --> 00:17:45,740
+check it out if you haven't had the
+
+408
+00:17:42,320 --> 00:17:47,600
+chance to so why did I actually pick
+
+409
+00:17:45,740 --> 00:17:50,480
+Sherlock Holmes
+
+410
+00:17:47,600 --> 00:17:54,559
+for you know why did I pick that we
+
+411
+00:17:50,480 --> 00:17:57,260
+should emulate his his style so I
+
+412
+00:17:54,559 --> 00:17:59,630
+actually think that his style of solving
+
+413
+00:17:57,260 --> 00:18:01,760
+crimes is very relevant to data
+
+414
+00:17:59,630 --> 00:18:04,460
+scientists even though hopefully we're
+
+415
+00:18:01,760 --> 00:18:06,919
+not solving crimes just data issues but
+
+416
+00:18:04,460 --> 00:18:09,919
+I think inherently we're doing
+
+417
+00:18:06,919 --> 00:18:12,950
+investigations and I think a lot of his
+
+418
+00:18:09,919 --> 00:18:15,200
+personality traits are very good if you
+
+419
+00:18:12,950 --> 00:18:17,510
+think of a philosophy of how data
+
+420
+00:18:15,200 --> 00:18:20,630
+scientist should think I think it's very
+
+421
+00:18:17,510 --> 00:18:22,880
+it's it's it's a it's very relevant and
+
+422
+00:18:20,630 --> 00:18:24,530
+inherently Sherlock Holmes is always
+
+423
+00:18:22,880 --> 00:18:27,110
+presented as a very very data-driven
+
+424
+00:18:24,530 --> 00:18:30,500
+character so I think his methodologies
+
+425
+00:18:27,110 --> 00:18:33,049
+are actually extremely relevant and the
+
+426
+00:18:30,500 --> 00:18:36,080
+three sort of traits of his that I
+
+427
+00:18:33,049 --> 00:18:39,590
+picked which are sort of you know larger
+
+428
+00:18:36,080 --> 00:18:42,770
+bucketing of of some of his personality
+
+429
+00:18:39,590 --> 00:18:47,210
+are deep observation scientific method
+
+430
+00:18:42,770 --> 00:18:49,340
+and pattern matching so let's dive into
+
+431
+00:18:47,210 --> 00:18:55,640
+a little bit of each of these and see
+
+432
+00:18:49,340 --> 00:18:58,070
+how they sort of manifest so his deep
+
+433
+00:18:55,640 --> 00:19:00,169
+observation is so there's a very famous
+
+434
+00:18:58,070 --> 00:19:04,309
+quote that Sherlock Holmes says in one
+
+435
+00:19:00,169 --> 00:19:07,760
+of the books he says he says you see but
+
+436
+00:19:04,309 --> 00:19:10,340
+you do not observe and that's a that's a
+
+437
+00:19:07,760 --> 00:19:13,809
+that's a very interesting difference
+
+438
+00:19:10,340 --> 00:19:16,309
+distinction to call out that if
+
+439
+00:19:13,809 --> 00:19:19,940
+essentially when we have data in front
+
+440
+00:19:16,309 --> 00:19:22,730
+of us our default is to look at it and
+
+441
+00:19:19,940 --> 00:19:25,520
+absorb the information ances but when we
+
+442
+00:19:22,730 --> 00:19:28,850
+actually start observing it more closely
+
+443
+00:19:25,520 --> 00:19:31,610
+we gain more nuance by just interacting
+
+444
+00:19:28,850 --> 00:19:34,370
+with that information as an active
+
+445
+00:19:31,610 --> 00:19:37,760
+participant and that is a skill that I
+
+446
+00:19:34,370 --> 00:19:39,260
+think is worth building on so some of
+
+447
+00:19:37,760 --> 00:19:43,280
+the ways that you can build on that
+
+448
+00:19:39,260 --> 00:19:47,809
+skill is to just be fully present and
+
+449
+00:19:43,280 --> 00:19:49,909
+very mindful so when you're mindfully
+
+450
+00:19:47,809 --> 00:19:52,220
+interacting with not just the person who
+
+451
+00:19:49,909 --> 00:19:53,690
+you know your stakeholder your your
+
+452
+00:19:52,220 --> 00:19:55,190
+business partner like people like that
+
+453
+00:19:53,690 --> 00:19:57,710
+like when you're mindfully interacting
+
+454
+00:19:55,190 --> 00:20:00,409
+with them you're more engaged you are
+
+455
+00:19:57,710 --> 00:20:01,120
+not going to be distracted and that will
+
+456
+00:20:00,409 --> 00:20:03,340
+mean that
+
+457
+00:20:01,120 --> 00:20:07,180
+don't you don't miss out on something
+
+458
+00:20:03,340 --> 00:20:09,430
+that's critical for you to you know be
+
+459
+00:20:07,180 --> 00:20:10,870
+able to solve the problem at hand and I
+
+460
+00:20:09,430 --> 00:20:14,500
+think it's one of the best ways to have
+
+461
+00:20:10,870 --> 00:20:16,390
+impact the other way to improve your
+
+462
+00:20:14,500 --> 00:20:18,490
+observation is to be an active
+
+463
+00:20:16,390 --> 00:20:23,020
+participant in with whatever you're
+
+464
+00:20:18,490 --> 00:20:24,520
+doing so you know one of the you know
+
+465
+00:20:23,020 --> 00:20:27,160
+one of the fun examples that they called
+
+466
+00:20:24,520 --> 00:20:29,200
+out is that you know when Sherlock
+
+467
+00:20:27,160 --> 00:20:31,300
+Holmes was given you know he said they
+
+468
+00:20:29,200 --> 00:20:33,400
+said oh here we found this note and this
+
+469
+00:20:31,300 --> 00:20:34,120
+is a clue so he didn't actually just
+
+470
+00:20:33,400 --> 00:20:36,610
+read it
+
+471
+00:20:34,120 --> 00:20:39,040
+he didn't just like you know look at it
+
+472
+00:20:36,610 --> 00:20:40,780
+he he actually smelt it too because he
+
+473
+00:20:39,040 --> 00:20:43,390
+said you know smelling it is gonna give
+
+474
+00:20:40,780 --> 00:20:46,090
+me some extra insight and I just reading
+
+475
+00:20:43,390 --> 00:20:48,429
+it doesn't doesn't gave me and that is a
+
+476
+00:20:46,090 --> 00:20:51,070
+very interesting thing because you're
+
+477
+00:20:48,429 --> 00:20:52,630
+you know you're actively participating
+
+478
+00:20:51,070 --> 00:20:54,309
+with the information in front of you
+
+479
+00:20:52,630 --> 00:20:56,440
+you're you're being inclusive you're not
+
+480
+00:20:54,309 --> 00:20:58,780
+just saying well this is how I normally
+
+481
+00:20:56,440 --> 00:21:00,850
+look at data but like you're trying to
+
+482
+00:20:58,780 --> 00:21:02,980
+be you're trying to be thoughtful and
+
+483
+00:21:00,850 --> 00:21:06,130
+getting into the weeds of how you can
+
+484
+00:21:02,980 --> 00:21:11,200
+use use information in in in to tell you
+
+485
+00:21:06,130 --> 00:21:13,420
+different insights the next thing again
+
+486
+00:21:11,200 --> 00:21:16,809
+about improving your observation is to
+
+487
+00:21:13,420 --> 00:21:20,620
+structure your thinking so this one is
+
+488
+00:21:16,809 --> 00:21:22,540
+you know I think like all good engineers
+
+489
+00:21:20,620 --> 00:21:24,100
+have to do it you have to just be
+
+490
+00:21:22,540 --> 00:21:26,140
+structured you have to keep good
+
+491
+00:21:24,100 --> 00:21:27,610
+documentation I think for data
+
+492
+00:21:26,140 --> 00:21:30,670
+scientists it's especially relevant
+
+493
+00:21:27,610 --> 00:21:32,740
+because you know sometimes during our
+
+494
+00:21:30,670 --> 00:21:37,210
+analysis we'll make some assumptions and
+
+495
+00:21:32,740 --> 00:21:39,400
+if it's not or we'll make some decisions
+
+496
+00:21:37,210 --> 00:21:41,050
+rather and if it's not an intuitive
+
+497
+00:21:39,400 --> 00:21:41,650
+decision like why did we make that
+
+498
+00:21:41,050 --> 00:21:43,750
+decision
+
+499
+00:21:41,650 --> 00:21:46,840
+maybe we made it because we spoke to a
+
+500
+00:21:43,750 --> 00:21:48,730
+colleague who pointed something out and
+
+501
+00:21:46,840 --> 00:21:50,980
+if two months later we'd forget why we
+
+502
+00:21:48,730 --> 00:21:53,679
+why we decided to go this direction with
+
+503
+00:21:50,980 --> 00:21:55,420
+our analysis it will be really helpful
+
+504
+00:21:53,679 --> 00:21:57,940
+to you if you have actually sort of
+
+505
+00:21:55,420 --> 00:21:59,410
+documented that somewhere so that even
+
+506
+00:21:57,940 --> 00:22:01,330
+you yourself are not struggling with
+
+507
+00:21:59,410 --> 00:22:06,190
+figuring out why you why you did
+
+508
+00:22:01,330 --> 00:22:07,750
+something specific so you know and and
+
+509
+00:22:06,190 --> 00:22:10,720
+like being structured also means that
+
+510
+00:22:07,750 --> 00:22:13,179
+you you try to look at information and
+
+511
+00:22:10,720 --> 00:22:14,860
+sift through it and say like you know
+
+512
+00:22:13,179 --> 00:22:16,690
+let me step back and
+
+513
+00:22:14,860 --> 00:22:18,370
+what is actually useful to me what is
+
+514
+00:22:16,690 --> 00:22:20,200
+just a red herring or something that's
+
+515
+00:22:18,370 --> 00:22:24,850
+kind of taking me away from what I'm
+
+516
+00:22:20,200 --> 00:22:27,390
+actually trying to do here the next
+
+517
+00:22:24,850 --> 00:22:32,920
+character trait was scientific method
+
+518
+00:22:27,390 --> 00:22:34,570
+and here again you know the famous quote
+
+519
+00:22:32,920 --> 00:22:36,730
+here is when you have eliminated the
+
+520
+00:22:34,570 --> 00:22:39,940
+impossible whatever remains however
+
+521
+00:22:36,730 --> 00:22:42,160
+improbable must be the truth it's a very
+
+522
+00:22:39,940 --> 00:22:45,250
+it's a very scientific way of thinking
+
+523
+00:22:42,160 --> 00:22:47,530
+about it cuz we you know we have to
+
+524
+00:22:45,250 --> 00:22:50,200
+regard facts as truth even if we can't
+
+525
+00:22:47,530 --> 00:22:52,870
+see it and if the most likely answer is
+
+526
+00:22:50,200 --> 00:22:53,890
+not the answer and the impossible answer
+
+527
+00:22:52,870 --> 00:22:57,730
+is not the answer
+
+528
+00:22:53,890 --> 00:22:59,710
+we have to give the improbable answer a
+
+529
+00:22:57,730 --> 00:23:02,049
+chance to prove itself and we have to be
+
+530
+00:22:59,710 --> 00:23:03,940
+truthful saying that if this is where
+
+531
+00:23:02,049 --> 00:23:04,570
+things are pointing me I have to give it
+
+532
+00:23:03,940 --> 00:23:06,760
+a shot
+
+533
+00:23:04,570 --> 00:23:10,929
+to sort of see if that's actually true
+
+534
+00:23:06,760 --> 00:23:13,330
+or not so here again you know you can
+
+535
+00:23:10,929 --> 00:23:16,690
+build on this scale by just generally
+
+536
+00:23:13,330 --> 00:23:19,660
+avoided avoiding the trap of bias and I
+
+537
+00:23:16,690 --> 00:23:21,640
+think you know a lot of times it's it's
+
+538
+00:23:19,660 --> 00:23:25,929
+very easy like it's human nature that we
+
+539
+00:23:21,640 --> 00:23:27,700
+are the if we're given if you're given
+
+540
+00:23:25,929 --> 00:23:29,950
+something that makes our life easier so
+
+541
+00:23:27,700 --> 00:23:32,950
+someone States an opinion which sounds
+
+542
+00:23:29,950 --> 00:23:36,429
+kind of correct like it makes our brain
+
+543
+00:23:32,950 --> 00:23:39,669
+is programmed to just attach to it
+
+544
+00:23:36,429 --> 00:23:40,780
+because it makes our life easier so but
+
+545
+00:23:39,669 --> 00:23:42,540
+we should we should you know
+
+546
+00:23:40,780 --> 00:23:46,360
+purposefully step away from that because
+
+547
+00:23:42,540 --> 00:23:49,210
+a lot of times opinions are stated as
+
+548
+00:23:46,360 --> 00:23:50,980
+facts and people then there must have
+
+549
+00:23:49,210 --> 00:23:53,230
+been tons of companies that you know
+
+550
+00:23:50,980 --> 00:23:54,610
+said hey our monthly active users just
+
+551
+00:23:53,230 --> 00:23:57,940
+never go down like we're a growing
+
+552
+00:23:54,610 --> 00:24:00,250
+company and then coronavirus hit and of
+
+553
+00:23:57,940 --> 00:24:03,370
+course a lot of companies lost lost
+
+554
+00:24:00,250 --> 00:24:05,020
+users and if they had treated that as a
+
+555
+00:24:03,370 --> 00:24:07,450
+fact that like there's just no way that
+
+556
+00:24:05,020 --> 00:24:09,760
+we can ever have less people coming to
+
+557
+00:24:07,450 --> 00:24:12,880
+our site you know they would have just
+
+558
+00:24:09,760 --> 00:24:15,010
+found it way harder to be like well you
+
+559
+00:24:12,880 --> 00:24:17,260
+know why is this happening now of course
+
+560
+00:24:15,010 --> 00:24:18,760
+in this example I'm assuming people
+
+561
+00:24:17,260 --> 00:24:20,650
+weren't living under a rock and they
+
+562
+00:24:18,760 --> 00:24:22,419
+kind of heard about the covert situation
+
+563
+00:24:20,650 --> 00:24:24,280
+so hopefully they would have been able
+
+564
+00:24:22,419 --> 00:24:25,929
+to piece things together but you know
+
+565
+00:24:24,280 --> 00:24:28,660
+there could be some situations there you
+
+566
+00:24:25,929 --> 00:24:30,580
+just don't know what's going on
+
+567
+00:24:28,660 --> 00:24:33,850
+and the other thing sharer is you know
+
+568
+00:24:30,580 --> 00:24:35,860
+we tend to the information that is
+
+569
+00:24:33,850 --> 00:24:38,740
+available to us like the information
+
+570
+00:24:35,860 --> 00:24:40,660
+that's in front of us that we can see we
+
+571
+00:24:38,740 --> 00:24:43,390
+tend to weigh that more heavily than
+
+572
+00:24:40,660 --> 00:24:46,780
+what we don't have access to so for
+
+573
+00:24:43,390 --> 00:24:50,170
+example if I have access to the signups
+
+574
+00:24:46,780 --> 00:24:53,560
+that occurred on my website but I don't
+
+575
+00:24:50,170 --> 00:24:55,840
+have access to the actual you know
+
+576
+00:24:53,560 --> 00:24:58,510
+volume of people who came to my site and
+
+577
+00:24:55,840 --> 00:25:01,240
+bounced out without signing up I will
+
+578
+00:24:58,510 --> 00:25:02,830
+just look at my signups and be like yeah
+
+579
+00:25:01,240 --> 00:25:04,450
+it's going really well
+
+580
+00:25:02,830 --> 00:25:07,210
+you know I'm I have so many people
+
+581
+00:25:04,450 --> 00:25:10,690
+coming to my site but the fact is while
+
+582
+00:25:07,210 --> 00:25:13,600
+that singularly might be true if you
+
+583
+00:25:10,690 --> 00:25:16,480
+just have had a lot more people come and
+
+584
+00:25:13,600 --> 00:25:18,640
+yes overall your signups are going going
+
+585
+00:25:16,480 --> 00:25:21,640
+higher but your rate of conversion is
+
+586
+00:25:18,640 --> 00:25:23,470
+actually lowering your you're missing
+
+587
+00:25:21,640 --> 00:25:24,940
+out on key information by like just
+
+588
+00:25:23,470 --> 00:25:28,890
+being biased towards the information
+
+589
+00:25:24,940 --> 00:25:28,890
+that's available to you at that point
+
+590
+00:25:29,340 --> 00:25:35,320
+and then you know the last way to build
+
+591
+00:25:31,960 --> 00:25:37,450
+this skill is to you know regular
+
+592
+00:25:35,320 --> 00:25:40,570
+science facts like build a hypothesis
+
+593
+00:25:37,450 --> 00:25:43,120
+test it out if you have multiple
+
+594
+00:25:40,570 --> 00:25:45,550
+multiple options to go with you rank
+
+595
+00:25:43,120 --> 00:25:48,040
+them pick the most likely one first to
+
+596
+00:25:45,550 --> 00:25:50,410
+test out and keep kind of validating
+
+597
+00:25:48,040 --> 00:25:52,360
+each of them until you find something
+
+598
+00:25:50,410 --> 00:25:57,580
+that fully explains what issues you
+
+599
+00:25:52,360 --> 00:26:01,480
+might be having the last skill was about
+
+600
+00:25:57,580 --> 00:26:02,920
+pattern matching so you know there is
+
+601
+00:26:01,480 --> 00:26:05,890
+nothing more deceptive that an obvious
+
+602
+00:26:02,920 --> 00:26:08,590
+fact as Sherlock Holmes said and it's
+
+603
+00:26:05,890 --> 00:26:09,700
+it's it's because you know the
+
+604
+00:26:08,590 --> 00:26:11,590
+interesting thing was Holmes was
+
+605
+00:26:09,700 --> 00:26:13,410
+actually considered to be very good at
+
+606
+00:26:11,590 --> 00:26:15,820
+understanding human behavior and
+
+607
+00:26:13,410 --> 00:26:17,080
+predicting human behavior even though he
+
+608
+00:26:15,820 --> 00:26:19,600
+was considered someone who wasn't
+
+609
+00:26:17,080 --> 00:26:21,760
+actually very good at empathizing and I
+
+610
+00:26:19,600 --> 00:26:25,060
+and that may seem you know not very
+
+611
+00:26:21,760 --> 00:26:28,090
+aligned but the sheer fact is that when
+
+612
+00:26:25,060 --> 00:26:30,520
+you understand when you understand
+
+613
+00:26:28,090 --> 00:26:32,220
+situations people all of that better you
+
+614
+00:26:30,520 --> 00:26:35,770
+are much more easily able to find
+
+615
+00:26:32,220 --> 00:26:38,920
+patterns and you know that hey this may
+
+616
+00:26:35,770 --> 00:26:41,170
+present as an obvious fact but it's very
+
+617
+00:26:38,920 --> 00:26:42,340
+common for people to sort of you know
+
+618
+00:26:41,170 --> 00:26:43,840
+stated as a fact but
+
+619
+00:26:42,340 --> 00:26:47,440
+it's not it's not true so like let me
+
+620
+00:26:43,840 --> 00:26:50,470
+dig into it a little bit more so a good
+
+621
+00:26:47,440 --> 00:26:52,240
+way to improve on this skill is just to
+
+622
+00:26:50,470 --> 00:26:55,390
+be very objective when you're trying to
+
+623
+00:26:52,240 --> 00:26:56,650
+parse information you know understand
+
+624
+00:26:55,390 --> 00:26:58,840
+the people that you're dealing with
+
+625
+00:26:56,650 --> 00:27:00,760
+understand their motivations understand
+
+626
+00:26:58,840 --> 00:27:01,809
+that fears those things could be very
+
+627
+00:27:00,760 --> 00:27:05,740
+different than yours
+
+628
+00:27:01,809 --> 00:27:07,210
+so if you have stakeholders you know if
+
+629
+00:27:05,740 --> 00:27:09,580
+you have a product person and a
+
+630
+00:27:07,210 --> 00:27:11,919
+marketing person for both coming and
+
+631
+00:27:09,580 --> 00:27:14,140
+telling you this data looks wrong they
+
+632
+00:27:11,919 --> 00:27:16,990
+might have very different opinions on
+
+633
+00:27:14,140 --> 00:27:20,500
+where they think the problem occurs and
+
+634
+00:27:16,990 --> 00:27:23,919
+you have to still separate yourself from
+
+635
+00:27:20,500 --> 00:27:25,840
+you know from from sort of those two
+
+636
+00:27:23,919 --> 00:27:28,179
+conflicting conflicting directions and
+
+637
+00:27:25,840 --> 00:27:31,240
+pick what what makes the most sense for
+
+638
+00:27:28,179 --> 00:27:32,830
+you to investigate first because you
+
+639
+00:27:31,240 --> 00:27:34,510
+because you know otherwise you won't be
+
+640
+00:27:32,830 --> 00:27:37,990
+objective and you won't you won't stay
+
+641
+00:27:34,510 --> 00:27:39,370
+focused on the truth say as you hear as
+
+642
+00:27:37,990 --> 00:27:41,590
+you hear opinions and ideas I guess
+
+643
+00:27:39,370 --> 00:27:44,200
+always good to understand that also for
+
+644
+00:27:41,590 --> 00:27:48,490
+future reference but try to sort of like
+
+645
+00:27:44,200 --> 00:27:50,140
+parse the right information from it the
+
+646
+00:27:48,490 --> 00:27:53,260
+last way to sort of improve on that
+
+647
+00:27:50,140 --> 00:27:56,409
+skill is to just in general widen your
+
+648
+00:27:53,260 --> 00:27:57,880
+knowledge base so you know as as a data
+
+649
+00:27:56,409 --> 00:28:00,399
+scientist I think it's extremely
+
+650
+00:27:57,880 --> 00:28:03,760
+important that like obviously we have to
+
+651
+00:28:00,399 --> 00:28:06,220
+get really good at understanding the
+
+652
+00:28:03,760 --> 00:28:09,700
+data appreciating what it does but the
+
+653
+00:28:06,220 --> 00:28:12,399
+other part is like if you if you do an
+
+654
+00:28:09,700 --> 00:28:14,909
+equally good job at also understanding
+
+655
+00:28:12,399 --> 00:28:17,260
+the product understanding the users
+
+656
+00:28:14,909 --> 00:28:19,029
+understanding how your marketing channel
+
+657
+00:28:17,260 --> 00:28:21,370
+works and things like that it can
+
+658
+00:28:19,029 --> 00:28:24,010
+actually allow you to make a hypothesis
+
+659
+00:28:21,370 --> 00:28:26,590
+much more easily when you sees things
+
+660
+00:28:24,010 --> 00:28:28,090
+that are going wrong and you'd be in a
+
+661
+00:28:26,590 --> 00:28:30,370
+better position because you would have
+
+662
+00:28:28,090 --> 00:28:32,289
+seen some odd things that happen which
+
+663
+00:28:30,370 --> 00:28:34,750
+if you just focused on the data you
+
+664
+00:28:32,289 --> 00:28:37,240
+wouldn't have access to so it it
+
+665
+00:28:34,750 --> 00:28:40,000
+basically allows you to consider you
+
+666
+00:28:37,240 --> 00:28:45,210
+know factors outside of just just what's
+
+667
+00:28:40,000 --> 00:28:47,760
+in what's in front of you all right so
+
+668
+00:28:45,210 --> 00:28:49,990
+hopefully they're all made sense so far
+
+669
+00:28:47,760 --> 00:28:53,110
+now we are actually going to walk
+
+670
+00:28:49,990 --> 00:28:54,909
+through an example so you know we
+
+671
+00:28:53,110 --> 00:28:56,000
+hopefully we understand a little bit how
+
+672
+00:28:54,909 --> 00:28:58,399
+Sherlock Holmes
+
+673
+00:28:56,000 --> 00:29:00,889
+and how we can apply his mindset to our
+
+674
+00:28:58,399 --> 00:29:02,000
+own problem-solving techniques so now
+
+675
+00:29:00,889 --> 00:29:04,399
+I'm going to walk through a simple
+
+676
+00:29:02,000 --> 00:29:06,169
+example where we will try to use some of
+
+677
+00:29:04,399 --> 00:29:08,929
+those philosophies that I kind of just
+
+678
+00:29:06,169 --> 00:29:12,409
+highlighted and for the sake of
+
+679
+00:29:08,929 --> 00:29:15,019
+simplicity I am going to go with the
+
+680
+00:29:12,409 --> 00:29:17,210
+assumption that we eventually have one
+
+681
+00:29:15,019 --> 00:29:18,710
+warehouse where we store all our data
+
+682
+00:29:17,210 --> 00:29:21,049
+regardless of where it comes from
+
+683
+00:29:18,710 --> 00:29:23,389
+so whether it's initially coming from
+
+684
+00:29:21,049 --> 00:29:26,179
+Salesforce heap website logs whatever
+
+685
+00:29:23,389 --> 00:29:28,549
+all of it comes and it sits in one data
+
+686
+00:29:26,179 --> 00:29:30,889
+warehouses I want to make life my life
+
+687
+00:29:28,549 --> 00:29:35,480
+easier and just compare two data sets in
+
+688
+00:29:30,889 --> 00:29:37,669
+the same place so this is this is
+
+689
+00:29:35,480 --> 00:29:42,080
+typically how they how the question
+
+690
+00:29:37,669 --> 00:29:45,159
+starts and I I hope a lot of you can
+
+691
+00:29:42,080 --> 00:29:47,480
+relate to this specific example which is
+
+692
+00:29:45,159 --> 00:29:48,950
+you know you have a colleague maybe
+
+693
+00:29:47,480 --> 00:29:50,990
+they're in marketing or something and
+
+694
+00:29:48,950 --> 00:29:55,700
+they come to you with the question they
+
+695
+00:29:50,990 --> 00:29:57,740
+say the number of sales in May I pulled
+
+696
+00:29:55,700 --> 00:30:00,049
+one number from Salesforce report and
+
+697
+00:29:57,740 --> 00:30:02,659
+today they reported something else in
+
+698
+00:30:00,049 --> 00:30:04,909
+all hands and you know what's the deal
+
+699
+00:30:02,659 --> 00:30:07,070
+why they why they're not matching so
+
+700
+00:30:04,909 --> 00:30:10,070
+obviously a lot of things could have
+
+701
+00:30:07,070 --> 00:30:11,659
+gone wrong and for the purpose of this
+
+702
+00:30:10,070 --> 00:30:12,860
+example we are actually going to pretend
+
+703
+00:30:11,659 --> 00:30:17,210
+everything that could go wrong did
+
+704
+00:30:12,860 --> 00:30:20,509
+indeed go wrong and yeah I like that you
+
+705
+00:30:17,210 --> 00:30:22,039
+know of course if you've been at a
+
+706
+00:30:20,509 --> 00:30:23,870
+company for a while or if you've
+
+707
+00:30:22,039 --> 00:30:26,029
+interacted with that same data set for a
+
+708
+00:30:23,870 --> 00:30:28,220
+long time you'd probably have you'd
+
+709
+00:30:26,029 --> 00:30:31,429
+probably start building out a good idea
+
+710
+00:30:28,220 --> 00:30:34,820
+of where the problem might be but for
+
+711
+00:30:31,429 --> 00:30:36,740
+this example yeah for this example I am
+
+712
+00:30:34,820 --> 00:30:38,779
+going to assume that you just joined two
+
+713
+00:30:36,740 --> 00:30:40,909
+hours ago you know no one you know
+
+714
+00:30:38,779 --> 00:30:42,919
+nothing all you know is your snowflake
+
+715
+00:30:40,909 --> 00:30:46,879
+warehouse password and what the
+
+716
+00:30:42,919 --> 00:30:50,539
+offending data sets are so before we
+
+717
+00:30:46,879 --> 00:30:54,830
+begin actual coding some simple sanity
+
+718
+00:30:50,539 --> 00:30:57,070
+check lists to just examine the facts we
+
+719
+00:30:54,830 --> 00:31:00,169
+are talking about two different numbers
+
+720
+00:30:57,070 --> 00:31:02,919
+basic questions are they even supposed
+
+721
+00:31:00,169 --> 00:31:06,529
+to represent the same information
+
+722
+00:31:02,919 --> 00:31:09,259
+sometimes numbers may be called the same
+
+723
+00:31:06,529 --> 00:31:09,540
+thing but they're actually not supposed
+
+724
+00:31:09,259 --> 00:31:12,150
+to
+
+725
+00:31:09,540 --> 00:31:14,460
+represent the same thing at all so an
+
+726
+00:31:12,150 --> 00:31:18,300
+example would be that you know people
+
+727
+00:31:14,460 --> 00:31:20,160
+may be just saying sign ups but maybe
+
+728
+00:31:18,300 --> 00:31:22,230
+the sign ups that are stored on sales
+
+729
+00:31:20,160 --> 00:31:24,240
+force on the Salesforce platform are
+
+730
+00:31:22,230 --> 00:31:26,090
+referring to sign ups that need a
+
+731
+00:31:24,240 --> 00:31:27,960
+customer success person to reach out
+
+732
+00:31:26,090 --> 00:31:29,460
+whereas the sign ups that would be
+
+733
+00:31:27,960 --> 00:31:32,820
+stored in your internal table would be
+
+734
+00:31:29,460 --> 00:31:34,500
+all sign ups ever so you know you're
+
+735
+00:31:32,820 --> 00:31:37,230
+both calling it sign ups but is it
+
+736
+00:31:34,500 --> 00:31:40,680
+actually all sign ups and the same
+
+737
+00:31:37,230 --> 00:31:43,170
+amount the other thing to think about is
+
+738
+00:31:40,680 --> 00:31:45,450
+I think this is actually super super
+
+739
+00:31:43,170 --> 00:31:48,390
+common but you know are they from the
+
+740
+00:31:45,450 --> 00:31:50,460
+same time frame and is your refresh data
+
+741
+00:31:48,390 --> 00:31:52,230
+refresh cadence for the two places that
+
+742
+00:31:50,460 --> 00:31:55,140
+you're looking for information similar
+
+743
+00:31:52,230 --> 00:31:56,490
+and that is I mean hands down
+
+744
+00:31:55,140 --> 00:31:59,910
+one of the most common things that
+
+745
+00:31:56,490 --> 00:32:02,010
+happens that like one report could be
+
+746
+00:31:59,910 --> 00:32:04,050
+set to begin at the first of the month
+
+747
+00:32:02,010 --> 00:32:07,470
+the other report is set for the first
+
+748
+00:32:04,050 --> 00:32:09,780
+Monday of the month or like you know
+
+749
+00:32:07,470 --> 00:32:11,160
+they're set to different time zones just
+
+750
+00:32:09,780 --> 00:32:14,250
+just things like that like they're all
+
+751
+00:32:11,160 --> 00:32:15,840
+time frame related things and those
+
+752
+00:32:14,250 --> 00:32:17,820
+things you know again get it out of the
+
+753
+00:32:15,840 --> 00:32:20,360
+way quick because that is that is
+
+754
+00:32:17,820 --> 00:32:23,550
+usually a very common reason for
+
+755
+00:32:20,360 --> 00:32:25,590
+misalignment to occur and the last thing
+
+756
+00:32:23,550 --> 00:32:26,700
+here are sanity checklist wise is just
+
+757
+00:32:25,590 --> 00:32:29,790
+human error
+
+758
+00:32:26,700 --> 00:32:31,860
+you know there's I mean I think all of
+
+759
+00:32:29,790 --> 00:32:34,080
+us no matter how foolproof we make
+
+760
+00:32:31,860 --> 00:32:37,080
+something there's always gonna be some
+
+761
+00:32:34,080 --> 00:32:38,490
+unintended use there could be some typos
+
+762
+00:32:37,080 --> 00:32:40,430
+there could be some extra filters
+
+763
+00:32:38,490 --> 00:32:43,920
+there's just like basic things that are
+
+764
+00:32:40,430 --> 00:32:48,090
+unintended how you intention for them to
+
+765
+00:32:43,920 --> 00:32:49,890
+be used and then the last sort of
+
+766
+00:32:48,090 --> 00:32:52,860
+checklist before we get into the coding
+
+767
+00:32:49,890 --> 00:32:54,810
+is you know just understand understand
+
+768
+00:32:52,860 --> 00:32:57,990
+the data set and understand what the
+
+769
+00:32:54,810 --> 00:33:00,240
+problem is before you fully begin so
+
+770
+00:32:57,990 --> 00:33:02,670
+here again the basic questions to ask
+
+771
+00:33:00,240 --> 00:33:04,260
+you know what rules where each of the
+
+772
+00:33:02,670 --> 00:33:07,830
+data sets built way like is it just
+
+773
+00:33:04,260 --> 00:33:09,510
+purely raw data and presented as is or
+
+774
+00:33:07,830 --> 00:33:11,280
+were there some transformations applied
+
+775
+00:33:09,510 --> 00:33:13,800
+were there some business rules applied
+
+776
+00:33:11,280 --> 00:33:17,430
+on top of it a lot of this information
+
+777
+00:33:13,800 --> 00:33:20,669
+is unfortunately tribal knowledge and
+
+778
+00:33:17,430 --> 00:33:22,859
+you again as a good data scientist
+
+779
+00:33:20,669 --> 00:33:24,690
+and as a good citizen you have to you
+
+780
+00:33:22,859 --> 00:33:27,239
+have to actually start documenting some
+
+781
+00:33:24,690 --> 00:33:30,299
+of these things so that other detectives
+
+782
+00:33:27,239 --> 00:33:32,820
+have an easier time and it's um it's
+
+783
+00:33:30,299 --> 00:33:35,399
+totally worth the time the other common
+
+784
+00:33:32,820 --> 00:33:38,009
+thing is the drain off the data set so
+
+785
+00:33:35,399 --> 00:33:40,259
+you could very often have something
+
+786
+00:33:38,009 --> 00:33:42,779
+where again they looked like they have
+
+787
+00:33:40,259 --> 00:33:45,059
+the same number of columns but maybe
+
+788
+00:33:42,779 --> 00:33:47,369
+they're both aggregated at a completely
+
+789
+00:33:45,059 --> 00:33:50,100
+different Lane and that could also
+
+790
+00:33:47,369 --> 00:33:52,739
+result in some unintended things that
+
+791
+00:33:50,100 --> 00:33:55,409
+you can't see and finally is there a
+
+792
+00:33:52,739 --> 00:33:57,149
+pipeline issue again that's also very
+
+793
+00:33:55,409 --> 00:33:58,950
+common that like you know the pipeline
+
+794
+00:33:57,149 --> 00:34:00,929
+just breaks for a couple of hours or
+
+795
+00:33:58,950 --> 00:34:02,759
+something like that and you're missing
+
+796
+00:34:00,929 --> 00:34:07,889
+data from a specific like chunk of time
+
+797
+00:34:02,759 --> 00:34:13,799
+or or something weird is going on so now
+
+798
+00:34:07,889 --> 00:34:17,909
+let's sorry I just have some more okay
+
+799
+00:34:13,799 --> 00:34:21,480
+so now let's actually let's actually get
+
+800
+00:34:17,909 --> 00:34:23,849
+into some code so here's what a dataset
+
+801
+00:34:21,480 --> 00:34:25,500
+looks like it has an ID column and
+
+802
+00:34:23,849 --> 00:34:26,940
+obviously there might be other columns
+
+803
+00:34:25,500 --> 00:34:29,190
+as well but these are the relevant ones
+
+804
+00:34:26,940 --> 00:34:31,500
+we look at there's an odd order date
+
+805
+00:34:29,190 --> 00:34:33,780
+there's a region and there's a sales
+
+806
+00:34:31,500 --> 00:34:38,159
+amount and that's sort of the basic
+
+807
+00:34:33,780 --> 00:34:40,290
+thing that we're dealing with so the
+
+808
+00:34:38,159 --> 00:34:42,089
+most obvious check to start with when
+
+809
+00:34:40,290 --> 00:34:44,520
+you're comparing two different data sets
+
+810
+00:34:42,089 --> 00:34:46,679
+to see what's going on with them you
+
+811
+00:34:44,520 --> 00:34:48,809
+know are they the same or not
+
+812
+00:34:46,679 --> 00:34:52,109
+after answering all those sanity checks
+
+813
+00:34:48,809 --> 00:34:54,690
+that we just did the first thing is do
+
+814
+00:34:52,109 --> 00:34:56,309
+they have the same number of rows that
+
+815
+00:34:54,690 --> 00:34:58,710
+can usually tell you a lot of what's
+
+816
+00:34:56,309 --> 00:35:01,829
+going on and so you know the simple
+
+817
+00:34:58,710 --> 00:35:03,900
+thing there is just select count from
+
+818
+00:35:01,829 --> 00:35:05,640
+from both of them compare that number of
+
+819
+00:35:03,900 --> 00:35:07,140
+course you might decide to add like a
+
+820
+00:35:05,640 --> 00:35:09,809
+where clause if you're looking for a
+
+821
+00:35:07,140 --> 00:35:11,160
+specific month or a specific region or
+
+822
+00:35:09,809 --> 00:35:13,260
+whatever the difference is showing up
+
+823
+00:35:11,160 --> 00:35:17,670
+but this is your absolute bare minimum
+
+824
+00:35:13,260 --> 00:35:19,170
+starting point after that if they if
+
+825
+00:35:17,670 --> 00:35:21,540
+they don't actually have the same number
+
+826
+00:35:19,170 --> 00:35:23,780
+of rows first thing is let's look for
+
+827
+00:35:21,540 --> 00:35:27,000
+missing information so in this example
+
+828
+00:35:23,780 --> 00:35:29,700
+the ID was a unique column so we're
+
+829
+00:35:27,000 --> 00:35:33,290
+basically gonna look for we're gonna
+
+830
+00:35:29,700 --> 00:35:35,380
+find the missing ids and we're gonna say
+
+831
+00:35:33,290 --> 00:35:37,180
+you know which eye
+
+832
+00:35:35,380 --> 00:35:40,030
+we're going to do a full full join of
+
+833
+00:35:37,180 --> 00:35:42,130
+the two tables and if the ID is null in
+
+834
+00:35:40,030 --> 00:35:44,980
+one of the tables that's the table that
+
+835
+00:35:42,130 --> 00:35:46,750
+it's missing from so this you know the
+
+836
+00:35:44,980 --> 00:35:48,970
+second query should essentially give you
+
+837
+00:35:46,750 --> 00:35:51,480
+a list of all the missing IDs and which
+
+838
+00:35:48,970 --> 00:35:54,610
+ID which table they're missing from and
+
+839
+00:35:51,480 --> 00:35:56,260
+once you have that information we will
+
+840
+00:35:54,610 --> 00:35:57,700
+discuss few different ways you can go
+
+841
+00:35:56,260 --> 00:36:02,710
+about it but that should give you some
+
+842
+00:35:57,700 --> 00:36:05,440
+information the next step you know I
+
+843
+00:36:02,710 --> 00:36:08,710
+think even if you did find some missing
+
+844
+00:36:05,440 --> 00:36:10,570
+information I think it's still as long
+
+845
+00:36:08,710 --> 00:36:12,940
+as like I think it's still useful to
+
+846
+00:36:10,570 --> 00:36:15,100
+look for duplicates anyways because
+
+847
+00:36:12,940 --> 00:36:17,770
+again pipelines do weird things and
+
+848
+00:36:15,100 --> 00:36:21,640
+funky stuff can happen so here again
+
+849
+00:36:17,770 --> 00:36:25,960
+you're simply you know getting all the
+
+850
+00:36:21,640 --> 00:36:28,090
+all the I all the IDS you know grouping
+
+851
+00:36:25,960 --> 00:36:30,760
+the IDs to get a count and you're
+
+852
+00:36:28,090 --> 00:36:33,070
+basically looking for any ID that has a
+
+853
+00:36:30,760 --> 00:36:36,180
+count greater than one from each table
+
+854
+00:36:33,070 --> 00:36:38,770
+and you're unioning those two those two
+
+855
+00:36:36,180 --> 00:36:40,150
+sub-queries and getting your final
+
+856
+00:36:38,770 --> 00:36:43,390
+result that gives you the final answer
+
+857
+00:36:40,150 --> 00:36:45,760
+so this way again you'll have one one
+
+858
+00:36:43,390 --> 00:36:47,620
+result that will give you all the
+
+859
+00:36:45,760 --> 00:36:50,410
+duplicate IDs that are that are missing
+
+860
+00:36:47,620 --> 00:36:52,930
+so that are that are duplicates and and
+
+861
+00:36:50,410 --> 00:36:55,420
+which table there are duplicate in so
+
+862
+00:36:52,930 --> 00:36:56,620
+these these queries that we have so far
+
+863
+00:36:55,420 --> 00:36:58,420
+like of course there could be a lot of
+
+864
+00:36:56,620 --> 00:37:00,640
+like extra clauses that you can build
+
+865
+00:36:58,420 --> 00:37:02,560
+into it but just kind of sharing it as
+
+866
+00:37:00,640 --> 00:37:04,390
+examples of life starting points of how
+
+867
+00:37:02,560 --> 00:37:09,490
+to start even thinking about some of
+
+868
+00:37:04,390 --> 00:37:12,460
+these issues next and you know sort of
+
+869
+00:37:09,490 --> 00:37:15,250
+the last sequel level check that I
+
+870
+00:37:12,460 --> 00:37:18,520
+talked about is just doing a check at
+
+871
+00:37:15,250 --> 00:37:20,470
+the dimension level so here is where it
+
+872
+00:37:18,520 --> 00:37:21,970
+gets interesting and where your
+
+873
+00:37:20,470 --> 00:37:23,890
+familiarity with the data can really
+
+874
+00:37:21,970 --> 00:37:25,450
+help but again in this example you're
+
+875
+00:37:23,890 --> 00:37:28,810
+new to the companies you have no idea
+
+876
+00:37:25,450 --> 00:37:30,490
+what's going on once you've sort of
+
+877
+00:37:28,810 --> 00:37:34,060
+eliminated some of the basic things you
+
+878
+00:37:30,490 --> 00:37:36,250
+want to start breaking things down by
+
+879
+00:37:34,060 --> 00:37:40,950
+you know one dimension at a time and
+
+880
+00:37:36,250 --> 00:37:44,020
+seeing you know is there a case where
+
+881
+00:37:40,950 --> 00:37:47,560
+things are consistently off across
+
+882
+00:37:44,020 --> 00:37:48,430
+dimensions or it's only one dimension
+
+883
+00:37:47,560 --> 00:37:50,950
+where there's something
+
+884
+00:37:48,430 --> 00:37:53,700
+gone wrong so like for example in this
+
+885
+00:37:50,950 --> 00:38:00,130
+query I am looking essentially for
+
+886
+00:37:53,700 --> 00:38:03,280
+regions there the region the sales the
+
+887
+00:38:00,130 --> 00:38:05,020
+sum of the sales for a region in table
+
+888
+00:38:03,280 --> 00:38:08,500
+one is different from the sum of the
+
+889
+00:38:05,020 --> 00:38:11,890
+sales in region two and in the same in
+
+890
+00:38:08,500 --> 00:38:14,020
+table 2 for the same region and this so
+
+891
+00:38:11,890 --> 00:38:16,330
+that's why I'm only doing like I'm only
+
+892
+00:38:14,020 --> 00:38:19,360
+looking for I'm only gonna it's only
+
+893
+00:38:16,330 --> 00:38:21,250
+gonna result in the rows that have that
+
+894
+00:38:19,360 --> 00:38:23,860
+have a difference and that is
+
+895
+00:38:21,250 --> 00:38:26,080
+immediately gonna tell me like if I see
+
+896
+00:38:23,860 --> 00:38:28,450
+all the regions then the problem is
+
+897
+00:38:26,080 --> 00:38:30,400
+either on a different dimension or
+
+898
+00:38:28,450 --> 00:38:33,430
+there's something else going on but if
+
+899
+00:38:30,400 --> 00:38:35,650
+this data shows me that oh only region
+
+900
+00:38:33,430 --> 00:38:37,240
+that has a problem is say the East
+
+901
+00:38:35,650 --> 00:38:39,310
+region or something then that
+
+902
+00:38:37,240 --> 00:38:41,410
+immediately tells me that the rest of my
+
+903
+00:38:39,310 --> 00:38:43,150
+pipeline is probably fine or my rest of
+
+904
+00:38:41,410 --> 00:38:45,700
+my feature definition is fine but at
+
+905
+00:38:43,150 --> 00:38:48,670
+least I know to narrow down that I have
+
+906
+00:38:45,700 --> 00:38:50,350
+to go do something about the East region
+
+907
+00:38:48,670 --> 00:38:52,510
+because that's where my problem is
+
+908
+00:38:50,350 --> 00:38:54,700
+showing up and like you like I said like
+
+909
+00:38:52,510 --> 00:38:56,710
+if if the if all the regions are equally
+
+910
+00:38:54,700 --> 00:38:58,480
+off then you break it down by a
+
+911
+00:38:56,710 --> 00:39:01,180
+different dimension maybe it's the
+
+912
+00:38:58,480 --> 00:39:03,760
+product or something else but the point
+
+913
+00:39:01,180 --> 00:39:07,270
+is to keep doing those cuts until you
+
+914
+00:39:03,760 --> 00:39:12,100
+find something where you have a step to
+
+915
+00:39:07,270 --> 00:39:14,560
+dig further so this is you know these
+
+916
+00:39:12,100 --> 00:39:16,840
+are obviously I mean these examples have
+
+917
+00:39:14,560 --> 00:39:18,880
+this example has been simplified to sort
+
+918
+00:39:16,840 --> 00:39:22,150
+of give you a give you a taste of what
+
+919
+00:39:18,880 --> 00:39:25,240
+what what this looks like but you know I
+
+920
+00:39:22,150 --> 00:39:27,130
+I expect that people will as they become
+
+921
+00:39:25,240 --> 00:39:29,410
+more familiar with datasets they will
+
+922
+00:39:27,130 --> 00:39:31,720
+build their own scripts and write their
+
+923
+00:39:29,410 --> 00:39:35,800
+own queries to resolve common problems
+
+924
+00:39:31,720 --> 00:39:37,990
+and I think you know you should ideally
+
+925
+00:39:35,800 --> 00:39:40,150
+make these things modular so that you
+
+926
+00:39:37,990 --> 00:39:43,720
+can convert those code snippets easily
+
+927
+00:39:40,150 --> 00:39:45,850
+and share them with the you know share
+
+928
+00:39:43,720 --> 00:39:47,530
+them save them converted into reusable
+
+929
+00:39:45,850 --> 00:39:50,530
+modules so that you can like change
+
+930
+00:39:47,530 --> 00:39:52,750
+change things and and kind of go around
+
+931
+00:39:50,530 --> 00:39:54,610
+it and you can also convert some of
+
+932
+00:39:52,750 --> 00:39:57,220
+these things to visualizations to help
+
+933
+00:39:54,610 --> 00:40:00,070
+you spot errors faster so for example
+
+934
+00:39:57,220 --> 00:40:01,510
+like in my you know in in in one of the
+
+935
+00:40:00,070 --> 00:40:01,990
+places I used to work at like I had
+
+936
+00:40:01,510 --> 00:40:04,300
+these
+
+937
+00:40:01,990 --> 00:40:07,080
+like just kind of ready to go cuz Elvis
+
+938
+00:40:04,300 --> 00:40:09,490
+knew where the pipeline would break and
+
+939
+00:40:07,080 --> 00:40:11,140
+it was a different team that had to fix
+
+940
+00:40:09,490 --> 00:40:12,790
+the pipeline so I just had to provide
+
+941
+00:40:11,140 --> 00:40:15,490
+them the proof that the pipeline was
+
+942
+00:40:12,790 --> 00:40:17,830
+broken so I had these scripts is ready
+
+943
+00:40:15,490 --> 00:40:19,390
+to go and when it wasn't a pipeline
+
+944
+00:40:17,830 --> 00:40:21,340
+issue when it was a feature definition
+
+945
+00:40:19,390 --> 00:40:22,450
+issue I would have like I would go
+
+946
+00:40:21,340 --> 00:40:23,800
+through this because that was the most
+
+947
+00:40:22,450 --> 00:40:25,510
+common thing and then I would have
+
+948
+00:40:23,800 --> 00:40:28,210
+something else to go through those I
+
+949
+00:40:25,510 --> 00:40:29,860
+knew that okay for feature stuff I write
+
+950
+00:40:28,210 --> 00:40:32,580
+different scripts or I have different
+
+951
+00:40:29,860 --> 00:40:35,200
+filters or some or something like that
+
+952
+00:40:32,580 --> 00:40:37,090
+and yeah you can you can kind of like
+
+953
+00:40:35,200 --> 00:40:42,220
+build on these as you as you get more
+
+954
+00:40:37,090 --> 00:40:44,619
+comfortable with the data so to wrap it
+
+955
+00:40:42,220 --> 00:40:49,060
+up I think one of the things to keep in
+
+956
+00:40:44,619 --> 00:40:50,680
+mind is that you know as as we saw
+
+957
+00:40:49,060 --> 00:40:53,680
+through a bit of the examples like
+
+958
+00:40:50,680 --> 00:40:58,210
+prevention is a lot better than cure and
+
+959
+00:40:53,680 --> 00:41:01,000
+you know a lot of the sanity checks that
+
+960
+00:40:58,210 --> 00:41:02,619
+we do before we before we do anything
+
+961
+00:41:01,000 --> 00:41:04,210
+before we look into stuff like a lot of
+
+962
+00:41:02,619 --> 00:41:06,280
+it comes into things that are easy to
+
+963
+00:41:04,210 --> 00:41:08,500
+prevent if you do it in the beginning so
+
+964
+00:41:06,280 --> 00:41:12,040
+if you're as a company committed to
+
+965
+00:41:08,500 --> 00:41:14,230
+reconciling on terminologies documenting
+
+966
+00:41:12,040 --> 00:41:16,450
+stuff making sure everybody is data
+
+967
+00:41:14,230 --> 00:41:19,030
+literate it makes your life and
+
+968
+00:41:16,450 --> 00:41:21,100
+everybody's life a whole lot easier and
+
+969
+00:41:19,030 --> 00:41:23,320
+I also think like automating stuff is
+
+970
+00:41:21,100 --> 00:41:25,690
+extremely important like you should not
+
+971
+00:41:23,320 --> 00:41:28,690
+have to do anything manually if you're
+
+972
+00:41:25,690 --> 00:41:31,359
+if you're doing it more than once then
+
+973
+00:41:28,690 --> 00:41:32,770
+by all means be absolutely lazy and just
+
+974
+00:41:31,359 --> 00:41:34,960
+do it once then never do it again
+
+975
+00:41:32,770 --> 00:41:37,660
+and automate it because I think I think
+
+976
+00:41:34,960 --> 00:41:40,680
+that those that actually allows you to
+
+977
+00:41:37,660 --> 00:41:42,850
+be be more efficient in what's going on
+
+978
+00:41:40,680 --> 00:41:45,900
+the other thing is just simplify your
+
+979
+00:41:42,850 --> 00:41:49,780
+curated data sets so anything that has
+
+980
+00:41:45,900 --> 00:41:52,119
+way too much information that you don't
+
+981
+00:41:49,780 --> 00:41:54,880
+use is going to be very hard to debug
+
+982
+00:41:52,119 --> 00:41:56,530
+when a problem occurs because you just
+
+983
+00:41:54,880 --> 00:41:58,810
+have so many different things to look at
+
+984
+00:41:56,530 --> 00:42:01,450
+so keep it extremely simple keep it
+
+985
+00:41:58,810 --> 00:42:04,750
+aggregated to a level that you expect it
+
+986
+00:42:01,450 --> 00:42:07,240
+to work at and that way also specially
+
+987
+00:42:04,750 --> 00:42:08,950
+like like at my company we use snowflake
+
+988
+00:42:07,240 --> 00:42:10,990
+which is which is super fast but like
+
+989
+00:42:08,950 --> 00:42:13,780
+you know some of the old data warehouses
+
+990
+00:42:10,990 --> 00:42:14,720
+it takes a while to run some queries so
+
+991
+00:42:13,780 --> 00:42:17,330
+it makes sense
+
+992
+00:42:14,720 --> 00:42:19,490
+if you have something that's you know
+
+993
+00:42:17,330 --> 00:42:22,670
+simple and aggregated so that you only
+
+994
+00:42:19,490 --> 00:42:25,310
+go up one level if you if you pinpointed
+
+995
+00:42:22,670 --> 00:42:27,740
+the problem to like one one section and
+
+996
+00:42:25,310 --> 00:42:30,560
+yeah I think again like it's very
+
+997
+00:42:27,740 --> 00:42:33,260
+important to have an actual governance
+
+998
+00:42:30,560 --> 00:42:34,880
+standard and you know some sort of a
+
+999
+00:42:33,260 --> 00:42:36,770
+philosophy about who owns ooh art who
+
+1000
+00:42:34,880 --> 00:42:38,960
+owns which part getting broken who's in
+
+1001
+00:42:36,770 --> 00:42:41,869
+charge of reporting things things like
+
+1002
+00:42:38,960 --> 00:42:43,849
+that I think are extremely are extremely
+
+1003
+00:42:41,869 --> 00:42:46,070
+required and you should also have an
+
+1004
+00:42:43,849 --> 00:42:49,070
+audit process so at some point you
+
+1005
+00:42:46,070 --> 00:42:52,880
+should do some kind of a quality or you
+
+1006
+00:42:49,070 --> 00:42:54,920
+know a data cleanup hackathon that that
+
+1007
+00:42:52,880 --> 00:42:58,190
+is that is able to sort of address some
+
+1008
+00:42:54,920 --> 00:43:02,420
+of these some of these issues so yeah I
+
+1009
+00:42:58,190 --> 00:43:03,800
+guess you know overall like I think sort
+
+1010
+00:43:02,420 --> 00:43:05,780
+of wrapping up the philosophy and the
+
+1011
+00:43:03,800 --> 00:43:07,760
+methodology like you know keep keep
+
+1012
+00:43:05,780 --> 00:43:10,190
+breaking down the problem into smaller
+
+1013
+00:43:07,760 --> 00:43:12,140
+parts until you are able to fully
+
+1014
+00:43:10,190 --> 00:43:16,310
+isolate where differences are occurring
+
+1015
+00:43:12,140 --> 00:43:18,410
+and bad bad data is creeping up and you
+
+1016
+00:43:16,310 --> 00:43:20,450
+know the the the truth is out there
+
+1017
+00:43:18,410 --> 00:43:22,640
+somewhere like you just you just have to
+
+1018
+00:43:20,450 --> 00:43:26,060
+sort of like keep finding a way to get
+
+1019
+00:43:22,640 --> 00:43:27,710
+to it and yeah with that I I just wanted
+
+1020
+00:43:26,060 --> 00:43:30,680
+to leave you all with some additional
+
+1021
+00:43:27,710 --> 00:43:32,480
+research and reference material I think
+
+1022
+00:43:30,680 --> 00:43:34,520
+there are some great thoughts that
+
+1023
+00:43:32,480 --> 00:43:36,770
+people shared about like bad data and
+
+1024
+00:43:34,520 --> 00:43:39,290
+also how to think like Sherlock Holmes
+
+1025
+00:43:36,770 --> 00:43:42,200
+which you can apply for other things as
+
+1026
+00:43:39,290 --> 00:43:44,180
+well and I also linked my own talk about
+
+1027
+00:43:42,200 --> 00:43:47,839
+thoughtful analytics in case anybody is
+
+1028
+00:43:44,180 --> 00:43:50,450
+interested it is also on my website and
+
+1029
+00:43:47,839 --> 00:43:53,000
+yeah that's that's that's that's it for
+
+1030
+00:43:50,450 --> 00:43:55,670
+today thanks so much for attending a
+
+1031
+00:43:53,000 --> 00:43:58,099
+special thank you for asthma and data
+
+1032
+00:43:55,670 --> 00:43:59,990
+umbrella for hosting me this is this is
+
+1033
+00:43:58,099 --> 00:44:02,960
+extremely fun I haven't actually done a
+
+1034
+00:43:59,990 --> 00:44:05,540
+technical webinar ever so this is
+
+1035
+00:44:02,960 --> 00:44:08,150
+solving in-person services 10 fun for me
+
+1036
+00:44:05,540 --> 00:44:10,849
+I hope you found the content useful I
+
+1037
+00:44:08,150 --> 00:44:13,070
+will be taking some questions now but
+
+1038
+00:44:10,849 --> 00:44:15,470
+also keep in mind that data umbrella is
+
+1039
+00:44:13,070 --> 00:44:17,150
+going to publish a recording of this on
+
+1040
+00:44:15,470 --> 00:44:19,430
+their website as well as on their
+
+1041
+00:44:17,150 --> 00:44:21,940
+YouTube channel and I'll be doing the
+
+1042
+00:44:19,430 --> 00:44:24,260
+same as well in about a month's time so
+
+1043
+00:44:21,940 --> 00:44:27,470
+you know feel free to stay in touch with
+
+1044
+00:44:24,260 --> 00:44:28,069
+me on Twitter and also if you have any
+
+1045
+00:44:27,470 --> 00:44:31,729
+questions
+
+1046
+00:44:28,069 --> 00:44:37,400
+I can answer them too right now yeah you
+
+1047
+00:44:31,729 --> 00:44:39,199
+can hear me right yeah great yeah if
+
+1048
+00:44:37,400 --> 00:44:42,709
+anybody has any questions if you just
+
+1049
+00:44:39,199 --> 00:44:45,529
+want to post it on chat um we have about
+
+1050
+00:44:42,709 --> 00:44:52,999
+ten minutes left in the hour so we could
+
+1051
+00:44:45,529 --> 00:44:57,199
+answer any questions any questions or
+
+1052
+00:44:52,999 --> 00:45:02,719
+any observations anything else that
+
+1053
+00:44:57,199 --> 00:45:06,229
+you've noticed that helps you do we have
+
+1054
+00:45:02,719 --> 00:45:07,940
+Rene Phillips here who is like she's
+
+1055
+00:45:06,229 --> 00:45:10,609
+like very very involved in Postgres
+
+1056
+00:45:07,940 --> 00:45:17,660
+women SQL and in the conference
+
+1057
+00:45:10,609 --> 00:45:19,400
+organizing the conference as well and do
+
+1058
+00:45:17,660 --> 00:45:22,549
+you show me do you want to put in the
+
+1059
+00:45:19,400 --> 00:45:25,099
+chat the link to the careers page for
+
+1060
+00:45:22,549 --> 00:45:36,529
+Komodo health yeah let me let me quickly
+
+1061
+00:45:25,099 --> 00:45:39,709
+grab that thank you
+
+1062
+00:45:36,529 --> 00:45:43,309
+what's the hardest data quality problem
+
+1063
+00:45:39,709 --> 00:45:46,849
+I have faced um that's to be very very
+
+1064
+00:45:43,309 --> 00:45:47,479
+frank it's so I go with the hardest one
+
+1065
+00:45:46,849 --> 00:45:50,239
+first
+
+1066
+00:45:47,479 --> 00:45:53,059
+honestly it's convincing people that
+
+1067
+00:45:50,239 --> 00:45:55,430
+it's important which which should not be
+
+1068
+00:45:53,059 --> 00:45:57,380
+a thing but you know I think I think
+
+1069
+00:45:55,430 --> 00:46:00,109
+some organizations have very good data
+
+1070
+00:45:57,380 --> 00:46:01,940
+hygiene and they know sort of all the
+
+1071
+00:46:00,109 --> 00:46:03,890
+downstream issues that it can cause if
+
+1072
+00:46:01,940 --> 00:46:06,650
+you don't notice these things up front
+
+1073
+00:46:03,890 --> 00:46:09,559
+but I did work in an organization once
+
+1074
+00:46:06,650 --> 00:46:10,910
+where it was just it was you know there
+
+1075
+00:46:09,559 --> 00:46:13,880
+was just absolutely like there was a
+
+1076
+00:46:10,910 --> 00:46:15,769
+wild wild west of like everybody just
+
+1077
+00:46:13,880 --> 00:46:18,709
+kind of do whatever and you'll figure it
+
+1078
+00:46:15,769 --> 00:46:20,779
+out later and it caught it cause it was
+
+1079
+00:46:18,709 --> 00:46:22,959
+so costly because it took so many people
+
+1080
+00:46:20,779 --> 00:46:25,279
+so much time to try to like you know
+
+1081
+00:46:22,959 --> 00:46:29,779
+reset some of the things that were just
+
+1082
+00:46:25,279 --> 00:46:34,160
+very very bad and yeah that was that was
+
+1083
+00:46:29,779 --> 00:46:39,380
+pretty hard the most fun one I would say
+
+1084
+00:46:34,160 --> 00:46:41,980
+is yeah I you know I I just I like I
+
+1085
+00:46:39,380 --> 00:46:47,020
+like investigating stuff like
+
+1086
+00:46:41,980 --> 00:46:49,510
+i i like having an analysis that I trust
+
+1087
+00:46:47,020 --> 00:46:52,330
+so if there's something that comes up
+
+1088
+00:46:49,510 --> 00:46:55,900
+which you know which I'm confused like
+
+1089
+00:46:52,330 --> 00:46:59,410
+oh my why'd you know why does this seem
+
+1090
+00:46:55,900 --> 00:47:01,480
+odd sometimes that entire investigation
+
+1091
+00:46:59,410 --> 00:47:03,580
+is because I think there's bad data and
+
+1092
+00:47:01,480 --> 00:47:06,420
+maybe at the end of it I prove that it's
+
+1093
+00:47:03,580 --> 00:47:09,070
+not like this is legitimately what our
+
+1094
+00:47:06,420 --> 00:47:10,750
+what our data is telling us that's I
+
+1095
+00:47:09,070 --> 00:47:13,030
+think that's still a good outcome for me
+
+1096
+00:47:10,750 --> 00:47:14,890
+because I think that whole process makes
+
+1097
+00:47:13,030 --> 00:47:17,470
+me understand the data a lot better
+
+1098
+00:47:14,890 --> 00:47:19,840
+makes me trust different parts of it a
+
+1099
+00:47:17,470 --> 00:47:21,280
+lot better so I I do find it fun to have
+
+1100
+00:47:19,840 --> 00:47:24,240
+these challenges every once in a while
+
+1101
+00:47:21,280 --> 00:47:31,090
+because I think it allows me to engage
+
+1102
+00:47:24,240 --> 00:47:32,950
+with things more Ruchika us how do you
+
+1103
+00:47:31,090 --> 00:47:35,920
+take care of bias in the data when
+
+1104
+00:47:32,950 --> 00:47:37,000
+historically there has been a lot so
+
+1105
+00:47:35,920 --> 00:47:39,160
+that's an interesting that's an
+
+1106
+00:47:37,000 --> 00:47:41,350
+interesting question I guess my first
+
+1107
+00:47:39,160 --> 00:47:43,840
+question to that would be like how do
+
+1108
+00:47:41,350 --> 00:47:45,430
+you know there is there is bias or is it
+
+1109
+00:47:43,840 --> 00:47:55,660
+just that you're trying to make sure
+
+1110
+00:47:45,430 --> 00:47:58,000
+that there is there is no bias so Arouca
+
+1111
+00:47:55,660 --> 00:47:59,920
+I don't know if you had a specific sort
+
+1112
+00:47:58,000 --> 00:48:02,230
+of thing in mind but I guess I'll just
+
+1113
+00:47:59,920 --> 00:48:04,990
+give you I guess I'll just give you a
+
+1114
+00:48:02,230 --> 00:48:08,830
+general making sure that there's no bias
+
+1115
+00:48:04,990 --> 00:48:12,280
+okay yeah I guess I guess for me I am
+
+1116
+00:48:08,830 --> 00:48:15,750
+always trying to look at the use case I
+
+1117
+00:48:12,280 --> 00:48:18,520
+think you know whatever I'm trying to do
+
+1118
+00:48:15,750 --> 00:48:23,350
+whatever I'm trying to get to as an
+
+1119
+00:48:18,520 --> 00:48:25,030
+answer like I think honestly for me it
+
+1120
+00:48:23,350 --> 00:48:27,700
+really comes down to talking to a lot of
+
+1121
+00:48:25,030 --> 00:48:29,890
+people and kind of almost poking holes
+
+1122
+00:48:27,700 --> 00:48:33,760
+at a problem like what are the what are
+
+1123
+00:48:29,890 --> 00:48:35,710
+the ways this could go wrong well you
+
+1124
+00:48:33,760 --> 00:48:38,500
+know we're we're doing something
+
+1125
+00:48:35,710 --> 00:48:41,859
+unintended I actually in one of the
+
+1126
+00:48:38,500 --> 00:48:43,540
+companies I used to actually sit go and
+
+1127
+00:48:41,859 --> 00:48:45,580
+sit with the customer support teams
+
+1128
+00:48:43,540 --> 00:48:47,350
+occasionally and like get them to tell
+
+1129
+00:48:45,580 --> 00:48:48,640
+me like you know just show me examples
+
+1130
+00:48:47,350 --> 00:48:52,300
+of what people are complaining about
+
+1131
+00:48:48,640 --> 00:48:53,830
+about our software and you know that
+
+1132
+00:48:52,300 --> 00:48:55,810
+actually started an initiative where we
+
+1133
+00:48:53,830 --> 00:48:57,430
+would we would flag things which
+
+1134
+00:48:55,810 --> 00:48:58,990
+seem like people just didn't trust
+
+1135
+00:48:57,430 --> 00:49:01,000
+something that was happening like they
+
+1136
+00:48:58,990 --> 00:49:03,580
+didn't they didn't think it made sense
+
+1137
+00:49:01,000 --> 00:49:06,610
+and some of those things were I mean
+
+1138
+00:49:03,580 --> 00:49:08,020
+there was like it was just there was no
+
+1139
+00:49:06,610 --> 00:49:09,760
+reason for them to not trust it but
+
+1140
+00:49:08,020 --> 00:49:11,320
+other things like it made sense and we
+
+1141
+00:49:09,760 --> 00:49:13,480
+did actually do some investigations
+
+1142
+00:49:11,320 --> 00:49:14,980
+where they're like yeah the reason why
+
+1143
+00:49:13,480 --> 00:49:17,080
+this person said this looks suspicious
+
+1144
+00:49:14,980 --> 00:49:18,520
+makes sense because there is there is
+
+1145
+00:49:17,080 --> 00:49:21,790
+something odd happening there and that
+
+1146
+00:49:18,520 --> 00:49:23,920
+doesn't make sense
+
+1147
+00:49:21,790 --> 00:49:25,960
+milena what tools you use to clean up
+
+1148
+00:49:23,920 --> 00:49:29,290
+the data so I think that for me depends
+
+1149
+00:49:25,960 --> 00:49:32,200
+on what what I'm actually using so I
+
+1150
+00:49:29,290 --> 00:49:35,800
+typically access most of my data in a
+
+1151
+00:49:32,200 --> 00:49:39,580
+sequel warehouse and I end up doing a
+
+1152
+00:49:35,800 --> 00:49:42,730
+lot of it there if I have exported it
+
+1153
+00:49:39,580 --> 00:49:45,400
+out then I usually use art but again
+
+1154
+00:49:42,730 --> 00:49:47,200
+that's just my preference my my entire
+
+1155
+00:49:45,400 --> 00:49:49,060
+team is very much on the Pythian
+
+1156
+00:49:47,200 --> 00:49:54,340
+bandwagon and that's that's what they
+
+1157
+00:49:49,060 --> 00:49:56,320
+use yeah what additional functionality
+
+1158
+00:49:54,340 --> 00:49:59,020
+and unique capabilities does snowflake
+
+1159
+00:49:56,320 --> 00:50:01,210
+provide oh I have to tell you I'm very
+
+1160
+00:49:59,020 --> 00:50:03,700
+biased towards snowflake I am a huge
+
+1161
+00:50:01,210 --> 00:50:05,380
+huge snowflake fan girl when I was
+
+1162
+00:50:03,700 --> 00:50:06,910
+joining Komodo health actually one of
+
+1163
+00:50:05,380 --> 00:50:08,800
+the first question I ask them is do you
+
+1164
+00:50:06,910 --> 00:50:10,960
+have snowflake and they said yes and so
+
+1165
+00:50:08,800 --> 00:50:12,280
+I joined because my previous company did
+
+1166
+00:50:10,960 --> 00:50:14,890
+not have snowflake and I was very
+
+1167
+00:50:12,280 --> 00:50:16,330
+annoyed by that for the two and a half
+
+1168
+00:50:14,890 --> 00:50:18,910
+years that I work there
+
+1169
+00:50:16,330 --> 00:50:22,510
+snowflake is just really fast it's it's
+
+1170
+00:50:18,910 --> 00:50:24,820
+it's such a it's I mean yeah I I'm like
+
+1171
+00:50:22,510 --> 00:50:27,790
+I said I am amazingly I like to spend
+
+1172
+00:50:24,820 --> 00:50:30,070
+less time doing stuff so I was on
+
+1173
+00:50:27,790 --> 00:50:31,480
+hurting for awhile and those things used
+
+1174
+00:50:30,070 --> 00:50:33,700
+to take me like 20 minutes to run a
+
+1175
+00:50:31,480 --> 00:50:36,090
+query and then in snowflake that same
+
+1176
+00:50:33,700 --> 00:50:41,260
+query would take a less than a minute
+
+1177
+00:50:36,090 --> 00:50:45,940
+say I I I'm not paid by them but I do
+
+1178
+00:50:41,260 --> 00:50:48,310
+like their to me quite a bit I have a
+
+1179
+00:50:45,940 --> 00:50:50,230
+question for you I was thinking when
+
+1180
+00:50:48,310 --> 00:50:51,040
+you're working with that many millions
+
+1181
+00:50:50,230 --> 00:50:54,070
+of Records
+
+1182
+00:50:51,040 --> 00:50:57,000
+do you often find those cases that are
+
+1183
+00:50:54,070 --> 00:50:59,530
+you know just a handful that are
+
+1184
+00:50:57,000 --> 00:51:01,540
+problematic and heavy it's is it like
+
+1185
+00:50:59,530 --> 00:51:02,650
+finding a needle in a haystack or is it
+
+1186
+00:51:01,540 --> 00:51:04,540
+something that really just sort of
+
+1187
+00:51:02,650 --> 00:51:08,470
+breaks all your programs because it's
+
+1188
+00:51:04,540 --> 00:51:09,580
+that exception yeah that's a that's a
+
+1189
+00:51:08,470 --> 00:51:13,240
+great question so
+
+1190
+00:51:09,580 --> 00:51:15,160
+you know some of the so some of the most
+
+1191
+00:51:13,240 --> 00:51:16,570
+like often that I did these
+
+1192
+00:51:15,160 --> 00:51:19,090
+investigations that actually at
+
+1193
+00:51:16,570 --> 00:51:24,730
+Salesforce where the platform that I
+
+1194
+00:51:19,090 --> 00:51:27,220
+worked on had 340 million users so it
+
+1195
+00:51:24,730 --> 00:51:29,260
+was obviously yeah it was it was just a
+
+1196
+00:51:27,220 --> 00:51:31,930
+ ton of junk data that was generated
+
+1197
+00:51:29,260 --> 00:51:34,090
+for Ford the stuff that we were using
+
+1198
+00:51:31,930 --> 00:51:35,710
+and that was the time I did not have
+
+1199
+00:51:34,090 --> 00:51:38,830
+snowflake so my queries would actually
+
+1200
+00:51:35,710 --> 00:51:42,370
+take longer and then like that's the
+
+1201
+00:51:38,830 --> 00:51:43,870
+thing that I got to like I think like we
+
+1202
+00:51:42,370 --> 00:51:45,760
+had a little bit of an understanding of
+
+1203
+00:51:43,870 --> 00:51:49,660
+like I think when I was a kissed able to
+
+1204
+00:51:45,760 --> 00:51:51,940
+explain like here's why this data is
+
+1205
+00:51:49,660 --> 00:51:54,670
+always gonna be slightly shifted from
+
+1206
+00:51:51,940 --> 00:51:56,590
+this other data then people have less of
+
+1207
+00:51:54,670 --> 00:51:59,740
+a problem like if they if I if I've done
+
+1208
+00:51:56,590 --> 00:52:03,040
+that true once where it's like you know
+
+1209
+00:51:59,740 --> 00:52:05,230
+we expect there to be a 1% difference
+
+1210
+00:52:03,040 --> 00:52:07,960
+when you're pulling it from this source
+
+1211
+00:52:05,230 --> 00:52:09,220
+versus this source because you know
+
+1212
+00:52:07,960 --> 00:52:10,540
+they're they're out of sync they're
+
+1213
+00:52:09,220 --> 00:52:12,130
+never gonna be insane there's always
+
+1214
+00:52:10,540 --> 00:52:13,690
+gonna be a little bit of lag here or
+
+1215
+00:52:12,130 --> 00:52:16,870
+something like that like then people
+
+1216
+00:52:13,690 --> 00:52:18,910
+have then if people understand it
+
+1217
+00:52:16,870 --> 00:52:20,590
+they're okay with it but if that shift
+
+1218
+00:52:18,910 --> 00:52:23,560
+ever like really changes like suddenly
+
+1219
+00:52:20,590 --> 00:52:25,210
+even from 1% it goes to 1.5 like if it's
+
+1220
+00:52:23,560 --> 00:52:29,010
+crossed a threshold that we have
+
+1221
+00:52:25,210 --> 00:52:31,450
+established as unknown then it warrants
+
+1222
+00:52:29,010 --> 00:52:32,590
+investigation like what's what's going
+
+1223
+00:52:31,450 --> 00:52:34,300
+on like is this something that's
+
+1224
+00:52:32,590 --> 00:52:36,780
+breaking or is this really my data
+
+1225
+00:52:34,300 --> 00:52:39,850
+changing and I think in that like again
+
+1226
+00:52:36,780 --> 00:52:43,180
+the more time I spent with that data the
+
+1227
+00:52:39,850 --> 00:52:44,560
+more sort of checks I built in one thing
+
+1228
+00:52:43,180 --> 00:52:47,260
+I forgot to mention but like some of
+
+1229
+00:52:44,560 --> 00:52:50,050
+these queries that I had pulled put out
+
+1230
+00:52:47,260 --> 00:52:52,480
+I actually you know got some of the data
+
+1231
+00:52:50,050 --> 00:52:54,220
+engineers to convert them into alerts so
+
+1232
+00:52:52,480 --> 00:52:57,070
+that if some of those checks didn't pass
+
+1233
+00:52:54,220 --> 00:52:59,800
+it would actually like things that I
+
+1234
+00:52:57,070 --> 00:53:01,750
+knew were to be true like I would have
+
+1235
+00:52:59,800 --> 00:53:03,760
+them coded into the things so that
+
+1236
+00:53:01,750 --> 00:53:05,770
+before that data was even published it
+
+1237
+00:53:03,760 --> 00:53:07,570
+would go through all of those checks and
+
+1238
+00:53:05,770 --> 00:53:09,730
+if something failed it would not publish
+
+1239
+00:53:07,570 --> 00:53:11,470
+that data set so that then I could go
+
+1240
+00:53:09,730 --> 00:53:13,330
+and look at it and be like does this
+
+1241
+00:53:11,470 --> 00:53:15,610
+look fine or does this not does this
+
+1242
+00:53:13,330 --> 00:53:16,990
+require extra investigation and I think
+
+1243
+00:53:15,610 --> 00:53:18,880
+that was really helpful because then
+
+1244
+00:53:16,990 --> 00:53:21,130
+you're not on a totally by goose chase
+
+1245
+00:53:18,880 --> 00:53:24,660
+you're actually you know you're saying
+
+1246
+00:53:21,130 --> 00:53:27,040
+like sure here's what went wrong in here
+
+1247
+00:53:24,660 --> 00:53:30,240
+that's what in pharma we used to call
+
+1248
+00:53:27,040 --> 00:53:37,210
+those edit chicks yeah the same thing
+
+1249
+00:53:30,240 --> 00:53:39,160
+yeah yeah cuz we have another couple of
+
+1250
+00:53:37,210 --> 00:53:41,400
+minutes does anybody else have any
+
+1251
+00:53:39,160 --> 00:53:41,400
+questions
+
+1252
+00:53:46,950 --> 00:53:55,390
+awesome so thank you so much for joining
+
+1253
+00:53:52,990 --> 00:53:56,740
+us I'm from San Fran's an Francisco
+
+1254
+00:53:55,390 --> 00:54:00,250
+right your that's where you are I'm in
+
+1255
+00:53:56,740 --> 00:54:03,220
+New York and the recording will be
+
+1256
+00:54:00,250 --> 00:54:05,619
+available soon I'll send a message the
+
+1257
+00:54:03,220 --> 00:54:12,280
+meetup group it's on our data umbrella
+
+1258
+00:54:05,619 --> 00:54:14,049
+events page and Renee is asking if you
+
+1259
+00:54:12,280 --> 00:54:18,730
+would like to do a webinar for Postgres
+
+1260
+00:54:14,049 --> 00:54:22,470
+women New York City yes absolutely thank
+
+1261
+00:54:18,730 --> 00:54:25,869
+you all right um thank you everybody and
+
+1262
+00:54:22,470 --> 00:54:28,299
+watch our meetup page for upcoming
+
+1263
+00:54:25,869 --> 00:54:31,290
+events have a good night awesome thank
+
+1264
+00:54:28,299 --> 00:54:31,290
+you so much it's

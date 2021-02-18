@@ -5,12 +5,11 @@
 from pathlib import Path
 from functools import partial
 from collections import OrderedDict
-from warnings import warn
 
 from IPython.display import Markdown
 import pandas as pd
-from pytube import YouTube
 
+from pytube import YouTube
 import defusedxml.ElementTree as ET
 from html import unescape
 import textwrap
@@ -18,13 +17,9 @@ import re
 import time
 import math
 
-from manage import EventMeta as Meta
-from manage.Utils import (save_file,
-                          load_file_contents,
-                          get_file_lines,
-                          get_project_dirs,
-                          get_subfolder,
-                          split_url)
+from manage import (EventMeta as Meta,
+                    Utils as UTL)
+
 # ...................................................
 readcsv = partial(pd.read_csv, index_col=0)
 
@@ -38,22 +33,30 @@ upper_file = Meta.DIR_DATA.joinpath('upper_terms.csv')
 # Replacement pairs: (from, to); for special str 
 # & those mangled by Google's autocaptioning:
 corrections_file = Meta.DIR_DATA.joinpath('corrections.csv')
-
 def get_corrections_dict():
     return readcsv(corrections_file).set_index('k').to_dict()['v']
 
-def clean_text(text, TW,
+
+def get_TextWrapper(wrap_width=120):
+    TW = textwrap.TextWrapper(width=wrap_width,
+                              expand_tabs=False,
+                              replace_whitespace=True)
+    return TW
+    
+    
+def clean_text(text,
                uppercase_list,
                titlecase_list,
-               corrections):
+               corrections,
+               TW=None):
     """
     Clean text using regex and wrap using a 
     pre-defined textwrap.TextWrapper instance.
     :param: text (str): paragraph
-    :param: TW (textwrap.TextWrapper): instance
     :param: uppercase_list, titlecase_list (list):
            terms for upper or title casing, respectively.
     :param: corrections (dict): all other substitutions.
+    :param: TW (textwrap.TextWrapper): None (default) or instance.
     """
     def time_repl(mo):
         """Fix spoken time; mo=match obj"""
@@ -79,11 +82,11 @@ def clean_text(text, TW,
     re_calendar += "|(?:(sun|mon|tues|wednes|thurs|fri|satur)day)?)"
     RE_CAL = re.compile(re_calendar)
     RE_UTTERANCES = re.compile(r"\bu[mh]\b")
-    RE_SPACES = re.compile(r" {2,}")
+    RE_SPACES = re.compile(r"( {2,}\b)")
     RE_TIME = re.compile(r"(\s*)(\d{1,2}) (\d{1,2}) ([pa].m)(.?)")
     RE_I = re.compile(r"(\bi'{0,1}\b)")
 
-    text = RE_UTTERANCES.sub(" ", text)
+    text = RE_UTTERANCES.sub("", text)
     text = RE_SPACES.sub(" ", text)
     text = RE_I.sub(perso_i, text)
     text = RE_CAL.sub(titlecase_repl, text)
@@ -104,15 +107,17 @@ def clean_text(text, TW,
         for word in lst:
             RE = re.compile(case_re.format(word))
             text = RE.sub(repl_fn, text)
-        
-    # Wrapped for Markdown output:
-    md_lines = []
-    new_txt = TW.wrap(text)
-    for line in new_txt:
-        md_lines.append(line + "  \n")
-    wrapped = "".join(md_lines)
-
-    return wrapped
+    
+    if TW is not None:
+        # Wrapped for Markdown output:
+        md_lines = []
+        new_txt = TW.wrap(text)
+        for line in new_txt:
+            md_lines.append(line + "  \n")
+        wrapped = "".join(md_lines)
+        return wrapped
+    
+    return text
 
 
 def float_to_stime(duration):
@@ -136,7 +141,7 @@ class YTVAudio:
     auto-generated captions, pre-processing the transcript text.
     """
     
-    def __init__(self, year, idn, video_url, vid):
+    def __init__(self, year, idn, video_url, vid, replace_xml=False):
         """
         :param: replace_audio_file (bool): redo download of audio.
         """
@@ -147,7 +152,7 @@ class YTVAudio:
         self.meta_path = Meta.DIR_META
         self.basename = Meta.meta_basename(year, idn, vid)
         self.audio_filepath = self.meta_path.joinpath(self.basename + '.mp4')
-        self.captions_xml = self.get_xml_captions()
+        self.captions_xml = self.get_xml_captions(replace=replace_xml)
 
     
     def set_YT_video(self):
@@ -187,10 +192,10 @@ class YTVAudio:
         if replace or not xml_fname.exists():
             en = 'a.en' # pytube v='10.0.0'   
             captions_xml = self.video.captions[en].xml_captions
-            save_file(xml_fname, captions_xml, replace=replace)
+            UTL.save_file(xml_fname, captions_xml, replace=replace)
             #print(F"XML saved as:\n{xml_fname}")
 
-        return load_file_contents(xml_fname)
+        return UTL.load_file_contents(xml_fname)
 
         
     def xml_caption_to_text(self, xml_captions, 
@@ -206,9 +211,7 @@ class YTVAudio:
         prev_tm = 0
         parag = ''
         
-        TW = textwrap.TextWrapper(width=wrap_to,
-                                  expand_tabs=False,
-                                  replace_whitespace=True)
+        TW = get_TextWrapper(wrap_width=wrap_to)
         
         root = ET.fromstring(xml_captions, forbid_dtd=True)
         for i, child in enumerate(root):
@@ -225,9 +228,11 @@ class YTVAudio:
             if tm_min > 0:
                 if (tm_min % minutes_mark == 0) and (tm_min != prev_tm):
                     msg = F"{minutes_mark:d} minutes mark -> new paragraph \n"
-                    parag = clean_text(parag, TW,
-                                       uppercase_list, titlecase_list,
-                                       corrections)
+                    parag = clean_text(parag,
+                                       uppercase_list,
+                                       titlecase_list,
+                                       corrections,
+                                       TW)
                     parag += " \n"
                     lines.append(parag)
                     lines.append(frmt_tm.format(start, msg))
@@ -236,9 +241,11 @@ class YTVAudio:
             
         # last chunk:
         if len(parag):
-            parag = clean_text(parag, TW,
-                               uppercase_list, titlecase_list,
-                               corrections)
+            parag = clean_text(parag,
+                               uppercase_list,
+                               titlecase_list,
+                               corrections,
+                               TW)
             lines.append(parag + " \n")
         return "".join(lines)
 
@@ -278,10 +285,11 @@ class YTVAudio:
                                                       minutes_mark,
                                                       wrap_width)
             text = self.get_first_line(wrap_width) + raw_transcript
-            save_file(trx_fname, text)
+            UTL.save_file(trx_fname, text)
         return
 
 
+# text processing files update ...............................
 def check_list(list_to_search, new_terms, verbose=True):
     def search_list(list_to_search, search_str):
         idx = -1
@@ -386,7 +394,25 @@ def add_corrections(new_tuples, return_dict=True):
     else:
         return
 
-
+def update_corrections(new_corrections):
+    """
+    Wrapper for check_corrections & add_corrections with
+    verbose=False.
+    :param: new_corrections: list of tuples.
+    """
+    corrections = get_corrections_dict()
+    tot, reduced_list, msg = check_corrections(corrections,
+                                               new_corrections,
+                                               verbose=False)
+    if tot:
+        if 'reduced' in msg:
+            if reduced_list:
+                add_corrections(reduced_list, return_dict=False)
+        else:
+            add_corrections(new_corrections, return_dict=False)
+    return
+                    
+                    
 substitutions = dict([('people', people_file),
                       ('names',names_file),
                       ('places', places_file),
@@ -444,3 +470,27 @@ def update_conversion_file(which=None, user_list=None,
         df.to_csv(fname)
 
     return
+
+
+def update_conversions(which_file, new_terms):
+    """
+    Wrapper for check_list & update_conversion_file
+    with verbose=False.
+    :param: which_file: one of ['people','names','places','upper']
+    :param: new_terms: list of strings.
+    """
+    which = which_file.lower()
+    fname = substitutions[which]
+    current_list = readcsv(fname)[which].tolist()
+
+    tot, reduced_list, msg = check_list(current_list,
+                                        new_terms,
+                                        verbose=False)
+    if tot:
+        if 'reduced' in msg:
+            if reduced_list:
+                update_conversion_file(which, reduced_list)
+        else:
+            update_conversion_file(which, new_terms)
+    return
+

@@ -1,0 +1,5467 @@
+1
+00:00:03,360 --> 00:00:07,520
+hello everyone thank you for joining
+
+2
+00:00:05,279 --> 00:00:10,559
+our webinar for today uh thanks for
+
+3
+00:00:07,520 --> 00:00:10,559
+joining data umbrella
+
+4
+00:00:10,880 --> 00:00:15,040
+i'm gonna do a quick introduction uh
+
+5
+00:00:13,120 --> 00:00:16,080
+carol willing is going to do her talk
+
+6
+00:00:15,040 --> 00:00:19,119
+and we'll have a q a
+
+7
+00:00:16,080 --> 00:00:21,520
+session at the end and and this webinar
+
+8
+00:00:19,119 --> 00:00:23,680
+is being recorded
+
+9
+00:00:21,520 --> 00:00:25,680
+a little bit about me i'm a statistician
+
+10
+00:00:23,680 --> 00:00:26,240
+data scientist i'm the founder of data
+
+11
+00:00:25,680 --> 00:00:28,720
+umbrella
+
+12
+00:00:26,240 --> 00:00:29,439
+and i am on twitter linkedin github has
+
+13
+00:00:28,720 --> 00:00:32,880
+raised my s
+
+14
+00:00:29,439 --> 00:00:34,160
+feel free to follow me
+
+15
+00:00:32,880 --> 00:00:35,920
+we have a code of conduct we're
+
+16
+00:00:34,160 --> 00:00:36,640
+dedicated to providing harassment free
+
+17
+00:00:35,920 --> 00:00:38,719
+professional
+
+18
+00:00:36,640 --> 00:00:40,000
+respectful experience for everyone this
+
+19
+00:00:38,719 --> 00:00:43,040
+applies to the chat
+
+20
+00:00:40,000 --> 00:00:43,360
+as well um thank you for helping make
+
+21
+00:00:43,040 --> 00:00:45,600
+this
+
+22
+00:00:43,360 --> 00:00:48,079
+a welcoming and friendly community for
+
+23
+00:00:45,600 --> 00:00:48,079
+all of us
+
+24
+00:00:48,800 --> 00:00:52,320
+about data umbrella we're an inclusive
+
+25
+00:00:50,480 --> 00:00:53,360
+community for underrepresented persons
+
+26
+00:00:52,320 --> 00:00:56,879
+in data science
+
+27
+00:00:53,360 --> 00:01:00,320
+we welcome allies to join us and we are
+
+28
+00:00:56,879 --> 00:01:02,640
+a volunteer run organization
+
+29
+00:01:00,320 --> 00:01:04,960
+so how can you support data umbrella the
+
+30
+00:01:02,640 --> 00:01:06,320
+first and foremost is to follow our code
+
+31
+00:01:04,960 --> 00:01:08,560
+of conduct
+
+32
+00:01:06,320 --> 00:01:09,760
+um the second is we have a discord
+
+33
+00:01:08,560 --> 00:01:11,760
+community chat so
+
+34
+00:01:09,760 --> 00:01:14,240
+feel free to join it the link is on our
+
+35
+00:01:11,760 --> 00:01:16,080
+website and there you can ask questions
+
+36
+00:01:14,240 --> 00:01:19,280
+and answer questions as well for the
+
+37
+00:01:16,080 --> 00:01:21,520
+community we have an open collective
+
+38
+00:01:19,280 --> 00:01:23,520
+feel free to also if you want to donate
+
+39
+00:01:21,520 --> 00:01:25,200
+there to cover our meetup dues and other
+
+40
+00:01:23,520 --> 00:01:28,080
+operational costs
+
+41
+00:01:25,200 --> 00:01:28,720
+and we have a new initiative called you
+
+42
+00:01:28,080 --> 00:01:31,600
+know we're
+
+43
+00:01:28,720 --> 00:01:33,920
+doing transcripts for all of our talks
+
+44
+00:01:31,600 --> 00:01:33,920
+and
+
+45
+00:01:34,960 --> 00:01:40,320
+it is um the transcripts are on github
+
+46
+00:01:38,000 --> 00:01:42,479
+and it requires knowing some mark down
+
+47
+00:01:40,320 --> 00:01:44,320
+and how to submit a pr either via
+
+48
+00:01:42,479 --> 00:01:48,000
+terminal or github
+
+49
+00:01:44,320 --> 00:01:49,840
+um so check out this link github.com
+
+50
+00:01:48,000 --> 00:01:52,320
+data umbrella event transcripts for more
+
+51
+00:01:49,840 --> 00:01:52,320
+information
+
+52
+00:01:53,520 --> 00:01:58,000
+we also have a job board which is under
+
+53
+00:01:56,759 --> 00:02:00,159
+jobs.dataumbrella.org
+
+54
+00:01:58,000 --> 00:02:03,759
+if you are looking for a position or
+
+55
+00:02:00,159 --> 00:02:05,840
+just curious feel free to check it out
+
+56
+00:02:03,759 --> 00:02:08,160
+we have two highlighted jobs today the
+
+57
+00:02:05,840 --> 00:02:10,399
+first is a software engineer position at
+
+58
+00:02:08,160 --> 00:02:11,120
+oscar health which is based in new york
+
+59
+00:02:10,399 --> 00:02:14,239
+city
+
+60
+00:02:11,120 --> 00:02:16,080
+it's a health insurance company and
+
+61
+00:02:14,239 --> 00:02:17,680
+they are developing seamless technology
+
+62
+00:02:16,080 --> 00:02:19,840
+and provide personalized support to
+
+63
+00:02:17,680 --> 00:02:22,400
+members to navigate their health care
+
+64
+00:02:19,840 --> 00:02:23,520
+and they have some other roles open as
+
+65
+00:02:22,400 --> 00:02:26,959
+well so
+
+66
+00:02:23,520 --> 00:02:28,319
+but check it out our next job that we're
+
+67
+00:02:26,959 --> 00:02:30,480
+highlighting is a
+
+68
+00:02:28,319 --> 00:02:31,760
+machine learning engineer by development
+
+69
+00:02:30,480 --> 00:02:34,800
+c that they are based
+
+70
+00:02:31,760 --> 00:02:38,560
+in washington dc or lisbon portugal or
+
+71
+00:02:34,800 --> 00:02:40,400
+it can be a remote position for now and
+
+72
+00:02:38,560 --> 00:02:42,879
+um what they do is they're mapping
+
+73
+00:02:40,400 --> 00:02:45,920
+elections from afghanistan to the us
+
+74
+00:02:42,879 --> 00:02:47,519
+analyzing public data and economic data
+
+75
+00:02:45,920 --> 00:02:49,360
+and leading strategy and development
+
+76
+00:02:47,519 --> 00:02:52,800
+behind data.world bank
+
+77
+00:02:49,360 --> 00:02:56,720
+and other um other
+
+78
+00:02:52,800 --> 00:02:56,720
+social enterprise initiatives
+
+79
+00:02:57,519 --> 00:03:02,879
+um these are just uh um
+
+80
+00:03:01,519 --> 00:03:04,879
+just a sprinkling of what we have
+
+81
+00:03:02,879 --> 00:03:07,040
+available on our website there's a lot
+
+82
+00:03:04,879 --> 00:03:09,360
+of resources on responsibility on
+
+83
+00:03:07,040 --> 00:03:13,360
+accessibility on open source so
+
+84
+00:03:09,360 --> 00:03:16,200
+check that out on your own
+
+85
+00:03:13,360 --> 00:03:18,080
+we have a monthly newsletter it is
+
+86
+00:03:16,200 --> 00:03:20,400
+dataumbrella.substack.com so feel free
+
+87
+00:03:18,080 --> 00:03:21,840
+to sign up for it we only send it out
+
+88
+00:03:20,400 --> 00:03:24,799
+once a month so
+
+89
+00:03:21,840 --> 00:03:27,200
+we promise not to spam you with too much
+
+90
+00:03:24,799 --> 00:03:27,200
+email
+
+91
+00:03:28,239 --> 00:03:32,560
+we are on date umbrella is on a bunch of
+
+92
+00:03:30,799 --> 00:03:34,560
+different platforms under data umbrella
+
+93
+00:03:32,560 --> 00:03:36,799
+so depending on what your preference is
+
+94
+00:03:34,560 --> 00:03:37,599
+um the best place to actually be a
+
+95
+00:03:36,799 --> 00:03:39,040
+member is
+
+96
+00:03:37,599 --> 00:03:40,879
+the meetup group because that's where
+
+97
+00:03:39,040 --> 00:03:43,440
+all the events are posted
+
+98
+00:03:40,879 --> 00:03:44,000
+our website has resources we are on
+
+99
+00:03:43,440 --> 00:03:46,640
+twitter
+
+100
+00:03:44,000 --> 00:03:48,239
+we are on linkedin we are on youtube if
+
+101
+00:03:46,640 --> 00:03:50,879
+you want to subscribe to our channel
+
+102
+00:03:48,239 --> 00:03:51,599
+i will post some of these links once i
+
+103
+00:03:50,879 --> 00:03:54,239
+finish this
+
+104
+00:03:51,599 --> 00:03:56,879
+intro presentation on the chat so you
+
+105
+00:03:54,239 --> 00:03:56,879
+can follow it
+
+106
+00:03:57,519 --> 00:04:01,280
+and before we begin i just want to let
+
+107
+00:03:59,280 --> 00:04:03,280
+you know that next week where our
+
+108
+00:04:01,280 --> 00:04:05,040
+upcoming event is using streamlit for
+
+109
+00:04:03,280 --> 00:04:06,799
+data science with thomas fan
+
+110
+00:04:05,040 --> 00:04:08,080
+thomas is also a core contributor to
+
+111
+00:04:06,799 --> 00:04:11,120
+scikit learn
+
+112
+00:04:08,080 --> 00:04:11,439
+and streamlit is a way to build and
+
+113
+00:04:11,120 --> 00:04:13,439
+share
+
+114
+00:04:11,439 --> 00:04:15,040
+data apps in python and i think it's
+
+115
+00:04:13,439 --> 00:04:18,160
+going to be a great presentation
+
+116
+00:04:15,040 --> 00:04:21,840
+and i'm so glad that um thomas said yes
+
+117
+00:04:18,160 --> 00:04:21,840
+when i invited him and asked him
+
+118
+00:04:22,079 --> 00:04:25,120
+a little bit about today's speaker carol
+
+119
+00:04:24,479 --> 00:04:27,680
+willing
+
+120
+00:04:25,120 --> 00:04:29,600
+carol has an msn management from mit and
+
+121
+00:04:27,680 --> 00:04:31,040
+a bsc in electrical engineering from
+
+122
+00:04:29,600 --> 00:04:33,759
+duke university
+
+123
+00:04:31,040 --> 00:04:35,840
+she is a core developer of core python
+
+124
+00:04:33,759 --> 00:04:36,800
+she is a member of python's steering
+
+125
+00:04:35,840 --> 00:04:39,280
+council
+
+126
+00:04:36,800 --> 00:04:40,000
+for project jupiter jupiter notebook um
+
+127
+00:04:39,280 --> 00:04:41,759
+as
+
+128
+00:04:40,000 --> 00:04:43,440
+many of us have used she's on the
+
+129
+00:04:41,759 --> 00:04:46,240
+steering council and works as a core
+
+130
+00:04:43,440 --> 00:04:49,199
+developer on jupiter health and mybinder
+
+131
+00:04:46,240 --> 00:04:50,720
+she is also co-editor of the journal of
+
+132
+00:04:49,199 --> 00:04:52,639
+open source education
+
+133
+00:04:50,720 --> 00:04:54,400
+and she co-authored an open source book
+
+134
+00:04:52,639 --> 00:04:56,320
+teaching and learning with jupiter
+
+135
+00:04:54,400 --> 00:04:57,840
+there's a lot more that carol has
+
+136
+00:04:56,320 --> 00:04:58,960
+accomplished but i was running out of
+
+137
+00:04:57,840 --> 00:05:02,320
+space
+
+138
+00:04:58,960 --> 00:05:04,560
+so i will let um carol
+
+139
+00:05:02,320 --> 00:05:06,960
+take it over from here oh and and just
+
+140
+00:05:04,560 --> 00:05:08,160
+just one more thing we have a q a tab on
+
+141
+00:05:06,960 --> 00:05:10,160
+this platform so if you have any
+
+142
+00:05:08,160 --> 00:05:11,759
+questions just post them there
+
+143
+00:05:10,160 --> 00:05:13,680
+if you do post them on the chat it's not
+
+144
+00:05:11,759 --> 00:05:14,000
+a problem i can easily move them over to
+
+145
+00:05:13,680 --> 00:05:16,720
+q
+
+146
+00:05:14,000 --> 00:05:17,360
+a and if you want to upvote them um you
+
+147
+00:05:16,720 --> 00:05:18,880
+know
+
+148
+00:05:17,360 --> 00:05:20,479
+i think we'll have time to answer
+
+149
+00:05:18,880 --> 00:05:22,840
+everyone's questions but
+
+150
+00:05:20,479 --> 00:05:25,520
+feel free to upload to see what's really
+
+151
+00:05:22,840 --> 00:05:27,919
+um exciting and important for you
+
+152
+00:05:25,520 --> 00:05:28,560
+and i will hand it over to carol thanks
+
+153
+00:05:27,919 --> 00:05:30,560
+russian
+
+154
+00:05:28,560 --> 00:05:32,479
+thank you all for being here and thank
+
+155
+00:05:30,560 --> 00:05:35,840
+you for the sponsors
+
+156
+00:05:32,479 --> 00:05:38,800
+and everybody who organizes groups um
+
+157
+00:05:35,840 --> 00:05:41,039
+it's really important and it helps us as
+
+158
+00:05:38,800 --> 00:05:44,639
+an ecosystem gets stronger
+
+159
+00:05:41,039 --> 00:05:48,080
+i am going to start sharing my screen
+
+160
+00:05:44,639 --> 00:05:48,080
+hopefully and
+
+161
+00:05:51,680 --> 00:05:55,280
+once roshama lets me know that you guys
+
+162
+00:05:53,680 --> 00:05:58,720
+can see everything
+
+163
+00:05:55,280 --> 00:05:58,720
+then i will start
+
+164
+00:06:00,720 --> 00:06:03,919
+there was a little bit of a lag before
+
+165
+00:06:02,960 --> 00:06:06,479
+but
+
+166
+00:06:03,919 --> 00:06:08,160
+um okay well i'm going to assume you can
+
+167
+00:06:06,479 --> 00:06:11,360
+see my slide deck otherwise
+
+168
+00:06:08,160 --> 00:06:13,039
+um somebody please shout um so today
+
+169
+00:06:11,360 --> 00:06:14,479
+i'm going to talk about contributing to
+
+170
+00:06:13,039 --> 00:06:17,280
+core python
+
+171
+00:06:14,479 --> 00:06:19,759
+but i'm going to do it from the lens of
+
+172
+00:06:17,280 --> 00:06:21,680
+a scientist or a data scientist so it's
+
+173
+00:06:19,759 --> 00:06:24,960
+going to be my opinionated view
+
+174
+00:06:21,680 --> 00:06:28,319
+of working in all of these communities
+
+175
+00:06:24,960 --> 00:06:30,240
+and for those that are advanced users
+
+176
+00:06:28,319 --> 00:06:31,759
+you will find something useful in this
+
+177
+00:06:30,240 --> 00:06:33,520
+for those of you that have never
+
+178
+00:06:31,759 --> 00:06:36,000
+contributed to open source
+
+179
+00:06:33,520 --> 00:06:37,919
+you should also find a lot of really
+
+180
+00:06:36,000 --> 00:06:41,280
+useful stuff
+
+181
+00:06:37,919 --> 00:06:44,319
+as roshama went through my bio
+
+182
+00:06:41,280 --> 00:06:47,440
+the ending part talked about education
+
+183
+00:06:44,319 --> 00:06:48,000
+and using tools and that is really where
+
+184
+00:06:47,440 --> 00:06:51,520
+my heart
+
+185
+00:06:48,000 --> 00:06:55,680
+and passion is less about the technology
+
+186
+00:06:51,520 --> 00:06:58,319
+and more about building tools that
+
+187
+00:06:55,680 --> 00:06:59,120
+empower other people to do good things
+
+188
+00:06:58,319 --> 00:07:02,160
+in the world
+
+189
+00:06:59,120 --> 00:07:04,400
+and um i think our
+
+190
+00:07:02,160 --> 00:07:05,680
+science and data science ecosystem helps
+
+191
+00:07:04,400 --> 00:07:08,880
+us do that really well
+
+192
+00:07:05,680 --> 00:07:12,240
+so let's get started so
+
+193
+00:07:08,880 --> 00:07:15,120
+um yes core python and c python
+
+194
+00:07:12,240 --> 00:07:17,280
+are the same thing you will hear them
+
+195
+00:07:15,120 --> 00:07:19,280
+used interchangeably
+
+196
+00:07:17,280 --> 00:07:21,360
+and for all intents and purposes you can
+
+197
+00:07:19,280 --> 00:07:22,960
+just assume that they are actually the
+
+198
+00:07:21,360 --> 00:07:26,000
+same
+
+199
+00:07:22,960 --> 00:07:29,440
+um so for today's talk
+
+200
+00:07:26,000 --> 00:07:32,160
+we're going to look at this from a data
+
+201
+00:07:29,440 --> 00:07:34,319
+and science perspective so the primary
+
+202
+00:07:32,160 --> 00:07:35,759
+audience is data scientists scientists
+
+203
+00:07:34,319 --> 00:07:38,560
+data engineers
+
+204
+00:07:35,759 --> 00:07:39,599
+but other folks that might get value out
+
+205
+00:07:38,560 --> 00:07:41,840
+of this
+
+206
+00:07:39,599 --> 00:07:44,080
+are computer science compiler engineers
+
+207
+00:07:41,840 --> 00:07:47,520
+operating system experts language
+
+208
+00:07:44,080 --> 00:07:47,919
+geeks but that won't be the focus of the
+
+209
+00:07:47,520 --> 00:07:51,360
+talk
+
+210
+00:07:47,919 --> 00:07:52,479
+it will be the data folks and science
+
+211
+00:07:51,360 --> 00:07:54,879
+fics
+
+212
+00:07:52,479 --> 00:07:54,879
+okay
+
+213
+00:07:55,759 --> 00:08:01,440
+so contributing to core python today
+
+214
+00:07:59,280 --> 00:08:04,240
+i'm going to walk a little bit through
+
+215
+00:08:01,440 --> 00:08:07,759
+how core python is organized today
+
+216
+00:08:04,240 --> 00:08:10,240
+then i'm going to compare it to other
+
+217
+00:08:07,759 --> 00:08:11,680
+open source projects in our ecosystem of
+
+218
+00:08:10,240 --> 00:08:14,400
+data and science
+
+219
+00:08:11,680 --> 00:08:15,680
+scikit-learn is a great example of that
+
+220
+00:08:14,400 --> 00:08:16,479
+and then we'll talk about getting
+
+221
+00:08:15,680 --> 00:08:20,759
+started
+
+222
+00:08:16,479 --> 00:08:23,919
+and how you can go further with your
+
+223
+00:08:20,759 --> 00:08:26,479
+contributions to either see python
+
+224
+00:08:23,919 --> 00:08:28,800
+open source your local community and
+
+225
+00:08:26,479 --> 00:08:28,800
+more
+
+226
+00:08:28,879 --> 00:08:32,159
+so we had an interesting thing happened
+
+227
+00:08:30,879 --> 00:08:34,080
+a couple of years ago
+
+228
+00:08:32,159 --> 00:08:37,599
+gita van rossum who had been the
+
+229
+00:08:34,080 --> 00:08:40,320
+benevolent dictator for life of python
+
+230
+00:08:37,599 --> 00:08:41,440
+stepped down and we were faced with
+
+231
+00:08:40,320 --> 00:08:44,959
+having to
+
+232
+00:08:41,440 --> 00:08:48,160
+create a new governance for core python
+
+233
+00:08:44,959 --> 00:08:49,839
+and what we came up with was a small
+
+234
+00:08:48,160 --> 00:08:52,480
+steering council
+
+235
+00:08:49,839 --> 00:08:54,399
+these are the members currently who sit
+
+236
+00:08:52,480 --> 00:08:57,519
+on the steering council
+
+237
+00:08:54,399 --> 00:09:00,240
+and really we are
+
+238
+00:08:57,519 --> 00:09:02,000
+to sort of do and set the direction of
+
+239
+00:09:00,240 --> 00:09:05,040
+things that guido did
+
+240
+00:09:02,000 --> 00:09:05,839
+by himself in terms of organization in
+
+241
+00:09:05,040 --> 00:09:08,959
+the project
+
+242
+00:09:05,839 --> 00:09:12,640
+and direction of the project and
+
+243
+00:09:08,959 --> 00:09:14,399
+in specific we are tasked with
+
+244
+00:09:12,640 --> 00:09:16,240
+ensuring the quality and stability of
+
+245
+00:09:14,399 --> 00:09:18,560
+the language
+
+246
+00:09:16,240 --> 00:09:19,279
+moving towards contributions that are
+
+247
+00:09:18,560 --> 00:09:22,560
+accessible
+
+248
+00:09:19,279 --> 00:09:24,080
+inclusive and sustainable fostering a
+
+249
+00:09:22,560 --> 00:09:27,680
+stronger relationship
+
+250
+00:09:24,080 --> 00:09:29,519
+with the python software foundation
+
+251
+00:09:27,680 --> 00:09:31,279
+um continuing to facilitate the
+
+252
+00:09:29,519 --> 00:09:33,200
+decision-making process for
+
+253
+00:09:31,279 --> 00:09:34,959
+peps which are python enhancement
+
+254
+00:09:33,200 --> 00:09:36,720
+proposals those are
+
+255
+00:09:34,959 --> 00:09:38,320
+when there are large changes made to the
+
+256
+00:09:36,720 --> 00:09:39,279
+language or proposed to the language or
+
+257
+00:09:38,320 --> 00:09:41,839
+workflow
+
+258
+00:09:39,279 --> 00:09:43,040
+that's something that um is open for
+
+259
+00:09:41,839 --> 00:09:46,480
+everybody to read
+
+260
+00:09:43,040 --> 00:09:49,680
+and comment on and our goal is
+
+261
+00:09:46,480 --> 00:09:50,000
+to seek consensus both with each other
+
+262
+00:09:49,680 --> 00:09:52,959
+but
+
+263
+00:09:50,000 --> 00:09:54,399
+also the community at large because we
+
+264
+00:09:52,959 --> 00:09:58,800
+don't want to be
+
+265
+00:09:54,399 --> 00:09:58,800
+a dictator of the direction of python
+
+266
+00:09:59,120 --> 00:10:05,519
+so as we look at core python
+
+267
+00:10:02,320 --> 00:10:09,360
+what kinds of contributions are needed
+
+268
+00:10:05,519 --> 00:10:11,040
+lots um but i want to first step back
+
+269
+00:10:09,360 --> 00:10:11,920
+and look at the python software
+
+270
+00:10:11,040 --> 00:10:14,959
+foundation
+
+271
+00:10:11,920 --> 00:10:18,079
+which is a sister organization to
+
+272
+00:10:14,959 --> 00:10:21,120
+the core python developers
+
+273
+00:10:18,079 --> 00:10:23,600
+yeah and yeah sorry just we don't
+
+274
+00:10:21,120 --> 00:10:24,560
+we see you but we don't see your slides
+
+275
+00:10:23,600 --> 00:10:27,600
+uh-oh
+
+276
+00:10:24,560 --> 00:10:30,480
+so um maybe if you can just share again
+
+277
+00:10:27,600 --> 00:10:32,399
+maybe let me stop sharing and re-sharing
+
+278
+00:10:30,480 --> 00:10:35,519
+yeah that might that might work
+
+279
+00:10:32,399 --> 00:10:38,880
+ah that might work
+
+280
+00:10:35,519 --> 00:10:40,240
+let's see if escape will do it worked in
+
+281
+00:10:38,880 --> 00:10:47,839
+practice
+
+282
+00:10:40,240 --> 00:10:47,839
+right let's do it again
+
+283
+00:10:52,959 --> 00:10:56,160
+okay now you should see my whole desktop
+
+284
+00:10:54,800 --> 00:10:58,240
+is that correct
+
+285
+00:10:56,160 --> 00:11:00,399
+okay it takes just a couple of seconds
+
+286
+00:10:58,240 --> 00:11:02,880
+for the lag it is loading which is
+
+287
+00:11:00,399 --> 00:11:03,839
+good and now we can see your whole
+
+288
+00:11:02,880 --> 00:11:05,440
+desktop yep
+
+289
+00:11:03,839 --> 00:11:07,279
+and now you should be able to see the
+
+290
+00:11:05,440 --> 00:11:08,320
+talk yep now we can see the talk and we
+
+291
+00:11:07,279 --> 00:11:10,720
+can see you
+
+292
+00:11:08,320 --> 00:11:11,360
+okay so speed version the title of the
+
+293
+00:11:10,720 --> 00:11:13,600
+talk
+
+294
+00:11:11,360 --> 00:11:15,839
+core python opinionated guide for
+
+295
+00:11:13,600 --> 00:11:17,440
+scientists and data scientists yes core
+
+296
+00:11:15,839 --> 00:11:20,320
+python is the same thing as see
+
+297
+00:11:17,440 --> 00:11:22,720
+python i'm targeting this to the
+
+298
+00:11:20,320 --> 00:11:25,680
+scientists and data scientists and data
+
+299
+00:11:22,720 --> 00:11:26,959
+folks in the audience
+
+300
+00:11:25,680 --> 00:11:28,880
+we're going to go through a few
+
+301
+00:11:26,959 --> 00:11:29,519
+different ways of contributing to core
+
+302
+00:11:28,880 --> 00:11:33,839
+python
+
+303
+00:11:29,519 --> 00:11:36,399
+and beyond i started with a quick
+
+304
+00:11:33,839 --> 00:11:38,240
+discussion of governance or introduced
+
+305
+00:11:36,399 --> 00:11:40,320
+the steering council
+
+306
+00:11:38,240 --> 00:11:41,360
+what the steering council is responsible
+
+307
+00:11:40,320 --> 00:11:45,600
+for
+
+308
+00:11:41,360 --> 00:11:49,519
+and now back to you which contributions
+
+309
+00:11:45,600 --> 00:11:51,519
+does see python need and
+
+310
+00:11:49,519 --> 00:11:52,639
+looking at the mission of the python
+
+311
+00:11:51,519 --> 00:11:55,120
+software foundation
+
+312
+00:11:52,639 --> 00:11:56,720
+is a good place to start the python
+
+313
+00:11:55,120 --> 00:11:59,920
+software foundation
+
+314
+00:11:56,720 --> 00:12:01,440
+is a sister organization to the core
+
+315
+00:11:59,920 --> 00:12:04,160
+python group
+
+316
+00:12:01,440 --> 00:12:05,279
+and its goal is to promote protect and
+
+317
+00:12:04,160 --> 00:12:09,200
+advance
+
+318
+00:12:05,279 --> 00:12:12,000
+python the language as well as to grow
+
+319
+00:12:09,200 --> 00:12:13,760
+a diverse and international community of
+
+320
+00:12:12,000 --> 00:12:16,560
+python programmers
+
+321
+00:12:13,760 --> 00:12:18,399
+so as you think of making contributions
+
+322
+00:12:16,560 --> 00:12:21,440
+keep that in the back of your head
+
+323
+00:12:18,399 --> 00:12:21,920
+because those are really going to be the
+
+324
+00:12:21,440 --> 00:12:25,360
+most
+
+325
+00:12:21,920 --> 00:12:28,560
+valuable contributions
+
+326
+00:12:25,360 --> 00:12:30,880
+some ways you can contribute and
+
+327
+00:12:28,560 --> 00:12:33,680
+oftentimes people look at writing new
+
+328
+00:12:30,880 --> 00:12:36,959
+code as the only way to contribute
+
+329
+00:12:33,680 --> 00:12:40,240
+and it is a great way to contribute but
+
+330
+00:12:36,959 --> 00:12:41,600
+in many ways a lot of these other ways
+
+331
+00:12:40,240 --> 00:12:44,800
+to contribute
+
+332
+00:12:41,600 --> 00:12:47,040
+are equally if not more important um
+
+333
+00:12:44,800 --> 00:12:48,880
+when you're adding new code it's got to
+
+334
+00:12:47,040 --> 00:12:51,040
+be with backward compatibility
+
+335
+00:12:48,880 --> 00:12:52,480
+we're a 30 year old language you know
+
+336
+00:12:51,040 --> 00:12:53,760
+people don't are using this in
+
+337
+00:12:52,480 --> 00:12:55,680
+production they don't want things
+
+338
+00:12:53,760 --> 00:12:58,000
+breaking
+
+339
+00:12:55,680 --> 00:12:59,600
+maintaining security anything that you
+
+340
+00:12:58,000 --> 00:13:00,560
+can do to maintain the security of the
+
+341
+00:12:59,600 --> 00:13:03,839
+language
+
+342
+00:13:00,560 --> 00:13:06,959
+or improve core development workflows so
+
+343
+00:13:03,839 --> 00:13:09,519
+mariada has put together a lot of bots
+
+344
+00:13:06,959 --> 00:13:12,320
+that make our core development workflow
+
+345
+00:13:09,519 --> 00:13:15,519
+much easier for folks to get started
+
+346
+00:13:12,320 --> 00:13:17,360
+and also for github and the power of
+
+347
+00:13:15,519 --> 00:13:17,760
+technology to kind of help with some of
+
+348
+00:13:17,360 --> 00:13:20,800
+the
+
+349
+00:13:17,760 --> 00:13:24,480
+more tedious tasks writing and running
+
+350
+00:13:20,800 --> 00:13:27,519
+tests writing and editing documentation
+
+351
+00:13:24,480 --> 00:13:28,480
+both of those are absolutely critical to
+
+352
+00:13:27,519 --> 00:13:32,839
+the success of
+
+353
+00:13:28,480 --> 00:13:36,320
+any open source project python as well
+
+354
+00:13:32,839 --> 00:13:37,040
+um one huge need we have is folks to
+
+355
+00:13:36,320 --> 00:13:40,079
+triage
+
+356
+00:13:37,040 --> 00:13:43,120
+bugs for reproducibility
+
+357
+00:13:40,079 --> 00:13:46,959
+and um in addition to that
+
+358
+00:13:43,120 --> 00:13:50,000
+people to review open prs um
+
+359
+00:13:46,959 --> 00:13:51,440
+right now we're split um our code base
+
+360
+00:13:50,000 --> 00:13:55,000
+is on github
+
+361
+00:13:51,440 --> 00:13:56,480
+but our bug issue tracker is on
+
+362
+00:13:55,000 --> 00:13:58,880
+bugs.python.org
+
+363
+00:13:56,480 --> 00:14:00,160
+so um there's sort of an extra step
+
+364
+00:13:58,880 --> 00:14:04,480
+between the two
+
+365
+00:14:00,160 --> 00:14:07,600
+so um it it's helpful um
+
+366
+00:14:04,480 --> 00:14:11,040
+with uh decreasing the backlog of
+
+367
+00:14:07,600 --> 00:14:14,560
+uh prs and bugs for people to help
+
+368
+00:14:11,040 --> 00:14:16,320
+um triage and review prs and
+
+369
+00:14:14,560 --> 00:14:18,320
+in the last year we've actually started
+
+370
+00:14:16,320 --> 00:14:20,639
+a triaging team
+
+371
+00:14:18,320 --> 00:14:22,560
+which is in many ways a stepping stone
+
+372
+00:14:20,639 --> 00:14:26,079
+to core development
+
+373
+00:14:22,560 --> 00:14:28,720
+um and then really anything that you
+
+374
+00:14:26,079 --> 00:14:29,519
+do to share your knowledge with the
+
+375
+00:14:28,720 --> 00:14:31,920
+community
+
+376
+00:14:29,519 --> 00:14:34,399
+maintain projects give talks write blog
+
+377
+00:14:31,920 --> 00:14:37,680
+posts attend meetups
+
+378
+00:14:34,399 --> 00:14:39,760
+that is a contribution to core python
+
+379
+00:14:37,680 --> 00:14:41,760
+so congratulations you've all made your
+
+380
+00:14:39,760 --> 00:14:44,880
+first contribution to core python
+
+381
+00:14:41,760 --> 00:14:48,320
+or at least the python ecosystem
+
+382
+00:14:44,880 --> 00:14:51,440
+so i'm going to spend a minute comparing
+
+383
+00:14:48,320 --> 00:14:52,399
+the different projects and comparing and
+
+384
+00:14:51,440 --> 00:14:55,199
+contrasting
+
+385
+00:14:52,399 --> 00:14:55,760
+python versus other projects that are
+
+386
+00:14:55,199 --> 00:14:58,560
+younger
+
+387
+00:14:55,760 --> 00:15:00,720
+like jupiter matplotlibs scikit-learn
+
+388
+00:14:58,560 --> 00:15:03,360
+and more
+
+389
+00:15:00,720 --> 00:15:04,480
+so what's similar well most of these
+
+390
+00:15:03,360 --> 00:15:07,600
+projects
+
+391
+00:15:04,480 --> 00:15:08,160
+use a github workflow and with that i
+
+392
+00:15:07,600 --> 00:15:10,839
+mean
+
+393
+00:15:08,160 --> 00:15:13,199
+we host our source code on github or
+
+394
+00:15:10,839 --> 00:15:17,120
+gitlab and
+
+395
+00:15:13,199 --> 00:15:20,480
+we operate with a pull request
+
+396
+00:15:17,120 --> 00:15:21,440
+mindset and what that means is a pull
+
+397
+00:15:20,480 --> 00:15:24,480
+request is
+
+398
+00:15:21,440 --> 00:15:27,839
+hey i would like you to take my
+
+399
+00:15:24,480 --> 00:15:31,040
+code and add it to your code base
+
+400
+00:15:27,839 --> 00:15:33,120
+and then a maintainer will either say
+
+401
+00:15:31,040 --> 00:15:34,079
+yes that sounds like a great idea i
+
+402
+00:15:33,120 --> 00:15:37,920
+accept it
+
+403
+00:15:34,079 --> 00:15:41,440
+or gee could you make these um changes
+
+404
+00:15:37,920 --> 00:15:42,320
+and then resubmit it or in some cases
+
+405
+00:15:41,440 --> 00:15:44,000
+when
+
+406
+00:15:42,320 --> 00:15:46,480
+it's just not an appropriate
+
+407
+00:15:44,000 --> 00:15:48,320
+contribution we might say you know what
+
+408
+00:15:46,480 --> 00:15:49,040
+this would be better as a third party
+
+409
+00:15:48,320 --> 00:15:53,120
+project
+
+410
+00:15:49,040 --> 00:15:53,120
+or um another project
+
+411
+00:15:53,279 --> 00:15:57,279
+all projects have code review and that's
+
+412
+00:15:56,560 --> 00:15:59,759
+when
+
+413
+00:15:57,279 --> 00:16:01,680
+maintainers and core developers look
+
+414
+00:15:59,759 --> 00:16:04,000
+through code that's being submitted or
+
+415
+00:16:01,680 --> 00:16:07,519
+documentation that's being submitted
+
+416
+00:16:04,000 --> 00:16:08,800
+and make suggestions hopefully very
+
+417
+00:16:07,519 --> 00:16:12,480
+kindly
+
+418
+00:16:08,800 --> 00:16:16,480
+about what could be changed or improved
+
+419
+00:16:12,480 --> 00:16:18,959
+and many strong projects have
+
+420
+00:16:16,480 --> 00:16:20,160
+automated testing and continuous
+
+421
+00:16:18,959 --> 00:16:22,880
+integration
+
+422
+00:16:20,160 --> 00:16:23,920
+and it's really valuable to have that as
+
+423
+00:16:22,880 --> 00:16:25,759
+part of your project
+
+424
+00:16:23,920 --> 00:16:27,040
+because it provides sort of an
+
+425
+00:16:25,759 --> 00:16:29,440
+independent
+
+426
+00:16:27,040 --> 00:16:30,639
+view of what's going on so as a
+
+427
+00:16:29,440 --> 00:16:32,560
+contributor
+
+428
+00:16:30,639 --> 00:16:34,639
+it sort of provides you guidance okay
+
+429
+00:16:32,560 --> 00:16:36,079
+i've done like the correct syntax or
+
+430
+00:16:34,639 --> 00:16:39,600
+formatting if i'm submitting
+
+431
+00:16:36,079 --> 00:16:42,480
+code or documentation and
+
+432
+00:16:39,600 --> 00:16:43,920
+one thing that i forgot to mention but
+
+433
+00:16:42,480 --> 00:16:47,759
+is really important
+
+434
+00:16:43,920 --> 00:16:52,000
+is healthy open source projects have
+
+435
+00:16:47,759 --> 00:16:54,639
+not only a code of conduct but also
+
+436
+00:16:52,000 --> 00:16:55,440
+an onboarding guide or a developer guide
+
+437
+00:16:54,639 --> 00:16:58,480
+that helps
+
+438
+00:16:55,440 --> 00:17:02,480
+new contributors get started and helps
+
+439
+00:16:58,480 --> 00:17:02,480
+existing contributors build their skills
+
+440
+00:17:02,560 --> 00:17:06,319
+so what differs well there's a fair
+
+441
+00:17:05,120 --> 00:17:09,679
+amount of stuff that
+
+442
+00:17:06,319 --> 00:17:11,760
+differs between see python and other
+
+443
+00:17:09,679 --> 00:17:13,839
+data science projects like jupiter
+
+444
+00:17:11,760 --> 00:17:15,120
+and jupiter hub and binder that i've
+
+445
+00:17:13,839 --> 00:17:18,160
+been involved with
+
+446
+00:17:15,120 --> 00:17:19,120
+um and one of the most important or
+
+447
+00:17:18,160 --> 00:17:22,160
+biggest ones
+
+448
+00:17:19,120 --> 00:17:22,480
+is the velocity at which new features
+
+449
+00:17:22,160 --> 00:17:26,559
+are
+
+450
+00:17:22,480 --> 00:17:28,480
+added to the project python's a 30-year
+
+451
+00:17:26,559 --> 00:17:32,000
+language
+
+452
+00:17:28,480 --> 00:17:34,559
+has a long history and a lot of code
+
+453
+00:17:32,000 --> 00:17:35,600
+out in the wild that are being used in
+
+454
+00:17:34,559 --> 00:17:39,840
+production
+
+455
+00:17:35,600 --> 00:17:43,200
+in scientific research and as such
+
+456
+00:17:39,840 --> 00:17:47,280
+we can't just go and change things
+
+457
+00:17:43,200 --> 00:17:50,080
+as quickly as we could in
+
+458
+00:17:47,280 --> 00:17:52,640
+a newer project because we have more
+
+459
+00:17:50,080 --> 00:17:54,559
+embedded users
+
+460
+00:17:52,640 --> 00:17:55,919
+the other thing that's different about
+
+461
+00:17:54,559 --> 00:17:57,919
+core python
+
+462
+00:17:55,919 --> 00:18:00,080
+is it's a language that's used far
+
+463
+00:17:57,919 --> 00:18:02,160
+beyond just data and science so
+
+464
+00:18:00,080 --> 00:18:04,480
+not only do we have to status the data
+
+465
+00:18:02,160 --> 00:18:07,200
+satisfy the data and science community
+
+466
+00:18:04,480 --> 00:18:09,440
+but we also have communities around web
+
+467
+00:18:07,200 --> 00:18:12,840
+development sys admin
+
+468
+00:18:09,440 --> 00:18:16,960
+devops embedded systems
+
+469
+00:18:12,840 --> 00:18:20,480
+teaching and so forth
+
+470
+00:18:16,960 --> 00:18:23,120
+so when we look at python
+
+471
+00:18:20,480 --> 00:18:24,000
+we're looking at okay how do we keep
+
+472
+00:18:23,120 --> 00:18:28,000
+stability
+
+473
+00:18:24,000 --> 00:18:31,760
+and backward compatibility and security
+
+474
+00:18:28,000 --> 00:18:32,559
+while adding new features and in many of
+
+475
+00:18:31,760 --> 00:18:35,120
+these
+
+476
+00:18:32,559 --> 00:18:35,919
+other scientific projects it's a bit
+
+477
+00:18:35,120 --> 00:18:39,120
+flipped
+
+478
+00:18:35,919 --> 00:18:42,640
+we're looking for adding new features
+
+479
+00:18:39,120 --> 00:18:45,919
+while also creating you know a stable
+
+480
+00:18:42,640 --> 00:18:46,880
+um though often changing environment we
+
+481
+00:18:45,919 --> 00:18:50,000
+might
+
+482
+00:18:46,880 --> 00:18:53,039
+uh deprecate things which is stop
+
+483
+00:18:50,000 --> 00:18:54,080
+using things or offering things in a
+
+484
+00:18:53,039 --> 00:18:56,080
+two-year window
+
+485
+00:18:54,080 --> 00:18:58,320
+where python it would be much longer
+
+486
+00:18:56,080 --> 00:19:01,280
+could be five years could be ten years
+
+487
+00:18:58,320 --> 00:19:04,320
+um and then the context in which these
+
+488
+00:19:01,280 --> 00:19:07,679
+projects are used is also different
+
+489
+00:19:04,320 --> 00:19:10,960
+um see python is a tool that we use
+
+490
+00:19:07,679 --> 00:19:14,240
+to build things and it's a
+
+491
+00:19:10,960 --> 00:19:16,799
+tool that is used as a foundation
+
+492
+00:19:14,240 --> 00:19:18,640
+for many of these projects like jupiter
+
+493
+00:19:16,799 --> 00:19:22,080
+or matplotlib
+
+494
+00:19:18,640 --> 00:19:26,799
+to create their own project
+
+495
+00:19:22,080 --> 00:19:29,600
+so the stability of c python is critical
+
+496
+00:19:26,799 --> 00:19:30,480
+to the stability of our entire data and
+
+497
+00:19:29,600 --> 00:19:33,360
+science
+
+498
+00:19:30,480 --> 00:19:35,520
+ecosystem because what we don't want to
+
+499
+00:19:33,360 --> 00:19:38,640
+do when we make a new python release
+
+500
+00:19:35,520 --> 00:19:43,039
+is break a whole bunch of other projects
+
+501
+00:19:38,640 --> 00:19:43,600
+and so um yeah so that should give you a
+
+502
+00:19:43,039 --> 00:19:47,039
+sense
+
+503
+00:19:43,600 --> 00:19:48,240
+of the fact that python's going to move
+
+504
+00:19:47,039 --> 00:19:50,840
+a little slower
+
+505
+00:19:48,240 --> 00:19:52,799
+really emphasize code and quality and
+
+506
+00:19:50,840 --> 00:19:53,600
+security whereas some of these
+
+507
+00:19:52,799 --> 00:19:54,960
+scientific
+
+508
+00:19:53,600 --> 00:19:57,520
+and data science projects are going to
+
+509
+00:19:54,960 --> 00:19:59,360
+move much quicker and
+
+510
+00:19:57,520 --> 00:20:02,320
+you'll see a lot of change in even a
+
+511
+00:19:59,360 --> 00:20:06,320
+year or two years
+
+512
+00:20:02,320 --> 00:20:08,240
+so how do you get started contributing
+
+513
+00:20:06,320 --> 00:20:09,360
+or if you're already contributing how do
+
+514
+00:20:08,240 --> 00:20:12,400
+you continue
+
+515
+00:20:09,360 --> 00:20:15,120
+and perhaps grow your skills
+
+516
+00:20:12,400 --> 00:20:16,799
+well if you're a first time contributor
+
+517
+00:20:15,120 --> 00:20:20,000
+to open source
+
+518
+00:20:16,799 --> 00:20:23,120
+i want to strongly encourage you to
+
+519
+00:20:20,000 --> 00:20:25,840
+consider making your first contribution
+
+520
+00:20:23,120 --> 00:20:26,880
+be a contribution to a project in the
+
+521
+00:20:25,840 --> 00:20:30,159
+scientific
+
+522
+00:20:26,880 --> 00:20:30,480
+data science community and i'm going to
+
+523
+00:20:30,159 --> 00:20:32,880
+go
+
+524
+00:20:30,480 --> 00:20:33,600
+so far since it's my opinionated talk to
+
+525
+00:20:32,880 --> 00:20:36,880
+say
+
+526
+00:20:33,600 --> 00:20:40,240
+i would encourage you to do that
+
+527
+00:20:36,880 --> 00:20:45,280
+over making c python your first
+
+528
+00:20:40,240 --> 00:20:45,280
+contribution and the reason why is
+
+529
+00:20:45,360 --> 00:20:49,760
+you will find going back to the
+
+530
+00:20:48,400 --> 00:20:52,559
+differences between
+
+531
+00:20:49,760 --> 00:20:55,679
+the projects and python language the
+
+532
+00:20:52,559 --> 00:20:58,559
+velocity of change is much higher
+
+533
+00:20:55,679 --> 00:21:00,080
+in these projects like scikit-learn so
+
+534
+00:20:58,559 --> 00:21:03,200
+it actually winds up
+
+535
+00:21:00,080 --> 00:21:06,320
+being a way to learn
+
+536
+00:21:03,200 --> 00:21:08,799
+while doing and make an impact
+
+537
+00:21:06,320 --> 00:21:10,080
+while you're learning which is much
+
+538
+00:21:08,799 --> 00:21:13,440
+harder to do
+
+539
+00:21:10,080 --> 00:21:16,240
+in see python and i
+
+540
+00:21:13,440 --> 00:21:18,320
+highly encourage you to go watch both of
+
+541
+00:21:16,240 --> 00:21:21,360
+these or read the transcripts
+
+542
+00:21:18,320 --> 00:21:25,200
+they're excellent so
+
+543
+00:21:21,360 --> 00:21:28,240
+as you get ready to contribute
+
+544
+00:21:25,200 --> 00:21:30,320
+to see python and this would apply to
+
+545
+00:21:28,240 --> 00:21:33,120
+most open source projects as well
+
+546
+00:21:30,320 --> 00:21:36,000
+you want to kind of get into a mindset
+
+547
+00:21:33,120 --> 00:21:37,840
+that will set you up for success
+
+548
+00:21:36,000 --> 00:21:39,360
+and one of the first things you can do
+
+549
+00:21:37,840 --> 00:21:42,400
+is sort of
+
+550
+00:21:39,360 --> 00:21:44,559
+check your intent or
+
+551
+00:21:42,400 --> 00:21:45,440
+really identify why you want to
+
+552
+00:21:44,559 --> 00:21:48,400
+contribute
+
+553
+00:21:45,440 --> 00:21:50,080
+um and the reason i say that is when
+
+554
+00:21:48,400 --> 00:21:54,080
+things get bumpy
+
+555
+00:21:50,080 --> 00:21:57,360
+along the way um it's easier to
+
+556
+00:21:54,080 --> 00:21:59,760
+persist in the process when you
+
+557
+00:21:57,360 --> 00:22:00,720
+have clear goals of what you're trying
+
+558
+00:21:59,760 --> 00:22:04,880
+to accomplish
+
+559
+00:22:00,720 --> 00:22:06,880
+and why and i would
+
+560
+00:22:04,880 --> 00:22:08,880
+encourage you to think about your
+
+561
+00:22:06,880 --> 00:22:13,120
+initial impact
+
+562
+00:22:08,880 --> 00:22:16,559
+and initial scope keep it small
+
+563
+00:22:13,120 --> 00:22:18,480
+it's much easier to start small and then
+
+564
+00:22:16,559 --> 00:22:21,520
+work up to big
+
+565
+00:22:18,480 --> 00:22:23,679
+and i want to also say that
+
+566
+00:22:21,520 --> 00:22:24,640
+patience is probably one of the best
+
+567
+00:22:23,679 --> 00:22:27,120
+things that
+
+568
+00:22:24,640 --> 00:22:27,679
+you can have along with communication
+
+569
+00:22:27,120 --> 00:22:31,360
+skills
+
+570
+00:22:27,679 --> 00:22:35,360
+in open source most projects
+
+571
+00:22:31,360 --> 00:22:37,600
+are run by volunteers the vast majority
+
+572
+00:22:35,360 --> 00:22:42,159
+of core developers foresee python
+
+573
+00:22:37,600 --> 00:22:45,200
+are volunteers all the stuff i do is
+
+574
+00:22:42,159 --> 00:22:46,080
+as a volunteer on my time notable gives
+
+575
+00:22:45,200 --> 00:22:48,320
+me
+
+576
+00:22:46,080 --> 00:22:50,320
+a lot more latitude than most companies
+
+577
+00:22:48,320 --> 00:22:50,960
+to work on open source but it's not my
+
+578
+00:22:50,320 --> 00:22:54,000
+primary
+
+579
+00:22:50,960 --> 00:22:56,080
+job and there's less than
+
+580
+00:22:54,000 --> 00:22:57,760
+a handful of folks within the core
+
+581
+00:22:56,080 --> 00:22:59,679
+development team where it is their
+
+582
+00:22:57,760 --> 00:23:01,440
+primary job
+
+583
+00:22:59,679 --> 00:23:03,360
+all right so you've got the right
+
+584
+00:23:01,440 --> 00:23:04,559
+mindset you're setting yourself up for
+
+585
+00:23:03,360 --> 00:23:06,559
+success
+
+586
+00:23:04,559 --> 00:23:08,000
+what are some of the common reasons that
+
+587
+00:23:06,559 --> 00:23:11,760
+people contribute to open
+
+588
+00:23:08,000 --> 00:23:14,159
+source and these are just a few of many
+
+589
+00:23:11,760 --> 00:23:15,760
+you're using a project whether it's a
+
+590
+00:23:14,159 --> 00:23:19,840
+scientific python project
+
+591
+00:23:15,760 --> 00:23:22,400
+and you hit a bug and that bug possibly
+
+592
+00:23:19,840 --> 00:23:23,760
+is related to something in c python so
+
+593
+00:23:22,400 --> 00:23:26,720
+you might want to fix
+
+594
+00:23:23,760 --> 00:23:27,600
+something in c python to make your other
+
+595
+00:23:26,720 --> 00:23:30,880
+project
+
+596
+00:23:27,600 --> 00:23:33,360
+run better you might
+
+597
+00:23:30,880 --> 00:23:34,320
+have come across something that
+
+598
+00:23:33,360 --> 00:23:36,880
+perplexed you
+
+599
+00:23:34,320 --> 00:23:38,880
+or was complicated to learn so you might
+
+600
+00:23:36,880 --> 00:23:40,640
+want to improve the documentation so the
+
+601
+00:23:38,880 --> 00:23:41,520
+next person doesn't have to go through
+
+602
+00:23:40,640 --> 00:23:45,120
+the same
+
+603
+00:23:41,520 --> 00:23:47,120
+process a lot of people just think it
+
+604
+00:23:45,120 --> 00:23:47,600
+would be cool to contribute to python
+
+605
+00:23:47,120 --> 00:23:50,720
+which is
+
+606
+00:23:47,600 --> 00:23:52,799
+a totally valid reason um
+
+607
+00:23:50,720 --> 00:23:54,480
+many people want to just understand more
+
+608
+00:23:52,799 --> 00:23:57,520
+about how things work
+
+609
+00:23:54,480 --> 00:23:59,760
+and um to strengthen
+
+610
+00:23:57,520 --> 00:24:00,880
+their development skills so this is just
+
+611
+00:23:59,760 --> 00:24:04,159
+a small subset
+
+612
+00:24:00,880 --> 00:24:06,400
+but um some things that come up time and
+
+613
+00:24:04,159 --> 00:24:10,159
+again
+
+614
+00:24:06,400 --> 00:24:12,240
+so your most important research
+
+615
+00:24:10,159 --> 00:24:15,200
+resource when contributing to core
+
+616
+00:24:12,240 --> 00:24:17,960
+python is what we call the dev guide
+
+617
+00:24:15,200 --> 00:24:19,279
+um and it's located at
+
+618
+00:24:17,960 --> 00:24:22,480
+devguidepython.org
+
+619
+00:24:19,279 --> 00:24:25,600
+it is a comprehensive
+
+620
+00:24:22,480 --> 00:24:28,080
+guide to contributing to python um
+
+621
+00:24:25,600 --> 00:24:29,960
+and it's maintained by the core
+
+622
+00:24:28,080 --> 00:24:32,320
+developers that also maintain the
+
+623
+00:24:29,960 --> 00:24:35,760
+language
+
+624
+00:24:32,320 --> 00:24:37,360
+it is pretty much everything you ever
+
+625
+00:24:35,760 --> 00:24:40,640
+wanted to know about contributing
+
+626
+00:24:37,360 --> 00:24:43,520
+to python and then some as
+
+627
+00:24:40,640 --> 00:24:44,559
+such there is a quick reference guide
+
+628
+00:24:43,520 --> 00:24:46,880
+which
+
+629
+00:24:44,559 --> 00:24:48,880
+is really a great place to start and
+
+630
+00:24:46,880 --> 00:24:51,520
+we'll talk about it um
+
+631
+00:24:48,880 --> 00:24:51,919
+in a little bit but there's also things
+
+632
+00:24:51,520 --> 00:24:54,400
+about
+
+633
+00:24:51,919 --> 00:24:55,520
+how to submit a pull request how to get
+
+634
+00:24:54,400 --> 00:24:57,360
+help
+
+635
+00:24:55,520 --> 00:24:58,720
+how to run tests and many other
+
+636
+00:24:57,360 --> 00:25:01,039
+resources so
+
+637
+00:24:58,720 --> 00:25:02,320
+this is sort of your one stop if you
+
+638
+00:25:01,039 --> 00:25:05,120
+will um
+
+639
+00:25:02,320 --> 00:25:06,320
+towards getting started and many other
+
+640
+00:25:05,120 --> 00:25:10,799
+projects have something
+
+641
+00:25:06,320 --> 00:25:14,320
+similar perhaps not as long but um yeah
+
+642
+00:25:10,799 --> 00:25:16,159
+so some other helpful prerequisites
+
+643
+00:25:14,320 --> 00:25:18,159
+that will improve your contribution
+
+644
+00:25:16,159 --> 00:25:20,320
+experience to see python
+
+645
+00:25:18,159 --> 00:25:22,240
+is to take a little time to understand
+
+646
+00:25:20,320 --> 00:25:24,559
+see python's culture
+
+647
+00:25:22,240 --> 00:25:24,559
+and
+
+648
+00:25:25,760 --> 00:25:31,919
+that can be um
+
+649
+00:25:29,039 --> 00:25:33,039
+there are there's different aspects of
+
+650
+00:25:31,919 --> 00:25:36,480
+the culture
+
+651
+00:25:33,039 --> 00:25:38,240
+because we have people that have
+
+652
+00:25:36,480 --> 00:25:39,520
+you know been with the python language
+
+653
+00:25:38,240 --> 00:25:41,840
+for 30 years
+
+654
+00:25:39,520 --> 00:25:42,720
+versus are relatively new in the last
+
+655
+00:25:41,840 --> 00:25:45,279
+five years to
+
+656
+00:25:42,720 --> 00:25:46,960
+core python you're going to have people
+
+657
+00:25:45,279 --> 00:25:49,039
+with different perspectives
+
+658
+00:25:46,960 --> 00:25:50,960
+and different work styles within the
+
+659
+00:25:49,039 --> 00:25:54,799
+language
+
+660
+00:25:50,960 --> 00:25:58,600
+personally i spend a lot of time
+
+661
+00:25:54,799 --> 00:26:00,320
+looking at discourse which is
+
+662
+00:25:58,600 --> 00:26:04,240
+discussed.python.org
+
+663
+00:26:00,320 --> 00:26:07,039
+and less time looking at mailing lists
+
+664
+00:26:04,240 --> 00:26:09,120
+partially because i find more value in
+
+665
+00:26:07,039 --> 00:26:10,720
+discourse than in the mailing list
+
+666
+00:26:09,120 --> 00:26:12,400
+but there's a lot of core developers
+
+667
+00:26:10,720 --> 00:26:14,720
+that do the reverse so
+
+668
+00:26:12,400 --> 00:26:15,760
+um and then i also spend a lot of time
+
+669
+00:26:14,720 --> 00:26:19,279
+looking at
+
+670
+00:26:15,760 --> 00:26:21,600
+the pull requests and the code itself
+
+671
+00:26:19,279 --> 00:26:23,200
+so understanding the culture and where
+
+672
+00:26:21,600 --> 00:26:26,320
+to find information
+
+673
+00:26:23,200 --> 00:26:29,600
+and how the pace at which things
+
+674
+00:26:26,320 --> 00:26:31,600
+happen is really important
+
+675
+00:26:29,600 --> 00:26:32,640
+also understanding the difference
+
+676
+00:26:31,600 --> 00:26:35,760
+between the core
+
+677
+00:26:32,640 --> 00:26:38,799
+language and the standard library
+
+678
+00:26:35,760 --> 00:26:40,000
+the core language is a smaller subset of
+
+679
+00:26:38,799 --> 00:26:42,240
+what
+
+680
+00:26:40,000 --> 00:26:44,080
+you would think of as core python and
+
+681
+00:26:42,240 --> 00:26:47,360
+then the standard library is
+
+682
+00:26:44,080 --> 00:26:50,400
+actually many other smaller libraries
+
+683
+00:26:47,360 --> 00:26:54,960
+that provide additional functions that
+
+684
+00:26:50,400 --> 00:26:58,320
+gave python the batteries included um
+
+685
+00:26:54,960 --> 00:27:00,480
+name and um core python core lang the
+
+686
+00:26:58,320 --> 00:27:01,120
+core language is really things like data
+
+687
+00:27:00,480 --> 00:27:03,279
+types
+
+688
+00:27:01,120 --> 00:27:05,279
+and really the fundamentals that you
+
+689
+00:27:03,279 --> 00:27:08,720
+would have in any
+
+690
+00:27:05,279 --> 00:27:11,200
+software development language again
+
+691
+00:27:08,720 --> 00:27:12,320
+i can't reiterate enough that core
+
+692
+00:27:11,200 --> 00:27:15,360
+developers
+
+693
+00:27:12,320 --> 00:27:18,000
+are volunteers and um
+
+694
+00:27:15,360 --> 00:27:20,080
+be kind um many of us are wearing many
+
+695
+00:27:18,000 --> 00:27:22,480
+different hats
+
+696
+00:27:20,080 --> 00:27:24,080
+on the flip side the core developers
+
+697
+00:27:22,480 --> 00:27:26,720
+should be kind to you
+
+698
+00:27:24,080 --> 00:27:28,000
+as well so we do have a code of conduct
+
+699
+00:27:26,720 --> 00:27:29,440
+and
+
+700
+00:27:28,000 --> 00:27:32,480
+you know i encourage you if you're
+
+701
+00:27:29,440 --> 00:27:36,559
+seeing behavior that is not
+
+702
+00:27:32,480 --> 00:27:41,600
+professional please let folks know
+
+703
+00:27:36,559 --> 00:27:44,559
+um understanding git and github workflow
+
+704
+00:27:41,600 --> 00:27:45,919
+is i think very important for
+
+705
+00:27:44,559 --> 00:27:49,279
+contributing to
+
+706
+00:27:45,919 --> 00:27:51,279
+core python at the point where people
+
+707
+00:27:49,279 --> 00:27:53,360
+are contributing to core python
+
+708
+00:27:51,279 --> 00:27:55,200
+the general assumption in the community
+
+709
+00:27:53,360 --> 00:27:59,120
+is that you have
+
+710
+00:27:55,200 --> 00:28:02,159
+um basic git and github workflow
+
+711
+00:27:59,120 --> 00:28:06,000
+experience and understanding
+
+712
+00:28:02,159 --> 00:28:09,279
+and if you jump back to where i said
+
+713
+00:28:06,000 --> 00:28:11,840
+oh i i am encouraging you to
+
+714
+00:28:09,279 --> 00:28:13,919
+also consider contributing to other data
+
+715
+00:28:11,840 --> 00:28:17,679
+science and science libraries
+
+716
+00:28:13,919 --> 00:28:19,440
+partially it's because those projects
+
+717
+00:28:17,679 --> 00:28:22,720
+tend to be a little bit
+
+718
+00:28:19,440 --> 00:28:24,320
+gentler with new contributors that are
+
+719
+00:28:22,720 --> 00:28:28,880
+still learning git
+
+720
+00:28:24,320 --> 00:28:30,960
+and github and there's
+
+721
+00:28:28,880 --> 00:28:32,480
+lots of information out there about
+
+722
+00:28:30,960 --> 00:28:34,559
+doing it um
+
+723
+00:28:32,480 --> 00:28:36,159
+software carpentry or the carpentries
+
+724
+00:28:34,559 --> 00:28:38,799
+have a great guide
+
+725
+00:28:36,159 --> 00:28:39,760
+and um there's a talk which maybe we can
+
+726
+00:28:38,799 --> 00:28:41,520
+link to
+
+727
+00:28:39,760 --> 00:28:43,600
+in the future unfortunately it wasn't
+
+728
+00:28:41,520 --> 00:28:47,600
+recorded but a slide deck
+
+729
+00:28:43,600 --> 00:28:50,080
+that i put together gosh probably 2016
+
+730
+00:28:47,600 --> 00:28:51,120
+for complete beginners at writespeak
+
+731
+00:28:50,080 --> 00:28:54,080
+code
+
+732
+00:28:51,120 --> 00:28:54,559
+who are learning git and github and it
+
+733
+00:28:54,080 --> 00:28:57,039
+really
+
+734
+00:28:54,559 --> 00:28:58,240
+is a very gentle introduction to both
+
+735
+00:28:57,039 --> 00:29:01,520
+but um
+
+736
+00:28:58,240 --> 00:29:03,200
+has been very popular and then
+
+737
+00:29:01,520 --> 00:29:05,360
+the other prerequisite is some
+
+738
+00:29:03,200 --> 00:29:07,840
+familiarity of python
+
+739
+00:29:05,360 --> 00:29:09,279
+um it's not necessary to know c it's not
+
+740
+00:29:07,840 --> 00:29:12,080
+necessarily to know c
+
+741
+00:29:09,279 --> 00:29:12,720
+plus so most of the language is written
+
+742
+00:29:12,080 --> 00:29:16,799
+in python
+
+743
+00:29:12,720 --> 00:29:19,840
+so you can be very effective without
+
+744
+00:29:16,799 --> 00:29:23,039
+really understanding much if at all
+
+745
+00:29:19,840 --> 00:29:26,080
+from c or c plus plus
+
+746
+00:29:23,039 --> 00:29:29,840
+so that's a lot to digest
+
+747
+00:29:26,080 --> 00:29:32,960
+and i wanna um for those of you that
+
+748
+00:29:29,840 --> 00:29:36,399
+want a great exercise um later
+
+749
+00:29:32,960 --> 00:29:39,279
+or when you're ready um i wanna
+
+750
+00:29:36,399 --> 00:29:40,159
+just give you the brief directions on
+
+751
+00:29:39,279 --> 00:29:43,360
+how to build
+
+752
+00:29:40,159 --> 00:29:46,799
+core python from source and
+
+753
+00:29:43,360 --> 00:29:50,159
+um people often think it's a really
+
+754
+00:29:46,799 --> 00:29:53,520
+super complicated process and
+
+755
+00:29:50,159 --> 00:29:54,399
+um the quick reference guide in the dev
+
+756
+00:29:53,520 --> 00:29:57,440
+guide
+
+757
+00:29:54,399 --> 00:30:00,399
+actually runs through these steps
+
+758
+00:29:57,440 --> 00:30:03,039
+there may be some subtleties based on
+
+759
+00:30:00,399 --> 00:30:05,760
+the operating system that you're running
+
+760
+00:30:03,039 --> 00:30:06,159
+but essentially what you're going to do
+
+761
+00:30:05,760 --> 00:30:09,679
+is
+
+762
+00:30:06,159 --> 00:30:13,360
+fork and clone the source code from
+
+763
+00:30:09,679 --> 00:30:15,360
+github which is at python c python
+
+764
+00:30:13,360 --> 00:30:17,760
+then you're going to use a c compiler
+
+765
+00:30:15,360 --> 00:30:20,240
+and most of the time c compiler is kind
+
+766
+00:30:17,760 --> 00:30:23,919
+of available with your operating system
+
+767
+00:30:20,240 --> 00:30:27,440
+to configure and build python um
+
+768
+00:30:23,919 --> 00:30:28,080
+it's one command to configure and build
+
+769
+00:30:27,440 --> 00:30:31,760
+it
+
+770
+00:30:28,080 --> 00:30:35,360
+with unix linux and mac
+
+771
+00:30:31,760 --> 00:30:38,559
+um make is what will actually
+
+772
+00:30:35,360 --> 00:30:41,919
+do the actual building
+
+773
+00:30:38,559 --> 00:30:45,039
+and then windows there's a
+
+774
+00:30:41,919 --> 00:30:45,919
+bat file that combines those same steps
+
+775
+00:30:45,039 --> 00:30:48,840
+so
+
+776
+00:30:45,919 --> 00:30:51,840
+to configure and build python is one
+
+777
+00:30:48,840 --> 00:30:51,840
+step
+
+778
+00:30:51,919 --> 00:30:55,039
+so what would you want to do as you're
+
+779
+00:30:54,159 --> 00:30:57,600
+starting well
+
+780
+00:30:55,039 --> 00:30:58,559
+a good place is just to run the tests
+
+781
+00:30:57,600 --> 00:31:01,679
+and
+
+782
+00:30:58,559 --> 00:31:06,159
+again like building and config
+
+783
+00:31:01,679 --> 00:31:11,279
+and configuring python it's one
+
+784
+00:31:06,159 --> 00:31:11,279
+line of code and there are
+
+785
+00:31:11,519 --> 00:31:15,360
+this should look pretty familiar with
+
+786
+00:31:13,039 --> 00:31:18,399
+folks that have done python
+
+787
+00:31:15,360 --> 00:31:21,600
+it's just basically executing the test
+
+788
+00:31:18,399 --> 00:31:24,880
+library so um
+
+789
+00:31:21,600 --> 00:31:25,679
+there you go you have now learned how to
+
+790
+00:31:24,880 --> 00:31:30,840
+build
+
+791
+00:31:25,679 --> 00:31:34,240
+configure and run tests for python
+
+792
+00:31:30,840 --> 00:31:34,559
+um the dev guide will definitely give
+
+793
+00:31:34,240 --> 00:31:37,519
+you
+
+794
+00:31:34,559 --> 00:31:38,159
+additional questions and answers on how
+
+795
+00:31:37,519 --> 00:31:41,600
+to
+
+796
+00:31:38,159 --> 00:31:43,519
+contribute um again remember
+
+797
+00:31:41,600 --> 00:31:45,840
+changes to the language are submitted as
+
+798
+00:31:43,519 --> 00:31:49,279
+github pull requests
+
+799
+00:31:45,840 --> 00:31:50,960
+our continuous integration will run
+
+800
+00:31:49,279 --> 00:31:52,480
+the automated tests just like you're
+
+801
+00:31:50,960 --> 00:31:54,640
+running them locally
+
+802
+00:31:52,480 --> 00:31:55,600
+it will run them in an automated way
+
+803
+00:31:54,640 --> 00:31:57,760
+across all
+
+804
+00:31:55,600 --> 00:32:00,640
+operating systems and a number of
+
+805
+00:31:57,760 --> 00:32:02,559
+different versions of python
+
+806
+00:32:00,640 --> 00:32:04,000
+the next step in the process if you
+
+807
+00:32:02,559 --> 00:32:06,799
+submit a pr
+
+808
+00:32:04,000 --> 00:32:08,080
+would be to wait for some review from a
+
+809
+00:32:06,799 --> 00:32:11,679
+core developer or
+
+810
+00:32:08,080 --> 00:32:14,880
+a contributor address the feedback
+
+811
+00:32:11,679 --> 00:32:17,039
+as appropriate and hopefully then
+
+812
+00:32:14,880 --> 00:32:18,320
+you will have a final core developer
+
+813
+00:32:17,039 --> 00:32:21,679
+review
+
+814
+00:32:18,320 --> 00:32:23,200
+and if luck will have it um it'll be
+
+815
+00:32:21,679 --> 00:32:28,240
+merged into the code base
+
+816
+00:32:23,200 --> 00:32:28,240
+and um folks can use it from then on
+
+817
+00:32:29,360 --> 00:32:36,880
+for those of you that want to go deeper
+
+818
+00:32:32,640 --> 00:32:40,480
+in your understanding of see python
+
+819
+00:32:36,880 --> 00:32:43,919
+there is a wonderful blog post
+
+820
+00:32:40,480 --> 00:32:48,080
+which is now a book by anthony shaw
+
+821
+00:32:43,919 --> 00:32:51,440
+about a guide to see python source code
+
+822
+00:32:48,080 --> 00:32:53,039
+it is the most accessible yet highly
+
+823
+00:32:51,440 --> 00:32:57,440
+technical
+
+824
+00:32:53,039 --> 00:33:00,960
+um explanation of how see python
+
+825
+00:32:57,440 --> 00:33:04,320
+works um you know down to the
+
+826
+00:33:00,960 --> 00:33:06,000
+lowest levels um in fact it was so good
+
+827
+00:33:04,320 --> 00:33:10,159
+that when it first came out
+
+828
+00:33:06,000 --> 00:33:13,440
+i took the entire uh blog post
+
+829
+00:33:10,159 --> 00:33:16,640
+copied it all had it bound
+
+830
+00:33:13,440 --> 00:33:18,559
+um in a spiral you know thing
+
+831
+00:33:16,640 --> 00:33:20,240
+so that i could refer to it on a
+
+832
+00:33:18,559 --> 00:33:23,039
+day-to-day basis and
+
+833
+00:33:20,240 --> 00:33:24,720
+i encouraged anthony to write a book
+
+834
+00:33:23,039 --> 00:33:27,519
+based on it and he did
+
+835
+00:33:24,720 --> 00:33:29,600
+so we're very lucky that there's many
+
+836
+00:33:27,519 --> 00:33:30,000
+ways of accessing his materials and he's
+
+837
+00:33:29,600 --> 00:33:33,120
+also
+
+838
+00:33:30,000 --> 00:33:35,919
+a very prolific speaker
+
+839
+00:33:33,120 --> 00:33:37,679
+so there's lots of stuff on youtube as
+
+840
+00:33:35,919 --> 00:33:42,080
+well
+
+841
+00:33:37,679 --> 00:33:44,480
+another great resource um
+
+842
+00:33:42,080 --> 00:33:45,600
+for learning about python i don't know
+
+843
+00:33:44,480 --> 00:33:47,600
+if you can see
+
+844
+00:33:45,600 --> 00:33:48,799
+me or if you're just seeing my slides
+
+845
+00:33:47,600 --> 00:33:52,080
+but there is a book
+
+846
+00:33:48,799 --> 00:33:52,720
+called high performance python by misha
+
+847
+00:33:52,080 --> 00:33:56,159
+gorlach
+
+848
+00:33:52,720 --> 00:34:00,080
+and ian oswald and it is um
+
+849
+00:33:56,159 --> 00:34:03,760
+i think an outstanding book for
+
+850
+00:34:00,080 --> 00:34:07,440
+uh both learning python and how it
+
+851
+00:34:03,760 --> 00:34:10,480
+is built and comes together but also
+
+852
+00:34:07,440 --> 00:34:14,320
+the things you can do to improve
+
+853
+00:34:10,480 --> 00:34:15,679
+the performance of python um
+
+854
+00:34:14,320 --> 00:34:17,839
+one of the things you might hear in the
+
+855
+00:34:15,679 --> 00:34:21,520
+media is python is slow
+
+856
+00:34:17,839 --> 00:34:24,399
+python you know isn't performant because
+
+857
+00:34:21,520 --> 00:34:25,359
+there is this global interpreter lock or
+
+858
+00:34:24,399 --> 00:34:27,760
+gill
+
+859
+00:34:25,359 --> 00:34:28,879
+and the global interpreter lock or gill
+
+860
+00:34:27,760 --> 00:34:33,599
+what it does is it
+
+861
+00:34:28,879 --> 00:34:37,440
+limits at certain points the
+
+862
+00:34:33,599 --> 00:34:37,440
+processing to one
+
+863
+00:34:38,240 --> 00:34:43,679
+thread if you will at a time and
+
+864
+00:34:41,839 --> 00:34:45,679
+that tends to be a bottleneck because
+
+865
+00:34:43,679 --> 00:34:47,200
+right now we have many multi-core
+
+866
+00:34:45,679 --> 00:34:49,359
+processors and things like that
+
+867
+00:34:47,200 --> 00:34:50,240
+you'd want to use all that and not have
+
+868
+00:34:49,359 --> 00:34:53,679
+to bottleneck
+
+869
+00:34:50,240 --> 00:34:57,440
+into things but this high performance
+
+870
+00:34:53,679 --> 00:35:00,640
+python it runs through things like
+
+871
+00:34:57,440 --> 00:35:04,079
+how to profile your code how to
+
+872
+00:35:00,640 --> 00:35:06,480
+use multi-processing how to use cython
+
+873
+00:35:04,079 --> 00:35:07,839
+which is a great project in our
+
+874
+00:35:06,480 --> 00:35:10,320
+ecosystem
+
+875
+00:35:07,839 --> 00:35:11,680
+in terms of that allows us to do a lot
+
+876
+00:35:10,320 --> 00:35:14,960
+of more
+
+877
+00:35:11,680 --> 00:35:16,000
+cpu intensive stuff i believe it also
+
+878
+00:35:14,960 --> 00:35:18,320
+covers number
+
+879
+00:35:16,000 --> 00:35:19,200
+which is also another great project that
+
+880
+00:35:18,320 --> 00:35:22,880
+kind of
+
+881
+00:35:19,200 --> 00:35:26,480
+uh uses just entire time compilation
+
+882
+00:35:22,880 --> 00:35:28,400
+to get around the gill
+
+883
+00:35:26,480 --> 00:35:30,000
+so yeah there's lots of ways you can
+
+884
+00:35:28,400 --> 00:35:32,720
+improve your performance
+
+885
+00:35:30,000 --> 00:35:35,839
+and these two resources are just some of
+
+886
+00:35:32,720 --> 00:35:35,839
+the many that are out there
+
+887
+00:35:36,079 --> 00:35:39,280
+in addition to those resources um there
+
+888
+00:35:38,960 --> 00:35:41,599
+are
+
+889
+00:35:39,280 --> 00:35:43,920
+many core developers keep websites that
+
+890
+00:35:41,599 --> 00:35:46,720
+have a lot of um
+
+891
+00:35:43,920 --> 00:35:47,760
+technical content victor stinner brett
+
+892
+00:35:46,720 --> 00:35:51,200
+cannon and
+
+893
+00:35:47,760 --> 00:35:53,599
+guido a lot of historical information
+
+894
+00:35:51,200 --> 00:35:56,000
+from guido as well
+
+895
+00:35:53,599 --> 00:35:58,800
+much like the sprints that have been
+
+896
+00:35:56,000 --> 00:36:01,680
+held for scikit-learn
+
+897
+00:35:58,800 --> 00:36:02,240
+see python typically runs sprints when
+
+898
+00:36:01,680 --> 00:36:05,280
+we have
+
+899
+00:36:02,240 --> 00:36:08,320
+in-person conferences which sadly um
+
+900
+00:36:05,280 --> 00:36:10,400
+2020 but you know
+
+901
+00:36:08,320 --> 00:36:11,359
+the hope is that there will be some
+
+902
+00:36:10,400 --> 00:36:15,119
+being done
+
+903
+00:36:11,359 --> 00:36:17,280
+virtually and um you know if anybody
+
+904
+00:36:15,119 --> 00:36:19,440
+wants to run the c python sprint let me
+
+905
+00:36:17,280 --> 00:36:22,720
+know i'd be happy to kind of help
+
+906
+00:36:19,440 --> 00:36:24,000
+guide you with that um many of the
+
+907
+00:36:22,720 --> 00:36:28,000
+python
+
+908
+00:36:24,000 --> 00:36:31,760
+python talks both um from pycon us
+
+909
+00:36:28,000 --> 00:36:33,599
+and beyond um explain how to contribute
+
+910
+00:36:31,760 --> 00:36:36,320
+to core python
+
+911
+00:36:33,599 --> 00:36:38,079
+i think my python talk from 2015 was how
+
+912
+00:36:36,320 --> 00:36:40,079
+to contribute to core python when you're
+
+913
+00:36:38,079 --> 00:36:41,920
+not a core developer
+
+914
+00:36:40,079 --> 00:36:43,440
+mariada's given great talks about
+
+915
+00:36:41,920 --> 00:36:46,079
+contributing
+
+916
+00:36:43,440 --> 00:36:47,680
+both to the language and to the workflow
+
+917
+00:36:46,079 --> 00:36:51,200
+of victor stinner
+
+918
+00:36:47,680 --> 00:36:51,920
+and for those of you that have any
+
+919
+00:36:51,200 --> 00:36:55,440
+interest in
+
+920
+00:36:51,920 --> 00:36:59,119
+asynchronous programming lucas has
+
+921
+00:36:55,440 --> 00:37:01,920
+a great series on youtube about async io
+
+922
+00:36:59,119 --> 00:37:04,480
+i think it's about seven parts and um
+
+923
+00:37:01,920 --> 00:37:06,560
+it's a really great introduction so
+
+924
+00:37:04,480 --> 00:37:09,920
+we can always use help from folks that
+
+925
+00:37:06,560 --> 00:37:13,200
+are interested in asynchronous
+
+926
+00:37:09,920 --> 00:37:16,079
+and this is just a small subset maybe a
+
+927
+00:37:13,200 --> 00:37:19,359
+third of the core developers
+
+928
+00:37:16,079 --> 00:37:22,640
+as volunteers our time is limited
+
+929
+00:37:19,359 --> 00:37:25,839
+but the community is key and it's what
+
+930
+00:37:22,640 --> 00:37:29,839
+lets python both as a language
+
+931
+00:37:25,839 --> 00:37:33,920
+and ecosystem thrive
+
+932
+00:37:29,839 --> 00:37:38,000
+so i want to encourage you to go forward
+
+933
+00:37:33,920 --> 00:37:39,440
+and contribute join the discussion on
+
+934
+00:37:38,000 --> 00:37:42,800
+discourse which is discuss
+
+935
+00:37:39,440 --> 00:37:44,800
+python.org and whether you're
+
+936
+00:37:42,800 --> 00:37:48,400
+contributing to python
+
+937
+00:37:44,800 --> 00:37:51,680
+or any of the projects in the ecosystem
+
+938
+00:37:48,400 --> 00:37:54,079
+you are creating real change
+
+939
+00:37:51,680 --> 00:37:54,800
+and helping others solve important
+
+940
+00:37:54,079 --> 00:37:57,040
+progress
+
+941
+00:37:54,800 --> 00:37:59,200
+problems in the world so i want to thank
+
+942
+00:37:57,040 --> 00:38:01,680
+you for listening to me
+
+943
+00:37:59,200 --> 00:38:03,280
+and um thank you to roshama and the
+
+944
+00:38:01,680 --> 00:38:06,400
+organizers and
+
+945
+00:38:03,280 --> 00:38:08,400
+i'm going to shut off my screen
+
+946
+00:38:06,400 --> 00:38:10,000
+this is already available on speaker
+
+947
+00:38:08,400 --> 00:38:12,560
+deck
+
+948
+00:38:10,000 --> 00:38:13,200
+and it will be available through data
+
+949
+00:38:12,560 --> 00:38:18,160
+umbrella
+
+950
+00:38:13,200 --> 00:38:21,200
+as well
+
+951
+00:38:18,160 --> 00:38:24,240
+and i am happy
+
+952
+00:38:21,200 --> 00:38:27,440
+to take any questions that
+
+953
+00:38:24,240 --> 00:38:29,920
+might have come up okay so um there's a
+
+954
+00:38:27,440 --> 00:38:30,640
+question about the slide so i will find
+
+955
+00:38:29,920 --> 00:38:33,839
+all right
+
+956
+00:38:30,640 --> 00:38:37,359
+speaker deck for that um
+
+957
+00:38:33,839 --> 00:38:39,599
+speaker deck okay um
+
+958
+00:38:37,359 --> 00:38:40,400
+so the next question is is the need to
+
+959
+00:38:39,599 --> 00:38:42,720
+reproduce
+
+960
+00:38:40,400 --> 00:38:43,920
+old bugs against the newest version of
+
+961
+00:38:42,720 --> 00:38:47,839
+three nine in need
+
+962
+00:38:43,920 --> 00:38:47,839
+of the project
+
+963
+00:38:51,839 --> 00:38:56,560
+depends on how old the bug is um if the
+
+964
+00:38:54,480 --> 00:39:00,160
+bug is like within two years old
+
+965
+00:38:56,560 --> 00:39:03,359
+i'd say yeah it's probably useful to
+
+966
+00:39:00,160 --> 00:39:06,000
+reproduce those if
+
+967
+00:39:03,359 --> 00:39:07,119
+in general my view and it's strictly my
+
+968
+00:39:06,000 --> 00:39:09,200
+view it's not a
+
+969
+00:39:07,119 --> 00:39:11,040
+official view in any way or shape or
+
+970
+00:39:09,200 --> 00:39:13,680
+form personally
+
+971
+00:39:11,040 --> 00:39:14,400
+i would close the vast majority of
+
+972
+00:39:13,680 --> 00:39:19,359
+issues
+
+973
+00:39:14,400 --> 00:39:23,040
+that are over let's say three years old
+
+974
+00:39:19,359 --> 00:39:26,480
+and because they're still accessible
+
+975
+00:39:23,040 --> 00:39:28,240
+to people to find if needed
+
+976
+00:39:26,480 --> 00:39:30,160
+but the likelihood of them being worked
+
+977
+00:39:28,240 --> 00:39:34,000
+on i think is fairly low
+
+978
+00:39:30,160 --> 00:39:37,200
+um uh we are going
+
+979
+00:39:34,000 --> 00:39:40,560
+to move the issue tracker to github um
+
+980
+00:39:37,200 --> 00:39:43,839
+there is work in process to do so
+
+981
+00:39:40,560 --> 00:39:46,160
+um and that should make
+
+982
+00:39:43,839 --> 00:39:48,400
+the whole process more streamlined and
+
+983
+00:39:46,160 --> 00:39:50,480
+it will let us do some things
+
+984
+00:39:48,400 --> 00:39:51,440
+with notebooks and some of the tools
+
+985
+00:39:50,480 --> 00:39:56,000
+that we have in our
+
+986
+00:39:51,440 --> 00:39:58,240
+ecosystem to help surface issues that
+
+987
+00:39:56,000 --> 00:39:59,680
+haven't been looked at to help recognize
+
+988
+00:39:58,240 --> 00:40:01,040
+contributors there's many different
+
+989
+00:39:59,680 --> 00:40:04,480
+things we can do
+
+990
+00:40:01,040 --> 00:40:06,560
+with the data that is available within
+
+991
+00:40:04,480 --> 00:40:09,599
+the repo
+
+992
+00:40:06,560 --> 00:40:12,560
+hopefully that answers the question
+
+993
+00:40:09,599 --> 00:40:14,960
+okay uh the next question is g-i-l is a
+
+994
+00:40:12,560 --> 00:40:17,599
+problem but the advice i've seen is
+
+995
+00:40:14,960 --> 00:40:18,000
+avoid being limited to one core is to
+
+996
+00:40:17,599 --> 00:40:21,119
+use
+
+997
+00:40:18,000 --> 00:40:23,839
+multi-processing over threads
+
+998
+00:40:21,119 --> 00:40:24,800
+okay so there's a lot of different
+
+999
+00:40:23,839 --> 00:40:27,839
+perspectives
+
+1000
+00:40:24,800 --> 00:40:31,040
+and um the gil or gill
+
+1001
+00:40:27,839 --> 00:40:34,160
+which is the global interpreter lock
+
+1002
+00:40:31,040 --> 00:40:39,839
+there are different ways of
+
+1003
+00:40:34,160 --> 00:40:41,839
+getting performance that um
+
+1004
+00:40:39,839 --> 00:40:43,480
+gets around the limitations of the
+
+1005
+00:40:41,839 --> 00:40:46,960
+global interpreter lock
+
+1006
+00:40:43,480 --> 00:40:49,520
+multi-processing is a great way
+
+1007
+00:40:46,960 --> 00:40:50,480
+i would say threads would not be my
+
+1008
+00:40:49,520 --> 00:40:53,520
+first choice
+
+1009
+00:40:50,480 --> 00:40:57,200
+in how to do that but things like cython
+
+1010
+00:40:53,520 --> 00:40:57,680
+number you know depending on the use
+
+1011
+00:40:57,200 --> 00:41:03,599
+case
+
+1012
+00:40:57,680 --> 00:41:06,400
+async io but yeah it's a great question
+
+1013
+00:41:03,599 --> 00:41:08,720
+and the resources that i mention
+
+1014
+00:41:06,400 --> 00:41:11,359
+particularly high performance python
+
+1015
+00:41:08,720 --> 00:41:12,240
+will give you excellent advice on how to
+
+1016
+00:41:11,359 --> 00:41:15,760
+get the most
+
+1017
+00:41:12,240 --> 00:41:18,240
+out of your deployments in a safe and
+
+1018
+00:41:15,760 --> 00:41:20,319
+efficient way
+
+1019
+00:41:18,240 --> 00:41:22,560
+okay and the next question is what is
+
+1020
+00:41:20,319 --> 00:41:23,119
+the best way to attract a mentor from
+
+1021
+00:41:22,560 --> 00:41:25,200
+the core
+
+1022
+00:41:23,119 --> 00:41:28,000
+team does the project have a formal
+
+1023
+00:41:25,200 --> 00:41:31,839
+process for being mentored
+
+1024
+00:41:28,000 --> 00:41:35,280
+so there is a core mentorship
+
+1025
+00:41:31,839 --> 00:41:38,880
+mailing list which used to be more
+
+1026
+00:41:35,280 --> 00:41:41,680
+active right now
+
+1027
+00:41:38,880 --> 00:41:42,480
+mentors you know because we're all
+
+1028
+00:41:41,680 --> 00:41:46,480
+volunteers
+
+1029
+00:41:42,480 --> 00:41:50,400
+people mentor as they are able to
+
+1030
+00:41:46,480 --> 00:41:53,280
+i typically my mentoring is basically
+
+1031
+00:41:50,400 --> 00:41:55,920
+being welcoming and answering questions
+
+1032
+00:41:53,280 --> 00:41:57,839
+that people directly ask me
+
+1033
+00:41:55,920 --> 00:42:00,560
+um i just don't have the time and
+
+1034
+00:41:57,839 --> 00:42:04,079
+bandwidth to mentor individuals
+
+1035
+00:42:00,560 --> 00:42:07,119
+but um one of the things that
+
+1036
+00:42:04,079 --> 00:42:09,119
+we do have is the triage team so if
+
+1037
+00:42:07,119 --> 00:42:10,800
+you've been involved for a while
+
+1038
+00:42:09,119 --> 00:42:12,960
+somebody may ask you hey do you want to
+
+1039
+00:42:10,800 --> 00:42:15,839
+join the triage team
+
+1040
+00:42:12,960 --> 00:42:16,640
+and the triage team you know it has some
+
+1041
+00:42:15,839 --> 00:42:20,400
+additional
+
+1042
+00:42:16,640 --> 00:42:23,839
+capabilities they can do things like um
+
+1043
+00:42:20,400 --> 00:42:25,359
+make comments uh or attach labels to
+
+1044
+00:42:23,839 --> 00:42:28,720
+different issues
+
+1045
+00:42:25,359 --> 00:42:32,800
+and that's really a great way that
+
+1046
+00:42:28,720 --> 00:42:34,640
+recently folks have found mentors
+
+1047
+00:42:32,800 --> 00:42:36,800
+as a result of the work that they were
+
+1048
+00:42:34,640 --> 00:42:39,359
+doing within triage
+
+1049
+00:42:36,800 --> 00:42:42,800
+and then victor stenner has been really
+
+1050
+00:42:39,359 --> 00:42:46,560
+great at mentoring folks
+
+1051
+00:42:42,800 --> 00:42:48,240
+as well as you know barry raymond hedger
+
+1052
+00:42:46,560 --> 00:42:49,760
+you know there's a lot of people that do
+
+1053
+00:42:48,240 --> 00:42:52,960
+eric snow
+
+1054
+00:42:49,760 --> 00:42:55,839
+um pablo salgado who's our
+
+1055
+00:42:52,960 --> 00:42:58,079
+release manager for 310 and 311 have
+
+1056
+00:42:55,839 --> 00:43:00,000
+also mentored fix
+
+1057
+00:42:58,079 --> 00:43:02,079
+and victor's got a lot of writing on it
+
+1058
+00:43:00,000 --> 00:43:03,760
+so hopefully that helps
+
+1059
+00:43:02,079 --> 00:43:05,359
+and feel free to reach out to me
+
+1060
+00:43:03,760 --> 00:43:06,960
+directly and
+
+1061
+00:43:05,359 --> 00:43:09,599
+i can probably provide additional
+
+1062
+00:43:06,960 --> 00:43:11,280
+resource what's the best way to reach
+
+1063
+00:43:09,599 --> 00:43:14,560
+you carol
+
+1064
+00:43:11,280 --> 00:43:17,839
+uh reshma knows this
+
+1065
+00:43:14,560 --> 00:43:20,960
+i stink at email um
+
+1066
+00:43:17,839 --> 00:43:22,640
+github is really the best way to at
+
+1067
+00:43:20,960 --> 00:43:27,119
+mention me on something
+
+1068
+00:43:22,640 --> 00:43:30,000
+but um you know my dms are open
+
+1069
+00:43:27,119 --> 00:43:31,359
+on twitter and you know i will get to it
+
+1070
+00:43:30,000 --> 00:43:35,119
+when i can get to it
+
+1071
+00:43:31,359 --> 00:43:38,319
+um it's not that i don't want to respond
+
+1072
+00:43:35,119 --> 00:43:40,160
+but the volume of stuff that comes in is
+
+1073
+00:43:38,319 --> 00:43:41,359
+i could spend my whole day doing email
+
+1074
+00:43:40,160 --> 00:43:44,800
+and nothing else
+
+1075
+00:43:41,359 --> 00:43:47,119
+so um you know i
+
+1076
+00:43:44,800 --> 00:43:47,839
+tell folks that i meet you know be
+
+1077
+00:43:47,119 --> 00:43:50,400
+persistent
+
+1078
+00:43:47,839 --> 00:43:54,240
+if you don't hear from me once or twice
+
+1079
+00:43:50,400 --> 00:43:57,359
+do not hesitate to email me a third time
+
+1080
+00:43:54,240 --> 00:44:01,280
+and i will do my best to
+
+1081
+00:43:57,359 --> 00:44:02,240
+answer okay the next question is from
+
+1082
+00:44:01,280 --> 00:44:05,119
+your viewpoint
+
+1083
+00:44:02,240 --> 00:44:06,079
+what does the future hold for python for
+
+1084
+00:44:05,119 --> 00:44:09,200
+instance for the next
+
+1085
+00:44:06,079 --> 00:44:12,880
+30 years wow
+
+1086
+00:44:09,200 --> 00:44:17,119
+that's 30 years i hope
+
+1087
+00:44:12,880 --> 00:44:20,079
+that python is as vibrant today as
+
+1088
+00:44:17,119 --> 00:44:21,520
+30 years 30 years from now as it is
+
+1089
+00:44:20,079 --> 00:44:24,640
+today
+
+1090
+00:44:21,520 --> 00:44:27,280
+i think in many ways
+
+1091
+00:44:24,640 --> 00:44:28,240
+you know the whole data science
+
+1092
+00:44:27,280 --> 00:44:31,200
+scientific
+
+1093
+00:44:28,240 --> 00:44:33,280
+python ecosystem has been one way that
+
+1094
+00:44:31,200 --> 00:44:36,480
+has really revitalized the language
+
+1095
+00:44:33,280 --> 00:44:37,359
+over the last five years another place
+
+1096
+00:44:36,480 --> 00:44:40,160
+that we're seeing
+
+1097
+00:44:37,359 --> 00:44:41,520
+a lot of growth is in embedded systems
+
+1098
+00:44:40,160 --> 00:44:44,800
+things like
+
+1099
+00:44:41,520 --> 00:44:48,240
+micro python and circuit python and
+
+1100
+00:44:44,800 --> 00:44:50,560
+uh you know that's really exciting to me
+
+1101
+00:44:48,240 --> 00:44:51,440
+from an open hardware and education
+
+1102
+00:44:50,560 --> 00:44:54,640
+standpoint
+
+1103
+00:44:51,440 --> 00:44:56,640
+and and getting young folks or
+
+1104
+00:44:54,640 --> 00:44:59,040
+folks that maybe aren't computer
+
+1105
+00:44:56,640 --> 00:45:04,560
+scientists to start with involved
+
+1106
+00:44:59,040 --> 00:45:08,160
+i would love to see us um
+
+1107
+00:45:04,560 --> 00:45:08,880
+can improve the performance of the
+
+1108
+00:45:08,160 --> 00:45:11,440
+language
+
+1109
+00:45:08,880 --> 00:45:13,280
+um and what that will look like i'm not
+
+1110
+00:45:11,440 --> 00:45:15,200
+entirely certain
+
+1111
+00:45:13,280 --> 00:45:17,440
+um there's definitely going to be
+
+1112
+00:45:15,200 --> 00:45:18,880
+efforts over the next five years to do
+
+1113
+00:45:17,440 --> 00:45:21,520
+that
+
+1114
+00:45:18,880 --> 00:45:22,160
+some of it is time some of it is funding
+
+1115
+00:45:21,520 --> 00:45:25,599
+um
+
+1116
+00:45:22,160 --> 00:45:28,079
+but i
+
+1117
+00:45:25,599 --> 00:45:29,119
+the one thing i hope stays the same 30
+
+1118
+00:45:28,079 --> 00:45:32,720
+years from now
+
+1119
+00:45:29,119 --> 00:45:36,480
+is the readability of the language
+
+1120
+00:45:32,720 --> 00:45:37,680
+and i think because python is so
+
+1121
+00:45:36,480 --> 00:45:39,280
+readable
+
+1122
+00:45:37,680 --> 00:45:40,800
+that actually makes it much more
+
+1123
+00:45:39,280 --> 00:45:44,240
+accessible for folks
+
+1124
+00:45:40,800 --> 00:45:47,599
+as well as um tools like the notebook
+
+1125
+00:45:44,240 --> 00:45:50,000
+kind of break down and provide a good
+
+1126
+00:45:47,599 --> 00:45:52,160
+education tool for learning more about
+
+1127
+00:45:50,000 --> 00:45:53,599
+python so
+
+1128
+00:45:52,160 --> 00:45:55,839
+the community is going to be the one
+
+1129
+00:45:53,599 --> 00:45:59,440
+though that drives where python goes
+
+1130
+00:45:55,839 --> 00:46:01,200
+and truth be told there's another
+
+1131
+00:45:59,440 --> 00:46:02,400
+language that i also find really
+
+1132
+00:46:01,200 --> 00:46:04,319
+interesting
+
+1133
+00:46:02,400 --> 00:46:05,760
+that probably is relevant to many
+
+1134
+00:46:04,319 --> 00:46:08,880
+members in this community
+
+1135
+00:46:05,760 --> 00:46:09,920
+and that is julia it's still a very
+
+1136
+00:46:08,880 --> 00:46:12,560
+young language
+
+1137
+00:46:09,920 --> 00:46:14,079
+but i think it has a lot of potential
+
+1138
+00:46:12,560 --> 00:46:18,000
+and promise
+
+1139
+00:46:14,079 --> 00:46:18,880
+and um is very similar to python in a
+
+1140
+00:46:18,000 --> 00:46:22,000
+lot of ways
+
+1141
+00:46:18,880 --> 00:46:25,520
+um but gets around
+
+1142
+00:46:22,000 --> 00:46:25,839
+issues like the gill and relies more on
+
+1143
+00:46:25,520 --> 00:46:29,599
+c
+
+1144
+00:46:25,839 --> 00:46:31,520
+c plus and should you ever want to
+
+1145
+00:46:29,599 --> 00:46:34,319
+compare
+
+1146
+00:46:31,520 --> 00:46:35,599
+julia code with python code tom
+
+1147
+00:46:34,319 --> 00:46:38,800
+sargent's
+
+1148
+00:46:35,599 --> 00:46:39,520
+quant econ website is excellent for
+
+1149
+00:46:38,800 --> 00:46:41,680
+doing that
+
+1150
+00:46:39,520 --> 00:46:44,560
+because even if you're not an economics
+
+1151
+00:46:41,680 --> 00:46:46,400
+person it has economics code
+
+1152
+00:46:44,560 --> 00:46:48,319
+written in python and then similar
+
+1153
+00:46:46,400 --> 00:46:49,920
+economics code written in julia and it's
+
+1154
+00:46:48,319 --> 00:46:52,319
+a good compare and contrast when you're
+
+1155
+00:46:49,920 --> 00:46:52,319
+learning
+
+1156
+00:46:52,640 --> 00:46:56,160
+so i don't know that's about all i can
+
+1157
+00:46:55,760 --> 00:46:59,040
+say
+
+1158
+00:46:56,160 --> 00:47:00,640
+for the future that's there's been a lot
+
+1159
+00:46:59,040 --> 00:47:02,720
+of discussion i see going on because
+
+1160
+00:47:00,640 --> 00:47:05,359
+o'reilly published a report too about
+
+1161
+00:47:02,720 --> 00:47:07,839
+python and i guess speed is the thing
+
+1162
+00:47:05,359 --> 00:47:10,800
+that's most under discussion right
+
+1163
+00:47:07,839 --> 00:47:11,680
+um it these days you know it it's
+
+1164
+00:47:10,800 --> 00:47:14,480
+interesting
+
+1165
+00:47:11,680 --> 00:47:14,480
+because
+
+1166
+00:47:15,040 --> 00:47:18,160
+oftentimes and and this has been
+
+1167
+00:47:17,200 --> 00:47:19,839
+historically
+
+1168
+00:47:18,160 --> 00:47:21,520
+you know i'm 54 i've been in this
+
+1169
+00:47:19,839 --> 00:47:24,079
+industry a long time
+
+1170
+00:47:21,520 --> 00:47:25,599
+speed has always been at the key like is
+
+1171
+00:47:24,079 --> 00:47:28,079
+this faster than the other
+
+1172
+00:47:25,599 --> 00:47:29,040
+is vim faster than emacs is emacs faster
+
+1173
+00:47:28,079 --> 00:47:32,079
+than vim
+
+1174
+00:47:29,040 --> 00:47:36,079
+um you know speed is relative
+
+1175
+00:47:32,079 --> 00:47:39,440
+and it depends on what you're measuring
+
+1176
+00:47:36,079 --> 00:47:42,160
+i would say one of the things that is
+
+1177
+00:47:39,440 --> 00:47:42,960
+not often discussed and really should be
+
+1178
+00:47:42,160 --> 00:47:46,079
+is
+
+1179
+00:47:42,960 --> 00:47:49,680
+the speed to create
+
+1180
+00:47:46,079 --> 00:47:52,640
+a project and python
+
+1181
+00:47:49,680 --> 00:47:53,200
+is a really efficient language for going
+
+1182
+00:47:52,640 --> 00:47:56,800
+from
+
+1183
+00:47:53,200 --> 00:48:00,079
+no code to prototype to production
+
+1184
+00:47:56,800 --> 00:48:04,079
+and there's value in that
+
+1185
+00:48:00,079 --> 00:48:07,200
+beyond just pure processing power and
+
+1186
+00:48:04,079 --> 00:48:10,559
+now that said there are you know
+
+1187
+00:48:07,200 --> 00:48:14,800
+certain things that if you're cpu bound
+
+1188
+00:48:10,559 --> 00:48:18,240
+um like high cpu operations versus io
+
+1189
+00:48:14,800 --> 00:48:20,640
+operations and you know web is going to
+
+1190
+00:48:18,240 --> 00:48:23,520
+be different than pure number crunching
+
+1191
+00:48:20,640 --> 00:48:24,720
+you know your performance is going to
+
+1192
+00:48:23,520 --> 00:48:27,119
+vary
+
+1193
+00:48:24,720 --> 00:48:28,559
+and one of the things i think that would
+
+1194
+00:48:27,119 --> 00:48:31,599
+be
+
+1195
+00:48:28,559 --> 00:48:32,720
+really useful is to try out like profile
+
+1196
+00:48:31,599 --> 00:48:35,599
+your code
+
+1197
+00:48:32,720 --> 00:48:37,520
+look at the other tools for increasing
+
+1198
+00:48:35,599 --> 00:48:39,599
+the speed
+
+1199
+00:48:37,520 --> 00:48:41,200
+you know there's trade-offs regardless
+
+1200
+00:48:39,599 --> 00:48:44,640
+of what language you use
+
+1201
+00:48:41,200 --> 00:48:48,079
+and i encourage you to try
+
+1202
+00:48:44,640 --> 00:48:50,400
+other languages as well there's another
+
+1203
+00:48:48,079 --> 00:48:52,720
+question about um you mentioned the
+
+1204
+00:48:50,400 --> 00:48:54,880
+global reach of the tech community aside
+
+1205
+00:48:52,720 --> 00:48:56,800
+from events like this what is the role
+
+1206
+00:48:54,880 --> 00:48:58,160
+of the python steering committee in
+
+1207
+00:48:56,800 --> 00:49:01,280
+making the community more
+
+1208
+00:48:58,160 --> 00:49:05,760
+inclusive so
+
+1209
+00:49:01,280 --> 00:49:09,119
+um the steering council
+
+1210
+00:49:05,760 --> 00:49:12,319
+has been
+
+1211
+00:49:09,119 --> 00:49:18,000
+a part of some of the code of conduct
+
+1212
+00:49:12,319 --> 00:49:20,559
+um decisions and discussions related to
+
+1213
+00:49:18,000 --> 00:49:21,520
+core developers and we have this year
+
+1214
+00:49:20,559 --> 00:49:24,319
+taking some
+
+1215
+00:49:21,520 --> 00:49:24,319
+actions to
+
+1216
+00:49:28,000 --> 00:49:33,599
+redirect or remove uh folks that
+
+1217
+00:49:31,520 --> 00:49:36,079
+were probably not contributing
+
+1218
+00:49:33,599 --> 00:49:39,760
+constructively to the community
+
+1219
+00:49:36,079 --> 00:49:41,760
+um the so you know adopting the code of
+
+1220
+00:49:39,760 --> 00:49:42,720
+conduct throughout the project was one
+
+1221
+00:49:41,760 --> 00:49:46,559
+way
+
+1222
+00:49:42,720 --> 00:49:50,559
+uh the steering council also
+
+1223
+00:49:46,559 --> 00:49:53,760
+looks at efforts um
+
+1224
+00:49:50,559 --> 00:49:56,559
+whether it is the
+
+1225
+00:49:53,760 --> 00:49:58,800
+core language summit or the core
+
+1226
+00:49:56,559 --> 00:50:02,400
+developer sprints
+
+1227
+00:49:58,800 --> 00:50:03,760
+those used to be exclusive to only core
+
+1228
+00:50:02,400 --> 00:50:07,839
+developers
+
+1229
+00:50:03,760 --> 00:50:12,800
+and in more recent years we've um
+
+1230
+00:50:07,839 --> 00:50:12,800
+invited more people to it that
+
+1231
+00:50:12,960 --> 00:50:18,240
+to both increase the diversity on a
+
+1232
+00:50:16,160 --> 00:50:21,359
+number of
+
+1233
+00:50:18,240 --> 00:50:23,760
+dimensions as well as just even use
+
+1234
+00:50:21,359 --> 00:50:23,760
+cases
+
+1235
+00:50:25,359 --> 00:50:31,599
+my hope has long been that
+
+1236
+00:50:28,559 --> 00:50:34,559
+diversity will benefit
+
+1237
+00:50:31,599 --> 00:50:35,359
+from the move to github i was an early
+
+1238
+00:50:34,559 --> 00:50:39,119
+proponent
+
+1239
+00:50:35,359 --> 00:50:41,440
+of moving the code base to github and
+
+1240
+00:50:39,119 --> 00:50:43,599
+have been a strong advocate for moving
+
+1241
+00:50:41,440 --> 00:50:45,760
+the bug tracker to github
+
+1242
+00:50:43,599 --> 00:50:47,200
+or or it could have been gitlab but
+
+1243
+00:50:45,760 --> 00:50:50,559
+something where
+
+1244
+00:50:47,200 --> 00:50:51,920
+the tooling is modern and is more
+
+1245
+00:50:50,559 --> 00:50:55,040
+accessible
+
+1246
+00:50:51,920 --> 00:50:56,480
+to more people because one of the things
+
+1247
+00:50:55,040 --> 00:50:59,200
+i personally feel when you're an
+
+1248
+00:50:56,480 --> 00:51:02,640
+underrepresented group
+
+1249
+00:50:59,200 --> 00:51:05,920
+your time is more limited than if you
+
+1250
+00:51:02,640 --> 00:51:09,680
+are in the majority so you have to pick
+
+1251
+00:51:05,920 --> 00:51:12,960
+and choose what you work on
+
+1252
+00:51:09,680 --> 00:51:15,440
+much more carefully and
+
+1253
+00:51:12,960 --> 00:51:16,240
+by having a roadblock like having to
+
+1254
+00:51:15,440 --> 00:51:19,280
+learn an
+
+1255
+00:51:16,240 --> 00:51:20,880
+issue tracker versus using uh tooling
+
+1256
+00:51:19,280 --> 00:51:22,400
+that you're used to from your day-to-day
+
+1257
+00:51:20,880 --> 00:51:25,440
+work
+
+1258
+00:51:22,400 --> 00:51:28,660
+i think that adds a barrier
+
+1259
+00:51:25,440 --> 00:51:30,240
+to inclusion so um
+
+1260
+00:51:28,660 --> 00:51:33,280
+[Music]
+
+1261
+00:51:30,240 --> 00:51:35,920
+yeah so it's really trying to
+
+1262
+00:51:33,280 --> 00:51:37,520
+shift the culture towards more inclusive
+
+1263
+00:51:35,920 --> 00:51:39,760
+culture
+
+1264
+00:51:37,520 --> 00:51:40,880
+mariata has done an amazing job with
+
+1265
+00:51:39,760 --> 00:51:44,000
+that and
+
+1266
+00:51:40,880 --> 00:51:46,319
+you know the steering council is really
+
+1267
+00:51:44,000 --> 00:51:47,040
+there to support the efforts within the
+
+1268
+00:51:46,319 --> 00:51:48,960
+community
+
+1269
+00:51:47,040 --> 00:51:50,559
+and the core developers that are
+
+1270
+00:51:48,960 --> 00:51:53,839
+interested in
+
+1271
+00:51:50,559 --> 00:51:53,839
+moving that effort forward
+
+1272
+00:51:54,559 --> 00:51:57,760
+also just to add you know pi ladies
+
+1273
+00:51:56,960 --> 00:52:00,720
+which is
+
+1274
+00:51:57,760 --> 00:52:02,640
+um you know under python software
+
+1275
+00:52:00,720 --> 00:52:05,760
+foundation is also
+
+1276
+00:52:02,640 --> 00:52:09,599
+connected to um
+
+1277
+00:52:05,760 --> 00:52:12,800
+improving inclusivity in the python
+
+1278
+00:52:09,599 --> 00:52:15,599
+space yes yes that's a great
+
+1279
+00:52:12,800 --> 00:52:16,240
+suggestion or comment because we also
+
+1280
+00:52:15,599 --> 00:52:18,480
+have
+
+1281
+00:52:16,240 --> 00:52:19,760
+um within pi ladies there's the ability
+
+1282
+00:52:18,480 --> 00:52:22,400
+to ask questions
+
+1283
+00:52:19,760 --> 00:52:24,240
+um just like with our ladies there's an
+
+1284
+00:52:22,400 --> 00:52:28,000
+ability to ask questions on
+
+1285
+00:52:24,240 --> 00:52:29,760
+core development within those channels
+
+1286
+00:52:28,000 --> 00:52:31,280
+another question here is what will be
+
+1287
+00:52:29,760 --> 00:52:34,559
+the impact of the new
+
+1288
+00:52:31,280 --> 00:52:36,319
+peg parser in future python tools and
+
+1289
+00:52:34,559 --> 00:52:37,760
+libraries and maybe you could explain
+
+1290
+00:52:36,319 --> 00:52:42,079
+what peg means to
+
+1291
+00:52:37,760 --> 00:52:44,880
+someone like me who doesn't know um so
+
+1292
+00:52:42,079 --> 00:52:46,079
+it's we affectionately call it the peg
+
+1293
+00:52:44,880 --> 00:52:50,559
+parser
+
+1294
+00:52:46,079 --> 00:52:54,160
+and when you're creating a language um
+
+1295
+00:52:50,559 --> 00:52:58,240
+you have a grammar you know your syntax
+
+1296
+00:52:54,160 --> 00:53:01,839
+and the language has to have a way
+
+1297
+00:52:58,240 --> 00:53:04,160
+to sort of know okay this is a keyword
+
+1298
+00:53:01,839 --> 00:53:05,200
+this is a variable this is an operation
+
+1299
+00:53:04,160 --> 00:53:08,319
+things like that
+
+1300
+00:53:05,200 --> 00:53:11,920
+and that is the job of the parser
+
+1301
+00:53:08,319 --> 00:53:15,200
+um i believe
+
+1302
+00:53:11,920 --> 00:53:18,640
+that the peg parser will give us more
+
+1303
+00:53:15,200 --> 00:53:22,000
+flexibility over time
+
+1304
+00:53:18,640 --> 00:53:25,200
+it is probably equally as performant as
+
+1305
+00:53:22,000 --> 00:53:26,480
+the prior parser and there was a lot of
+
+1306
+00:53:25,200 --> 00:53:29,200
+extensive testing
+
+1307
+00:53:26,480 --> 00:53:30,160
+done during an entire release cycle to
+
+1308
+00:53:29,200 --> 00:53:33,520
+make sure
+
+1309
+00:53:30,160 --> 00:53:36,240
+that you know
+
+1310
+00:53:33,520 --> 00:53:37,599
+it wasn't introducing weird regressions
+
+1311
+00:53:36,240 --> 00:53:41,040
+and things like that
+
+1312
+00:53:37,599 --> 00:53:42,400
+but one of the things it is much easier
+
+1313
+00:53:41,040 --> 00:53:45,359
+to write grammar
+
+1314
+00:53:42,400 --> 00:53:46,079
+rules now with the peg parser than it
+
+1315
+00:53:45,359 --> 00:53:51,680
+was
+
+1316
+00:53:46,079 --> 00:53:53,680
+with um the old parser that we have
+
+1317
+00:53:51,680 --> 00:53:54,880
+so hopefully that ans answered a little
+
+1318
+00:53:53,680 --> 00:53:58,160
+bit what it is
+
+1319
+00:53:54,880 --> 00:54:01,040
+and uh why it is and
+
+1320
+00:53:58,160 --> 00:54:03,440
+and someone who can provide far more
+
+1321
+00:54:01,040 --> 00:54:05,760
+answers than i would be pablo salgado
+
+1322
+00:54:03,440 --> 00:54:09,520
+and um do reach out to him he's probably
+
+1323
+00:54:05,760 --> 00:54:12,880
+got some talks on the peg parser as well
+
+1324
+00:54:09,520 --> 00:54:14,400
+and one last question which is i heard a
+
+1325
+00:54:12,880 --> 00:54:17,359
+talk that is a twist
+
+1326
+00:54:14,400 --> 00:54:18,319
+on the speed demand instead of focusing
+
+1327
+00:54:17,359 --> 00:54:23,040
+developer time
+
+1328
+00:54:18,319 --> 00:54:25,760
+expertise on on optimizing to a
+
+1329
+00:54:23,040 --> 00:54:27,520
+capital o one go with n squared
+
+1330
+00:54:25,760 --> 00:54:29,520
+performance because developer time is
+
+1331
+00:54:27,520 --> 00:54:31,920
+more expensive than ram is what are your
+
+1332
+00:54:29,520 --> 00:54:38,720
+thoughts on that
+
+1333
+00:54:31,920 --> 00:54:42,160
+um i i think it really
+
+1334
+00:54:38,720 --> 00:54:45,359
+comes back to use cases and
+
+1335
+00:54:42,160 --> 00:54:47,440
+um i think the difficulty with python is
+
+1336
+00:54:45,359 --> 00:54:49,200
+because we serve so many different
+
+1337
+00:54:47,440 --> 00:54:52,319
+communities
+
+1338
+00:54:49,200 --> 00:54:52,720
+what is optimal for one community may
+
+1339
+00:54:52,319 --> 00:54:56,160
+not
+
+1340
+00:54:52,720 --> 00:55:00,240
+be optimal for other communities um
+
+1341
+00:54:56,160 --> 00:55:03,359
+so you know it's an approach
+
+1342
+00:55:00,240 --> 00:55:06,000
+is it the approach i don't know
+
+1343
+00:55:03,359 --> 00:55:06,799
+to be really honest it wouldn't be my
+
+1344
+00:55:06,000 --> 00:55:10,079
+first approach
+
+1345
+00:55:06,799 --> 00:55:12,640
+i guess is what i'm saying okay
+
+1346
+00:55:10,079 --> 00:55:14,000
+so with that we are reaching the top of
+
+1347
+00:55:12,640 --> 00:55:17,200
+the hour
+
+1348
+00:55:14,000 --> 00:55:19,760
+and so um thank you so much carol for
+
+1349
+00:55:17,200 --> 00:55:21,359
+taking the time to join us and sharing
+
+1350
+00:55:19,760 --> 00:55:23,839
+about core python
+
+1351
+00:55:21,359 --> 00:55:26,000
+um i have a link to the slides i put
+
+1352
+00:55:23,839 --> 00:55:28,640
+them in the chat and i'll include them
+
+1353
+00:55:26,000 --> 00:55:29,920
+in the video when it's uploaded to
+
+1354
+00:55:28,640 --> 00:55:32,960
+youtube
+
+1355
+00:55:29,920 --> 00:55:34,400
+and there's a bunch of links to
+
+1356
+00:55:32,960 --> 00:55:36,880
+that you've mentioned which i've been
+
+1357
+00:55:34,400 --> 00:55:37,359
+putting in chat and i will link to it in
+
+1358
+00:55:36,880 --> 00:55:38,559
+the
+
+1359
+00:55:37,359 --> 00:55:40,559
+you know youtube description or
+
+1360
+00:55:38,559 --> 00:55:43,200
+somewhere very convenient
+
+1361
+00:55:40,559 --> 00:55:44,640
+um yeah thank you so much great thank
+
+1362
+00:55:43,200 --> 00:55:46,079
+you and thank you everybody for
+
+1363
+00:55:44,640 --> 00:55:48,079
+attending i hope you learned
+
+1364
+00:55:46,079 --> 00:55:49,839
+something about contributing to open
+
+1365
+00:55:48,079 --> 00:55:54,559
+source and i hope you
+
+1366
+00:55:49,839 --> 00:55:59,359
+you do so as you're ready to do it
+
+1367
+00:55:54,559 --> 00:55:59,359
+thank you

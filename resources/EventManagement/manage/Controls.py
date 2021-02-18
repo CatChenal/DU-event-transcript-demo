@@ -2,14 +2,60 @@
 # Controls.py
 # Programmer: Cat Chenal
 #
+import logging
 from pathlib import Path
 from IPython.display import Markdown, HTML
 import ipywidgets as ipw
 from functools import partial
 from collections import OrderedDict, Counter
 
-from manage import EventMeta as Meta, Utils as UTL
+from manage import (EventMeta as Meta,
+                    EventTranscription as TRX,
+                    Utils as UTL)
 
+# .................................................................
+DEBUG_MODE = True
+
+logger = logging.getLogger(__name__)
+
+LOG_LEVEL = logging.DEBUG if DEBUG_MODE else logging.NOTSET
+
+logger.setLevel(LOG_LEVEL)
+
+class OutWidgetHandler(logging.Handler):
+    """
+    Custom logging handler sending logs to an output widget.
+    """
+    def __init__(self, *args, **kwargs):
+        super(OutWidgetHandler, self).__init__(*args, **kwargs)
+        layout = {
+            'width': '100%',
+            'height': '160px',
+            'border': '1px solid black'
+        }
+        self.out = ipw.Output(layout=layout)
+
+    def emit(self, record):
+        """ Overload of logging.Handler method """
+        formatted_record = self.format(record)
+        new_output = {
+            'name': 'stdout',
+            'output_type': 'stream',
+            'text': formatted_record+'\n'
+        }
+        self.out.outputs = (new_output, ) + self.out.outputs
+
+    def show_logs(self):
+        """ Show the logs """
+        display(self.out)
+
+    def clear_logs(self):
+        """ Clear the current logs """
+        self.out.clear_output()
+
+handler = OutWidgetHandler()
+handler.setFormatter(logging.Formatter('%(asctime)s - [%(levelname)s] %(message)s'))
+logger.addHandler(handler)
 
 # ..............................................................................
 defaultsNA = "(defaults to N.A. if not provided)"
@@ -112,20 +158,20 @@ def btn_togl_extra_refs_example():
                              margin='0px 0px 0px 30px',
                              width='95%')
     
+    out_togl = ipw.Output(layout=lo_out_togl)
     # Callback for toggle:
     def show_example(togl):
         with out_togl:
             if togl['new']:  
                 display(Markdown(UTL.EXTRA_REFS_EXAMPLE))
             else:
-                togl_out.clear_output()
+                out_togl.clear_output()
                 
     desc = "Entry example for 'Extra References'"
     togl = ipw.ToggleButton(description=desc,
                             button_style='info',
                             icon='eye',
                             layout=lo_togl)
-    out_togl = ipw.Output(layout=lo_out_togl)
     togl.observe(show_example, 'value')
     return ipw.VBox([togl, out_togl])
 
@@ -258,7 +304,9 @@ def validate_form_entries(entry_dict, tm_obj):
             
         if k == 'transcriber':
             if v == Meta.NA or v == '':
-                data_dict['transcriber'] = '?'  
+                data_dict['transcriber'] = '?'
+            else:
+                data_dict[k] = v
         else:               
             data_dict[k] = v
             if k =='video_url':
@@ -351,7 +399,6 @@ class PageControls:
             else:
                 self.verb = 'edit'
                 # add'l widgets:
-                
                 self.rad_av = ipw.RadioButtons(options=['Audio','Video'],
                                                value='Audio')
                 self.txt_transcriber = ipw.Text(value='? (transcriber)',
@@ -370,12 +417,13 @@ class PageControls:
                 self.btn_update = ipw.Button(description='UPDATE',
                                         tooltip='Validate & save your changes.',
                                         button_style='info',
-                                        disabled=True)
+                                        disabled=False)
                 self.btn_redo = ipw.Button(description='REPROCESS',
                                       tooltip='Redo the transcription with the new files.',
                                       button_style='info',
-                                      disabled=True)
-                self.txt_input = ipw.Text(layout=ipw.Layout(width='420px'))
+                                      disabled=False)
+                self.txa_input = ipw.Textarea(layout=ipw.Layout(width='500px',
+                                                                height='50px'))
                 self.sel_files = ipw.widgets.Select(value=None,
                                                     options=['People','Names',
                                                              'Places','Upper',
@@ -394,22 +442,9 @@ class PageControls:
                                   ipw.VBox([])],
                                  layout=lo_page)
             setattr(self.page, 'user_dict', None)
+            logger.info('PageControls.page created.')
     
     
-    def download_audio(self):
-        if self.TR is None:
-            return
-        idn, year = self.TR.idn, self.TR.year
-        video_url = self.TR.event_dict['video_url']
-        vid = self.TR.event_dict['yt_video_id']
-        if self.TR.YT is None:
-            from manage import EventTranscription as TRX
-            self.TR.YT = TRX.YTVAudio(year,idn,video_url,vid)
-            self.TR.YT.download_audio()
-            self.TR.event_dict['audio_track'] = self.TR.YT.audio_filepath
-        return
-
-
     def get_grid(self, grid_name=None, header_fn=None, exclude=None):
         """
         Wrapper to get a starter GridBox with pre-defined areas to
@@ -504,7 +539,7 @@ class PageControls:
 
         g.children[0].children = [self.sel_files,
                                   vbx([self.out_sel_files,
-                                       self.txt_input])]
+                                       self.txa_input])]
         g.children[1].children = [vbx([self.btn_update,
                                        self.out_btn_update]),
                                   vbx([self.btn_redo,
@@ -537,6 +572,19 @@ class PageControls:
                       ) 
             g[3].children = [wgt_Accord([self.get_update_grid()],
                                         lo_accord)]
+
+
+    def download_audio(self):
+        if self.TR is None:
+            return
+        idn, year = self.TR.idn, self.TR.year
+        video_url = self.TR.event_dict['video_url']
+        vid = self.TR.event_dict['yt_video_id']
+        if self.TR.YT is None:
+            self.TR.YT = TRX.YTVAudio(year,idn,video_url,vid)
+            self.TR.YT.download_audio()
+            self.TR.event_dict['audio_track'] = self.TR.YT.audio_filepath
+        return
 
     
     def obs_sel_files(self, change):
@@ -610,8 +658,9 @@ class PageControls:
                         self.sel_status.value = status 
                     else:
                         self.sel_status.value = self.status_opts[-1]
+                        
                     if self.initial_status is None:
-                        self.initial_status = status
+                        self.initial_status = self.sel_status.value
                     
                     # reset default if no audio could be downloaded:
                     if not self.TR.event_dict['audio_track'].exists():
@@ -623,9 +672,8 @@ class PageControls:
                             print("Problem downloading audio.")
                             
                     use_audio = self.rad_av.value == 'Audio'
-                    
-                    trx_text = self.TR.get_transcript_text()
-                    self.txa_editarea.value = trx_text
+
+                    self.txa_editarea.value = self.TR.get_transcript_text()
                     
                     with self.page.children[1].hold_trait_notifications():
                         if len(self.page.children[1].children) == 2:
@@ -643,7 +691,8 @@ class PageControls:
 
                 b.disabled = True
                 print(F"{self.verb.title()} along!")
-            except:
+            except Exception as e:
+                logger.exception('.click_btn_load err:', exc_info=True)
                 print("Error loading!")
 
 
@@ -651,7 +700,6 @@ class PageControls:
         self.out_btn_update.clear_output()
         # footer :: HBox > Accordion > GridBox
         footer_g = self.sel_hdr_grid.children[3].children[0].children[0]
-        #footer_g = page_hdr_grid.children[3].children[0].children[0]
         v_file = footer_g.children[0].children[0].value
         v_entries = footer_g.children[0].children[1].children[1].value or None
         
@@ -665,53 +713,33 @@ class PageControls:
                 
         valid, msg = validate_user_list(v_entries, v_file)
         if valid is None:
-            self.out_btn_update.clear_output()
             with self.out_btn_update:
                 print(msg)
             return
-        
+        self.out_btn_update.clear_output()
+        update_ok = False
         if v_file == 'Corrections':
-            corrections = TRX.get_corrections_dict()
-            tot, reduced_list, msg = TRX.check_corrections(corrections,
-                                                           valid,
-                                                           verbose=False)
-            if tot:
-                if 'reduced' in msg:
-                    if reduced_list:
-                        TRX.add_corrections(reduced_list, return_dict=False)
-                else:
-                    TRX.add_corrections(valid, return_dict=False)
-            else:
-                self.out_btn_update.clear_output()
-                with self.out_btn_update:
-                    print(msg)
-                return
-        else:
-            v_file = v_file.lower()
-            fname = TRX.substitutions[v_file]
-            current_list = TRX.readcsv(fname)[v_file].tolist()
-
-            tot, reduced_list = TRX.check_list(current_list, valid,
-                                               verbose=False)
-            if tot:
-                if 'reduced' in msg:
-                    if reduced_list:
-                        TRX.update_conversion_file(v_file, reduced_list)
-                else:
-                    TRX.update_conversion_file(v_file, valid)
-            else:
-                self.out_btn_update.clear_output()
-                with self.out_btn_update:
-                    print(msg)
-
-                with self.out_btn_update:
-                    print('Doing fake update...')
+            try:
+                TRX.update_corrections(valid)
                 update_ok = True
-                if update_ok:
-                    self.btn_redo.disabled = False
-                else:
-                    with self.out_btn_update:
-                        print('Coud not fake update!')
+            except Exception as e:
+                logger.exception('.click_btn_update, corrections:',
+                                 exc_info=True)
+        else:
+            try:
+                TRX.update_conversions(v_file, valid)
+                update_ok = True
+            except Exception as e:
+                logger.exception('.click_btn_update, conversions:',
+                                 exc_info=True)
+
+        if update_ok:
+            self.btn_redo.disabled = False
+            with self.out_btn_update:
+                print(F'Updated: {v_file}.\nRedo text cleanup!')
+        else:
+            with self.out_btn_update:
+                print('Coud not update!')
 
 
     def click_btn_redo(self, b):
@@ -725,13 +753,20 @@ class PageControls:
                 self.TR = Meta.TranscriptMeta(self.sel_idn.value,
                                               self.sel_yr.value)
             try:
-                self.TR.redo_initial_transcript()
-                self.TR.insert_md_transcript()
+                txa = self.page.children[1].children[1]
+                new_txt = self.TR.redo_transcript_cleanup(txa.value)
                 ok = True
-            except:
+            except Exception as e:
+                logger.exception('.click_btn_redo err:', 
+                                 exc_info=True)
                 msg = 'Could not redo.'
         if ok:
-            msg = 'Done! Collapse this section & LOAD.'
+            msg = 'Done!'
+            # clear & assign new to txa
+            with txa.hold_trait_notifications():
+                txa.value = ''
+                txa.value = new_txt
+            
         with self.out_btn_redo:
             print(msg)
 
@@ -743,13 +778,13 @@ def validate_user_list(entries, file, verbose=False):
     Return a list of validated entries (None or list) along 
     with a message if verbose=False (default).
     """
-    def results(msg, data=None, verbose=None):
+    def results(msg, data=None, verbose=False):
         if verbose:
             print(msg)
             return data
         else:
             return data, msg
-        
+    entries = entries.replace('\n','')
     entries = entries.strip()
     if not entries:
         msg = "No content!"
@@ -813,28 +848,6 @@ def validate_user_list(entries, file, verbose=False):
         return results(msg)
 
     return validated, 'OK'
-        
-
-def test_validate_user_list(verbose=False):
-    corr_val1 = "('dummy', 'Entry')"
-    corr_val2 = "('dummy', 'Entry'), ('foo', 'list'), "
-    lst_val1 = "'dummy', 'Entry'"
-    lst_val2 = "'dummy', 'Entry', 'foo', 'bar', "
-    lst_val3 = "'cat chenal', 'will tell', "
-
-    which = ['Corrections','Corrections','Names','Places','People',]
-    for i,data in enumerate([corr_val1, corr_val2,lst_val1,lst_val2,lst_val3]):
-        out, msg = validate_user_list(data, which[i], verbose)
-        print(data, which, ':\n\t', msg, out)
-        assert msg == 'OK'
-        
-    #new tests:
-    out, msg = validate_user_list(lst_val1, 'Corrections', verbose)
-    print('\nList instead of tuples for Corrections.\n', lst_val1, ':\n\t', msg, out)
-    assert out is None
-    out, msg = validate_user_list(corr_val1, 'Upper', verbose)
-    print('Tuple instead of list for Upper.\n',corr_val1, ':\n\t', msg, out) 
-    assert out is None
     
 
 # APP GUI ...............................................................
@@ -859,13 +872,13 @@ class AppControls:
                                      ['Edit Transcript','Save',
                                       'Show Readme', 'Show File'])
                                    ])
-        
+        handler.show_logs()
         self.PC = None # Controls.PageControl instance
-        #self.to_delete = None # set by validate_1()
         
         self.left_sidebar = self.get_left()
         self.left_sidebar.observe(self.menu_selection, 'value')
         self.out_info = ipw.Output()
+        
         self.center = self.get_center()
         self.center.observe(self.info_display, 'selected_index')
         self.dl1 = ipw.dlink((self.left_sidebar, 'selected_index'),
@@ -885,10 +898,19 @@ class AppControls:
                                  pane_heights=[1, 3, 1]
                                  )
         setattr(self.app, 'data_dict', None)
+        
+        handler.clear_logs()
+        logger.info('AppControls.app initialized.')
 
 
     def get_center(self):
-        """ Create 3 Tabs for actions + 2 for files."""
+        """
+        Create tab container with:
+          3 tabs for actions + 2 tabs for files.
+          Tab.children :: 1 vbx(children=[out, vbx([])]);
+          2nd child populated with PC.page controls when
+          app.left_sidebar.toggle_menu buttons clicked.
+        """
         lo_tabs = ipw.Layout(display='flex',
                              flex_flow='column',
                              align_items='stretch',
@@ -897,10 +919,10 @@ class AppControls:
         tabs = ipw.Tab(selected_index=None, layout=lo_tabs)
         # Tabs:
         ks = list(self.actions.keys()) + ['readme', 'file']
-        # 1st tab child: message output
-        tabs.children = [ipw.VBox([ipw.Output(),
-                                   ipw.VBox([])]) for k in ks]
         for i, k in enumerate(ks):
+            # 1st tab child: message output
+            tabs.children += (ipw.VBox([ipw.Output(),
+                                        ipw.VBox([])]),)
             tabs.set_title(i, k.split()[0].upper())
         return tabs
 
@@ -912,14 +934,13 @@ class AppControls:
          - a 'parent_idx' attribute
          - observe function for ToggleButtons children
         """
-        acc_items = [ipw.VBox(description=k) for k in list(self.actions.keys())]
-        menu_acc = ipw.Accordion(children=acc_items,
-                                 selected_index=None)
+        menu_acc = ipw.Accordion(selected_index=None)
         for i, (k, v) in enumerate(self.actions.items()):
             btn = ipw.ToggleButtons(options=v, value=None,
                                     button_style='info')
             setattr(btn, 'parent_idx', i)
             btn.observe(self.menu_tog_sel, names='value')
+            menu_acc.children += (ipw.VBox(description=k),)
             menu_acc.children[i].children = [btn]
             menu_acc.set_title(i, k.upper())
         return menu_acc
@@ -977,10 +998,10 @@ class AppControls:
                 self.app.data_dict = validate_form_entries(self.PC.page.user_dict,
                                                            self.PC.TR)
                 print('Validated!')
-
-            except:
+            except Exception as e:
+                logger.exception('.validate_0 err:', exc_info=True)
                 print('Validation Error: Fix & Try again.')
-
+                       
             
     def validate_1(self, idx):
         """
@@ -990,7 +1011,7 @@ class AppControls:
         grid_sel_idn_out = main.children[2]
         initial_md = grid_sel_idn_out.outputs[0]['text'][5:-1]
         input_form = self.PC.page.children[1].children[0]
-        
+
         self.center.children[idx].children[0].clear_output()
         with self.center.children[idx].children[0]:
             try:
@@ -1001,16 +1022,12 @@ class AppControls:
                 print('Validated!')
                 d['idn'] = self.PC.TR.idn
                 d = self.PC.TR.set_path_keys(d)
-                # update dict used in save_entry()
-                #self.app.data_dict = d
-                
-                #if initial_md != d['transcript_md']:
-                #    mdfile = UTL.get_subfolder(d['year'], Meta.REPO_PATH)
-                #    mdfile = mdfile.joinpath(initial_md)
-                #    self.to_delete = mdfile
-                #    print(F'File to delete: {initial_md}')
-            except:
-                print('Validation Error: Fix & Try again.')                
+            except Exception as e:
+                logger.exception('.validate_1 err:', exc_info=True)
+                print('Validation Error: Fix & Try again.')
+        #self.PC.btn_load.disabled = False
+        self.PC.out_btn_load.clear_output()
+        self.left_sidebar.children[idx].children[0].index = None
                 
     
     def save_entry(self, idx):
@@ -1022,38 +1039,40 @@ class AppControls:
             if self.PC.TR is None:
                 print('TR object not instantiated.')
                 return
+            
             try:
                 self.PC.TR.update_dict(self.app.data_dict)
                 print('Update dict: OK!')
-            except:
+            except Exception as e:
+                logger.exception('.PC.TR.update_dict err:', 
+                                 exc_info=True)
                 print('Update dict: Something went wrong.')
                 return
             try:
                 self.PC.TR.update_readme()
                 print('Update readme: OK!')
-            except:
+            except Exception as e:
+                logger.exception('.PC.TR.update_readme() err:', 
+                                 exc_info=True)
                 print('Update readme: Something went wrong.')
                 return
             try:
                 self.PC.TR.save_transcript_md()
                 print('Save: Done!')
-                #if idx == 1:
-                #    if self.to_delete is not None:
-                #        self.to_delete.unlink()
-                #        self.to_delete = None
-            except:
-                if idx == 0:
-                    msg = 'Save starter transcript: Something went wrong.'
-                else:
-                    msg = 'Save transcript: Something went wrong.'
-                print(msg)
+            except Exception as e:
+                logger.exception('.PC.TR.save_transcript_md() err:', 
+                                 exc_info=True)
+                print('Save transcript: Something went wrong.')
+                return
         # refresh df:
-        # TR.update_readme() includes refresh_tbl_info, so ok
-        # to use self.PC.df = self.PC.TR.df?
         newdf, _ = Meta.df_from_readme_tbl()
         self.PC.df = newdf
-        if self.PC.verb != 'add':
-            self.PC.sel_idn.value = None
+        #self.center.children[idx].children[0].clear_output()
+        self.PC.btn_load.disabled = False
+        self.PC.out_btn_load.clear_output()
+        self.left_sidebar.children[idx].children[0].index = None
+        #if self.PC.verb != 'add':
+        #    self.PC.sel_idn.value = None
 
 
     def save_edit(self, idx):
@@ -1062,30 +1081,40 @@ class AppControls:
         with self.center.children[idx].children[0]:
             if self.PC.txt_transcriber.value.startswith('?'):
                 print("'?' is not a good name!")
+            # update readme if change in status or transcriber
             try:
-                do_readme = self.PC.initial_status != self.PC.status_sel.value
+                do_readme = self.PC.initial_status != self.PC.sel_status.value
                 do_trx = self.PC.initial_transcriber != self.PC.txt_transcriber.value
                 if do_readme:
-                    self.PC.TR.event_dict['status'] = self.PC.status_sel.value
+                    self.PC.TR.event_dict['status'] = self.PC.sel_status.value
                 if do_trx:
                     self.PC.TR.event_dict['transcriber'] = self.PC.txt_transcriber.value
                 if do_readme or do_trx:        
                     self.PC.TR.update_readme()
                     print('Updated README.')
-            except:
+            except Exception as e:
+                logger.exception('.save_edit err1:', 
+                                 exc_info=True)
                 print('Could not update README.')
                 return
+            # update event md file:
             try:
-                self.PC.TR.save_transcript_md(new_trx=self.PC.txa_editarea.value)
+                txa = self.PC.page.children[1].children[1]
+                self.PC.TR.save_transcript_md(new_trx=txa.value)
                 self.PC.btn_load.disabled = False
-                self.PC.txa_editarea.value = ''
                 print('Updated Event file.')
-            except:
+            except Exception as e:
+                logger.exception('.save_edit err2:', 
+                                 exc_info=True)
                 print('Could not update Event file.')
+                return
         # refresh df:
         newdf, _ = Meta.df_from_readme_tbl()
         self.PC.df = newdf
-        self.PC.sel_idn.value = None
+        self.center.children[idx].children[0].clear_output()
+        self.PC.out_btn_load.clear_output()
+        self.left_sidebar.children[idx].children[0].index = None
+        #self.PC.sel_idn.value = None
 
 
     def show_mdfile(self, idx):
@@ -1111,15 +1140,19 @@ class AppControls:
                 else:
                     self.msg_out(4, F'File not found: {mdfile}.')
             else:
-                self.msg_out(4, 'PageControls.TR object not instantiated.')
+                self.msg_out(4, 'PC.TR object not instantiated.')
         self.center.selected_index = idx
 
 
     def menu_tog_sel(self, change):
+        """
+        Observe fn for Accordion menu with toggle btns.
+        """
         wgt = change['owner']
         iparent = wgt.parent_idx
         tog_val = wgt.value
-
+        
+        self.center.children[iparent].children[0].clear_output()
         if iparent == 0:
             if tog_val == 'Enter Info':
                 self.PC = PageControls(0)

@@ -1,4 +1,4 @@
-# Cat Chenal, Reshama Shaikh: Automating Audio Tanscription.  
+# Cat Chenal: Automating Audio Tanscription.  
 
 ## Key Links  
 - Meetup Event:  N.A.  
@@ -6,9 +6,15 @@
 - Slides:  N.A.  
 - GitHub Repo:  N.A.  
 - Jupyter Notebook:  N.A.  
-- Transcriber:  Mama Song  
+- Transcriber:  Billy Pip  
 ## Other References
-- Paper:  <Paper url or citation> 
+
+                  - Binder:  <url>
+- Paper:  <Paper url or citation>  
+
+                  - Wiki:  This is an excellent [wiki]  
+
+                  (http://en.wikipedia.org/wiki/Main_Page)  
   
 
 ## Video

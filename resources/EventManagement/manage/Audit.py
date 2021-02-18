@@ -35,40 +35,49 @@ def audit_xml_captions(xml_captions, minutes_mark):
     return xml_islower, parag
 
 
-def get_all_transcripts(meta_only=False,
-                        audit_captions=False,
-                        replace_xml=False,
-                        replace_trx=False):
+def audit_all_events(meta_only=False,
+                     audit_captions=False,
+                     replace_xml=False,
+                     replace_trx=False):
     """
-    Audit on all events.
-    :param: meta_only:  for testing md file parsing (done by __init__)
+    :param: meta_only: for testing md file parsing (done by __init__)
+    :param: audit_captions: to check whether text in xml is cased
     :param: replace_xml: 
     :param: replace_trx:
     """
     df, tbl_delims = Meta.df_from_readme_tbl()
     df = df[2:] # exclude not recorded
     
-    if audit_captions:
-        mins = 1
-        print(F'Captions case check (on 1st P with minutes_mark= {mins}):')
+    print('AUDIT ALL EVENTS')
+    if meta_only:
+        print('* Audit with meta_only=True.')
+    else:
+        if replace_xml:
+            print('* Replacement of xml files selected.')
+        if audit_captions:
+            mins = 1
+            print(F'* Captions case check (on 1st P with minutes_mark= {mins}):')
         
     for idx, yr in df[['N','year']].values:
         tr = Meta.TranscriptMeta(idx, yr)
                   
         if meta_only:
             continue
-            
-        tr.set_YT()  # xml captions saved in init
+
         if audit_captions:
-            tr.YT.minutes_mark = mins
-            xml_islower, parag = audit_xml_captions(tr.YT.captions_xml, mins)
+            # Note: xml captions are saved in init:
+            # YT.captions_xml = .get_xml_captions(replace=False)
+            av = TRX.YTVAudio(yr, idx, 
+                              tr.event_dict['video_url'], 
+                              tr.event_dict['yt_video_id'],
+                              replace_xml=replace_xml)
+            #av.minutes_mark = mins
+            xml_islower, parag = audit_xml_captions(av.captions_xml, mins)
             print(F'{idx}, {yr}:: Lower= {xml_islower}\n{parag}\n)')
             
-        if replace_xml:
-            print(idx, yr)
-            tr.YT.captions_xml = tr.YT.get_xml_captions(True)
-            
+
         if replace_trx:
+            tr.set_YT()
             print(idx, yr)
             tr.YT.get_initial_transcript(True)
 

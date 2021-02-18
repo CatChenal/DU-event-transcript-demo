@@ -1,59 +1,60 @@
 ,names
-0,visual studio
-1,general assembly
-2,markdown
-3,ford
-4,google
-5,pandas
-6,wikipedia
-7,ebay
-8,notre dame
-9,merriam-webster
-10,linux
-11,django
-12,english
-13,samsung
-14,pfizer
-15,fibonacci
-16,python software foundation
-17,chipotle
-18,khan academy
-19,plotly
-20,heroku
-21,microsoft
-22,cisco
-23,jupyter
-24,new york times
-25,kubernetes
-26,firefox
-27,spanish
-28,continuum anaconda
-29,data umbrella
-30,easter
+0,google
+1,microsoft
+2,django
+3,plotly
+4,python software foundation
+5,markdown
+6,duke university
+7,english
+8,visual studio
+9,excel
+10,heroku
+11,wikipedia
+12,easter
+13,salesforce
+14,twitter
+15,red bull
+16,airbnb
+17,data umbrella
+18,chrome
+19,dask
+20,cisco
+21,python
+22,bayesian
+23,seaborn
+24,flask
+25,tesla
+26,merck
+27,facebook
+28,poshmark
+29,spanish
+30,jupyter
 31,meetup
-32,chrome
-33,twitter
-34,etsy
-35,tesla
-36,binder
-37,python
-38,salesforce
-39,porsche
+32,notre dame
+33,east
+34,continuum anaconda
+35,fibonacci
+36,ebay
+37,twilio
+38,new york times
+39,chipotle
 40,amazon
-41,matplotlib
-42,dask
-43,washington post
-44,red bull
-45,airbnb
-46,duke university
-47,excel
-48,windows
-49,east
-50,merck
-51,qt
-52,twilio
-53,poshmark
-54,flask
-55,seaborn
-56,facebook
-57,apache
+41,merriam-webster
+42,binder
+43,kubernetes
+44,windows
+45,qt
+46,linux
+47,pandas
+48,porsche
+49,apache
+50,matplotlib
+51,etsy
+52,firefox
+53,samsung
+54,ford
+55,general assembly
+56,khan academy
+57,washington post
+58,pfizer

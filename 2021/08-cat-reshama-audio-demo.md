@@ -3,12 +3,14 @@
 ## Key Links  
 - Meetup Event:  N.A.  
 - Video:  https://youtu.be/MHAjCcBfT_A  
-- Slides:  N.A.  
-- GitHub Repo:  N.A.  
+- Slides:  https://www.example.com  
+- GitHub Repo:  https://www.example.com  
 - Jupyter Notebook:  N.A.  
-- Transcriber:  Mama Song  
+- Transcriber:  Bibi Chenal  
 ## Other References
-- Paper:  <Paper url or citation> 
+- Binder:  url 
+- Paper:  Paper url or citation 
+- Wiki:  This is an excellent [wiki](http://en.wikipedia.org/wiki/Main_Page) 
   
 
 ## Video

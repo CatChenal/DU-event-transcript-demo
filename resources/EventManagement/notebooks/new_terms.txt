@@ -1,0 +1,32 @@
+upper	nyc
+names	iphone
+names	ipad
+people	alex
+corrections	('coyle','coil')
+corrections	('job lib', 'joblib')
+corrections	('dars', 'Dask')
+corrections	("darth's", 'Dask')
+corrections	('psychic learn', 'scikit-learn')
+corrections	('xg boost', 'XGBoost')
+
+new_entries = [('ipad', iPad'),('iphone', iPhone'),('coyle','coil'),('job lib', 'joblib'),('dars', 'Dask'),("darth's", 'Dask'),('psychic learn', 'scikit-learn'),('xg boost', 'XGBoost')]
+TRX.update_corrections(new_entries)
+======================================================
+
+progress_bar = ipywidgets.IntProgress(min=0, max=100,
+                                      description="")
+display(progress_bar)
+
+    for l in range(L):
+        progress_bar.value += 1
+
+    progress_bar.bar_style = "success"
+    progress_bar.close() # or:
+progress.layout.display = 'none'
+===================================================
+
+If you have Grammarly:
+on Chrome:
+Right-click its icon > select 'manage extensions'
+Under 'Site access':
+change to 'On click'

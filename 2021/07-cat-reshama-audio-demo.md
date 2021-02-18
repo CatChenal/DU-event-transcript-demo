@@ -6,7 +6,7 @@
 - Slides:  N.A.  
 - GitHub Repo:  N.A.  
 - Jupyter Notebook:  N.A.  
-- Transcriber:  Mama Song  
+- Transcriber:  Max Chenal  
 ## Other References
 - Paper:  <Paper url or citation> 
   
