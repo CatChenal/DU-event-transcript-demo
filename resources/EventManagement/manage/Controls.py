@@ -14,20 +14,27 @@ from manage import (EventMeta as Meta,
                     Utils as UTL)
 
 # .................................................................
-DEBUG_MODE = True
-
-logger = logging.getLogger(__name__)
-
+DEBUG_MODE = False #True #
 LOG_LEVEL = logging.DEBUG if DEBUG_MODE else logging.NOTSET
 
-logger.setLevel(LOG_LEVEL)
+class NulHandler(logging.NullHandler):
+    def __init__(self):
+        super().__init__()
+
+    def show_logs(self):
+        pass
+
+    def clear_logs(self):
+        pass
+    
 
 class OutWidgetHandler(logging.Handler):
     """
     Custom logging handler sending logs to an output widget.
+    Code from ipywidgets docs modified for py3.1+.
     """
     def __init__(self, *args, **kwargs):
-        super(OutWidgetHandler, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         layout = {
             'width': '100%',
             'height': '160px',
@@ -53,11 +60,23 @@ class OutWidgetHandler(logging.Handler):
         """ Clear the current logs """
         self.out.clear_output()
 
-handler = OutWidgetHandler()
-handler.setFormatter(logging.Formatter('%(asctime)s - [%(levelname)s] %(message)s'))
+logger = logging.getLogger(__name__)
+logger.setLevel(LOG_LEVEL)
+if DEBUG_MODE:
+    handler = OutWidgetHandler()
+    handler.setFormatter(logging.Formatter('%(asctime)s - [%(levelname)s] %(message)s'))
+else:
+    handler = NulHandler()
 logger.addHandler(handler)
 
+
 # ..............................................................................
+# Status options: remove "Not recorded" as current 
+# implementation only applies to events with videos
+# (i.e. video_url is required).
+status_opts = [s.value for s in Meta.TrStatus][:-1]
+
+
 defaultsNA = "(defaults to N.A. if not provided)"
 autogen = "(Auto-generated if not provided)"
 reqd = "(Required)"
@@ -202,14 +221,15 @@ def wgtbox_from_kv(k, fld_val):
     if k != 'extra_references':
         if k != 'status':
             w_Box = ipw.Box([itm1,
-                             wgt(value=val, placeholder=plc,
+                             wgt(value=val,
+                                 placeholder=plc,
                                  layout=lo_txt)],
                             layout=lo_box_form_item
                             )
         else:
             wgt = ipw.Select
             w_Box = ipw.Box([itm1,
-                             wgt(options=[s.value for s in Meta.TrStatus],
+                             wgt(options=status_opts,
                                  value=val,
                                  layout=lo_txt)],
                             layout=lo_box_form_item
@@ -219,7 +239,8 @@ def wgtbox_from_kv(k, fld_val):
         tog_vbx = btn_togl_extra_refs_example()
         
         w_Box = ipw.VBox([ipw.Box([itm1,
-                                   wgt(value=val,placeholder=plc,
+                                   wgt(value=val,
+                                       placeholder=plc,
                                        layout=lo_txt)],
                                    layout=lo_box_form_item),
                           tog_vbx]
@@ -240,7 +261,6 @@ def wgt_Accord(children=None, lo_accord=None):
     if lo_accord is None:
         lo_accord = ipw.Layout(display='flex',
                                flex_flow='column',
-                               #border='solid 1px',
                                align_items='stretch',
                                margin='0px 10px 0px 30px',
                                width='85%')
@@ -328,8 +348,6 @@ def validate_form_entries(entry_dict, tm_obj):
 
 
 # ..............................................................................
-status_opts = [s.value for s in Meta.TrStatus][:-1]
-
 def get_info_banner(page_idx):
     """Page informational header."""
     if page_idx == 0:
@@ -344,7 +362,7 @@ def get_info_banner(page_idx):
 
 
 class PageControls:
-    def __init__(self, page_idx, status_opts=status_opts):
+    def __init__(self, page_idx):
         if page_idx not in [0,1,2]:
             msg = "The page_idx refers to the App.center "
             msg += "tab index for 'ADD', MODIFY' or 'EDIT',"
@@ -356,7 +374,6 @@ class PageControls:
                              margin='0px 0px 0px 10px')
         
         self.page_idx = page_idx
-        self.status_opts = status_opts
         
         rdmdf, _ = Meta.df_from_readme_tbl()
         self.df = rdmdf
@@ -664,10 +681,10 @@ class PageControls:
                 else:       
                     self.sel_status.disabled = False
                     status = self.TR.event_dict['status']
-                    if status in self.status_opts:
+                    if status in status_opts:
                         self.sel_status.value = status 
                     else:
-                        self.sel_status.value = self.status_opts[-1]
+                        self.sel_status.value = status_opts[-1]
                         
                     if self.initial_status is None:
                         self.initial_status = self.sel_status.value
