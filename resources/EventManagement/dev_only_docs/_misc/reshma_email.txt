@@ -1,0 +1,46 @@
+Workflow.
+1.  Reshama downloads video from Big Marker to local computer.
+2.  Reshama uploads it to YouTube using YT interface.
+3.  Reshama adds a description to the video.
+4.  Cat can provide a template for the description.
+5.  YT:  video ID
+6.  future editor
+7.  GUI widget based
+8.  Cat:  can change the format of the table in the README.md
+----------------------------------------------------------
+New workflow using EventManagement.
+Reshama's tasks:
+1.   Download video from Big Marker to local computer.
+2.   Upload it to YouTube using YT interface & obtains video id
+3.1  Activate appropriate env
+3.2  Cd to local fork of https://github.com/data-umbrella/event-transcripts
+4.1  Starts juyter lab
+4.2  Cd to ./resources/EventManagement/notebooks
+4.3  Launch ManageGUI.ipynb
+5.   Run all cells (from menu)
+6.   Use GUI to add the event related to the video just uploaded
+[6.1  Check: updated table in readme.md & new transcript file in <year> folder.]
+7.  [to do] Run fn to get video description template
+8.  Add a description to the video
+9.  Create PR for "New event creation"
+10. Review, accept, merge PR
+----------------------------------------------------------
+Cat Notes
+
+(items are not in specific order)
+
+#1 Priority:  Cat fixes demo.  And once it's fixed, Reshama will try it again. 
+
+- will update the README.md in this repo, with table formatting, etc and submit a pull request (update the table):
+(https://github.com/data-umbrella/event-transcripts)
+
+- update this repo with some changes:  https://github.com/CatChenal/DU-event-transcript-demo
+(Cat knows what those changes are).
+
+- instructions on using event management resource will be placed into a new file:  manage-transcript.MD
+
+- will create a PR to add this folder, "EventManagement" to the  DU transcripts repo (https://github.com/data-umbrella/event-transcripts)
+https://github.com/CatChenal/DU-event-transcript-demo/tree/main/resources/EventManagement
+
+- will upload new year folders.  The current transcript markdown files need to be renamed:  firstname-last name-event.md
+----------------------------------------------------------

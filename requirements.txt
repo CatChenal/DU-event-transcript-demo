@@ -1,0 +1,7 @@
+pandas
+ipywidgets
+jupyterlab
+pytube 
+defusedxml
+beautifulsoup4
+watermark

@@ -74,6 +74,7 @@ def split_url(url, is_meetup=False):
     
     if is_meetup:
         dom = 'https://www.meetup.com/nyc-data-umbrella/events/'
+        #could be: 'https://www.meetup.com/data-umbrella/events/'
         id = url[len(dom):]
         if id.endswith('/'):
             id = id[:-1]

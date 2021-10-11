@@ -1,0 +1,118 @@
+# new cell0
+
+# To get multiple outputs from one code cell (without using print()):
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = 'all'
+
+from IPython import get_ipython
+from IPython.display import HTML, Markdown, Image, Audio
+
+import sys
+from pathlib import Path
+
+
+# For enabling imports from current project code:
+def add_to_sys_path(this_path, up=False):
+    """
+    Prepend this_path to sys.path.
+    If up=True, path refers to parent folder (1 level up).
+    """
+    newp = Path(this_path).as_posix() # no str method (?)
+    if up:
+        newp = Path(this_path).parent.as_posix()
+
+    msg = F'Path already in sys.path: {newp}'
+    if newp not in sys.path:
+        sys.path.insert(1, newp)
+        msg = F'Path added to sys.path: {newp}'
+    print(msg)
+
+add_to_sys_path(Path.cwd(), up=True)
+
+# For py modules/methods discovery:
+def filter_dir(mdl, filter_str=None, start_with_str='_', exclude=True):
+    """Filter dir(mdl) for method discovery.
+       Input:
+       :param mdl (object): module, optionally with submodule path(s), e.g. mdl.submdl1.submdl2.
+       :param filter_str (str, None): filter all method names containing that string.
+       :param start_with_str (str, '_'), exclude (bool, True): start_with_str and exclude work 
+              together to perform search on non-dunder methods (default).
+       Example:
+       >filter_dir(re) # lists the public methods of the re module.
+    """
+    search_dir = [d for d in dir(mdl) if not d.startswith(start_with_str) == exclude]
+    if filter_str is None:
+        return search_dir
+    else:
+        filter_str = filter_str.lower()
+        return [d for d in search_dir if d.lower().find(filter_str) != -1]
+
+# To create often-used subfolders:
+def get_project_dirs(which=['data', 'images'],
+                     use_parent=True):
+    '''Create folder(s) named in `which` at the ipynb parent level.'''
+    if use_parent:
+        dir_fn = Path.cwd().parent.joinpath
+    else:
+        dir_fn = Path.cwd().joinpath
+        
+    dir_lst = []    
+    for d in which:
+        DIR = dir_fn(d)
+        if not DIR.exists():
+            Path.mkdir(DIR)
+        dir_lst.append(DIR)
+    return dir_lst
+
+DIR_DATA, DIR_IMG = get_project_dirs()
+
+import pandas as pd
+#pd.set_option("display.max_colwidth", 200)
+from pprint import pprint as pp
+
+    
+def new_section(title='New section'):
+    style = "text-align:center;background:#c2d3ef;padding:16px;color:#ffffff;font-size:2em;width:98%"
+    div = f'<div style="{style}">{title}</div>'
+    #return HTML('<div style="{}">{}</div>'.format(style, title))
+    return get_ipython().set_next_input(div, 'markdown')
+
+
+# For documenting the current environment:
+def show_versions():
+    import platform
+    from multiprocessing import cpu_count
+    import IPython
+
+    txt = "<pre>"
+    txt += f"Python ver\t{sys.version}<br>"
+    txt += f"Python env\t{Path(sys.prefix).name}<br>"
+    txt += f"IPython ver\t{IPython.__version__}<br>"
+    txt += f"OS\t\t{platform.system()} {platform.release()} ({platform.version()})"
+    txt += f" - Machine: {platform.machine()}<br>"
+    txt += f"Processor\t{platform.processor()}<br>"
+    txt += f"CPU cores\t{cpu_count()}<br>"
+    txt += f"Architecture\t{platform.architecture()[0]}<br>"
+    txt += f"Currrent dir\t{Path.cwd()}"
+    txt += "</pre>"
+    div = f"""<div class="alert alert-info"><b>Versions & System Info:</b><br>{txt}</div>"""
+    return HTML(div)
+
+
+# autoreload extension
+if 'autoreload' not in get_ipython().extension_manager.loaded:
+    get_ipython().run_line_magic('load_ext', 'autoreload')
+
+%autoreload 2
+#..................
+no_wmark = False
+try:
+    %load_ext watermark
+    %watermark
+except ModuleNotFoundError:
+    no_wmark = True
+
+if no_wmark:
+    show_versions()
+else:
+    %watermark -iv

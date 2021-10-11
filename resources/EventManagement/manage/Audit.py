@@ -22,9 +22,10 @@ def audit_xml_captions(xml_captions, minutes_mark):
     parag = ''
     root = ET.fromstring(xml_captions, forbid_dtd=True)
     for i, child in enumerate(root):
-        start, tm_min = TRX.float_to_stime(float(child.attrib['start']))
+        start, tm_min = TRX.float_to_stime(float(child.attrib['t']))
 
-        txt = unescape(child.text).strip()
+        #txt = unescape(child.text).strip()
+        txt = unescape(''.join(child.itertext())).strip().lower()
         parag += txt + " "
 
         if tm_min > 0:

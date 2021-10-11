@@ -14,7 +14,7 @@ from manage import (EventMeta as Meta,
                     Utils as UTL)
 
 # .................................................................
-DEBUG_MODE = False #True #
+DEBUG_MODE = False #
 LOG_LEVEL = logging.DEBUG if DEBUG_MODE else logging.NOTSET
 
 class NulHandler(logging.NullHandler):
@@ -45,11 +45,10 @@ class OutWidgetHandler(logging.Handler):
     def emit(self, record):
         """ Overload of logging.Handler method """
         formatted_record = self.format(record)
-        new_output = {
-            'name': 'stdout',
-            'output_type': 'stream',
-            'text': formatted_record+'\n'
-        }
+        new_output = {'name': 'stdout',
+                      'output_type': 'stream',
+                      'text': formatted_record+'\n'
+                      }
         self.out.outputs = (new_output, ) + self.out.outputs
 
     def show_logs(self):
@@ -355,9 +354,10 @@ def get_info_banner(page_idx):
     elif page_idx == 1:
         sel_banner = '<H3>Select the Event Year and Id.</H3>'
     else:
-        sel_banner = '<H3>Select the Event Year, Id, AV player '
-        sel_banner += '(and if need be, update the Transcriber'
-        sel_banner += ' & the Status before saving!).</H3>'
+        sel_banner = "<H3>Select the Event Year and Id; Select "
+        sel_banner += "Audio (default) to replay the audio of the video player; "
+        sel_banner += "(and if need be, update the Editor's name & Editing Status "
+        sel_banner += "before saving!).</H3>"
     return ipw.HTML(value=sel_banner)
 
 
@@ -556,8 +556,8 @@ class PageControls:
               layout=ipw.Layout(display='flex',
                                 flex_flow='column',
                                 align_items='flex-start'))
-        title = 'Update a file for propercasing or corrections | '
-        title += 'Reprocess the transcript'
+        title = 'Globally correct frequently occurring mistakes or '
+        title += 'improper casing using files (then reprocess)...'
         g = self.get_grid(title, exclude=['header', 'footer'])
         # preset msg:
         with self.out_sel_files:
@@ -588,15 +588,17 @@ class PageControls:
         else:
             g[1].children = [self.sel_yr, self.sel_idn,
                              ipw.VBox([self.out_sel_idn, self.rad_av]),
-                             ipw.VBox([self.txt_transcriber,
-                                       self.sel_status])]
+                             ipw.VBox([self.sel_status,
+                                       self.txt_transcriber
+                                      ])
+                            ]
             g[2].children = [self.btn_load, self.out_btn_load]
             # load controls in Accordion:
             lo_accord = ipw.Layout(display='flex',
-                       flex_flow='column',
-                       align_items='stretch',
-                       width='100%'
-                      ) 
+                                   flex_flow='column',
+                                   align_items='stretch',
+                                   width='100%'
+                                   ) 
             g[3].children = [wgt_Accord([self.get_update_grid()],
                                         lo_accord)]
 
@@ -1002,7 +1004,6 @@ class AppControls:
         if t < 3:
             self.left_sidebar.selected_index = t
             self.left_sidebar.children[t].children[0].index = None
-
             with self.out_info:
                 display(info_val)
    
@@ -1098,8 +1099,6 @@ class AppControls:
         self.PC.btn_load.disabled = False
         self.PC.out_btn_load.clear_output()
         self.left_sidebar.children[idx].children[0].index = None
-        #if self.PC.verb != 'add':
-        #    self.PC.sel_idn.value = None
 
 
     def save_edit(self, idx):

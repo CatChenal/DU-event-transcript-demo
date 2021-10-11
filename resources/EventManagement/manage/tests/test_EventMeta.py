@@ -54,14 +54,14 @@ def dummy_update(meta_obj, meta_d, video_url, meetup_url,
                  presenter='Cat Chenal, Reshama Shaikh',
                  include_extra=True):
 
-    meta_d['year'] = CURRENT_YEAR
+    meta_d['year'] = Meta.CURRENT_YEAR
     meta_d['video_url'] = video_url
     vsite, vid = UTL.split_url(video_url)
     
     meta_d['yt_video_id'] = vid
-    meta_d['video_href'] = HREF_DOM + vid
-    meta_d['video_href_src'] = YT_IMG_URL0 + vid + YT_IMG_URL1
-    if meta_d['video_href_alt'] == NA:
+    meta_d['video_href'] = Meta.HREF_DOM + vid
+    meta_d['video_href_src'] = Meta.YT_IMG_URL0 + vid + Meta.YT_IMG_URL1
+    if meta_d['video_href_alt'] == Meta.NA:
         meta_d['video_href_alt'] = title
     meta_d['repo_url'] = 'https://github.com/CatChenal'       
     meta_d['event_url'] = meetup_url
@@ -117,19 +117,29 @@ def test_df_from_readme_tbl():
 
 
 def test_add_event():
-    tm = TRX.TranscriptMeta()
+    tm = Meta.TranscriptMeta()
 
     # Extract dict for update:
     meta_dict = tm.event_dict
 
     # dummy data:
-    DU_video = 'https://youtu.be/PU1WyDPGePI' #'https://youtu.be/0L1uM_18TTA'
+    DU_video = 'https://www.youtube.com/watch?v=MHAjCcBfT_A'
+    meetup_url = 'https://www.meetup.com/data-umbrella/events/274778387/'
+    #or meetup_url = None
+    print('Add dummy event:')
+    print(' - video url:',DU_video)
+    print(' - meetup url:',meetup_url)
     updated_meta = dummy_update(tm, meta_dict,
                                 DU_video,
+                                meetup_url,
                                 title='Automating Audio Transcription.')
-
-    tm.update_metadata(updated_meta)
-    # Updated dict:
-    tm.event_dict
-    tm.save_meta()
+    print(".update_dict - Assigning new dummy event dict to Meta object...")
+    tm.update_dict(updated_meta)
+    print("Updated dict:")
+    print(tm.event_dict)
+    print(".update_readme() - Saving Readme file...")
+    tm.update_readme()
+    print(".save_transcript_md - Saving Transcript Markdown file...")
     tm.save_transcript_md()
+                    
+    return tm

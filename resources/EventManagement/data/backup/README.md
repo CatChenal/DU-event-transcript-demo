@@ -19,8 +19,8 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 04| Ali Spittel| [Navigating Your Tech Career](2020/04-ali-spittel-career.md)| Janine| Needs reviewer| | 
 | 05| Andreas Mueller| [Crash Course in Contributing to Scikit-learn](2020/05-andreas-mueller-contributing.md)| Reshama Shaikh| Complete| | 
 | 06| Reshama Shaikh| [Example PR for Scikit-learn](2020/06-reshama-shaikh-sklearn-pr.md)| Reshama Shaikh, Mark| Complete| | 
-| 07| Shailvi Wakhlu| [Fixing Bad Data and Using SQL](2020/07-shailvi-wakhlu-fixing-data.md)| Juanita| Complete| | 
-| 08| Matt Brems| [Data Science with Missing Data](2020/08-matt-brems-missing-data.md)| Barbara| Needs reviewer| | 
+| 07| Shailvi Wakhlu| [Fixing Bad Data (Using SQL)](2020/07-shailvi-wakhlu-fixing-data.md)| Juanita| Complete| | 
+| 08| Matt Brems| [Data Science with Missing Data](2020/08-matt-brems-missing-data.md)| Barbara Graniello Batlle| Needs reviewer| | 
 | 09| Sam Bail| [Intro to Terminal](2020/09-sam-bail-terminal.md)| Isaack| Complete| | 
 | 10| Emily Robinson| [Build a Career in Data Science](2020/10-emily-robinson-career.md)| Kevin| Complete| | 
 | 11| Rebecca Kelly| [Kdb Time Series Database](2020/11-rebecca-kelly-kdb.md)| Coretta| Needs reviewer| Paragraphs are too long| 
@@ -42,9 +42,15 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
 | 04| Cat Chenal, Reshama Shaik| [My Demo Presentation](2021/04-cat-reshama-demo-foo.md)| ?| Not yet processed (editor needed)| Dummy event 2| 
 | 05| Mini Max| [New Demo Presentation](2021/05-mini-max-demo-baz.md)| ?| Not yet processed (editor needed)| Dummy event| 
-| 06| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/06-cat-reshama-better-demo.md)| Mae Song| Not yet processed (editor needed)| | 
-| 07| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/07-cat-reshama-audio-demo.md)| Max Chenal| Not yet processed (editor needed)| N.A.| 
-| 08| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/08-cat-reshama-audio-demo.md)| Bibi Chenal| Not yet processed (editor needed)| N.A.| 
+| 06| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/06-cat-reshama-better-demo.md)| Mama Song| Not yet processed (editor needed)| N.A.| 
+| 07| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/07-cat-reshama-audio-demo.md)| Max Chenal| Partial (w.i.p.)| N.A.| 
+| 08| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/08-cat-reshama-audio-demo.md)| Bibi Chenal| Partial (new editor requested)| N.A.| 
+| 09| Cat Chenal| [New Presentation (Demo)](2021/09-cat-chenal-foo-demo.md)| ?| Not yet processed (editor needed)| Dummy event| 
+| 10| Cat Chenal| [Debug Pres](2021/10-cat-chenal-debug-foo.md)| Cat Too| Not yet processed (editor needed)| Dummy event| 
+| 11| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/11-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
+| 12| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/12-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
+| 13| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/13-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
+| 14| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/14-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
 <!-- main_tbl_end -->
 <!-- Note: There should not be any empty table row before the end of table marker above.-->
 
@@ -69,7 +75,7 @@ The ipywidgets-based GUI is functional in a Jupyter notebook but will not be opt
 - cd to your local `DU-event-transcript-demo` and launch Jupyter Lab:  
 ```
  cd <parent path>/DU-event-transcript-demo
- jupyter lab
+ jupyter-lab
 ```
 - In jlab, navigate to `./resources/EventManagement/notebooks` and open `ManageGUI.ipynb`. Start playing!
 

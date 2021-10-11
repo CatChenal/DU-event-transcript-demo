@@ -30,6 +30,7 @@ names_file = Meta.DIR_DATA.joinpath('title_names.csv')
 places_file = Meta.DIR_DATA.joinpath('title_places.csv')
 # List of terms (e.g. acronyms) for uppercasing:
 upper_file = Meta.DIR_DATA.joinpath('upper_terms.csv')
+
 # Replacement pairs: (from, to); for special str 
 # & those mangled by Google's autocaptioning:
 corrections_file = Meta.DIR_DATA.joinpath('corrections.csv')
@@ -127,12 +128,13 @@ def float_to_stime(duration):
       (formatted time duration, whole minute)
     Example:
       float_to_strtime(3.89) -> ('00:00:03,890', 0)
+    update: srv3 format: time in milliseconds.
     """    
-    fraction, whole = math.modf(duration)
+    fraction, whole = math.modf(duration/1000)
     tm_whole = time.gmtime(whole)
-    time_fmt = time.strftime("%H:%M:%S,", tm_whole)
-    ms = F"{fraction:.3f}".replace("0.", "")
-    return time_fmt + ms, tm_whole.tm_min
+    time_fmt = time.strftime("%H:%M:%S", tm_whole)
+    time_fmt += F",{fraction:.3f}".replace("0.", "")
+    return time_fmt, tm_whole.tm_min
         
         
 class YTVAudio:
@@ -214,13 +216,18 @@ class YTVAudio:
         TW = get_TextWrapper(wrap_width=wrap_to)
         
         root = ET.fromstring(xml_captions, forbid_dtd=True)
-        for i, child in enumerate(root):
+        #for i, child in enumerate(root):
+        for i, child in enumerate(list(root.findall('body/p'))):
             # need to keep track of min interval to add a paragraph
-            start, tm_min = float_to_stime(float(child.attrib['start']))
+            start, tm_min = float_to_stime(float(child.attrib['t']))
             
             # Not all xml files are lowercase, but clean_text()
             # works with lowercase
-            txt = unescape(child.text).strip().lower()
+            #txt = unescape(child.text).strip().lower()
+            
+            #txt = ''.join(child.itertext()).strip().lower()
+            txt = unescape(''.join(child.itertext())).strip().lower()
+            
             if i == 0:
                 txt = txt[0].upper() + txt[1:]
             parag += txt + " "

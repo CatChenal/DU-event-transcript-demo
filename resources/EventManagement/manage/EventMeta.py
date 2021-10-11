@@ -37,6 +37,9 @@ def main_readme_path():
 
 MAIN_README = main_readme_path()
 
+# Data Umbrella's github repo for transcripts:
+DU_GH = 'https://github.com/data-umbrella/event-transcripts/'
+
 NA = 'N.A.' # 'Not Applicable or Not Available; 'N/A' is 'N over A'.
 def isNA(txt):
     return txt in [NA, 'N/A']
@@ -243,8 +246,7 @@ class TranscriptMeta:
         
         self.tbl_info = df_from_readme_tbl(self.readme)
         self.df, self.tbl_delims = self.tbl_info
-        # rmd: self.empty_lastrow, 
-        self.row_offset = 2 #if self.empty_lastrow else 2
+        self.row_offset = 2
         
         self.TPL = HDR_TPL
         self.TPL_KEYS = self.get_tpl_keys()
@@ -864,8 +866,40 @@ class TranscriptMeta:
             self.to_delete.unlink()
             self.to_delete = None
         return
-    
-    
+
+
+    def get_video_desc(self, include_extra=True):
+        """
+        Get the starter text for the video description, e.g:
+        ```
+        Speakers: Hugo Bowne-Anderson and James Bourbeau
+        Transcript: https://github.com/data-umbrella/even...
+        Meetup Event: https://www.meetup.com/data-umbrella/...
+        Video: https://youtu.be/MHAjCcBfT_A
+        Jupyter notebook: https://github.com/coiled/data-scienc...
+        GitHub repo: https://github.com/coiled/data-scienc...
+        ```
+        Always included headings: 
+          - Speakers, Transcript, Meetup Event, Video;
+        If include_extra=True, the contents of the extra_references key
+        will follow.
+        """
+        desc = ""
+        if "," in self.event_dict['presenter']:
+            desc += f"- Speakers: {self.event_dict['presenter'].replace(',', ' and ')} \n"
+        else:
+            desc += f"- Speaker: {self.event_dict['presenter']} \n"
+        desc += f"- Transcript:  {DU_GH}blob/main/{self.event_dict['transcript_md']} \n"
+        desc += f"- Meetup Event:  {self.event_dict['event_url']} \n"
+        desc += f"- Video:  {self.event_dict['video_url']} \n"
+        
+        if include_extra:
+            # rem: this entry is a Markdown string
+            desc += f"{self.event_dict['extra_references']}"
+            
+        return desc
+        
+        
     def __repr__(self):
         #msg = "TranscriptMeta Class rep: only prints metadata."
         if self.event_dict['has_transcript']:

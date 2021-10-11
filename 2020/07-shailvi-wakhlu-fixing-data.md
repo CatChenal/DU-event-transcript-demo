@@ -1,20 +1,21 @@
-# Shailvi Wakhlu:  Fixing Bad Data (Using SQL)
+# Shailvi Wakhlu: Fixing Bad Data (Using SQL)  
 
-## Key Links
-- Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/271116695/
-- Video:  https://youtu.be/O5Z1-9Ohoro
-- Slides:  N.A. 
-- GitHub Repo:  N.A. 
-- Jupyter Notebook:  N.A. 
-- Transcriber:  Juanita Palomar
+## Key Links  
+- Meetup Event:  https://www.meetup.com/nyc-data-umbrella/events/271116695/  
+- Video:  https://youtu.be/O5Z1-9Ohoro  
+- Slides:  N.A.  
+- GitHub Repo:  N.A.  
+- Jupyter Notebook:  N.A.  
+- Transcriber:  Juanita 
 
-## Video  
+## Video
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=O5Z1-9Ohoro" target="_blank">
     <img src="http://img.youtube.com/vi/O5Z1-9Ohoro/0.jpg" 
-         alt="How Would Sherlock Holmes Fix Bad Data?" width="25%" />
+         alt="How Would Sherlock Holmes Fix Bad Data?"
+         width="25%"/>
 </a>
 
-## Transcript
+## Transcript 
 
 ## Intro (0:00)
 Okay, so it says it's ready, great.
@@ -72,11 +73,11 @@ And the next logical question that comes up, is you know where, where is this ba
 I put it as one visual because I actually, personally, have this printed out on my desk because I like to refer to it, just to sort of fact check. You know any investigation
 that I'm struggling with I try to make sure I'm covering my bases. So, say, let me let me walk you through what's actually in here. So on the on the left you see the the five different phases of introducing bad data. 
 
-So the first one that we start off is, is just the definition, this is where you know the data team and the product team are reconciling and they're saying what are
-the features that we even want to consider as one coherent unit and then what data requirements do we sort of associated it with it.
+So the first one that we start off is, is just the definition, this is where you know the data team and the product team are reconciling and they're saying what are the features that we even want to consider as one coherent unit and then what data 
+requirements do we sort of associated it with it.
 
-After that, you go on to logging where you actually translate some of those definitions that you had created in the previous step and turn them into actual code that you can
-use to log and store that data. 
+After that, you go on to logging where you actually translate some of those definitions that you had created in the previous 
+step and turn them into actual code that you can use to log and store that data. 
 
 After that, you are transforming that data in some way and what you're essentially looking at is you're looking at your business rules and you're applying those rules to do that tracked data so that you can convert it into a format that actually makes sense that is actually usable. 
 

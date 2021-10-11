@@ -1,10 +1,12 @@
-# DEMO Project's Implementation specifications (Python 3.7.6)
+# DEMO Project's Implementation specifications (Python 3.7)
 ## Author: Cat Chenal
 ---
 ---
-# SUMMARY: The new EventManagement resource produces timed-paragraphed starter transcripts for Data Umbrella's Events and greatly enhances the Event Creation or Transcript Editing processes via its notebook-based GUI.
-## Recommended Environment: 
+# SUMMARY: The new EventManagement resource produces timed-paragraphed starter transcripts for Data Umbrella's Events and greatly enhances the Event Creation or Transcript Editing processes via its notebook-based GUI.  
+
+## Environment: 
 - Jupyter Lab. [(Installation details)](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)  
+ -- Limitation with the classic notebook:  
 The ipywidgets-based GUI is functional in a Jupyter notebook but will not be optimal as the notebook has a fixed width, which degrades the flexibility afforded by the GUI's EDIT page.
 - Browser: Chrome  
 No other browser was tested, but the project is 'browser agnostic'. The GUI's EDIT processes will however greatly benefit from a [Grammarly browser extension](https://www.grammarly.com), which will highlight the starter transcript's quirks.
@@ -40,16 +42,17 @@ The code enabling this resides in the 'EventManagement' project folder, which ha
 | 5.5  | Apply unique file naming pattern | Repo | Automated naming | Consistent naming, e.g.: 17-carol-python.md -> 17-carol-willing-python.md |
 | 6    | Add a paragraph under the table to urge (plead?) contributors to only use the project for editing | README | It's better | Maintain consistency |
 | 7    | Add a note about non-Unicode characters in Markdown file. | README | Error | Correct parsing | 
+| .    | . | . | . | .|
 | **FUTURE** | **Recommended changes:** (not implemented in this demo) ||||
 | F1 | Replace the video href link (under '## Video') with an embed HTML string | Event md files | Readers can watch while reading | Especially good for reviewers (currently used in the GUI-Editing task as Media choice: Audio or Video) |
-| F2 | Change 'Transcriber' to 'Editor' | Repo | Most of the transcripts need editing||
+| F2 | Change 'Transcriber' to 'Editor' | Repo | Most of the transcripts need editing ||
 | F3 | Add a column for Reviewer | README table | Assign credit | Encourage contribution? | 
 | F4 | Change '- Meetup Event' to the more generic '- Venue' list header| Event md files | More generic | There are alternatives to Meetup (e.g. https://meetingplace.io/, https://colloq.io/)|
-| F5 | Add a 'Year' column | README table | Explain why event '01' follows event '20' | Explicitly indicate folder location (currently hidden in link) |
-| F5'| Amend the file links to reveal path| README | E.g.: [2021/21: Command Line Focused Dev](2021/21-nick-command.md) | Alternative to F5. Numbering in demo is reset in year folder.|
+| F5 | Add a 'Year' column | README table | Explain why event '01' follows event '20' | Explicitly indicate folder location (Numbering in demo is reset in year folder) |
+| F5'| Amend the file links to reveal path| README | E.g.: [2021/21: Command Line Focused Dev](2021/21-nick-command.md) | Alternative to F5. |
 
 
-### The file `README_new.md` reflects the changes associated with the README modifications above listed.
+### The demo `README.md` reflects the changes associated with the README modifications above listed.
 ### The events Markdown files in the year folders have been 'header-normalized' to enable a templated approach to document generation. (A good example for this normalization is Event "05".)
 
 <strong>Note:</strong><br>
@@ -63,7 +66,7 @@ Additionally:
 
 
 ## Template fields (keys) and their order
-Note: An initial implementation of this automation project made use of `jinja` templates (with an additional `jinja-markdown` extension and `pypandoc`), but the "markdown" converted text by pandoc still required processing for output in standard Markdown.  Instead, the current project uses a string for the 'starter transcript' Markdown file header, which is preset with dict keys so that it can be used with the usual string_format function. This (string) template lists the most common entries under the 'Key Links' header.  The field `extra_references` enables the addition of custom 'header' information.  
+The current project uses a string for the 'starter transcript' Markdown file header, which is preset with dict keys so that it can be used with the usual string_format function. This (string) template lists the most common entries under the 'Key Links' header.  The field `extra_references` enables the addition of custom 'header' information.  
 Template definition in ./resources/EventManagement/manage/EventMeta.py:  
 ```
 HDR_TPL = """# {presenter}: {title}  
@@ -131,26 +134,26 @@ The automated transcription implemented in EventTranscription.py is designed to 
 2. Too wide lines  
 3. No or too long paragraphs  
 
-To this end, two user parameters are used:  
-* A `minutes_mark`: it is set with a default of 4 (as per my experimentation, 10 minutes can lead to still too long paragraphs: people talk a lot in 10 minutes!).
-* A `wrap_width`: set with a default of 120.  
+To this end, two parameters are used:  
+* `minutes_mark`: it is set with a default of 4 (as per my experimentation, 10 minutes can lead to still too long paragraphs: people talk a lot in 10 minutes!).
+* `wrap_width`: set with a default of 120.  
 ##### To be decided:  Whether to keep the `wrap_width` changeable by the user.
 
-## Other considerations
+# Other considerations
 
-### Completeness:  
+## Completeness:  
 The number of transcript files was small enough for me to check each one of them. It appears to me that there is a need for a definition of completeness as many of the files flagged with 'Complete' do not comply with basic publishing standard (e.g. no capitalization or punctuation, too short/wide line width, etc.). This is to keep the __reader__ as end-user in mind: reading should not be a dreadful experience!  
 While the pre-processing of the initial transcript will remedy many of these shortcomings (if used consistently), there ought to be a minimal number of criteria met before marking a contribution complete.  
 
-### People's names:
+## People's names:
 * Full names: In my opinion, anyone related to an event (presenter(s), transcriber(s), reviewer(s)), should be listed with their full names (First, Last).  
 * Add 'new' roles: Add a 'Host' and a 'Reviewer' keys: to show credit when credit is due? (+ add them in the table.)   
 * Change 'Transcriber' to 'Editor'.  
 
-### Event numbering (Re: F5 in Modifications table):
+## Event numbering (Re: F5 in Modifications table):
 The implementation predates any 2021 events: the demo restart numbering at 01 in any new year. With the addition of the first new event of 2021, actually 'event 21', this may have to change.  
 
-# Demo Documentation overview (W.I.P.)
+## Demo Documentation overview (W.I.P.)
 
 ## New folder structure (with partial file listing):  
 ```
@@ -158,10 +161,14 @@ The implementation predates any 2021 events: the demo restart numbering at 01 in
 |   .gitignore           [Added]
 |   CODE_OF_CONDUCT.md
 |   CONTRIBUTING.md
-|   README.md            [This file, a.k.a. Proposed Changes; Demo README.md]
-|   README_new.md        [The modified data-umbrella/event-transcripts/README.md]
+|   DEMO.md
+|   environent.yml
+|   LICENSE
+|   README.md            [The modified data-umbrella/event-transcripts/README.md]
+|   requirements.txt
+|   TODO.md
 |   
-+---.github
++---.git
 |       
 +---2020                   [Year folders for Event files (normalized)]
 |   |   03-ty-shaikh-webscraping.md
@@ -187,14 +194,13 @@ The implementation predates any 2021 events: the demo restart numbering at 01 in
     |   plotly-code.ipynb
     |       
     \---EventManagement	[NEW]
-        |   README.md       [INSTRUCTIONS: which file to use, reqs, etc]
-        |   requirements.txt
+        |   README.md
         |       
         +---data
         |   |           
-        |   \---meta [NEW: - mp4 audio files (stay local: excluded from upload by .gitignore)   
-        |                  - xml caption files
-        |                  - starter transcript text files]
+        |   \---meta [- mp4 audio files (stay local: excluded from upload by .gitignore)   
+        |             - xml caption files
+        |             - starter transcript text files]
         |   |   
         |   +---backup [To save readme before changes]
         |   |       README.md.bkp
@@ -207,25 +213,28 @@ The implementation predates any 2021 events: the demo restart numbering at 01 in
         |   title_people.csv [for titlecasing]
         |   title_places.csv [for titlecasing]
         |   upper_terms.csv  [for uppercasing, mostly acronyms]
-        |           
+        |
+        +---dev_only_docs 
+        |   |   Existing_event_file.md	
+        |   |   New_event_file.md
+        |   |   README.md	[This file]	
+        |          
         +---images	[Mostly for documentation]
-        |       
+        |   Edit_page.png
+        |      
         +---manage	[Project's souce code]
+        |   |   Audit.py
         |   |   Controls.py
         |   |   EventMeta.py
         |   |   EventTranscription.py
         |   |   Utils.py
-        |   |       
-        |   +---documentation [Not finalized. Code for documenting]
         |           
         +---notebooks
+        |   |   Audits_Tests.ipynb  
         |   |   How_Tos.ipynb   [Details on amending text processing files & re-processing of initial transcript]
         |   |   ManageGUI.ipynb [The project "GUI in a notebook"]
 
 ```
 # Comparison of an existing ('normalized') event file with what would be the starter file produced by `EventManagement`.
-### Files: ./Existing_event_file.md, ./New_event_file.md    
 
-# TOO:
-[ ] More documentation
-[ ] Better testing
+### Files in /EventManagement/dev_only_docs/: Existing_event_file.md, New_event_file.md    

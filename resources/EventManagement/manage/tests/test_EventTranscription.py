@@ -16,6 +16,8 @@ def time_repl(mo):
     fmt = "{}{}:{}{} "
     o = fmt.format(mo.group(1),mo.group(2),mo.group(3),
                    mo.group(4).upper().replace('.','')) 
+    return o
+
         
 def test_time_repl():
     s1 = "it's 10 30 p.m your time "
