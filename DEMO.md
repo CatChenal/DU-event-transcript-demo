@@ -42,4 +42,4 @@ conda activate du37
   will affect Data Umbrella's repo.
   
 
-* Remember: W.I.P. -> see my [to-do list](TODO/md)
+* Remember: W.I.P. -> see my [to-do list](./TODO.md)
