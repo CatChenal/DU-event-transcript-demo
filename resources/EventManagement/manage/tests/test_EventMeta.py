@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # test_EventMeta.py
 #
-
 # import pytests
 from pathlib import Path
 import shutil

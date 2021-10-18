@@ -33,16 +33,9 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 18| Thomas Fan| [Streamlit for Data Science](2020/18-thomas-fan-streamlit.md)| ?| Not yet processed (editor needed)| | 
 | 19| Matti Picus| [Contributing to NumPy](2020/19-matti-picus-numpy.md)| ?| Not yet processed (editor needed)| | 
 | 20| Marco Gorelli| [Contributing to pandas](2020/20-marco-gorelli-pandas.md)| ?| Not yet processed (editor needed)| | 
-| 06| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/06-cat-reshama-better-demo.md)| Mama Song| Not yet processed (editor needed)| N.A.| 
-| 07| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/07-cat-reshama-audio-demo.md)| Max Chenal| Partial (w.i.p.)| N.A.| 
-| 08| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/08-cat-reshama-audio-demo.md)| Bibi Chenal| Partial (new editor requested)| N.A.| 
-| 09| Cat Chenal| [New Presentation (Demo)](2021/09-cat-chenal-foo-demo.md)| ?| Not yet processed (editor needed)| Dummy event| 
-| 10| Cat Chenal| [Debug Pres](2021/10-cat-chenal-debug-foo.md)| Cat Too| Not yet processed (editor needed)| Dummy event| 
-| 11| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/11-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 12| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/12-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 13| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/13-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 14| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/14-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 15| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/15-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
+| 21| Cat Chenal| [Automating Audio Tanscription.](2020/21-cat-chenal-foo-demo.md)| Billy Bop| Not yet processed (editor needed)| | 
+| 01| Nick Janetakis| [Creating a Command Line Focused Development Environment](2021/01-nick-janetakis-command.md)| ?| Partial (new editor requested)| | 
+| 02| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/02-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
 <!-- main_tbl_end -->
 <!-- Note: There should not be any empty table row before the end of table marker above.-->
 

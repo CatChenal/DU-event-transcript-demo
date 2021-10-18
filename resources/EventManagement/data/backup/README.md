@@ -2,7 +2,7 @@
  <a href="https://www.dataumbrella.org" target="_blank"> <img src="images/full_logo_transparent.png" height="30%" width="30%" /> </a>
 </p>
 
-# Event Transcripts
+# Event Transcripts (Demo README)
 
 ## [Videos](https://www.youtube.com/c/DataUmbrella/videos)
 Subscribe to our YouTube [Data Umbrella channel](https://www.youtube.com/c/DataUmbrella/videos).
@@ -33,50 +33,17 @@ Review our [Contributing Instructions](CONTRIBUTING.md) before beginning editing
 | 18| Thomas Fan| [Streamlit for Data Science](2020/18-thomas-fan-streamlit.md)| ?| Not yet processed (editor needed)| | 
 | 19| Matti Picus| [Contributing to NumPy](2020/19-matti-picus-numpy.md)| ?| Not yet processed (editor needed)| | 
 | 20| Marco Gorelli| [Contributing to pandas](2020/20-marco-gorelli-pandas.md)| ?| Not yet processed (editor needed)| | 
-| 21| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2020/21-cat-reshama-audio-demo.md)| Sing Song| Not yet processed (editor needed)| | 
-| 22| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2020/22-cat-reshama-new-demo.md)| Sam Tell| Not yet processed (editor needed)| | 
-| 23| Cat Chenal| [Automating Audio Tanscription.](2020/23-cat-chenal-foo-demo.md)| Bill Yip| Not yet processed (editor needed)| | 
-| 24| Cat Chenal| [Automating Audio Tanscription.](2020/24-cat-chenal-foo-demo.md)| Billy Pip| Not yet processed (editor needed)| | 
-| 01| Nick Janetakis| [Creating a Command Line Focused Development Environment](2021/01-nick-janetakis-command.md)| ?| Not yet processed (editor needed)| | 
-| 02| Cat Chenal, Sing Song| [Better Demo Presentation Ii](2021/02-cat-sing-demo-foo.md)| Samtoo Me| Partial (w.i.p.)| Test for existing update from EventMeta.class| 
-| 03| Cat Chenal| [Brand New Year!](2021/03-cat-chenal-bar-demo.md)| me too| Partial (w.i.p.)| Test for updating exisitng.| 
-| 04| Cat Chenal, Reshama Shaik| [My Demo Presentation](2021/04-cat-reshama-demo-foo.md)| ?| Not yet processed (editor needed)| Dummy event 2| 
-| 05| Mini Max| [New Demo Presentation](2021/05-mini-max-demo-baz.md)| ?| Not yet processed (editor needed)| Dummy event| 
-| 06| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/06-cat-reshama-better-demo.md)| Mama Song| Not yet processed (editor needed)| N.A.| 
-| 07| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/07-cat-reshama-audio-demo.md)| Max Chenal| Partial (w.i.p.)| N.A.| 
-| 08| Cat Chenal, Reshama Shaikh| [Automating Audio Tanscription.](2021/08-cat-reshama-audio-demo.md)| Bibi Chenal| Partial (new editor requested)| N.A.| 
-| 09| Cat Chenal| [New Presentation (Demo)](2021/09-cat-chenal-foo-demo.md)| ?| Not yet processed (editor needed)| Dummy event| 
-| 10| Cat Chenal| [Debug Pres](2021/10-cat-chenal-debug-foo.md)| Cat Too| Not yet processed (editor needed)| Dummy event| 
-| 11| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/11-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 12| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/12-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 13| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/13-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
-| 14| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/14-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
+| 21| Nick Janetakis| [Creating a Command Line Focused Development Environment](2021/21-nick-janetakis-command.md)| ?| Partial (new editor requested)| | 
+| 22| Cat Chenal, Reshama Shaikh| [Automating Audio Transcription.](2021/22-cat-reshama-audio-foo.md)| ?| Not yet processed (editor needed)| Dummy entry for demo.| 
 <!-- main_tbl_end -->
 <!-- Note: There should not be any empty table row before the end of table marker above.-->
 
 ## NEW!
 ### This is the README file of the event management demo (or dev) project for the Data Umbrella transcript repo. Further details about the implementation and its benefits, i.e. the 'sales points' and specifications of the project, can be found in the [Dev Project README](./resources/EventManagement/dev_only_docs/README.md) and associated files in the `/EventManagement/dev_only_docs` folder. 
 
-### Try this demo:
-- Clone or download this repo.
-- Create or activate an evironment for python 3.7
-- Install the external libraries (requirement.txt):
-```
-pandas
-beautifulsoup4
-ipywidgets
-pytube
-defusedxml
-textwrap
-```
-- Install Jupyter Lab. [(Installation details)](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html).  
-The ipywidgets-based GUI is functional in a Jupyter notebook but will not be optimal as the notebook has a fixed width, which degrades the flexibility afforded by the GUI's EDIT page.
-- Optional, but HIGHLY recommended: [Grammarly browser extension](https://www.grammarly.com). This makes the Editing task much easier!
-- cd to your local `DU-event-transcript-demo` and launch Jupyter Lab:  
-```
- cd <parent path>/DU-event-transcript-demo
- jupyter-lab
-```
-- In jlab, navigate to `./resources/EventManagement/notebooks` and open `ManageGUI.ipynb`. Start playing!
+
+## Try this demo!
+- Check the installation instructions in [DEMO.md](./DEMO.md)
+
 
 ### [Project README](./resources/EventManagement/README.md)

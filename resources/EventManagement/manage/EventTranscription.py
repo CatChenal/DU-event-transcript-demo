@@ -148,7 +148,7 @@ class YTVAudio:
         :param: replace_audio_file (bool): redo download of audio.
         """
         self.minutes_mark = 4
-        self.wrap_width = 120
+        self.wrap_width = 110
         self.video_url = video_url
         self.video = self.set_YT_video()
         self.meta_path = Meta.DIR_META

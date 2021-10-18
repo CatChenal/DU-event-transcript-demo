@@ -194,9 +194,8 @@ def df_from_readme_tbl(main_readme=MAIN_README):
         tbl_arr.append(split_tbl_line(e))
     df = pd.DataFrame(tbl_arr, columns=tbl_info[0])
 
-    #empty_last_row = tbl_info[-1]
+    #tbl_info[-1] :: empty last row
     if tbl_info[-1]:
-        #empty_last_row
         df.drop(df.index.argmax())
 
     # Add columns 'year', 'name'
@@ -231,6 +230,7 @@ def default_href_src(vid):
 
 # ....................................................................
 # class TranscriptMeta
+# ....................................................................
 REPR_INFO = "< NOT SHOWN (can be VERY long).\nTo view  it, run "
 REPR_INFO += "print(TranscriptMeta.event_dict['formatted_transcript']) >"
 
@@ -270,7 +270,6 @@ class TranscriptMeta:
             
     def refresh_tbl_info(self):
         self.tbl_info = df_from_readme_tbl(self.readme)
-        # rm: self.empty_lastrow, 
         self.df, self.tbl_delims = self.tbl_info
         
  
@@ -899,14 +898,19 @@ class TranscriptMeta:
             
         return desc
         
-        
-    def __repr__(self):
+    
+    def __str__(self):
         #msg = "TranscriptMeta Class rep: only prints metadata."
         if self.event_dict['has_transcript']:
             without_trx = self.event_dict.copy()
             without_trx['formatted_transcript'] = REPR_INFO
             return pformat(without_trx)
         return pformat(self.event_dict)
+    
+    
+    def __repr__(self):
+        o = f"EventMeta.TranscriptMeta(idn={self.idn}, year={self.year})"
+        return o
 
 
 # .................................................................
